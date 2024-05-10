@@ -7,11 +7,12 @@
 ## Education							       		
 - M.S.  Physics and Data Science	| Indian Institute of Science Education and Research Mohali (_June 2022_)	 			        		
 
-- B.S.  Physics | Indian Institute of Science Education and Research Mohali (_June 2020_)
+- B.S.  Physics                     | Indian Institute of Science Education and Research Mohali (_June 2020_)
 
 ## Work experience 
 **Research Engineer @ School of Computing and Information Systems, Singapore Management University (_January 2023 - present_)**
-- [QEP2.0](#smartbfa)
+- [QSBO for NP-hard Newsvendor](#qsbo)
+- [Quantum Relaxation for Multiple Knapsack](#qrao)
 
 
 **Researcher @ Tata Consultancy Services (_October 2021 - June 2022_)**  
@@ -21,22 +22,23 @@
 
 
 ## Work
-<a name="smartbfa"></a>
+<a name="qsbo"></a>
 ### Quantum Enhanced Simulation Based Optimization for Newsvendor Problems
 
-[Paper](https://arxiv.org/abs/2403.17389)  
+[Publication](https://arxiv.org/abs/2403.17389)  
 
 - We utilize the maximum profit formulation for the Newsvendor Problem, which has broader applicability compared to the minimal loss formulation commonly found in the literature.
 - Our approach involves an unknown demand distribution, where a function may not precisely capture the demand in such settings, to address this, we employ Quantum Generative Adversarial Networks (qGANs) to load the unknown demand distribution, thereby creating a more realistic scenario.
 - We improve the simulation-based optimization method in by introducing a new comparison operator, thereby reducing the number of qubits needed in the circuit.
 
-<a name="qchipl"></a>
-### Improving Quantal Cognitive Hierarchy Model Through Iterative Population Learning (QCHIPL)
-##### Game theory, Human Behavior Prediction
-[Publication](https://arxiv.org/abs/2302.06033)
+<a name="qrao"></a>
+### Quantum Relaxation for Solving Multiple Knapsack Problems
 
-- Perform cross-validation on the developed Quantal Cognitive Hierarchy - Iterative Population Learning (QCH-IPL) model and compare the prediction results with baseline models
-- Developed codes in Python to organize the entire workflow and conducted implementations of data preparation, model training, results comparison, and visualizations
+[Publication](https://arxiv.org/abs/2404.19474)
+
+- Explored the effectiveness of QRAO in addressing the inherent complexities of constrained supply chain problems, by solving a Multiple Knapsack Problem (MKP) and comparing it with the well-studied QAOA approach.
+- Scaled up a real-world multiple knapsack-based Risk-Aware Procurement Optimization problem involving ≥ 100 variables and demonstrating the prospect of combining QRAO with a classical method in operations research, namely Linear Relaxation (LR)
+
 
 <a name="real_estate"></a>
 ### Mining Real Estate Ads and Property Transactions for Building and Amenity Data Acquisition

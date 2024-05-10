@@ -1,7 +1,7 @@
 title: Monit Sharma
 logo: /assets/imgs/image.png
 description: Hello there! I am Monit, a researcher passionate about quantum computing and its applications.
-show_downloads: true
+show_downloads: false
 theme: jekyll-theme-minimal
 social_links:
   - { platform: linkedin,user_url: "www.linkedin.com/in/monitsharma/" }
