@@ -7,16 +7,16 @@
 ## Education							       		
 - M.S.  Physics and Data Science	| Indian Institute of Science Education and Research Mohali (_June 2022_)	 			        		
 
-- B.S.  Physics                     | Indian Institute of Science Education and Research Mohali (_June 2020_)
+- B.S.  Physics and Data Science    | Indian Institute of Science Education and Research Mohali (_June 2020_)
 
 ## Work experience 
 **Research Engineer @ School of Computing and Information Systems, Singapore Management University (_January 2023 - present_)**
-- [QSBO for NP-hard Newsvendor](#qsbo)
+- [QSBO for NP-hard Newsvendor variant](#qsbo)
 - [Quantum Relaxation for Multiple Knapsack](#qrao)
 
 
 **Researcher @ Tata Consultancy Services (_October 2021 - June 2022_)**  
-- [Mining real estate ads and property transactions for building and amenity data acquisition](#real_estate)
+- [Quantum Powered Employee Transport and Agri-Logistics Optimization](#tcs)
   
 ---
 
@@ -40,31 +40,29 @@
 - Scaled up a real-world multiple knapsack-based Risk-Aware Procurement Optimization problem involving ≥ 100 variables and demonstrating the prospect of combining QRAO with a classical method in operations research, namely Linear Relaxation (LR)
 
 
-<a name="real_estate"></a>
-### Mining Real Estate Ads and Property Transactions for Building and Amenity Data Acquisition
-##### Urban Science, GIS
-[Publication](https://link.springer.com/article/10.1007/s44212-022-00012-2)
+<a name="tcs"></a>
+### Quantum Powered Employee Transport and Agri-Logistics Optimization
 
-- Developed an entirely new mechanism to maintain spatial databases by detecting unmapped buildings and amenities and adding unfilled building attributes detected from real estate data
-- Extracted locations and attributes of buildings and amenities from 295,880 real estate listings and 954,510 transaction records by using Python and R 
-- The mechanism can achieve accuracy rates of over 90% in identifying locations of unmapped amenities and adding unfilled building attributes
+
+- Solved the logistics Vehicle Routing Problem for an enormous 200 customers with 25 vehicles on DWAVE’s quantum annealer hardware using a quantum algorithm.
+- Solved the supply-chain problem and devised a new method to reducethe requirements of qubits while solving MILP.
 
 
 ---
 
 
-## Data engineering work
+## Quantum Education Work
 
-### Gojek taxi data processing
-##### Language: Python
+### Quantum Classroom
+##### Learning Material
 
-Developed codes to aggregate over a million records of order-level taxi data into trip-level taxi data. For more details, please [View codes](https://github.com/chenxy285/gojek_taxi/tree/main).
+Made a website that contains free resources to learn quantum computing, some written by me, and some by the vast quantum computing community. For more details, please [Visit Website](https://monitsharma.github.io).
 
 
 ---
 
 
-## Other coursework projects
+## Other projects
 
 ### Spatial-temporal Analysis of Taxi Demand in New York City
 ##### Urban Science, spatio-temporal analytics, transportation
