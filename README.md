@@ -60,7 +60,6 @@ Made a website that contains free resources to learn quantum computing, some wri
 <br>
 ![Website](assets/imgs/website.png)
 
----
 
 
 ### Medium Blogs
@@ -70,7 +69,6 @@ I write about recent quantum papers that I read, and try to code them out. Also 
 [View Blogs](https://medium.com/@_monitsharma)<br>
 <br>
 ![MediumBlogs](assets/imgs/medium.png)
-
 
 
 ---
