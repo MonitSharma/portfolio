@@ -1,7 +1,12 @@
-title: Chen Xinyu
-logo: /assets/imgs/logo.png
-description: Hello there! I am Xinyu, a researcher passionate about data science applications.
+title: Monit Sharma
+logo: /assets/imgs/image.jpg
+description: Hello there! I am Monit, a researcher passionate about quantum computing and its applications.
 show_downloads: true
 theme: jekyll-theme-minimal
 social_links:
-  - { platform: linkedin,user_url: "www.linkedin.com/in/chxinyu" }
+  - { platform: linkedin,user_url: "www.linkedin.com/in/monitsharma/" }
+  - { platform: github,user_url: "github.com/monitsharma" }
+  - { platform: twitter,user_url: "twitter.com/monitsharma" }
+  - { platform: email,user_url: "mailto:monitsharma437@gmail.com" }
+  - { platform: cv,user_url: "/assets/docs/CV_MonitSharma.pdf" }
+
