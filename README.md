@@ -57,25 +57,20 @@
 ##### Learning Material
 
 Made a website that contains free resources to learn quantum computing, some written by me, and some by the vast quantum computing community. For more details, please [Visit Website](https://monitsharma.github.io).
-
+![MediumBlogs](assets/imgs/website.png)
 
 ---
 
 
 ## Other projects
 
-### Spatial-temporal Analysis of Taxi Demand in New York City
+### Medium Blogs
 ##### Urban Science, spatio-temporal analytics, transportation
-[View project report, codes, and data](https://github.com/chenxy285/taxi_demand_analysis_NYC)<br>
+[View project report, codes, and data](https://medium.com/@_monitsharma)<br>
 <br>
-![taxiNYC](assets/imgs/taxiNYC.png)
+![MediumBlogs](assets/imgs/medium.png)
 
 
-### Exploring Influencing Factors of Airbnb Penetration in Three U.S. Cities Using Spatial Regression Analysis
-##### Urban Science, spatial analytics, real estate
-[View project report and data](https://github.com/chenxy285/Airbnb_study)<br>
-<br>
-![airbnbUS](assets/imgs/airbnbUS.png)
 
 ---
 
