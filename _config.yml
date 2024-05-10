@@ -1,0 +1,7 @@
+title: Chen Xinyu
+logo: /assets/imgs/logo.png
+description: Hello there! I am Xinyu, a researcher passionate about data science applications.
+show_downloads: true
+theme: jekyll-theme-minimal
+social_links:
+  - { platform: linkedin,user_url: "www.linkedin.com/in/chxinyu" }
