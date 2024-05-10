@@ -53,20 +53,21 @@
 
 ## Quantum Education Work
 
-### Quantum Classroom
+### Quantum Classroom Website
 ##### Learning Material
 
-Made a website that contains free resources to learn quantum computing, some written by me, and some by the vast quantum computing community. For more details, please [Visit Website](https://monitsharma.github.io).
-![MediumBlogs](assets/imgs/website.png)
+Made a website that contains free resources to learn quantum computing, some written by me, and some by the vast quantum computing community. For more details, please [Visit Website](https://monitsharma.github.io).<br>
+<br>
+![Website](assets/imgs/website.png)
 
 ---
 
 
-## Other projects
-
 ### Medium Blogs
-##### Urban Science, spatio-temporal analytics, transportation
-[View project report, codes, and data](https://medium.com/@_monitsharma)<br>
+##### Education Work
+
+I write about recent quantum papers that I read, and try to code them out. Also explain some coding tutorials and exercises.
+[View Blogs](https://medium.com/@_monitsharma)<br>
 <br>
 ![MediumBlogs](assets/imgs/medium.png)
 
@@ -75,7 +76,8 @@ Made a website that contains free resources to learn quantum computing, some wri
 ---
 
 ### Publications
-- Yan Jin, Monit Sharma, Hoong Chuin Lau and Rudy Raymond. Quantum Relaxation for Solving Multiple Knapsack Problems. e-Print: 2404.19474 [quant-ph]
+- Yan Jin, Monit Sharma, Hoong Chuin Lau and Rudy Raymond. Quantum Relaxation for Solving Multiple Knapsack Problems,
+e-Print: 2404.19474 [quant-ph]
 
 - Monit Sharma, Hoong Chuin Lau and Rudy Raymond. Quantum-Enhanced Simulation-Based Optimization for Newsvendor Problems, 
 e-Print: 2403.17389 [quant-ph] **[QIP2024 Taiwan Poster presented]**
