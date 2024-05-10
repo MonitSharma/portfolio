@@ -1,38 +1,34 @@
 ## Research Interests
 
-#### Urban Data Science, Machine Learning applications, Human-computer Interaction in accessibility
+#### Quantum Physics, Quantum Computation, Quantum Optimization and Algorithms
 
 
 
 ## Education							       		
-- M.S.  Applied Geographic Information Systems	| National University of Singapore (_August 2021_)	 			        		
-- B.S.  Human Geography and Urban-rural Planning | Sun Yat-sen University (_June 2019_)
+- M.S.  Physics and Data Science	| Indian Institute of Science Education and Research Mohali (_June 2022_)	 			        		
+
+- B.S.  Physics | Indian Institute of Science Education and Research Mohali (_June 2020_)
 
 ## Work experience 
-**Research Engineer @ School of Computing and Information Systems, Singapore Management University (_December 2021 - present_)**
-- [SmartBFA project](#smartbfa)
-- [QCHIPL project](#qchipl)
+**Research Engineer @ School of Computing and Information Systems, Singapore Management University (_January 2023 - present_)**
+- [QEP2.0](#smartbfa)
 
-**Graduate Researcher @ Urban Analytics Lab, National University of Singapore (_January 2021 - August 2021_)**  
+
+**Researcher @ Tata Consultancy Services (_October 2021 - June 2022_)**  
 - [Mining real estate ads and property transactions for building and amenity data acquisition](#real_estate)
   
-**Teaching Assistant @ Urban Analytics Lab, National University of Singapore (_August 2020 - November 2020_)**
-- Prepared lecture materials about spatial network analysis by using QGIS
-
-
 ---
 
 
-## Research Projects
+## Work
 <a name="smartbfa"></a>
-### Smart Barrier-Free Access (SmartBFA) 
-##### HCI in urban accessibility
-[Project website](https://smartbfa.com/)  
-[Tech poster](https://www.canva.com/design/DAFBk8BAoD4/dBsr2iFutYPfMJhXMWTvAQ/view?utm_content=DAFBk8BAoD4&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
+### Quantum Enhanced Simulation Based Optimization for Newsvendor Problems
 
-- Participated in developing a navigation tool to help wheelchair users find barrier-free accessible paths in Singapore
-- Modified GraphHopper API by using JavaScipt to conduct map matching on GPS trajectories of accessible paths collected by the wheelchair volunteers
-- Developed machine learning algorithms to detect the transition points between paths and open spaces for further routing generation by applying hidden Markov model and logistic regression
+[Paper](https://arxiv.org/abs/2403.17389)  
+
+- We utilize the maximum profit formulation for the Newsvendor Problem, which has broader applicability compared to the minimal loss formulation commonly found in the literature.
+- Our approach involves an unknown demand distribution, where a function may not precisely capture the demand in such settings, to address this, we employ Quantum Generative Adversarial Networks (qGANs) to load the unknown demand distribution, thereby creating a more realistic scenario.
+- We improve the simulation-based optimization method in by introducing a new comparison operator, thereby reducing the number of qubits needed in the circuit.
 
 <a name="qchipl"></a>
 ### Improving Quantal Cognitive Hierarchy Model Through Iterative Population Learning (QCHIPL)
@@ -84,11 +80,16 @@ Developed codes to aggregate over a million records of order-level taxi data int
 ---
 
 ### Publications
-- Yuhong Xu, Shih-Fen Cheng, and Xinyu Chen. Improving Quantal Cognitive Hierarchy Model Through Iterative Population Learning (Extended Abstract), 22nd International Conference on Autonomous Agents and Multiagent Systems (AAMAS-2023), London, UK, May 2023.
-- Chen, X., & Biljecki, F. (2022). Mining real estate ads and property transactions for building and amenity data acquisition. Urban Informatics, 1(1), 12. **[Urban Informatics Paper of the Year Award 2023 (1st place)]**
+- Yan Jin, Monit Sharma, Hoong Chuin Lau and Rudy Raymond. Quantum Relaxation for Solving Multiple Knapsack Problems. e-Print: 2404.19474 [quant-ph]
+
+- Monit Sharma, Hoong Chuin Lau and Rudy Raymond. Quantum-Enhanced Simulation-Based Optimization for Newsvendor Problems, 
+e-Print: 2403.17389 [quant-ph] **[QIP2024 Taiwan Poster presented]**
 
 
 
+
+
+ 
 
 
 

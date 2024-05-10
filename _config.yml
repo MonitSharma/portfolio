@@ -1,12 +1,14 @@
 title: Monit Sharma
-logo: /assets/imgs/image.jpg
+logo: /assets/imgs/image.png
 description: Hello there! I am Monit, a researcher passionate about quantum computing and its applications.
 show_downloads: true
 theme: jekyll-theme-minimal
 social_links:
   - { platform: linkedin,user_url: "www.linkedin.com/in/monitsharma/" }
-  - { platform: github,user_url: "github.com/monitsharma" }
-  - { platform: twitter,user_url: "twitter.com/monitsharma" }
+  - { platform: github,user_url: "https://github.com/MonitSharma" }
+  - { platform: twitter,user_url: "https://twitter.com/_MonitSharma" }
   - { platform: email,user_url: "mailto:monitsharma437@gmail.com" }
   - { platform: cv,user_url: "/assets/docs/CV_MonitSharma.pdf" }
+  - { platform: google_scholar,user_url: "https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&hl=en" }
+  - { platform: medium,user_url: "https://medium.com/@_monitsharma"}
 
