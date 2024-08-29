@@ -38,13 +38,6 @@
 - Scaled up a real-world multiple knapsack-based Risk-Aware Procurement Optimization problem involving ≥ 100 variables and demonstrating the prospect of combining QRAO with a classical method in operations research, namely Linear Relaxation (LR)
 
 
-<a name="tcs"></a>
-### Quantum Powered Employee Transport and Agri-Logistics Optimization
-
-
-- Solved the logistics Vehicle Routing Problem for an enormous 200 customers with 25 vehicles on DWAVE’s quantum annealer hardware using a quantum algorithm.
-- Solved the supply-chain problem and devised a new method to reducethe requirements of qubits while solving MILP.
-
 
 ---
 
@@ -73,10 +66,10 @@ I write about recent quantum papers that I read, and try to code them out. Also 
 
 ### Publications
 - Monit Sharma,Yan Jin, Hoong Chuin Lau and Rudy Raymond. Quantum Relaxation for Solving Multiple Knapsack Problems,
-e-Print: 2404.19474 [quant-ph]
+e-Print: 2404.19474 [quant-ph],  **[IEEE QCE2024 Quantum Week Conference presented]**
 
 - Monit Sharma, Hoong Chuin Lau and Rudy Raymond. Quantum-Enhanced Simulation-Based Optimization for Newsvendor Problems, 
-e-Print: 2403.17389 [quant-ph] **[QIP2024 Taiwan Poster presented]**
+e-Print: 2403.17389 [quant-ph] **[QIP2024 Taiwan Poster presented]**, **[IEEE QCE2024 Quantum Week Conference presented]**
 
 
 
