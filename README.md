@@ -15,9 +15,7 @@
 - [Quantum Relaxation for Multiple Knapsack](#qrao)
 
 
-**Researcher @ Tata Consultancy Services (_October 2021 - June 2022_)**  
-- [Quantum Powered Employee Transport and Agri-Logistics Optimization](#tcs)
-  
+
 ---
 
 
@@ -74,7 +72,7 @@ I write about recent quantum papers that I read, and try to code them out. Also 
 ---
 
 ### Publications
-- Yan Jin, Monit Sharma, Hoong Chuin Lau and Rudy Raymond. Quantum Relaxation for Solving Multiple Knapsack Problems,
+- Monit Sharma,Yan Jin, Hoong Chuin Lau and Rudy Raymond. Quantum Relaxation for Solving Multiple Knapsack Problems,
 e-Print: 2404.19474 [quant-ph]
 
 - Monit Sharma, Hoong Chuin Lau and Rudy Raymond. Quantum-Enhanced Simulation-Based Optimization for Newsvendor Problems, 
