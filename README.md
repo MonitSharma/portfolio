@@ -11,8 +11,9 @@
 
 ## Work experience 
 **Research Engineer @ School of Computing and Information Systems, Singapore Management University (_January 2023 - present_)**
-- [QSBO for NP-hard Newsvendor variant](#qsbo)
-- [Quantum Relaxation for Multiple Knapsack](#qrao)
+- [Quantum Monte Carlo methods for Newsvendor problem with Multiple Unreliable Suppliers](#qmc)
+- [Quantum-Enhanced Simulation-Based Optimization for Newsvendor Problems](#qsbo)
+- [Quantum Relaxation for Solving Multiple Knapsack Problems](#qrao)
 
 
 
@@ -20,6 +21,17 @@
 
 
 ## Work
+<a name="qmc"></a>
+### Quantum Monte Carlo methods for Newsvendor problem with Multiple Unreliable Suppliers
+
+[Publication](https://arxiv.org/abs/2409.07183)  
+
+- In the post-pandemic world, manufacturing enterprises face increasing uncertainties, especially with vulnerabilities in global supply chains. Although supply chain management has been extensively studied, the critical influence of decision-makers (DMs) in these systems remains underexplored. 
+- This study studies the inventory management problem under risk using the newsvendor model by incorporating DMs risk preferences. By employing the Quantum Monte Carlo (QMC) combined with Quantum Amplitude Estimation (QAE) algorithm, the estimation of probabilities or expectation values can be done more efficiently. 
+- This offers near-quadratic speedup compared to classical Monte Carlo methods. Our findings illuminate the intricate relationship between risk-aware decision-making and inventory management, providing essential insights for enhancing supply chain resilience and adaptability in uncertain conditions
+
+
+
 <a name="qsbo"></a>
 ### Quantum Enhanced Simulation Based Optimization for Newsvendor Problems
 
@@ -65,6 +77,8 @@ I write about recent quantum papers that I read, and try to code them out. Also 
 ---
 
 ### Publications
+- Monit Sharma, and Hoong Chuin Lau. "Quantum Monte Carlo methods for Newsvendor problem with Multiple Unreliable Suppliers." arXiv preprint arXiv:2409.07183 (2024).
+
 - Monit Sharma,Yan Jin, Hoong Chuin Lau and Rudy Raymond. Quantum Relaxation for Solving Multiple Knapsack Problems,
 e-Print: 2404.19474 [quant-ph],  **[IEEE QCE2024 Quantum Week Conference presented]**
 
