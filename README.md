@@ -35,7 +35,7 @@
 <a name="qsbo"></a>
 ### Quantum Enhanced Simulation Based Optimization for Newsvendor Problems
 
-[Publication](https://arxiv.org/abs/2403.17389)  
+[Publication](https://ieeexplore.ieee.org/document/10821393)  
 
 - We utilize the maximum profit formulation for the Newsvendor Problem, which has broader applicability compared to the minimal loss formulation commonly found in the literature.
 - Our approach involves an unknown demand distribution, where a function may not precisely capture the demand in such settings, to address this, we employ Quantum Generative Adversarial Networks (qGANs) to load the unknown demand distribution, thereby creating a more realistic scenario.
@@ -44,7 +44,7 @@
 <a name="qrao"></a>
 ### Quantum Relaxation for Solving Multiple Knapsack Problems
 
-[Publication](https://arxiv.org/abs/2404.19474)
+[Publication](https://ieeexplore.ieee.org/document/10821401)
 
 - Explored the effectiveness of QRAO in addressing the inherent complexities of constrained supply chain problems, by solving a Multiple Knapsack Problem (MKP) and comparing it with the well-studied QAOA approach.
 - Scaled up a real-world multiple knapsack-based Risk-Aware Procurement Optimization problem involving ≥ 100 variables and demonstrating the prospect of combining QRAO with a classical method in operations research, namely Linear Relaxation (LR)
@@ -77,14 +77,28 @@ I write about recent quantum papers that I read, and try to code them out. Also 
 ---
 
 ### Publications
-- Monit Sharma, and Hoong Chuin Lau. "Quantum Monte Carlo methods for Newsvendor problem with Multiple Unreliable Suppliers." arXiv preprint arXiv:2409.07183 (2024).
+- **M. Sharma and H. C. Lau**,  
+"Quantum Monte Carlo methods for Newsvendor problem with Multiple Unreliable Suppliers,"  
+*arXiv preprint*, arXiv:2409.07183 (2024).  
+DOI: [arXiv:2409.07183](https://arxiv.org/abs/2409.07183)  
 
-- M. Sharma, Y. Jin, H. C. Lau and R. Raymond, "Quantum Relaxation for Solving Multiple Knapsack Problems," 2024 IEEE International Conference on Quantum Computing and Engineering (QCE), Montreal, QC, Canada, 2024, pp. 692-698, doi: 10.1109/QCE60285.2024.00086. keywords: {Procurement;Quantum computing;Codes;Scalability;Supply chains;Optimization;Business;Quantum Relaxation;Quantum Random Access Optimization;Multiple Knapsack Problem;Risk-Aware procurement;Constrained Optimization;Linear Relaxation;multiple knapsack;Risk aware procurement},
+
+- **M. Sharma, Y. Jin, H. C. Lau, and R. Raymond**,  
+"Quantum Relaxation for Solving Multiple Knapsack Problems,"  
+*2024 IEEE International Conference on Quantum Computing and Engineering (QCE)*,  
+Montreal, QC, Canada, 2024, pp. 692–698.  
+DOI: [10.1109/QCE60285.2024.00086](https://doi.org/10.1109/QCE60285.2024.00086)  
 
 
 
-- M. Sharma, H. C. Lau and R. Raymond, "Quantum Enhanced Simulation Based Optimization for Newsvendor Problems," 2024 IEEE International Conference on Quantum Computing and Engineering (QCE), Montreal, QC, Canada, 2024, pp. 457-468, doi: 10.1109/QCE60285.2024.00060. keywords: {Procurement;Quantum computing;Uncertainty;Monte Carlo methods;Inventory management;Linear programming;Amplitude estimation;Object recognition;Computational complexity;Optimization;Quantum Amplitude Estimation;Newsvendor problems;Simulation-based optimization;Monte Carlo;QGANs;Error Mitigation;Stochastic Optimization},
 
+- **M. Sharma, H. C. Lau, and R. Raymond**,  
+"Quantum Enhanced Simulation Based Optimization for Newsvendor Problems,"  
+*2024 IEEE International Conference on Quantum Computing and Engineering (QCE)*,  
+Montreal, QC, Canada, 2024, pp. 457–468.  
+DOI: [10.1109/QCE60285.2024.00060](https://doi.org/10.1109/QCE60285.2024.00060)  
+
+---
 
 
 
