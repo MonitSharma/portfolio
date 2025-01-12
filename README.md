@@ -79,11 +79,13 @@ I write about recent quantum papers that I read, and try to code them out. Also 
 ### Publications
 - Monit Sharma, and Hoong Chuin Lau. "Quantum Monte Carlo methods for Newsvendor problem with Multiple Unreliable Suppliers." arXiv preprint arXiv:2409.07183 (2024).
 
-- Monit Sharma,Yan Jin, Hoong Chuin Lau and Rudy Raymond. Quantum Relaxation for Solving Multiple Knapsack Problems,
-e-Print: 2404.19474 [quant-ph],  **[IEEE QCE2024 Quantum Week Conference presented]**
+- M. Sharma, Y. Jin, H. C. Lau and R. Raymond, "Quantum Relaxation for Solving Multiple Knapsack Problems," 2024 IEEE International Conference on Quantum Computing and Engineering (QCE), Montreal, QC, Canada, 2024, pp. 692-698, doi: 10.1109/QCE60285.2024.00086. keywords: {Procurement;Quantum computing;Codes;Scalability;Supply chains;Optimization;Business;Quantum Relaxation;Quantum Random Access Optimization;Multiple Knapsack Problem;Risk-Aware procurement;Constrained Optimization;Linear Relaxation;multiple knapsack;Risk aware procurement},
 
-- Monit Sharma, Hoong Chuin Lau and Rudy Raymond. Quantum-Enhanced Simulation-Based Optimization for Newsvendor Problems, 
-e-Print: 2403.17389 [quant-ph] **[QIP2024 Taiwan Poster presented]**, **[IEEE QCE2024 Quantum Week Conference presented]**
+
+
+- M. Sharma, H. C. Lau and R. Raymond, "Quantum Enhanced Simulation Based Optimization for Newsvendor Problems," 2024 IEEE International Conference on Quantum Computing and Engineering (QCE), Montreal, QC, Canada, 2024, pp. 457-468, doi: 10.1109/QCE60285.2024.00060. keywords: {Procurement;Quantum computing;Uncertainty;Monte Carlo methods;Inventory management;Linear programming;Amplitude estimation;Object recognition;Computational complexity;Optimization;Quantum Amplitude Estimation;Newsvendor problems;Simulation-based optimization;Monte Carlo;QGANs;Error Mitigation;Stochastic Optimization},
+
+
 
 
 
