@@ -19,7 +19,7 @@
 
 ## Research Interests
 
-**Quantum Physics, Quantum Computation, Quantum Optimization, and Algorithms**
+**Quantum Physics, Quantum Computation, Quantum Optimization, and Algorithms, Constraint Programming**
 
 ---
 
@@ -82,6 +82,14 @@
 - **Overview:** Investigates the effectiveness of Quantum Random Access Optimization (QRAO) in tackling complex constrained supply chain issues.
 - **Application:** Demonstrates the solution of a Multiple Knapsack Problem (MKP) using QRAO combined with classical methods like Linear Relaxation (LR) on a real-world risk-aware procurement optimization problem involving over 100 variables.
 - **Insight:** Highlights the potential of integrating quantum relaxation techniques with traditional optimization methods to enhance problem-solving capabilities.
+
+---
+
+## Code & Repositories
+
+- **SMU-Quantum**  
+  Explore our collaborative projects on quantum computing at SMU.  
+  [GitHub Repository](https://github.com/SMU-Quantum)
 
 ---
 
