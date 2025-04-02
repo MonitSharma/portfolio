@@ -22,24 +22,33 @@
 Exploring the intersection of quantum computing, optimization, and algorithms to tackle complex computational challenges. My interests include:  
 
 ### **Quantum Computing & Optimization**  
-- Quantum Algorithms (QAOA, VQE, Grover’s Search)  
+- Quantum Algorithms 
 - Hybrid Quantum-Classical Optimization  
-- Quantum Approximation Algorithms  
 - Quantum Machine Learning  
+- Quantum-Assisted Constraint Programming  
 - Quantum Error Mitigation & Noise-Aware Computing  
 
 ### **Classical & Constraint Optimization**  
 - Constraint Programming (CP)  
 - Mixed-Integer Programming (MIP)  
 - Heuristics & Metaheuristics (Genetic Algorithms, Simulated Annealing)  
-- Combinatorial Optimization (Knapsack, TSP, Scheduling)  
+- Combinatorial Optimization 
 - Integer Linear Programming (ILP)  
+- Large-Scale Supply Chain & Logistics Optimization  
+- Applications in Finance & Risk Management 
 
 ### **Applied & Theoretical Interests**  
 - Quantum Applications in Supply Chain & Logistics  
 - Benchmarking Quantum vs. Classical Solvers  
 - Quantum Advantage & Near-Term Quantum Computing  
 - Complexity Theory & Hardness of Approximation  
+
+### **GPU & HPC Integration**  
+- Quantum-Classical Hybrid Computing on HPC Clusters  
+- GPU-Accelerated Tensor Networks for Quantum Simulations  
+- Parallel Computing for Large-Scale Optimization Problems  
+- CUDA and TensorFlow Quantum for Quantum Machine Learning  
+- Accelerated Quantum Circuit Simulation on Classical Hardware  
 
 
 ---
@@ -89,7 +98,7 @@ Exploring the intersection of quantum computing, optimization, and algorithms to
 ---
 
 ### Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems
-**Publication:** [IEEE Xplore](https://ieeexplore.ieee.org/document/10821393)
+**Publication:** [IEEE Xplore](https://ieeexplore.ieee.org/document/10821393) (Poster Presented at QIP2023)
 
 - **Overview:** Utilizes a maximum profit formulation for the Newsvendor Problem to broaden its applicability beyond traditional minimal loss approaches.
 - **Innovation:** Employs Quantum Generative Adversarial Networks (qGANs) to model unknown demand distributions, creating more realistic scenarios.
