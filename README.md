@@ -17,9 +17,30 @@
 
 ---
 
-## Research Interests
+## Research Interests  
 
-**Quantum Physics, Quantum Computation, Quantum Optimization, and Algorithms, Constraint Programming**
+Exploring the intersection of quantum computing, optimization, and algorithms to tackle complex computational challenges. My interests include:  
+
+### **Quantum Computing & Optimization**  
+- Quantum Algorithms (QAOA, VQE, Grover’s Search)  
+- Hybrid Quantum-Classical Optimization  
+- Quantum Approximation Algorithms  
+- Quantum Machine Learning  
+- Quantum Error Mitigation & Noise-Aware Computing  
+
+### **Classical & Constraint Optimization**  
+- Constraint Programming (CP)  
+- Mixed-Integer Programming (MIP)  
+- Heuristics & Metaheuristics (Genetic Algorithms, Simulated Annealing)  
+- Combinatorial Optimization (Knapsack, TSP, Scheduling)  
+- Integer Linear Programming (ILP)  
+
+### **Applied & Theoretical Interests**  
+- Quantum Applications in Supply Chain & Logistics  
+- Benchmarking Quantum vs. Classical Solvers  
+- Quantum Advantage & Near-Term Quantum Computing  
+- Complexity Theory & Hardness of Approximation  
+
 
 ---
 
