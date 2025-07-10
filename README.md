@@ -5,6 +5,7 @@
 - [Education](#education)
 - [Work Experience](#work-experience)
 - [Research Projects](#research-projects)
+  - [Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems](#adaptive-graph-shrinking-for-quantum-optimization-of-constrained-combinatorial-problems)
   - [A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems](#a-comparative-study-of-quantum-optimization-techniques-for-solving-combinatorial-optimization-benchmark-problems)
   - [Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers](#quantum-monte-carlo-methods-for-newsvendor-problem-with-multiple-unreliable-suppliers)
   - [Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems](#quantum-enhanced-simulation-based-optimization-for-newsvendor-problems)
