@@ -67,6 +67,7 @@ Exploring the intersection of quantum computing, optimization, and algorithms to
 **Research Engineer @ School of Computing and Information Systems, Singapore Management University**  
 *January 2023 – Present*
 
+- [Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems](#adaptive-graph-shrinking-for-quantum-optimization-of-constrained-combinatorial-problems)
 - [A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems](#a-comparative-study-of-quantum-optimization-techniques-for-solving-combinatorial-optimization-benchmark-problems)
 - [Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers](#quantum-monte-carlo-methods-for-newsvendor-problem-with-multiple-unreliable-suppliers)
 - [Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems](#quantum-enhanced-simulation-based-optimization-for-newsvendor-problems)
@@ -75,6 +76,19 @@ Exploring the intersection of quantum computing, optimization, and algorithms to
 ---
 
 ## Research Projects
+
+### Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems  
+**Publication:** [arXiv:2506.14250](https://arxiv.org/abs/2506.14250)
+
+- **Overview:** Proposes a hybrid classical–quantum framework to tackle large constrained combinatorial optimization problems on quantum hardware by intelligently reducing problem size.
+- **Framework:** Introduces **constraint-aware graph shrinking**, a verification-and-repair pipeline, and **adaptive strategies** (e.g., correlation recalculation and spectral stopping criteria) to compress QUBO instances while preserving problem structure.
+- **Target Problems:** Applies the method to benchmark problems including the Multi-Dimensional Knapsack Problem (MDKP), Maximum Independent Set (MIS), and Quadratic Assignment Problem (QAP) using QUBO-to-Max-Cut transformations.
+- **Techniques:** Leverages semidefinite programming (SDP)-based correlation matrices and graph neural network–inspired merging heuristics to adaptively coarsen the graph.
+- **Results:** Achieves **40–80% qubit count reduction**, with minimal or no loss in solution quality and strong feasibility retention, on both simulated and quantum hardware instances.
+
+---
+
+
 
 ### A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems
 **Publication:** [arXiv:2503.12121](https://arxiv.org/abs/2503.12121)
@@ -144,6 +158,10 @@ Regular blogs covering recent quantum computing papers, coding tutorials, and pr
 ---
 
 ## Publications
+
+- **M. Sharma and H. C. Lau**  
+  *Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems*  
+  arXiv preprint, [arXiv:2506.14250](https://arxiv.org/abs/2506.14250) (2025)  
 
 - **M. Sharma and H. C. Lau**  
   *A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems*  
