@@ -5,7 +5,7 @@
 - [Education](#education)
 - [Work Experience](#work-experience)
 - [Research Projects](#research-projects)
-  - [Cutting Slack: Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks](#cutting-slack-:-quantum-optimizaton-with-slack-free-methods-for-combinatorial-benchmarks)
+  - [Cutting Slack Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks](#cutting-slack-quantum-optimizaton-with-slack-free-methods-for-combinatorial-benchmarks)
   - [Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems](#adaptive-graph-shrinking-for-quantum-optimization-of-constrained-combinatorial-problems)
   - [A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems](#a-comparative-study-of-quantum-optimization-techniques-for-solving-combinatorial-optimization-benchmark-problems)
   - [Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers](#quantum-monte-carlo-methods-for-newsvendor-problem-with-multiple-unreliable-suppliers)
@@ -69,7 +69,7 @@ Exploring the intersection of quantum computing, optimization, and algorithms to
 **Research Engineer @ School of Computing and Information Systems, Singapore Management University**  
 *January 2023 – Present*
 
-- [Cutting Slack: Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks](#cutting-slack-:-quantum-optimizaton-with-slack-free-methods-for-combinatorial-benchmarks)
+- [Cutting Slack Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks](#cutting-slack-quantum-optimizaton-with-slack-free-methods-for-combinatorial-benchmarks)
 
 - [Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems](#adaptive-graph-shrinking-for-quantum-optimization-of-constrained-combinatorial-problems)
 
@@ -86,7 +86,7 @@ Exploring the intersection of quantum computing, optimization, and algorithms to
 ## Research Projects
 
 
-### Cutting Slack: Quantum Optimization with Slack Free Methods for Combinatorial Benchmarks  
+### Cutting Slack Quantum Optimization with Slack Free Methods for Combinatorial Benchmarks  
 **Publication:** [arXiv:2507.12159](https://arxiv.org/abs/2507.12159)  
 
 - **Overview:** Introduces **slack‑free Lagrangian-based methods**—including dual ascent, bundle methods, cutting planes, and augmented Lagrangian—to enforce constraints in QUBO formulations without introducing slack variables.
