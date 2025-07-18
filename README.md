@@ -5,6 +5,7 @@
 - [Education](#education)
 - [Work Experience](#work-experience)
 - [Research Projects](#research-projects)
+  - [Cutting Slack: Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks](#cutting-slack:-quantum-optimizaton-with-slack-free-methods-for-combinatorial-benchmarks)
   - [Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems](#adaptive-graph-shrinking-for-quantum-optimization-of-constrained-combinatorial-problems)
   - [A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems](#a-comparative-study-of-quantum-optimization-techniques-for-solving-combinatorial-optimization-benchmark-problems)
   - [Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers](#quantum-monte-carlo-methods-for-newsvendor-problem-with-multiple-unreliable-suppliers)
@@ -23,7 +24,7 @@
 Exploring the intersection of quantum computing, optimization, and algorithms to tackle complex computational challenges. My interests include:  
 
 ### **Quantum Computing & Optimization**  
-- Quantum Algorithms 
+- Quantum Algorithms
 - Hybrid Quantum-Classical Optimization  
 - Quantum Machine Learning  
 - Quantum-Assisted Constraint Programming  
@@ -68,15 +69,46 @@ Exploring the intersection of quantum computing, optimization, and algorithms to
 **Research Engineer @ School of Computing and Information Systems, Singapore Management University**  
 *January 2023 – Present*
 
+- [Cutting Slack: Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks](#cutting-slack:-quantum-optimizaton-with-slack-free-methods-for-combinatorial-benchmarks)
+
 - [Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems](#adaptive-graph-shrinking-for-quantum-optimization-of-constrained-combinatorial-problems)
+
 - [A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems](#a-comparative-study-of-quantum-optimization-techniques-for-solving-combinatorial-optimization-benchmark-problems)
+
 - [Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers](#quantum-monte-carlo-methods-for-newsvendor-problem-with-multiple-unreliable-suppliers)
+
 - [Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems](#quantum-enhanced-simulation-based-optimization-for-newsvendor-problems)
+
 - [Quantum Relaxation for Solving Multiple Knapsack Problems](#quantum-relaxation-for-solving-multiple-knapsack-problems)
 
 ---
 
 ## Research Projects
+
+
+### Cutting Slack: Quantum Optimization with Slack‑Free Methods for Combinatorial Benchmarks  
+**Publication:** [arXiv:2507.12159](https://arxiv.org/abs/2507.12159)  
+
+- **Overview:** Introduces **slack‑free Lagrangian-based methods**—including dual ascent, bundle methods, cutting planes, and augmented Lagrangian—to enforce constraints in QUBO formulations without introducing slack variables.
+
+- **Framework:**  
+  - Dualizes constraints via Lagrange multipliers and uses iterative updates (subgradient, bundle, cutting‑plane, augmented Lagrangian) to embed constraints directly into the optimization objective.  
+- **Target Problems:**  
+  - **TSP:** Applies Held–Karp relaxation to eliminate degree‑constraint slack variables.  
+  - **MDKP:** Inequality constraints allow slack‑free encoding, reducing QUBO size.  
+  - **MIS:** Even without slack-variable elimination, Lagrangian updates enhance feasibility and solution quality.  
+- **Techniques:**  
+  - Implements multiple dual-update strategies—subgradient, bundle, cutting-plane, and augmented Lagrangian—on quantum simulators and hardware.  
+  - Benchmarks constraint handling via Lagrangian methods vs. traditional slack-augmented QUBO.  
+- **Results:**  
+  - **Qubit savings:** Significant reductions for TSP and MDKP through slack elimination.  
+  - **Feasibility & performance:** Maintained or improved solution quality; MIS also benefits from constraint handling despite no qubit reduction.  
+  - Demonstrates Lagrangian formulations as a scalable, resource-efficient alternative to penalty/sack-variable approaches.  
+
+---
+
+
+
 
 ### Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems  
 **Publication:** [arXiv:2506.14250](https://arxiv.org/abs/2506.14250)
@@ -159,6 +191,10 @@ Regular blogs covering recent quantum computing papers, coding tutorials, and pr
 ---
 
 ## Publications
+
+- **M. Sharma and H. C. Lau**  
+  *Cutting Slack: Quantum Optimization with Slack‑Free Methods for Combinatorial Benchmarks*  
+  **arXiv preprint**, [arXiv:2507.12159](https://arxiv.org/abs/2507.12159) (2025)
 
 - **M. Sharma and H. C. Lau**  
   *Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems*  
