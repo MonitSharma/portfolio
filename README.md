@@ -5,6 +5,7 @@
 - [Education](#education)
 - [Work Experience](#work-experience)
 - [Research Projects](#research-projects)
+  - [Hybrid Learning and Optimization methods for solving Capacitated Vehicle Routing Problem](#hybrid-learning-and-optimization)
   - [Cutting Slack Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks](#cutting-slack-quantum-optimizaton-with-slack-free-methods-for-combinatorial-benchmarks)
   - [Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems](#adaptive-graph-shrinking-for-quantum-optimization-of-constrained-combinatorial-problems)
   - [A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems](#a-comparative-study-of-quantum-optimization-techniques-for-solving-combinatorial-optimization-benchmark-problems)
@@ -69,7 +70,9 @@ Exploring the intersection of quantum computing, optimization, and algorithms to
 **Research Engineer @ School of Computing and Information Systems, Singapore Management University**  
 *January 2023 – Present*
 
-- [Cutting Slack Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks](#cutting-slack-quantum-optimizaton-with-slack-free-methods-for-combinatorial-benchmarks)
+- [Hybrid Learning and Optimization methods for solving Capacitated Vehicle Routing Problem](#hybrid-learning-and-optimization-methods-for-solving-capacitated-vehicle-routing-problem)
+
+- [Cutting Slack Quantum Optimization with Slack Free Methods for Combinatorial Benchmarks](#cutting-slack-quantum-optimizaton-with-slack-free-methods-for-combinatorial-benchmarks)
 
 - [Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems](#adaptive-graph-shrinking-for-quantum-optimization-of-constrained-combinatorial-problems)
 
@@ -85,9 +88,39 @@ Exploring the intersection of quantum computing, optimization, and algorithms to
 
 ## Research Projects
 
+### Hybrid Learning and Optimization methods for solving Capacitated Vehicle Routing Problem
+**Publication:** [arXiv:2509.15262](https://arxiv.org/abs/2509.15262)  
+**Code:** [SMU-Quantum/Hybrid-Learning-and-Optimization](https://github.com/SMU-Quantum/adaptive_quantum_cvrp) 
 
-### Cutting Slack Quantum Optimization with Slack Free Methods for Combinatorial Benchmarks  
-**Publication:** [arXiv:2507.12159](https://arxiv.org/abs/2507.12159)  
+- **Overview:** Proposes a **hybrid ALM framework** where deep reinforcement learning (SAC) automatically tunes penalty parameters for the Augmented Lagrangian Method in both purely classical (**RL-C-ALM**) and quantum-enhanced (**RL-Q-ALM**) variants to solve the Capacitated Vehicle Routing Problem (CVRP).
+
+- **Framework:**
+  - Define four solvers: **C-ALM** (classical baseline), **RL-C-ALM** (RL-tuned penalties/multipliers), **Q-ALM** (ALM with QUBO subproblems solved by VQE/QAOA), and **RL-Q-ALM** (RL-guided penalties within the quantum-augmented loop).
+  - CVRP modeled via three-index vehicle-flow ILP with MTZ subtour elimination; ALM enforces routing, capacity, and flow constraints.
+
+- **Techniques:**
+  - **RL policy (Soft Actor-Critic):** maps instance features + violation signals → penalty parameters \((\rho,\sigma)\) to accelerate convergence and feasibility.
+  - **Quantum backend:** encode selected subproblems as QUBO → Ising Hamiltonian → solve via **VQE** (hardware-efficient EfficientSU2 ansatz); decode bitstrings to routes.
+
+- **Datasets & Evaluation:**
+  - Benchmarks on synthetic and standard CVRP sets; compare solution quality, feasibility, iterations/convergence, and runtime across C-ALM, RL-C-ALM, Q-ALM, RL-Q-ALM.
+
+- **Results:**
+  - **RL-C-ALM** outperforms manually tuned ALM: better solutions with fewer iterations.
+  - **RL-Q-ALM** matches classical solution quality on small instances but incurs higher runtime due to quantum overhead; demonstrates feasibility of learning-guided quantum integration.
+  - Shows that **learning-driven penalty selection** is a practical lever for scalable ALM, with quantum modules giving hybrid pipeline viability.
+
+- **Takeaway:**  
+  RL-guided ALM automates penalty tuning and improves classical CVRP solving; a quantum-augmented variant is viable on small scales, pointing toward **adaptive hybrid optimization** as hardware and ansätze improve.
+
+
+
+
+
+### Cutting Slack Quantum Optimization with Slack Free Methods for Combinatorial Benchmarks 
+**Publication:** [arXiv:2507.12159](https://arxiv.org/abs/2507.12159) \
+**Code:** [SMU-Quantum/Cutting-Slack](https://github.com/SMU-Quantum/cutting_slack) 
+
 
 - **Overview:** Introduces **slack‑free Lagrangian-based methods**—including dual ascent, bundle methods, cutting planes, and augmented Lagrangian—to enforce constraints in QUBO formulations without introducing slack variables.
 
@@ -124,7 +157,9 @@ Exploring the intersection of quantum computing, optimization, and algorithms to
 
 
 ### A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems
-**Publication:** [arXiv:2503.12121](https://arxiv.org/abs/2503.12121)
+**Publication:** [arXiv:2503.12121](https://arxiv.org/abs/2503.12121) \
+**Code:** [SMU-Quantum/Algorithms](https://github.com/SMU-Quantum/quantum-optimization-algorithms) \
+ [SMU-Quantum/Benchmarks](https://github.com/SMU-Quantum/quantum-optimization-benchmarks)
 
 - **Overview:** Quantum optimization holds promise for addressing classically intractable combinatorial problems, yet a standardized benchmarking framework is still lacking.
 - **Framework:** Introduces a comprehensive approach to evaluate quantum optimization techniques against NP-hard problems such as the Multi-Dimensional Knapsack Problem (MDKP), Maximum Independent Set (MIS), Quadratic Assignment Problem (QAP), and Market Share Problem (MSP).
@@ -191,6 +226,10 @@ Regular blogs covering recent quantum computing papers, coding tutorials, and pr
 ---
 
 ## Publications
+
+- **M. Sharma and H. C. Lau**
+  *Hybrid Learning and Optimization methods for solving Capacitated Vehicle Routing Problem*
+  **arXiv preprint**, [arXiv:2509.15262](https://arxiv.org/abs/2509.15262) (2025)
 
 - **M. Sharma and H. C. Lau**  
   *Cutting Slack: Quantum Optimization with Slack‑Free Methods for Combinatorial Benchmarks*  
