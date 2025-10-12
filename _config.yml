@@ -18,3 +18,5 @@ social_links:
   - platform: medium
     user_url: "https://medium.com/@_monitsharma"
 ---
+sass:
+  style: compressed
