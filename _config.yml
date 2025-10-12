@@ -4,6 +4,8 @@ logo: /assets/imgs/image.png
 description: Research Engineer @ Singapore Management University
 show_downloads: false
 theme: jekyll-theme-minimal
+url: "https://monitsharma.github.io"
+baseurl: "/portfolio"
 social_links:
   - platform: linkedin
     user_url: "https://www.linkedin.com/in/monitsharma/"
