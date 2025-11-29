@@ -1,0 +1,32 @@
+<aside class="sidebar">
+  <div class="profile-container">
+    <img src="{{ site.data.profile.logo | default: site.logo | relative_url }}" alt="{{ site.data.profile.name }}"
+      class="profile-img">
+    <h1 class="profile-name">{{ site.data.profile.name }}</h1>
+    <p class="profile-role">{{ site.data.profile.role }}</p>
+    <p class="profile-company">{{ site.data.profile.company }}</p>
+
+    <div class="social-links">
+      {% for link in site.data.profile.social_links %}
+      <a href="{{ link.url }}" target="_blank" rel="noopener" aria-label="{{ link.platform }}">
+        <i class="{{ link.icon }}"></i>
+      </a>
+      {% endfor %}
+    </div>
+
+    <a href="{{ site.data.profile.resume_url }}" class="btn-download" target="_blank">Download CV</a>
+  </div>
+
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#publications" class="nav-link">Publications</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+    </ul>
+  </nav>
+
+  <footer class="sidebar-footer">
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.data.profile.name }}</p>
+  </footer>
+</aside>

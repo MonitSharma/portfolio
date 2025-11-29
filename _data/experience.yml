@@ -1,0 +1,24 @@
+- role: Research Engineer
+  company: School of Computing & Information Systems, Singapore Management University
+  location: Singapore
+  period:  2023 – Present
+  highlights:
+    - Lead hybrid optimization (Quantum, RL, Classical) for complex logistics problems like routing and inventory control.
+    - Built benchmarking infrastructure comparing quantum vs. tensor-network solvers on **enterprise-scale workloads**.
+    - Directed the Quantum Classroom initiative, delivering workshops and open-source tools to the community.
+
+- role: Research & Development Engineer
+  company: TATA Consultancy Services
+  location: Mumbai, India
+  period: 2022 – 2023
+  highlights:
+    - Deployed D-Wave quantum annealing workflows for large-scale vehicle routing (**200 nodes**), reducing fleet latency.
+    - Engineered qubit-efficient mappings for supply chains, enabling execution on constrained hardware.
+
+- role: M.S. Thesis Researcher
+  company: Indian Institute of Science Education and Research Mohali
+  location: Mohali, India
+  period: 2021 – 2022
+  highlights:
+    - "Investigated High-Energy Physics simulations on NISQ devices (Advisor: Dr. Satyajit Jena)."
+    - Demonstrated **superior accuracy** using single-qubit data re-uploading strategies over multi-qubit baselines.

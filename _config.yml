@@ -3,7 +3,7 @@ title: Monit Sharma
 logo: /assets/imgs/image.png
 description: Research Engineer @ Singapore Management University
 show_downloads: false
-theme: jekyll-theme-minimal
+# theme: jekyll-theme-minimal
 url: "https://monitsharma.github.io"
 baseurl: "/portfolio"
 social_links:
@@ -20,5 +20,4 @@ social_links:
   - platform: medium
     user_url: "https://medium.com/@_monitsharma"
 ---
-sass:
-  style: compressed
+

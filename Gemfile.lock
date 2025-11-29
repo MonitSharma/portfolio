@@ -161,6 +161,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 4.3)
+  jekyll-sass-converter
   jekyll-theme-minimal
   webrick (~> 1.8)
 

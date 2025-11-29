@@ -1,0 +1,24 @@
+name: Monit Sharma
+role: Research Engineer
+company: Singapore Management University
+location: Singapore
+email: monitsharma437@gmail.com
+bio: |
+  I am a Research Engineer at Singapore Management University, bridging the gap between near-term quantum hardware and industrial applications. My work focuses on designing hybrid quantum-classical algorithms for large-scale optimization problems in logistics and supply chain management. I specialize in leveraging GPU/TPU acceleration to benchmark quantum approaches against state-of-the-art classical heuristics.
+social_links:
+  - platform: Email
+    url: "mailto:monitsharma437@gmail.com"
+    icon: "fas fa-envelope"
+  - platform: LinkedIn
+    url: "https://www.linkedin.com/in/monitsharma/"
+    icon: "fab fa-linkedin"
+  - platform: Google Scholar
+    url: "https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&hl=en"
+    icon: "fas fa-graduation-cap"
+  - platform: GitHub
+    url: "https://github.com/MonitSharma"
+    icon: "fab fa-github"
+  - platform: Medium
+    url: "https://medium.com/@_monitsharma"
+    icon: "fab fa-medium"
+resume_url: "https://drive.google.com/file/d/1cpMer_X2pj9qonArw_F7TnuyVJUzpoVf/view?usp=sharing"

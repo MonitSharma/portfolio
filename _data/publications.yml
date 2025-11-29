@@ -1,0 +1,118 @@
+- title: Learning-Based Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems
+  meta: Learning-guided compression for hybrid solvers · arXiv:2510.14533
+  year: 2025
+  selected: true
+  description:
+    - Introduced a learning-based graph shrinking technique to reduce instance size while preserving solution structure.
+    - Achieved **substantial qubit reductions** on benchmark combinatorial instances with minimal loss in optimisation quality.
+  venue: AAAI 2026 Workshop on Quantum Computing (QC)
+  year: 2025
+  links:
+    - text: Publication
+      url: https://arxiv.org/abs/2510.14533
+
+- title: "Transferable Equivariant Quantum Circuits for TSP: Generalization Bounds and Empirical Validation"
+  meta: with H. C. Lau · Equivariant QRL for TSP · arXiv:2510.14533
+  year: 2025
+  description:
+    - Leveraged permutation-equivariant quantum circuits to transfer policies from small to larger TSP instances with **strong zero-shot performance**.
+    - Derived generalization bounds that tie structural dissimilarity between training and target graphs to expected performance and validated them empirically.
+  links:
+    - text: Publication
+      url: https://arxiv.org/abs/2510.14533
+
+- title: Hybrid Learning and Optimization methods for solving Capacitated Vehicle Routing Problem
+  meta: with H. C. Lau · Hybrid RL + Quantum CVRP · arXiv:2509.15262
+  year: 2025
+  description:
+    - Soft Actor-Critic policies tune augmented Lagrangian penalties for both classical and quantum solvers, **accelerating convergence and feasibility**.
+    - Benchmarks across synthetic and real CVRP instances quantify runtime and solution-quality trade-offs between hybrid and classical baselines.
+  venue: AAAI 2026 Workshop on Quantum Computing (QC)
+  year: 2025
+  selected: true
+  links:
+    - text: PDF
+      url: https://arxiv.org/abs/2509.15262
+      icon: fas fa-file-pdf
+    - text: Code
+      url: https://github.com/SMU-Quantum/adaptive_quantum_cvrp
+      icon: fab fa-github
+
+- title: "Cutting Slack: Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks"
+  meta: with H. C. Lau · Slack-free QUBO formulations · arXiv:2507.12159
+  year: 2025
+  description:
+    - Dual ascent, bundle, and augmented Lagrangian updates enforce constraints without auxiliary slack variables, **reducing qubit counts**.
+    - Validated on TSP, MDKP, and MIS using both simulators and hardware executions.
+  links:
+    - text: PDF
+      url: https://arxiv.org/abs/2507.12159
+      icon: fas fa-file-pdf
+    - text: Code
+      url: https://github.com/SMU-Quantum/cutting_slack
+      icon: fab fa-github
+
+- title: Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems
+  meta: with H. C. Lau · Constraint-aware graph compression · arXiv:2506.14250
+  year: 2025
+  description:
+    - Introduced adaptive graph coarsening with verification to shrink QUBO instances while preserving feasibility.
+    - Delivered **40–80% qubit reductions** for MDKP, MIS, and QAP, with minimal quality loss.
+  links:
+    - text: PDF
+      url: https://arxiv.org/abs/2506.14250
+      icon: fas fa-file-pdf
+
+- title: A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems
+  meta: with H. C. Lau · Standardised benchmarking suite · arXiv:2503.12121
+  year: 2025
+  description:
+    - Evaluated VQE, CVaR-VQE, QAOA variants, and compression techniques such as PCE and QRAO across NP-hard benchmarks.
+    - Delivered **actionable guidance on feasibility gaps**, scaling behaviour, and resource allocation for hybrid pipelines.
+  links:
+    - text: PDF
+      url: https://arxiv.org/abs/2503.12121
+      icon: fas fa-file-pdf
+    - text: Algorithms
+      url: https://github.com/SMU-Quantum/quantum-optimization-algorithms
+      icon: fab fa-github
+    - text: Benchmarks
+      url: https://github.com/SMU-Quantum/quantum-optimization-benchmarks
+      icon: fab fa-github
+
+- title: Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers
+  meta: with H. C. Lau · Risk-aware inventory analytics · arXiv:2409.07183
+  year: 2024
+  description:
+    - Integrated decision-maker risk profiles into a quantum Monte Carlo framework for multi-supplier newsvendor problems.
+    - Secured **near-quadratic speed-ups** in expectation estimation via Quantum Amplitude Estimation.
+  links:
+    - text: PDF
+      url: https://arxiv.org/abs/2409.07183
+      icon: fas fa-file-pdf
+
+- title: Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems
+  meta: with H. C. Lau & R. Raymond
+  venue: IEEE QCE 2024 (Poster at QIP 2024)
+  year: 2024
+  selected: true
+  description:
+    - Employed qGANs to learn demand distributions, **reducing qubit requirements** with a tailored comparator.
+    - Expanded the newsvendor formulation to maximise profit and support broader decision scenarios.
+  links:
+    - text: PDF
+      url: https://ieeexplore.ieee.org/document/10821393
+      icon: fas fa-file-pdf
+
+- title: Quantum Relaxation for Solving Multiple Knapsack Problems
+  meta: with Y. Jin, H. C. Lau & R. Raymond
+  venue: IEEE QCE 2024
+  year: 2024
+  selected: true
+  description:
+    - Combined Quantum Random Access Optimisation with linear relaxation to solve large-scale procurement problems.
+    - Showed **feasibility and optimality preservation** on instances exceeding 100 decision variables.
+  links:
+    - text: PDF
+      url: https://ieeexplore.ieee.org/document/10821401
+      icon: fas fa-file-pdf
