@@ -100,6 +100,30 @@ layout: default
   {% endfor %}
 </section>
 
+<section id="blogs">
+  <h2 class="section-title">Blogs</h2>
+  {% for blog in site.data.blogs %}
+  <div class="item-card">
+    <div class="item-header">
+      <h3 class="item-title">
+        <a href="{{ blog.url }}" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; hover: text-decoration: underline;">
+          {{ blog.title }}
+        </a>
+      </h3>
+      <span class="item-meta">{{ blog.date }}</span>
+    </div>
+    <div class="item-subtitle">
+      {% for tag in blog.tags %}
+      <span class="venue-tag" style="font-size: 0.75rem; padding: 0.1rem 0.5rem; margin-right: 0.3rem;">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    <ul class="item-details">
+      <li>{{ blog.summary }}</li>
+    </ul>
+  </div>
+  {% endfor %}
+</section>
+
 <section id="education">
   <h2 class="section-title">Education</h2>
   {% for edu in site.data.education %}

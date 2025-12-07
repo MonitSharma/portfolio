@@ -1,0 +1,17 @@
+- title: "Solving the Multi-Dimensional Knapsack Problem: A Classically Hard Benchmark for Quantum Computing"
+  date: "2025"
+  summary: "Exploring the complexity of the Multi-Dimensional Knapsack Problem and examining how quantum algorithms attempt to tackle this constrained optimization challenge."
+  url: "https://medium.com/@_monitsharma/solving-the-multi-dimensional-knapsack-problem-a-classically-hard-benchmark-for-quantum-2610e955d114"
+  tags: ["Quantum Computing", "Knapsack Problem", "Optimization"]
+
+- title: "Solving the Maximum Independent Set Problem: A Classically Hard Benchmark for Quantum Optimization"
+  date: "2025"
+  summary: "A deep dive into the Maximum Independent Set (MIS) problem, its importance in network analysis, and the potential of quantum approaches."
+  url: "https://medium.com/@_monitsharma/solving-the-maximum-independent-set-problem-a-classically-hard-benchmark-for-quantum-optimization-5d8e9c267052"
+  tags: ["Quantum Computing", "Graph Theory", "Optimization"]
+
+- title: "Solving the Quadratic Assignment Problem: A Classically Hard Benchmark for Quantum Optimization"
+  date: "2025"
+  summary: "Analyzing the Quadratic Assignment Problem (QAP), known for its extreme computational difficulty, and benchmarking quantum solvers against it."
+  url: "https://medium.com/@_monitsharma/solving-the-quadratic-assignment-problem-a-classically-hard-benchmark-for-quantum-optimization-f6dcd7e91a87"
+  tags: ["Quantum Computing", "QAP", "Optimization"]
