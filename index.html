@@ -112,7 +112,7 @@
   .blog-card { background: var(--paper); padding: 28px 26px; display: flex; flex-direction: column; transition: background .2s; min-height: 280px; }
   .blog-card:hover { background: var(--paper-2); }
   .blog-card .bnum { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
-  .blog-card h3 { font-family: var(--serif); font-size: 1.3rem; line-height: 1.18; margin-top: 18px; }
+  .blog-card h3 { font-family: var(--serif); font-size: 1.3rem; line-height: 1.18; margin-top: 18px; overflow-wrap: anywhere; }
   .blog-card p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.55; margin-top: 14px; flex: 1; }
   .blog-card .btags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
   .blog-card .read { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 18px; display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
@@ -410,22 +410,64 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">05</span> Writing</div>
     <div class="blog-grid">
+      <a class="blog-card" href="https://medium.com/@_monitsharma/when-cooking-gas-becomes-a-national-security-problem-c47babcea911" target="_blank" rel="noopener">
+        <span class="bnum">N° 01 · 2026</span>
+        <h3>When Cooking Gas Becomes a National Security Problem</h3>
+        <p>A non-technical walkthrough of maritime energy resilience, chokepoint disruptions, and stochastic optimization for national supply networks.</p>
+        <div class="btags"><span class="tag">Energy Security</span><span class="tag">Maritime</span><span class="tag">Optimization</span></div>
+        <span class="read">Read on Medium ↗</span>
+      </a>
+      <a class="blog-card" href="https://medium.com/@_monitsharma/the-key-to-the-quantum-garden-indias-1-000-km-leap-into-un-hackable-communication-ab6277f0f98e" target="_blank" rel="noopener">
+        <span class="bnum">N° 02 · 2026</span>
+        <h3>The Key to the Quantum Garden</h3>
+        <p>India's 1,000 km quantum communication demonstration, what QKD changes, and why quantum security is becoming infrastructure.</p>
+        <div class="btags"><span class="tag">QKD</span><span class="tag">Quantum Security</span><span class="tag">India</span></div>
+        <span class="read">Read on Medium ↗</span>
+      </a>
+      <a class="blog-card" href="https://medium.com/@_monitsharma/to-you-10-000-qubits-from-now-9ba48f323ecb" target="_blank" rel="noopener">
+        <span class="bnum">N° 03 · 2026</span>
+        <h3>To You, 10,000 Qubits From Now</h3>
+        <p>A look at ambitious new resource estimates for quantum factoring and what they imply for Shor's algorithm at cryptographic scale.</p>
+        <div class="btags"><span class="tag">Factoring</span><span class="tag">Cryptography</span><span class="tag">Qubits</span></div>
+        <span class="read">Read on Medium ↗</span>
+      </a>
+      <a class="blog-card" href="https://medium.com/@_monitsharma/the-fault-in-our-qubits-8c66ef11f0c5" target="_blank" rel="noopener">
+        <span class="bnum">N° 04 · 2026</span>
+        <h3>The Fault in Our Qubits</h3>
+        <p>What it would actually take to break RSA with a quantum computer, from hardware assumptions to fault-tolerant overheads.</p>
+        <div class="btags"><span class="tag">Quantum Hardware</span><span class="tag">RSA</span><span class="tag">Shor</span></div>
+        <span class="read">Read on Medium ↗</span>
+      </a>
+      <a class="blog-card" href="https://medium.com/@_monitsharma/the-emperor-has-no-factors-9eaec0d9bd0d" target="_blank" rel="noopener">
+        <span class="bnum">N° 05 · 2026</span>
+        <h3>The Emperor Has No Factors</h3>
+        <p>An honest-metrics tour through published Shor's algorithm results and the classical post-processing baselines behind them.</p>
+        <div class="btags"><span class="tag">Shor</span><span class="tag">Factoring</span><span class="tag">Benchmarks</span></div>
+        <span class="read">Read on Medium ↗</span>
+      </a>
+      <a class="blog-card" href="https://medium.com/@_monitsharma/sometimes-its-too-slow-for-shor-c01677032324" target="_blank" rel="noopener">
+        <span class="bnum">N° 06 · 2026</span>
+        <h3>Sometimes It's Too Slow... for Shor!!</h3>
+        <p>A hands-on deep dive into running Shor's factoring algorithm on IBM quantum hardware and the limits visible today.</p>
+        <div class="btags"><span class="tag">Shor</span><span class="tag">Hardware</span><span class="tag">QPE</span></div>
+        <span class="read">Read on Medium ↗</span>
+      </a>
       <a class="blog-card" href="https://medium.com/@_monitsharma/solving-the-multi-dimensional-knapsack-problem-a-classically-hard-benchmark-for-quantum-2610e955d114" target="_blank" rel="noopener">
-        <span class="bnum">N° 01 · 2025</span>
+        <span class="bnum">N° 07 · 2025</span>
         <h3>Solving the Multi-Dimensional Knapsack Problem</h3>
         <p>Exploring the complexity of the MDKP and how quantum algorithms attempt to tackle this constrained optimization challenge.</p>
         <div class="btags"><span class="tag">Quantum</span><span class="tag">Knapsack</span><span class="tag">Optimization</span></div>
         <span class="read">Read on Medium ↗</span>
       </a>
       <a class="blog-card" href="https://medium.com/@_monitsharma/solving-the-maximum-independent-set-problem-a-classically-hard-benchmark-for-quantum-optimization-5d8e9c267052" target="_blank" rel="noopener">
-        <span class="bnum">N° 02 · 2025</span>
+        <span class="bnum">N° 08 · 2025</span>
         <h3>Solving the Maximum Independent Set Problem</h3>
         <p>A deep dive into the MIS problem, its importance in network analysis, and the potential of quantum approaches.</p>
         <div class="btags"><span class="tag">Quantum</span><span class="tag">Graph Theory</span><span class="tag">Optimization</span></div>
         <span class="read">Read on Medium ↗</span>
       </a>
       <a class="blog-card" href="https://medium.com/@_monitsharma/solving-the-quadratic-assignment-problem-a-classically-hard-benchmark-for-quantum-optimization-f6dcd7e91a87" target="_blank" rel="noopener">
-        <span class="bnum">N° 03 · 2025</span>
+        <span class="bnum">N° 09 · 2025</span>
         <h3>Solving the Quadratic Assignment Problem</h3>
         <p>Analyzing the QAP, known for its extreme computational difficulty, and benchmarking quantum solvers against it.</p>
         <div class="btags"><span class="tag">Quantum</span><span class="tag">QAP</span><span class="tag">Optimization</span></div>
