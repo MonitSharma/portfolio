@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Monit Sharma — Research Engineer, Quantum Optimization</title>
+<meta name="description" content="Monit Sharma — Research Engineer at Singapore Management University working on hybrid quantum-classical algorithms for large-scale optimization.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="design-system.css" rel="stylesheet">
+<style>
+  /* ---------- hero ---------- */
+  .hero { position: relative; padding-top: clamp(48px, 9vh, 110px); padding-bottom: clamp(56px, 9vh, 110px); overflow: hidden; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center;
+  }
+  .hero .status {
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 30px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-2);
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; background: var(--paper-2);
+  }
+  .pulse { width: 7px; height: 7px; border-radius: 50%; background: oklch(0.65 0.17 150); position: relative; }
+  .pulse::after { content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid oklch(0.65 0.17 150); animation: ring 2.4s ease-out infinite; }
+  @keyframes ring { 0%{transform:scale(.6);opacity:.9} 100%{transform:scale(1.9);opacity:0} }
+
+  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(3rem, 7.5vw, 6rem); line-height: 0.95; letter-spacing: -0.025em; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero .role { margin-top: 22px; font-size: clamp(1.05rem, 1.7vw, 1.35rem); color: var(--ink-2); max-width: 46ch; line-height: 1.5; }
+  .hero .role b { color: var(--ink); font-weight: 500; }
+  .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* orbit motif (pure CSS, circles only) */
+  .orbit { position: relative; aspect-ratio: 1; width: 100%; max-width: 320px; margin-inline: auto; }
+  .orbit .ring { position: absolute; inset: 0; border: 1px solid var(--line); border-radius: 50%; }
+  .orbit .ring.r2 { inset: 15%; border-color: color-mix(in oklch, var(--accent) 35%, var(--line)); }
+  .orbit .ring.r3 { inset: 32%; }
+  .orbit .core { position: absolute; inset: 44%; border-radius: 50%; background: var(--accent); box-shadow: 0 0 50px -6px var(--accent); }
+  .orbit .node { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); }
+  .orbit .e1 { animation: spin 18s linear infinite; }
+  .orbit .e2 { animation: spin 12s linear infinite reverse; }
+  .orbit .e1 .node { top: -6px; left: calc(50% - 6px); }
+  .orbit .e2 .node { top: 15%; left: calc(15% - 6px); background: var(--accent); }
+  .orbit .e1, .orbit .e2 { position: absolute; inset: 0; }
+  .orbit .e2 { inset: 15%; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){ .orbit .e1,.orbit .e2{animation:none} }
+
+  /* metrics strip */
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: clamp(48px,7vh,84px); }
+  .metric { padding: 26px 0; border-right: 1px solid var(--line-2); }
+  .metric:last-child { border-right: 0; }
+  .metric .n { font-family: var(--serif); font-size: clamp(2rem,3.4vw,2.8rem); line-height: 1; }
+  .metric .l { font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-top: 10px; }
+
+  /* about */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(28px, 5vw, 64px); }
+  .about-body p { font-size: clamp(1.05rem,1.5vw,1.22rem); line-height: 1.6; color: var(--ink); }
+  .focus-list { margin-top: 28px; display: grid; gap: 0; }
+  .focus-list .f { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line-2); align-items: baseline; }
+  .focus-list .f:last-child { border-bottom: 1px solid var(--line-2); }
+  .focus-list .fn { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .focus-list .ft { font-size: 0.98rem; color: var(--ink-2); }
+  .focus-list .ft b { color: var(--ink); font-weight: 500; }
+
+  /* news */
+  .news-list { display: grid; gap: 0; }
+  .news-row { display: grid; grid-template-columns: 130px 1fr; gap: 24px; padding: 20px 0; border-top: 1px solid var(--line-2); align-items: baseline; }
+  .news-row:last-child { border-bottom: 1px solid var(--line-2); }
+  .news-row .d { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ink-3); }
+  .news-row .c { font-size: 1.02rem; color: var(--ink); }
+  .news-row .c b { font-weight: 600; }
+
+  /* experience */
+  .exp { display: grid; grid-template-columns: 200px 1fr; gap: clamp(20px,4vw,48px); padding: 34px 0; border-top: 1px solid var(--line); }
+  .exp:first-of-type { border-top: 1px solid var(--ink); }
+  .exp .when { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ink-3); }
+  .exp .when .co { display: block; color: var(--ink-2); margin-top: 8px; font-size: 12px; line-height: 1.45; }
+  .exp h3 { font-family: var(--serif); font-size: clamp(1.3rem,2.4vw,1.75rem); }
+  .exp .loc { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 4px; letter-spacing: 0.04em; }
+  .exp ul { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
+  .exp li { position: relative; padding-left: 22px; color: var(--ink-2); font-size: 0.99rem; line-height: 1.55; }
+  .exp li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
+  .exp li b { color: var(--ink); font-weight: 600; }
+
+  /* publications */
+  .pub-feature { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .pub-card { padding: 28px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 64px 1fr; gap: 24px; }
+  .pub-card:first-of-type { border-top: 1px solid var(--ink); }
+  .pub-yr { font-family: var(--mono); font-size: 12px; color: var(--ink-3); padding-top: 4px; }
+  .pub-card.is-sel .pub-yr { color: var(--accent); }
+  .pub-title { font-family: var(--serif); font-size: clamp(1.2rem,2.1vw,1.55rem); line-height: 1.18; letter-spacing: -0.01em; }
+  .pub-meta { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-top: 9px; letter-spacing: 0.02em; }
+  .pub-desc { margin-top: 14px; display: grid; gap: 7px; }
+  .pub-desc li { list-style: none; padding-left: 18px; position: relative; color: var(--ink-2); font-size: 0.96rem; line-height: 1.5; }
+  .pub-desc li::before { content: "·"; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
+  .pub-desc li b { color: var(--ink); font-weight: 600; }
+  .pub-venue { display: inline-block; margin-top: 14px; }
+  .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .pub-links a {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.03em; padding: 6px 12px;
+    border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink-2); transition: all .18s;
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .pub-links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .pubs-toggle { margin-top: 36px; }
+  .pub-hidden { display: none; }
+  .pub-hidden.show { display: grid; }
+
+  /* blogs */
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .blog-card { background: var(--paper); padding: 28px 26px; display: flex; flex-direction: column; transition: background .2s; min-height: 280px; }
+  .blog-card:hover { background: var(--paper-2); }
+  .blog-card .bnum { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
+  .blog-card h3 { font-family: var(--serif); font-size: 1.3rem; line-height: 1.18; margin-top: 18px; }
+  .blog-card p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.55; margin-top: 14px; flex: 1; }
+  .blog-card .btags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .blog-card .read { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 18px; display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
+  .blog-card:hover .read { color: var(--accent); }
+
+  /* education */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .edu-card { background: var(--paper); padding: 30px; }
+  .edu-card .yr { font-family: var(--mono); font-size: 11.5px; color: var(--accent); letter-spacing: 0.05em; }
+  .edu-card h3 { font-family: var(--serif); font-size: 1.4rem; margin-top: 14px; line-height: 1.15; }
+  .edu-card .uni { color: var(--ink-2); font-size: 0.95rem; margin-top: 10px; }
+
+  /* contact */
+  .contact-inner { text-align: center; }
+  .contact-inner h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem,5.5vw,4.4rem); letter-spacing: -0.02em; line-height: 1; }
+  .contact-inner h2 a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+  .contact-inner p { color: var(--ink-2); margin-top: 22px; font-size: 1.1rem; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .orbit { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .exp { grid-template-columns: 1fr; gap: 12px; }
+    .metrics { grid-template-columns: repeat(2,1fr); }
+    .metric:nth-child(2) { border-right: 0; }
+    .metric:nth-child(1), .metric:nth-child(2) { border-bottom: 1px solid var(--line-2); }
+    .blog-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .news-row { grid-template-columns: 100px 1fr; gap: 14px; }
+  }
+  @media (max-width: 600px) {
+    .pub-card { grid-template-columns: 1fr; gap: 10px; }
+    .pub-card > div:last-child { min-width: 0; }
+    .pub-yr { padding-top: 0; }
+    .pub-title, .pub-meta, .pub-venue { overflow-wrap: anywhere; }
+    .pub-venue { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="dot"></span>
+      <span class="name">Monit Sharma</span>
+    </a>
+    <nav class="navlinks">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#writing">Writing</a>
+      <a href="https://monitsharma.github.io/">Classroom ↗</a>
+    </nav>
+    <div class="siteswitch">
+      <a href="index.html" class="active">Portfolio</a>
+      <a href="https://monitsharma.github.io/">Classroom</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="status"><span class="pulse"></span> Research Engineer · Singapore</span>
+        <h1>Monit<br>Sharma</h1>
+        <p class="role">Building <b>hybrid quantum–classical algorithms</b> for large-scale optimization in logistics and supply chains — benchmarking quantum approaches against state-of-the-art classical heuristics.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#publications">Read the research <span class="arr">↗</span></a>
+          <a class="btn btn-ghost" href="https://drive.google.com/file/d/1cpMer_X2pj9qonArw_F7TnuyVJUzpoVf/view?usp=sharing" target="_blank" rel="noopener">Curriculum Vitae</a>
+        </div>
+      </div>
+      <div class="orbit" aria-hidden="true">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="e1"><span class="node"></span></div>
+        <div class="e2"><span class="node"></span></div>
+        <div class="core"></div>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="n">9</div><div class="l">Publications</div></div>
+      <div class="metric"><div class="n">4+</div><div class="l">Years in Quantum</div></div>
+      <div class="metric"><div class="n">18</div><div class="l">Open Courses</div></div>
+      <div class="metric"><div class="n">2026</div><div class="l">AAAI · IEEE QCE</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">01</span> About</div>
+    <div class="about-grid">
+      <div><h2 class="h-sec">Bridging near-term quantum hardware and industrial problems.</h2></div>
+      <div class="about-body">
+        <p>I am a Research Engineer at Singapore Management University, working at the boundary between near-term quantum hardware and real industrial applications. My research designs hybrid quantum–classical algorithms for large-scale optimization in logistics and supply chain management.</p>
+        <div class="focus-list">
+          <div class="f"><span class="fn">A</span><span class="ft"><b>Hybrid optimization</b> — combining quantum, reinforcement learning, and classical solvers for routing and inventory.</span></div>
+          <div class="f"><span class="fn">B</span><span class="ft"><b>Resource-efficient quantum</b> — slack-free QUBO formulations and graph shrinking that cut qubit counts.</span></div>
+          <div class="f"><span class="fn">C</span><span class="ft"><b>Honest benchmarking</b> — GPU/TPU-accelerated comparison of quantum methods against classical heuristics.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="section" id="news">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">02</span> Recent News</div>
+    <div class="news-list">
+      <div class="news-row"><span class="d">Oct 2025</span><span class="c">🎉 Two papers accepted at the <b>AAAI 2026 Workshop on Quantum Computing</b> — Hybrid Learning for CVRP and Learning-Based Graph Shrinking.</span></div>
+      <div class="news-row"><span class="d">Sep 2024</span><span class="c">📄 New papers accepted at <b>IEEE QCE 2024</b> on Quantum Relaxation and Newsvendor Optimization.</span></div>
+      <div class="news-row"><span class="d">Jan 2024</span><span class="c">🎤 Presented a poster on Quantum Newsvendor Optimization at <b>QIP 2024</b>.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="research">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">03</span> Experience</div>
+    <div class="exp">
+      <div class="when">2023 — Present<span class="co">School of Computing &amp; Information Systems, Singapore Management University</span></div>
+      <div>
+        <h3>Research Engineer</h3>
+        <div class="loc">Singapore</div>
+        <ul>
+          <li>Lead <b>hybrid optimization</b> (quantum, RL, classical) for complex logistics problems including routing and inventory control.</li>
+          <li>Built benchmarking infrastructure comparing quantum vs. tensor-network solvers on <b>enterprise-scale workloads</b>.</li>
+          <li>Direct the <b>Quantum Classroom</b> initiative, delivering workshops and open-source tools to the community.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp">
+      <div class="when">2022 — 2023<span class="co">TATA Consultancy Services</span></div>
+      <div>
+        <h3>Research &amp; Development Engineer</h3>
+        <div class="loc">Mumbai, India</div>
+        <ul>
+          <li>Deployed D-Wave quantum annealing workflows for large-scale vehicle routing (<b>200 nodes</b>), reducing fleet latency.</li>
+          <li>Engineered qubit-efficient mappings for supply chains, enabling execution on constrained hardware.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp">
+      <div class="when">2021 — 2022<span class="co">IISER Mohali</span></div>
+      <div>
+        <h3>M.S. Thesis Researcher</h3>
+        <div class="loc">Mohali, India</div>
+        <ul>
+          <li>Investigated High-Energy Physics simulations on NISQ devices (Advisor: Dr. Satyajit Jena).</li>
+          <li>Demonstrated <b>superior accuracy</b> using single-qubit data re-uploading strategies over multi-qubit baselines.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">04</span> Selected Publications</div>
+    <div class="pub-feature" id="pubFeature">
+      <!-- selected -->
+      <article class="pub-card is-sel">
+        <div class="pub-yr">2025</div>
+        <div>
+          <div class="pub-title">Learning-Based Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems</div>
+          <div class="pub-meta">Learning-guided compression for hybrid solvers · arXiv:2510.14533</div>
+          <ul class="pub-desc">
+            <li>Introduced a learning-based graph shrinking technique to reduce instance size while preserving solution structure.</li>
+            <li>Achieved <b>substantial qubit reductions</b> on benchmark combinatorial instances with minimal loss in quality.</li>
+          </ul>
+          <span class="tag tag-accent pub-venue">AAAI 2026 Workshop on Quantum Computing</span>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2510.14533" target="_blank" rel="noopener">↗ Publication</a></div>
+        </div>
+      </article>
+      <article class="pub-card is-sel">
+        <div class="pub-yr">2025</div>
+        <div>
+          <div class="pub-title">Hybrid Learning and Optimization Methods for Capacitated Vehicle Routing</div>
+          <div class="pub-meta">with H. C. Lau · Hybrid RL + Quantum CVRP · arXiv:2509.15262</div>
+          <ul class="pub-desc">
+            <li>Soft Actor-Critic policies tune augmented Lagrangian penalties for both classical and quantum solvers, <b>accelerating convergence and feasibility</b>.</li>
+            <li>Benchmarks across synthetic and real CVRP instances quantify runtime and solution-quality trade-offs.</li>
+          </ul>
+          <span class="tag tag-accent pub-venue">AAAI 2026 Workshop on Quantum Computing</span>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2509.15262" target="_blank" rel="noopener">↗ PDF</a><a href="https://github.com/SMU-Quantum/adaptive_quantum_cvrp" target="_blank" rel="noopener">↗ Code</a></div>
+        </div>
+      </article>
+      <article class="pub-card is-sel">
+        <div class="pub-yr">2024</div>
+        <div>
+          <div class="pub-title">Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems</div>
+          <div class="pub-meta">with H. C. Lau &amp; R. Raymond</div>
+          <ul class="pub-desc">
+            <li>Employed qGANs to learn demand distributions, <b>reducing qubit requirements</b> with a tailored comparator.</li>
+            <li>Expanded the newsvendor formulation to maximise profit and support broader decision scenarios.</li>
+          </ul>
+          <span class="tag tag-accent pub-venue">IEEE QCE 2024 · Poster at QIP 2024</span>
+          <div class="pub-links"><a href="https://ieeexplore.ieee.org/document/10821393" target="_blank" rel="noopener">↗ PDF</a></div>
+        </div>
+      </article>
+      <article class="pub-card is-sel">
+        <div class="pub-yr">2024</div>
+        <div>
+          <div class="pub-title">Quantum Relaxation for Solving Multiple Knapsack Problems</div>
+          <div class="pub-meta">with Y. Jin, H. C. Lau &amp; R. Raymond</div>
+          <ul class="pub-desc">
+            <li>Combined Quantum Random Access Optimisation with linear relaxation to solve large-scale procurement problems.</li>
+            <li>Showed <b>feasibility and optimality preservation</b> on instances exceeding 100 decision variables.</li>
+          </ul>
+          <span class="tag tag-accent pub-venue">IEEE QCE 2024</span>
+          <div class="pub-links"><a href="https://ieeexplore.ieee.org/document/10821401" target="_blank" rel="noopener">↗ PDF</a></div>
+        </div>
+      </article>
+
+      <!-- other (hidden) -->
+      <article class="pub-card pub-hidden">
+        <div class="pub-yr">2025</div>
+        <div>
+          <div class="pub-title">Transferable Equivariant Quantum Circuits for TSP: Generalization Bounds and Empirical Validation</div>
+          <div class="pub-meta">with H. C. Lau · Equivariant QRL for TSP · arXiv:2510.14533</div>
+          <ul class="pub-desc">
+            <li>Permutation-equivariant circuits transfer policies from small to larger TSP instances with <b>strong zero-shot performance</b>.</li>
+            <li>Derived generalization bounds tying structural dissimilarity to expected performance, validated empirically.</li>
+          </ul>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2510.14533" target="_blank" rel="noopener">↗ Publication</a></div>
+        </div>
+      </article>
+      <article class="pub-card pub-hidden">
+        <div class="pub-yr">2025</div>
+        <div>
+          <div class="pub-title">Cutting Slack: Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks</div>
+          <div class="pub-meta">with H. C. Lau · Slack-free QUBO formulations · arXiv:2507.12159</div>
+          <ul class="pub-desc">
+            <li>Dual ascent, bundle, and augmented Lagrangian updates enforce constraints without auxiliary slack variables, <b>reducing qubit counts</b>.</li>
+            <li>Validated on TSP, MDKP, and MIS using both simulators and hardware executions.</li>
+          </ul>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2507.12159" target="_blank" rel="noopener">↗ PDF</a><a href="https://github.com/SMU-Quantum/cutting_slack" target="_blank" rel="noopener">↗ Code</a></div>
+        </div>
+      </article>
+      <article class="pub-card pub-hidden">
+        <div class="pub-yr">2025</div>
+        <div>
+          <div class="pub-title">Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems</div>
+          <div class="pub-meta">with H. C. Lau · Constraint-aware graph compression · arXiv:2506.14250</div>
+          <ul class="pub-desc">
+            <li>Adaptive graph coarsening with verification shrinks QUBO instances while preserving feasibility.</li>
+            <li>Delivered <b>40–80% qubit reductions</b> for MDKP, MIS, and QAP, with minimal quality loss.</li>
+          </ul>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2506.14250" target="_blank" rel="noopener">↗ PDF</a></div>
+        </div>
+      </article>
+      <article class="pub-card pub-hidden">
+        <div class="pub-yr">2025</div>
+        <div>
+          <div class="pub-title">A Comparative Study of Quantum Optimization Techniques for Combinatorial Benchmark Problems</div>
+          <div class="pub-meta">with H. C. Lau · Standardised benchmarking suite · arXiv:2503.12121</div>
+          <ul class="pub-desc">
+            <li>Evaluated VQE, CVaR-VQE, QAOA variants, and compression techniques such as PCE and QRAO across NP-hard benchmarks.</li>
+            <li>Delivered <b>actionable guidance on feasibility gaps</b>, scaling behaviour, and resource allocation.</li>
+          </ul>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2503.12121" target="_blank" rel="noopener">↗ PDF</a><a href="https://github.com/SMU-Quantum/quantum-optimization-algorithms" target="_blank" rel="noopener">↗ Algorithms</a><a href="https://github.com/SMU-Quantum/quantum-optimization-benchmarks" target="_blank" rel="noopener">↗ Benchmarks</a></div>
+        </div>
+      </article>
+      <article class="pub-card pub-hidden">
+        <div class="pub-yr">2024</div>
+        <div>
+          <div class="pub-title">Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers</div>
+          <div class="pub-meta">with H. C. Lau · Risk-aware inventory analytics · arXiv:2409.07183</div>
+          <ul class="pub-desc">
+            <li>Integrated decision-maker risk profiles into a quantum Monte Carlo framework for multi-supplier newsvendor problems.</li>
+            <li>Secured <b>near-quadratic speed-ups</b> in expectation estimation via Quantum Amplitude Estimation.</li>
+          </ul>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2409.07183" target="_blank" rel="noopener">↗ PDF</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="pubs-toggle">
+      <button class="btn btn-ghost" id="pubToggle">Show all 9 publications <span class="arr">↓</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- BLOGS -->
+<section class="section" id="writing">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">05</span> Writing</div>
+    <div class="blog-grid">
+      <a class="blog-card" href="https://medium.com/@_monitsharma/solving-the-multi-dimensional-knapsack-problem-a-classically-hard-benchmark-for-quantum-2610e955d114" target="_blank" rel="noopener">
+        <span class="bnum">N° 01 · 2025</span>
+        <h3>Solving the Multi-Dimensional Knapsack Problem</h3>
+        <p>Exploring the complexity of the MDKP and how quantum algorithms attempt to tackle this constrained optimization challenge.</p>
+        <div class="btags"><span class="tag">Quantum</span><span class="tag">Knapsack</span><span class="tag">Optimization</span></div>
+        <span class="read">Read on Medium ↗</span>
+      </a>
+      <a class="blog-card" href="https://medium.com/@_monitsharma/solving-the-maximum-independent-set-problem-a-classically-hard-benchmark-for-quantum-optimization-5d8e9c267052" target="_blank" rel="noopener">
+        <span class="bnum">N° 02 · 2025</span>
+        <h3>Solving the Maximum Independent Set Problem</h3>
+        <p>A deep dive into the MIS problem, its importance in network analysis, and the potential of quantum approaches.</p>
+        <div class="btags"><span class="tag">Quantum</span><span class="tag">Graph Theory</span><span class="tag">Optimization</span></div>
+        <span class="read">Read on Medium ↗</span>
+      </a>
+      <a class="blog-card" href="https://medium.com/@_monitsharma/solving-the-quadratic-assignment-problem-a-classically-hard-benchmark-for-quantum-optimization-f6dcd7e91a87" target="_blank" rel="noopener">
+        <span class="bnum">N° 03 · 2025</span>
+        <h3>Solving the Quadratic Assignment Problem</h3>
+        <p>Analyzing the QAP, known for its extreme computational difficulty, and benchmarking quantum solvers against it.</p>
+        <div class="btags"><span class="tag">Quantum</span><span class="tag">QAP</span><span class="tag">Optimization</span></div>
+        <span class="read">Read on Medium ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">06</span> Education</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="yr">June 2022</div>
+        <h3>M.S., Physics &amp; Data Science</h3>
+        <div class="uni">Indian Institute of Science Education and Research, Mohali</div>
+      </div>
+      <div class="edu-card">
+        <div class="yr">June 2020</div>
+        <h3>B.S., Physics &amp; Data Science</h3>
+        <div class="uni">Indian Institute of Science Education and Research, Mohali</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap-narrow contact-inner">
+    <div class="eyebrow" style="justify-content:center"><span class="num">07</span> Contact</div>
+    <h2>Let's talk quantum<br>optimization. <a href="mailto:monitsharma437@gmail.com">Say hello ↗</a></h2>
+    <p>Open to research collaborations, talks, and the occasional hard combinatorial problem.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div>
+      <div class="brand" style="margin-bottom:14px"><span class="dot"></span><span class="name">Monit Sharma</span></div>
+      <div class="foot-fine">Research Engineer · Singapore Management University</div>
+    </div>
+    <div class="foot-soc">
+      <a href="mailto:monitsharma437@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/monitsharma/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+      <a href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://medium.com/@_monitsharma" target="_blank" rel="noopener">Medium</a>
+      <a href="https://monitsharma.github.io/">Quantum Classroom</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:36px"><div class="foot-fine">© 2026 Monit Sharma — Designed as a connected system.</div></div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.section, .hero-grid, .metrics').forEach(el => { el.classList.add('reveal'); io.observe(el); });
+  // failsafe: ensure everything resolves visible even if observer is missed
+  setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in')), 1400);
+
+  // publications toggle
+  const tog = document.getElementById('pubToggle');
+  tog.addEventListener('click', () => {
+    const hidden = document.querySelectorAll('.pub-hidden');
+    const expanded = tog.getAttribute('data-open') === '1';
+    hidden.forEach(h => h.classList.toggle('show', !expanded));
+    tog.setAttribute('data-open', expanded ? '0' : '1');
+    tog.innerHTML = expanded ? 'Show all 9 publications <span class="arr">↓</span>' : 'Show fewer <span class="arr">↑</span>';
+  });
+</script>
+</body>
+</html>
