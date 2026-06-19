@@ -1,3 +1,36 @@
+- title: "Securing the Flow: Maritime Energy Resilience under Correlated and Decision-Dependent Disruptions"
+  meta: with H. C. Lau · Maritime energy resilience · arXiv:2605.11990
+  year: 2026
+  description:
+    - Developed a two-stage stochastic multi-commodity flow model for resilient energy supply under correlated chokepoint disruptions.
+    - Calibrated to Indian maritime energy imports, identifying **LPG exposure** and structural joint-failure resilience.
+  links:
+    - text: PDF
+      url: https://arxiv.org/abs/2605.11990
+      icon: fas fa-file-pdf
+
+- title: "AutoQResearch: LLM-Guided Closed-Loop Policy Search for Adaptive Variational Quantum Optimization"
+  meta: with H. C. Lau · Quantum-GenAI co-design · arXiv:2604.24283
+  year: 2026
+  description:
+    - Introduced an LLM-guided experimentation loop that searches adaptive solver-control policies for variational quantum optimization.
+    - Evaluated on MIS and CVRP, showing that staged confirmation is essential to avoid proxy-evaluation failures.
+  links:
+    - text: PDF
+      url: https://arxiv.org/abs/2604.24283
+      icon: fas fa-file-pdf
+
+- title: Qubit-Scalable CVRP via Lagrangian Knapsack Decomposition and Noise-Aware Quantum Execution
+  meta: with H. C. Lau · Quantum CVRP decomposition · arXiv:2604.22194
+  year: 2026
+  description:
+    - Converted CVRP into bounded-width quantum subproblems using Lagrangian relaxation and per-vehicle knapsack QUBOs.
+    - Combined learned multiplier updates with hardware-aware execution policies for noisy, heterogeneous quantum resources.
+  links:
+    - text: PDF
+      url: https://arxiv.org/abs/2604.22194
+      icon: fas fa-file-pdf
+
 - title: Learning-Based Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems
   meta: Learning-guided compression for hybrid solvers · arXiv:2510.14533
   year: 2025

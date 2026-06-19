@@ -199,7 +199,7 @@
     </div>
 
     <div class="metrics">
-      <div class="metric"><div class="n">9</div><div class="l">Publications</div></div>
+      <div class="metric"><div class="n">12</div><div class="l">Publications</div></div>
       <div class="metric"><div class="n">4+</div><div class="l">Years in Quantum</div></div>
       <div class="metric"><div class="n">18</div><div class="l">Open Courses</div></div>
       <div class="metric"><div class="n">2026</div><div class="l">AAAI · IEEE QCE</div></div>
@@ -339,6 +339,42 @@
 
       <!-- other (hidden) -->
       <article class="pub-card pub-hidden">
+        <div class="pub-yr">2026</div>
+        <div>
+          <div class="pub-title">Securing the Flow: Maritime Energy Resilience under Correlated and Decision-Dependent Disruptions</div>
+          <div class="pub-meta">with H. C. Lau · Maritime energy resilience · arXiv:2605.11990</div>
+          <ul class="pub-desc">
+            <li>Developed a two-stage stochastic multi-commodity flow model for resilient energy supply under correlated chokepoint disruptions.</li>
+            <li>Calibrated to Indian maritime energy imports, identifying <b>LPG exposure</b> and structural joint-failure resilience.</li>
+          </ul>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2605.11990" target="_blank" rel="noopener">↗ PDF</a></div>
+        </div>
+      </article>
+      <article class="pub-card pub-hidden">
+        <div class="pub-yr">2026</div>
+        <div>
+          <div class="pub-title">AutoQResearch: LLM-Guided Closed-Loop Policy Search for Adaptive Variational Quantum Optimization</div>
+          <div class="pub-meta">with H. C. Lau · Quantum-GenAI co-design · arXiv:2604.24283</div>
+          <ul class="pub-desc">
+            <li>Introduced an LLM-guided experimentation loop that searches adaptive solver-control policies for variational quantum optimization.</li>
+            <li>Evaluated on MIS and CVRP, showing that staged confirmation is essential to avoid proxy-evaluation failures.</li>
+          </ul>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2604.24283" target="_blank" rel="noopener">↗ PDF</a></div>
+        </div>
+      </article>
+      <article class="pub-card pub-hidden">
+        <div class="pub-yr">2026</div>
+        <div>
+          <div class="pub-title">Qubit-Scalable CVRP via Lagrangian Knapsack Decomposition and Noise-Aware Quantum Execution</div>
+          <div class="pub-meta">with H. C. Lau · Quantum CVRP decomposition · arXiv:2604.22194</div>
+          <ul class="pub-desc">
+            <li>Converted CVRP into bounded-width quantum subproblems using Lagrangian relaxation and per-vehicle knapsack QUBOs.</li>
+            <li>Combined learned multiplier updates with hardware-aware execution policies for noisy, heterogeneous quantum resources.</li>
+          </ul>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2604.22194" target="_blank" rel="noopener">↗ PDF</a></div>
+        </div>
+      </article>
+      <article class="pub-card pub-hidden">
         <div class="pub-yr">2025</div>
         <div>
           <div class="pub-title">Transferable Equivariant Quantum Circuits for TSP: Generalization Bounds and Empirical Validation</div>
@@ -400,7 +436,7 @@
       </article>
     </div>
     <div class="pubs-toggle">
-      <button class="btn btn-ghost" id="pubToggle">Show all 9 publications <span class="arr">↓</span></button>
+      <button class="btn btn-ghost" id="pubToggle">Show all 12 publications <span class="arr">↓</span></button>
     </div>
   </div>
 </section>
@@ -540,7 +576,7 @@
     const expanded = tog.getAttribute('data-open') === '1';
     hidden.forEach(h => h.classList.toggle('show', !expanded));
     tog.setAttribute('data-open', expanded ? '0' : '1');
-    tog.innerHTML = expanded ? 'Show all 9 publications <span class="arr">↓</span>' : 'Show fewer <span class="arr">↑</span>';
+    tog.innerHTML = expanded ? 'Show all 12 publications <span class="arr">↓</span>' : 'Show fewer <span class="arr">↑</span>';
   });
 </script>
 </body>
