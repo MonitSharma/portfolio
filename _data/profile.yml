@@ -4,7 +4,7 @@ company: Singapore Management University
 location: Singapore
 email: monitsharma437@gmail.com
 bio: |
-  I am a Research Engineer at Singapore Management University, bridging the gap between near-term quantum hardware and industrial applications. My work focuses on designing hybrid quantum-classical algorithms for large-scale optimization problems in logistics and supply chain management. I specialize in leveraging GPU/TPU acceleration to benchmark quantum approaches against state-of-the-art classical heuristics.
+  I am a Research Engineer at Singapore Management University working across quantum computing, quantum algorithms, and AI. My work spans hybrid quantum-classical optimization, Shor-style factoring experiments, quantum simulation and differential-equation solvers, LLM-guided research loops, AI agents, and scientific software systems. I build with quantum packages such as Qiskit, PennyLane, Cirq, and D-Wave workflows, and with AI/programming stacks including Python, C/C++, JavaScript/TypeScript, Java, CUDA, JAX, PyTorch, and language-model tooling.
 social_links:
   - platform: Email
     url: "mailto:monitsharma437@gmail.com"
