@@ -12,6 +12,8 @@
 - title: "AutoQResearch: LLM-Guided Closed-Loop Policy Search for Adaptive Variational Quantum Optimization"
   meta: with H. C. Lau · Quantum-GenAI co-design · arXiv:2604.24283
   year: 2026
+  selected: true
+  venue: IEEE QCE26 Quantum–GenAI Co-Design & Discovery (QGDD) Technical Papers
   description:
     - Introduced an LLM-guided experimentation loop that searches adaptive solver-control policies for variational quantum optimization.
     - Evaluated on MIS and CVRP, showing that staged confirmation is essential to avoid proxy-evaluation failures.
