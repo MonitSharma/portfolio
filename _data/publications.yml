@@ -50,20 +50,21 @@
       url: https://arxiv.org/abs/2604.22194
       icon: fas fa-file-pdf
 
-- title: "Transferable Equivariant Quantum Circuits for TSP: Generalization Bounds and Empirical Validation"
-  meta: with H. C. Lau · Equivariant quantum reinforcement learning for TSP · arXiv:2510.14533
+- title: Learning-Based Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems
+  meta: with H. C. Lau · Learning-guided graph shrinking for quantum optimization
   year: 2025
   selected: true
+  venue: AAAI 2026 Workshop on Quantum Computing (QC)
   description:
-    - Used permutation-equivariant quantum circuits to transfer trained TSP policies from smaller to larger instances.
-    - Derived generalization bounds and validated **strong zero-shot transfer** with further gains from fine-tuning.
+    - Introduced a learning-based graph shrinking approach for reducing constrained combinatorial optimization instances.
+    - Targets hardware-limited quantum optimization workflows while preserving problem structure for downstream solution recovery.
   links:
     - text: PDF
-      url: https://arxiv.org/abs/2510.14533
+      url: https://ink.library.smu.edu.sg/cgi/viewcontent.cgi?article=12036&context=sis_research
       icon: fas fa-file-pdf
     - text: Code
-      url: https://zenodo.org/records/21277812?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU4OTZkZGMzLTNkNmYtNDhiMS05MGZhLTQ0NTU0ODdkMjI1MSIsImRhdGEiOnt9LCJyYW5kb20iOiI2MjQ0MjI2ZDY3MjNjMWU2ZmVmMTA0ZDVkN2VjMzQ3MyJ9.Rqy_muKrIPLowpqPyDCO1aY-1hyHy2MKJqLdoaH2KNEz_HTKrPPVQXIffqWBxUMEnsbawo0OTSM7CEQ
-      icon: fas fa-database
+      url: https://github.com/SMU-Quantum/graph-shrinking
+      icon: fab fa-github
 
 - title: Hybrid Learning and Optimization methods for solving Capacitated Vehicle Routing Problem
   meta: with H. C. Lau · Hybrid RL + Quantum CVRP · arXiv:2509.15262
@@ -72,7 +73,6 @@
     - Soft Actor-Critic policies tune augmented Lagrangian penalties for both classical and quantum solvers, **accelerating convergence and feasibility**.
     - Benchmarks across synthetic and real CVRP instances quantify runtime and solution-quality trade-offs between hybrid and classical baselines.
   venue: AAAI 2026 Workshop on Quantum Computing (QC)
-  year: 2025
   selected: true
   links:
     - text: PDF
@@ -96,16 +96,19 @@
       url: https://github.com/SMU-Quantum/cutting_slack
       icon: fab fa-github
 
-- title: Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems
-  meta: with H. C. Lau · Constraint-aware graph compression · arXiv:2506.14250
+- title: Diagnosing Simulation and Hardware Barriers to Cross-Size Transfer in Equivariant Quantum Reinforcement Learning
+  meta: with H. C. Lau · Equivariant quantum reinforcement learning transfer diagnostics · arXiv:2510.14533
   year: 2025
   description:
-    - Introduced adaptive graph coarsening with verification to shrink QUBO instances while preserving feasibility.
-    - Delivered **40–80% qubit reductions** for MDKP, MIS, and QAP, with minimal quality loss.
+    - Diagnosed cross-size transfer for EQC reinforcement-learning policies across simulators, noisy execution, and hardware.
+    - Identified finite-shot, circuit-depth, and hardware-noise barriers that limit scaling beyond validated transfer regimes.
   links:
     - text: PDF
-      url: https://arxiv.org/abs/2506.14250
+      url: https://arxiv.org/abs/2510.14533
       icon: fas fa-file-pdf
+    - text: Code
+      url: https://zenodo.org/records/21277812?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU4OTZkZGMzLTNkNmYtNDhiMS05MGZhLTQ0NTU0ODdkMjI1MSIsImRhdGEiOnt9LCJyYW5kb20iOiI2MjQ0MjI2ZDY3MjNjMWU2ZmVmMTA0ZDVkN2VjMzQ3MyJ9.Rqy_muKrIPLowpqPyDCO1aY-1hyHy2MKJqLdoaH2KNEz_HTKrPPVQXIffqWBxUMEnsbawo0OTSM7CEQ
+      icon: fas fa-database
 
 - title: A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems
   meta: with H. C. Lau · Standardised benchmarking suite · arXiv:2503.12121
@@ -137,7 +140,7 @@
 
 - title: Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems
   meta: with H. C. Lau & R. Raymond
-  venue: IEEE QCE 2024 (Poster at QIP 2024)
+  venue: IEEE QCE24 Quantum Applications Technical Paper (Poster at QIP 2024)
   year: 2024
   selected: true
   description:
@@ -150,7 +153,7 @@
 
 - title: Quantum Relaxation for Solving Multiple Knapsack Problems
   meta: with Y. Jin, H. C. Lau & R. Raymond
-  venue: IEEE QCE 2024
+  venue: IEEE QCE24 Quantum Applications Technical Paper
   year: 2024
   selected: true
   description:

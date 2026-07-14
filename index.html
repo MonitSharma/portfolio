@@ -232,8 +232,8 @@
     <div class="eyebrow"><span class="num">02</span> Recent News</div>
     <div class="news-list">
       <div class="news-row"><span class="d">Jul 2026</span><span class="c">🎉 <b>AutoQResearch</b> accepted as a technical paper at <b>IEEE QCE26 Quantum–GenAI Co-Design &amp; Discovery (QGDD)</b>.</span></div>
-      <div class="news-row"><span class="d">Oct 2025</span><span class="c">🎉 Research accepted at the <b>AAAI 2026 Workshop on Quantum Computing</b>, including hybrid learning methods for CVRP.</span></div>
-      <div class="news-row"><span class="d">Sep 2024</span><span class="c">📄 New papers accepted at <b>IEEE QCE 2024</b> on Quantum Relaxation and Newsvendor Optimization.</span></div>
+      <div class="news-row"><span class="d">Oct 2025</span><span class="c">🎉 Two papers accepted at the <b>AAAI 2026 Workshop on Quantum Computing</b> — Hybrid Learning for CVRP and Learning-Based Graph Shrinking.</span></div>
+      <div class="news-row"><span class="d">Sep 2024</span><span class="c">📄 New papers accepted as <b>IEEE QCE24 Quantum Applications Technical Papers</b> on Quantum Relaxation and Newsvendor Optimization.</span></div>
       <div class="news-row"><span class="d">Jan 2024</span><span class="c">🎤 Presented a poster on Quantum Newsvendor Optimization at <b>QIP 2024</b>.</span></div>
     </div>
   </div>
@@ -302,13 +302,14 @@
       <article class="pub-card is-sel">
         <div class="pub-yr">2025</div>
         <div>
-          <div class="pub-title">Transferable Equivariant Quantum Circuits for TSP: Generalization Bounds and Empirical Validation</div>
-          <div class="pub-meta">with H. C. Lau · Equivariant quantum reinforcement learning for TSP · arXiv:2510.14533</div>
+          <div class="pub-title">Learning-Based Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems</div>
+          <div class="pub-meta">with H. C. Lau · Learning-guided graph shrinking for quantum optimization</div>
           <ul class="pub-desc">
-            <li>Used permutation-equivariant quantum circuits to transfer trained TSP policies from smaller to larger instances.</li>
-            <li>Derived generalization bounds and validated <b>strong zero-shot transfer</b> with further gains from fine-tuning.</li>
+            <li>Introduced a learning-based graph shrinking approach for reducing constrained combinatorial optimization instances.</li>
+            <li>Targets hardware-limited quantum optimization workflows while preserving problem structure for downstream solution recovery.</li>
           </ul>
-          <div class="pub-links"><a href="https://arxiv.org/abs/2510.14533" target="_blank" rel="noopener">↗ PDF</a><a href="https://zenodo.org/records/21277812?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU4OTZkZGMzLTNkNmYtNDhiMS05MGZhLTQ0NTU0ODdkMjI1MSIsImRhdGEiOnt9LCJyYW5kb20iOiI2MjQ0MjI2ZDY3MjNjMWU2ZmVmMTA0ZDVkN2VjMzQ3MyJ9.Rqy_muKrIPLowpqPyDCO1aY-1hyHy2MKJqLdoaH2KNEz_HTKrPPVQXIffqWBxUMEnsbawo0OTSM7CEQ" target="_blank" rel="noopener">↗ Code</a></div>
+          <span class="tag tag-accent pub-venue">AAAI 2026 Workshop on Quantum Computing</span>
+          <div class="pub-links"><a href="https://ink.library.smu.edu.sg/cgi/viewcontent.cgi?article=12036&amp;context=sis_research" target="_blank" rel="noopener">↗ PDF</a><a href="https://github.com/SMU-Quantum/graph-shrinking" target="_blank" rel="noopener">↗ Code</a></div>
         </div>
       </article>
       <article class="pub-card is-sel">
@@ -333,7 +334,7 @@
             <li>Employed qGANs to learn demand distributions, <b>reducing qubit requirements</b> with a tailored comparator.</li>
             <li>Expanded the newsvendor formulation to maximise profit and support broader decision scenarios.</li>
           </ul>
-          <span class="tag tag-accent pub-venue">IEEE QCE 2024 · Poster at QIP 2024</span>
+          <span class="tag tag-accent pub-venue">IEEE QCE24 Quantum Applications Technical Paper · Poster at QIP 2024</span>
           <div class="pub-links"><a href="https://ieeexplore.ieee.org/document/10821393" target="_blank" rel="noopener">↗ PDF</a></div>
         </div>
       </article>
@@ -346,7 +347,7 @@
             <li>Combined Quantum Random Access Optimisation with linear relaxation to solve large-scale procurement problems.</li>
             <li>Showed <b>feasibility and optimality preservation</b> on instances exceeding 100 decision variables.</li>
           </ul>
-          <span class="tag tag-accent pub-venue">IEEE QCE 2024</span>
+          <span class="tag tag-accent pub-venue">IEEE QCE24 Quantum Applications Technical Paper</span>
           <div class="pub-links"><a href="https://ieeexplore.ieee.org/document/10821401" target="_blank" rel="noopener">↗ PDF</a></div>
         </div>
       </article>
@@ -403,13 +404,13 @@
       <article class="pub-card pub-hidden">
         <div class="pub-yr">2025</div>
         <div>
-          <div class="pub-title">Adaptive Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems</div>
-          <div class="pub-meta">with H. C. Lau · Constraint-aware graph compression · arXiv:2506.14250</div>
+          <div class="pub-title">Diagnosing Simulation and Hardware Barriers to Cross-Size Transfer in Equivariant Quantum Reinforcement Learning</div>
+          <div class="pub-meta">with H. C. Lau · Equivariant quantum reinforcement learning transfer diagnostics · arXiv:2510.14533</div>
           <ul class="pub-desc">
-            <li>Adaptive graph coarsening with verification shrinks QUBO instances while preserving feasibility.</li>
-            <li>Delivered <b>40–80% qubit reductions</b> for MDKP, MIS, and QAP, with minimal quality loss.</li>
+            <li>Diagnosed cross-size transfer for EQC reinforcement-learning policies across simulators, noisy execution, and hardware.</li>
+            <li>Identified finite-shot, circuit-depth, and hardware-noise barriers that limit scaling beyond validated transfer regimes.</li>
           </ul>
-          <div class="pub-links"><a href="https://arxiv.org/abs/2506.14250" target="_blank" rel="noopener">↗ PDF</a></div>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2510.14533" target="_blank" rel="noopener">↗ PDF</a><a href="https://zenodo.org/records/21277812?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU4OTZkZGMzLTNkNmYtNDhiMS05MGZhLTQ0NTU0ODdkMjI1MSIsImRhdGEiOnt9LCJyYW5kb20iOiI2MjQ0MjI2ZDY3MjNjMWU2ZmVmMTA0ZDVkN2VjMzQ3MyJ9.Rqy_muKrIPLowpqPyDCO1aY-1hyHy2MKJqLdoaH2KNEz_HTKrPPVQXIffqWBxUMEnsbawo0OTSM7CEQ" target="_blank" rel="noopener">↗ Code</a></div>
         </div>
       </article>
       <article class="pub-card pub-hidden">
