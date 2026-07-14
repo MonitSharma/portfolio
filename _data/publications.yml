@@ -2,7 +2,7 @@
   meta: with H. C. Lau · Quantum-GenAI co-design · arXiv:2604.24283
   year: 2026
   selected: true
-  venue: IEEE QCE26 Quantum–GenAI Co-Design & Discovery (QGDD) Technical Papers
+  venue: IEEE QCE26 Quantum–GenAI Co-Design & Discovery (QGDD) Technical Paper
   description:
     - Introduced an LLM-guided experimentation loop that searches adaptive solver-control policies for variational quantum optimization.
     - Evaluated on MIS and CVRP, showing that staged confirmation is essential to avoid proxy-evaluation failures.
@@ -18,7 +18,7 @@
   meta: with H. C. Lau · Learning-guided graph shrinking for quantum optimization
   year: 2026
   selected: true
-  venue: AAAI 2026 Workshop on Quantum Computing (QC)
+  venue: Springer QC+AI 2026 · Communications in Computer and Information Science 2872
   description:
     - Introduced a learning-based graph shrinking approach for reducing constrained combinatorial optimization instances.
     - Targets hardware-limited quantum optimization workflows while preserving problem structure for downstream solution recovery.
@@ -34,7 +34,7 @@
   meta: with H. C. Lau · Hybrid RL + Quantum CVRP · Springer QC+AI 2026
   year: 2026
   selected: true
-  venue: AAAI 2026 Workshop on Quantum Computing (QC)
+  venue: Springer QC+AI 2026 · Communications in Computer and Information Science 2872
   description:
     - Soft Actor-Critic policies tune augmented Lagrangian penalties for both classical and quantum solvers, **accelerating convergence and feasibility**.
     - Benchmarks across synthetic and real CVRP instances quantify runtime and solution-quality trade-offs between hybrid and classical baselines.
@@ -50,7 +50,7 @@
   meta: with H. C. Lau & R. Raymond
   year: 2024
   selected: true
-  venue: IEEE QCE24 Quantum Applications Technical Paper (Poster at QIP 2024)
+  venue: IEEE Xplore · IEEE QCE24 Quantum Applications Technical Paper (Poster at QIP 2024)
   description:
     - Employed qGANs to learn demand distributions, **reducing qubit requirements** with a tailored comparator.
     - Expanded the newsvendor formulation to maximise profit and support broader decision scenarios.
@@ -63,7 +63,7 @@
   meta: with Y. Jin, H. C. Lau & R. Raymond
   year: 2024
   selected: true
-  venue: IEEE QCE24 Quantum Applications Technical Paper
+  venue: IEEE Xplore · IEEE QCE24 Quantum Applications Technical Paper
   description:
     - Combined Quantum Random Access Optimisation with linear relaxation to solve large-scale procurement problems.
     - Showed **feasibility and optimality preservation** on instances exceeding 100 decision variables.
