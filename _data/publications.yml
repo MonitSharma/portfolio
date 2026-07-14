@@ -60,7 +60,7 @@
     - Targets hardware-limited quantum optimization workflows while preserving problem structure for downstream solution recovery.
   links:
     - text: PDF
-      url: https://ink.library.smu.edu.sg/cgi/viewcontent.cgi?article=12036&context=sis_research
+      url: https://link.springer.com/chapter/10.1007/978-3-032-17625-7_3
       icon: fas fa-file-pdf
     - text: Code
       url: https://github.com/SMU-Quantum/graph-shrinking
