@@ -232,7 +232,7 @@
     <div class="eyebrow"><span class="num">02</span> Recent News</div>
     <div class="news-list">
       <div class="news-row"><span class="d">Jul 2026</span><span class="c">🎉 <b>AutoQResearch</b> accepted as a technical paper at <b>IEEE QCE26 Quantum–GenAI Co-Design &amp; Discovery (QGDD)</b>.</span></div>
-      <div class="news-row"><span class="d">Oct 2025</span><span class="c">🎉 Two papers accepted at the <b>AAAI 2026 Workshop on Quantum Computing</b> — Hybrid Learning for CVRP and Learning-Based Graph Shrinking.</span></div>
+      <div class="news-row"><span class="d">Oct 2025</span><span class="c">🎉 Research accepted at the <b>AAAI 2026 Workshop on Quantum Computing</b>, including hybrid learning methods for CVRP.</span></div>
       <div class="news-row"><span class="d">Sep 2024</span><span class="c">📄 New papers accepted at <b>IEEE QCE 2024</b> on Quantum Relaxation and Newsvendor Optimization.</span></div>
       <div class="news-row"><span class="d">Jan 2024</span><span class="c">🎤 Presented a poster on Quantum Newsvendor Optimization at <b>QIP 2024</b>.</span></div>
     </div>
@@ -296,20 +296,19 @@
             <li>Evaluated on MIS and CVRP, showing that staged confirmation is essential to avoid proxy-evaluation failures.</li>
           </ul>
           <span class="tag tag-accent pub-venue">IEEE QCE26 · Quantum–GenAI Co-Design &amp; Discovery (QGDD) Technical Papers</span>
-          <div class="pub-links"><a href="https://arxiv.org/abs/2604.24283" target="_blank" rel="noopener">↗ PDF</a></div>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2604.24283" target="_blank" rel="noopener">↗ PDF</a><a href="https://github.com/SMU-Quantum/autoqresearch" target="_blank" rel="noopener">↗ Code</a></div>
         </div>
       </article>
       <article class="pub-card is-sel">
         <div class="pub-yr">2025</div>
         <div>
-          <div class="pub-title">Learning-Based Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems</div>
-          <div class="pub-meta">Learning-guided compression for hybrid solvers · arXiv:2510.14533</div>
+          <div class="pub-title">Transferable Equivariant Quantum Circuits for TSP: Generalization Bounds and Empirical Validation</div>
+          <div class="pub-meta">with H. C. Lau · Equivariant quantum reinforcement learning for TSP · arXiv:2510.14533</div>
           <ul class="pub-desc">
-            <li>Introduced a learning-based graph shrinking technique to reduce instance size while preserving solution structure.</li>
-            <li>Achieved <b>substantial qubit reductions</b> on benchmark combinatorial instances with minimal loss in quality.</li>
+            <li>Used permutation-equivariant quantum circuits to transfer trained TSP policies from smaller to larger instances.</li>
+            <li>Derived generalization bounds and validated <b>strong zero-shot transfer</b> with further gains from fine-tuning.</li>
           </ul>
-          <span class="tag tag-accent pub-venue">AAAI 2026 Workshop on Quantum Computing</span>
-          <div class="pub-links"><a href="https://arxiv.org/abs/2510.14533" target="_blank" rel="noopener">↗ Publication</a></div>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2510.14533" target="_blank" rel="noopener">↗ PDF</a><a href="https://zenodo.org/records/21277812?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU4OTZkZGMzLTNkNmYtNDhiMS05MGZhLTQ0NTU0ODdkMjI1MSIsImRhdGEiOnt9LCJyYW5kb20iOiI2MjQ0MjI2ZDY3MjNjMWU2ZmVmMTA0ZDVkN2VjMzQ3MyJ9.Rqy_muKrIPLowpqPyDCO1aY-1hyHy2MKJqLdoaH2KNEz_HTKrPPVQXIffqWBxUMEnsbawo0OTSM7CEQ" target="_blank" rel="noopener">↗ Code</a></div>
         </div>
       </article>
       <article class="pub-card is-sel">
@@ -356,6 +355,18 @@
       <article class="pub-card pub-hidden">
         <div class="pub-yr">2026</div>
         <div>
+          <div class="pub-title">From Circuits to Hardware: Benchmarking Standard and Qubit-Efficient Quantum Optimization on Real Hardware</div>
+          <div class="pub-meta">with H. C. Lau · Quantum hardware benchmarking for hard combinatorial optimization · arXiv:2607.11637</div>
+          <ul class="pub-desc">
+            <li>Benchmarked gate-based quantum optimization across MDKP, MIS, QAP, and MSP on IBM Heron processors under a common protocol.</li>
+            <li>Compared VQE, CVaR-VQE, QAOA variants, PCE, and QRAO, identifying fidelity limits and noise-dominated execution regimes.</li>
+          </ul>
+          <div class="pub-links"><a href="https://arxiv.org/abs/2607.11637" target="_blank" rel="noopener">↗ PDF</a><a href="https://github.com/SMU-Quantum/quantum-optimization-benchmarks/tree/from-circuits-to-hardware" target="_blank" rel="noopener">↗ Code</a></div>
+        </div>
+      </article>
+      <article class="pub-card pub-hidden">
+        <div class="pub-yr">2026</div>
+        <div>
           <div class="pub-title">Securing the Flow: Maritime Energy Resilience under Correlated and Decision-Dependent Disruptions</div>
           <div class="pub-meta">with H. C. Lau · Maritime energy resilience · arXiv:2605.11990</div>
           <ul class="pub-desc">
@@ -375,18 +386,6 @@
             <li>Combined learned multiplier updates with hardware-aware execution policies for noisy, heterogeneous quantum resources.</li>
           </ul>
           <div class="pub-links"><a href="https://arxiv.org/abs/2604.22194" target="_blank" rel="noopener">↗ PDF</a></div>
-        </div>
-      </article>
-      <article class="pub-card pub-hidden">
-        <div class="pub-yr">2025</div>
-        <div>
-          <div class="pub-title">Transferable Equivariant Quantum Circuits for TSP: Generalization Bounds and Empirical Validation</div>
-          <div class="pub-meta">with H. C. Lau · Equivariant QRL for TSP · arXiv:2510.14533</div>
-          <ul class="pub-desc">
-            <li>Permutation-equivariant circuits transfer policies from small to larger TSP instances with <b>strong zero-shot performance</b>.</li>
-            <li>Derived generalization bounds tying structural dissimilarity to expected performance, validated empirically.</li>
-          </ul>
-          <div class="pub-links"><a href="https://arxiv.org/abs/2510.14533" target="_blank" rel="noopener">↗ Publication</a></div>
         </div>
       </article>
       <article class="pub-card pub-hidden">
