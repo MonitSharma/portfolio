@@ -49,9 +49,11 @@
   /* metrics strip */
   .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: clamp(48px,7vh,84px); }
   .metric { padding: 26px 0; border-right: 1px solid var(--line-2); }
+  .metric-link { display: block; color: inherit; }
+  .metric-link:hover .n, .metric-link:hover .l { color: var(--accent); }
   .metric:last-child { border-right: 0; }
   .metric .n { font-family: var(--serif); font-size: clamp(2rem,3.4vw,2.8rem); line-height: 1; }
-  .metric .l { font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-top: 10px; }
+  .metric .l { font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-top: 10px; transition: color .2s; }
 
   /* about */
   .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(28px, 5vw, 64px); }
@@ -89,6 +91,7 @@
   .software-kicker { font-family: var(--mono); color: var(--accent); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
   .software-copy { color: var(--ink-2); font-size: clamp(1rem,1.45vw,1.14rem); line-height: 1.6; }
   .software-copy b { color: var(--ink); font-weight: 600; }
+  .software-project + .software-project { margin-top: 58px; padding-top: 54px; border-top: 1px solid var(--line); }
   .software-facts { margin-top: 24px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .software-fact { padding: 18px 16px 18px 0; border-right: 1px solid var(--line-2); min-width: 0; }
   .software-fact:last-child { border-right: 0; }
@@ -108,6 +111,8 @@
   .result-table th { color: var(--ink-3); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
   .result-table td { color: var(--ink-2); }
   .result-table b { color: var(--ink); font-weight: 600; }
+  .atelier-panel { margin-top: 34px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .atelier-plot .plot-frame { min-height: 280px; }
 
   /* publications */
   .pub-feature { display: grid; grid-template-columns: 1fr; gap: 0; }
@@ -172,6 +177,7 @@
     .software-fact:nth-child(2) { border-right: 0; }
     .software-fact:nth-child(1), .software-fact:nth-child(2) { border-bottom: 1px solid var(--line-2); }
     .plot-grid { grid-template-columns: 1fr; }
+    .atelier-panel { grid-template-columns: 1fr; }
     .news-row { grid-template-columns: 100px 1fr; gap: 14px; }
   }
   @media (max-width: 600px) {
@@ -233,8 +239,8 @@
     <div class="metrics">
       <div class="metric"><div class="n">12</div><div class="l">Publications</div></div>
       <div class="metric"><div class="n">4+</div><div class="l">Years in Quantum</div></div>
-      <div class="metric"><div class="n">18</div><div class="l">Open Courses</div></div>
-      <div class="metric"><div class="n">AI</div><div class="l">Agents · LLMs · Tooling</div></div>
+      <div class="metric"><a class="metric-link" href="https://monitsharma.github.io/"><div class="n">18</div><div class="l">Open Courses</div></a></div>
+      <div class="metric"><div class="n">AI + QC</div><div class="l">Agents · LLMs · Quantum</div></div>
     </div>
   </div>
 </section>
@@ -316,45 +322,91 @@
 <section class="section" id="software">
   <div class="wrap">
     <div class="eyebrow"><span class="num">04</span> Software</div>
-    <div class="software-head">
-      <div>
-        <div class="software-kicker">Open-source package · Apple Silicon quantum simulation</div>
-        <h2 class="software-title">MettleQ</h2>
-      </div>
-      <div>
-        <p class="software-copy">I worked on <b>MettleQ</b>, a trustworthy local quantum-circuit simulation package for Apple Silicon. It integrates with <b>Qiskit</b> and <b>PennyLane</b>, exposes exact statevector and matrix-product-state simulation paths, and uses MLX/Metal execution with measured dispatch policies and reproducible benchmark evidence.</p>
-        <div class="software-facts">
-          <div class="software-fact"><div class="v">0.2.0</div><div class="k">Package version</div></div>
-          <div class="software-fact"><div class="v">386</div><div class="k">Tests reported</div></div>
-          <div class="software-fact"><div class="v">29</div><div class="k">SDK tutorials</div></div>
-          <div class="software-fact"><div class="v">MIT</div><div class="k">License</div></div>
+    <div class="software-project">
+      <div class="software-head">
+        <div>
+          <div class="software-kicker">Open-source package · Apple Silicon quantum simulation</div>
+          <h2 class="software-title">MettleQ</h2>
         </div>
-        <div class="software-actions">
-          <a class="btn" href="https://github.com/MonitSharma/MettleQ" target="_blank" rel="noopener">View package <span class="arr">↗</span></a>
-          <a class="btn btn-ghost" href="https://github.com/MonitSharma/MettleQ/tree/main/tutorials" target="_blank" rel="noopener">Tutorials</a>
+        <div>
+          <p class="software-copy">I worked on <b>MettleQ</b>, a trustworthy local quantum-circuit simulation package for Apple Silicon. It integrates with <b>Qiskit</b> and <b>PennyLane</b>, exposes exact statevector and matrix-product-state simulation paths, and uses MLX/Metal execution with measured dispatch policies and reproducible benchmark evidence.</p>
+          <div class="software-facts">
+            <div class="software-fact"><div class="v">0.2.0</div><div class="k">Package version</div></div>
+            <div class="software-fact"><div class="v">386</div><div class="k">Tests reported</div></div>
+            <div class="software-fact"><div class="v">29</div><div class="k">SDK tutorials</div></div>
+            <div class="software-fact"><div class="v">MIT</div><div class="k">License</div></div>
+          </div>
+          <div class="software-actions">
+            <a class="btn" href="https://github.com/MonitSharma/MettleQ" target="_blank" rel="noopener">View package <span class="arr">↗</span></a>
+            <a class="btn btn-ghost" href="https://github.com/MonitSharma/MettleQ/tree/main/tutorials" target="_blank" rel="noopener">Tutorials</a>
+          </div>
+        </div>
+      </div>
+      <div class="plot-grid" aria-label="MettleQ CPU GPU crossover benchmark">
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/mettleq/sdk_cpu_gpu_crossover.png" alt="MettleQ SDK CPU GPU crossover benchmark plot"></div>
+          <figcaption>Latest radix-16 idle SDK CPU/GPU crossover benchmark on Apple M3 Pro, depth-3 full-state circuits.</figcaption>
+        </figure>
+        <div class="result-card">
+          <div>
+            <h3>Selected results</h3>
+            <p class="result-note">Ratio above 1.0x means MettleQ GPU was faster. In this latest run, MettleQ crosses PennyLane Lightning at 16 qubits and Qiskit Aer at 20 qubits.</p>
+          </div>
+          <table class="result-table" aria-label="MettleQ crossover benchmark results">
+            <thead>
+              <tr><th>Qubits</th><th>Qiskit CPU/GPU</th><th>PennyLane CPU/GPU</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>20</td><td><b>1.327x</b></td><td><b>11.097x</b></td></tr>
+              <tr><td>24</td><td><b>4.554x</b></td><td><b>18.713x</b></td></tr>
+              <tr><td>29</td><td><b>2.739x</b></td><td><b>16.005x</b></td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-    <div class="plot-grid" aria-label="MettleQ CPU GPU crossover benchmark">
-      <figure class="plot-card">
-        <div class="plot-frame"><img src="assets/imgs/mettleq/sdk_cpu_gpu_crossover.png" alt="MettleQ SDK CPU GPU crossover benchmark plot"></div>
-        <figcaption>Latest radix-16 idle SDK CPU/GPU crossover benchmark on Apple M3 Pro, depth-3 full-state circuits.</figcaption>
-      </figure>
-      <div class="result-card">
+    <div class="software-project">
+      <div class="software-head">
         <div>
-          <h3>Selected results</h3>
-          <p class="result-note">Ratio above 1.0x means MettleQ GPU was faster. In this latest run, MettleQ crosses PennyLane Lightning at 16 qubits and Qiskit Aer at 20 qubits.</p>
+          <div class="software-kicker">Local-first AI research lab · Agents and foundation models</div>
+          <h2 class="software-title">The Atelier Lab</h2>
         </div>
-        <table class="result-table" aria-label="MettleQ crossover benchmark results">
-          <thead>
-            <tr><th>Qubits</th><th>Qiskit CPU/GPU</th><th>PennyLane CPU/GPU</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>20</td><td><b>1.327x</b></td><td><b>11.097x</b></td></tr>
-            <tr><td>24</td><td><b>4.554x</b></td><td><b>18.713x</b></td></tr>
-            <tr><td>29</td><td><b>2.739x</b></td><td><b>16.005x</b></td></tr>
-          </tbody>
-        </table>
+        <div>
+          <p class="software-copy">I also built <b>The Atelier Lab</b>, a local AI research laboratory for reproducing modern AI systems from first principles. It combines a foundation-model track with an autonomous local agent that runs on a single MacBook using Ollama, local embeddings, RAG, durable memory, and test-verified build mode.</p>
+          <div class="software-facts">
+            <div class="software-fact"><div class="v">0-7</div><div class="k">Agent phases complete</div></div>
+            <div class="software-fact"><div class="v">41</div><div class="k">Eval tasks</div></div>
+            <div class="software-fact"><div class="v">73M</div><div class="k">Nanochat baseline</div></div>
+            <div class="software-fact"><div class="v">286M</div><div class="k">Scale-up model</div></div>
+          </div>
+          <div class="software-actions">
+            <a class="btn" href="https://github.com/MonitSharma/The-Atelier-Lab" target="_blank" rel="noopener">View lab <span class="arr">↗</span></a>
+            <a class="btn btn-ghost" href="https://github.com/MonitSharma/The-Atelier-Lab/tree/master/atelier_agent" target="_blank" rel="noopener">Agent stack</a>
+          </div>
+        </div>
+      </div>
+      <div class="atelier-panel">
+        <figure class="plot-card atelier-plot">
+          <div class="plot-frame">
+            <img src="assets/imgs/atelier/foundation_scaling.png" alt="The Atelier Lab foundation model scaling plot comparing throughput and validation loss for 73M and 286M nanochat models on Apple Silicon" loading="lazy">
+          </div>
+          <figcaption>Foundation-model scaling run on Apple Silicon: the larger local model trades throughput for lower validation loss.</figcaption>
+        </figure>
+        <div class="result-card">
+          <div>
+            <h3>Local foundation track</h3>
+            <p class="result-note">Baseline training measurements on an Apple M3 Pro, alongside a local agent stack for RAG, memory, code repair, and test-verified edits.</p>
+          </div>
+          <table class="result-table" aria-label="The Atelier Lab foundation model benchmark results">
+            <thead>
+              <tr><th>Model</th><th>Throughput</th><th>Run cost</th><th>Loss</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>73.5M</td><td><b>~18.7k tok/s</b></td><td>~1.2 h</td><td>1.1664 BPB</td></tr>
+              <tr><td>286.2M</td><td><b>~4.47k tok/s</b></td><td>~5.1 h</td><td>1.0954 BPB</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
