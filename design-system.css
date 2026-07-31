@@ -155,6 +155,7 @@ h1, h2, h3 { font-weight: 500; line-height: 1.08; letter-spacing: -0.01em; }
 .navlinks { display: flex; gap: 26px; align-items: center; }
 .navlinks a {
   font-size: 13.5px; color: var(--ink-2); position: relative; transition: color .2s;
+  white-space: nowrap;
 }
 .navlinks a:hover { color: var(--ink); }
 .navlinks a::after {
@@ -195,6 +196,13 @@ h1, h2, h3 { font-weight: 500; line-height: 1.08; letter-spacing: -0.01em; }
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* intermediate widths: the nav no longer fits beside the brand and the site
+   switch, so tighten it and drop the link the switch already provides */
+@media (max-width: 1040px) {
+  .navlinks { gap: 18px; }
+  .navlinks a.nav-dup { display: none; }
+}
 
 @media (max-width: 720px) {
   .navlinks { display: none; }
