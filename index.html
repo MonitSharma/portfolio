@@ -26,6 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{const savedTheme=localStorage.getItem('writing-theme');if(savedTheme)document.documentElement.dataset.theme=savedTheme;}catch(error){}</script>
 <link href="design-system.css" rel="stylesheet">
 <script type="application/ld+json">
 {
@@ -447,12 +448,9 @@
       <a href="#software">Software</a>
       <a href="#publications">Publications</a>
       <a href="#writing">Writing</a>
-      <a class="nav-dup" href="https://monitsharma.github.io/">Classroom ↗</a>
+      <a href="https://monitsharma.github.io/">Classroom ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" data-theme-toggle>◐</button>
     </nav>
-    <div class="siteswitch">
-      <a href="index.html" class="active">Portfolio</a>
-      <a href="https://monitsharma.github.io/">Classroom</a>
-    </div>
   </div>
 </header>
 
@@ -678,7 +676,7 @@
               <li>Compared VQE, CVaR-VQE, QAOA variants, PCE, and QRAO, identifying fidelity limits and noise-dominated execution regimes.</li>
             </ul>
             <span class="tag tag-accent pub-venue">Quantum Science and Technology · Accepted 2026</span>
-            <div class="pub-links"><a href="https://iopscience.iop.org/article/10.1088/2058-9565/ae94a4" target="_blank" rel="noopener">↗ Journal</a><a href="https://arxiv.org/abs/2607.11637" target="_blank" rel="noopener">↗ arXiv</a><a href="https://github.com/SMU-Quantum/quantum-optimization-benchmarks/tree/from-circuits-to-hardware" target="_blank" rel="noopener">↗ Code</a><a href="https://medium.com/@_monitsharma/quantum-optimization-on-real-hardware-what-247-experiments-on-ibm-heron-revealed-49c6f53a7cc9" target="_blank" rel="noopener">↗ Blog</a></div>
+            <div class="pub-links"><a href="https://iopscience.iop.org/article/10.1088/2058-9565/ae94a4" target="_blank" rel="noopener">↗ Journal</a><a href="https://arxiv.org/abs/2607.11637" target="_blank" rel="noopener">↗ arXiv</a><a href="https://github.com/SMU-Quantum/quantum-optimization-benchmarks/tree/from-circuits-to-hardware" target="_blank" rel="noopener">↗ Code</a><a href="https://monitsharma.github.io/writing/quantum-optimization-on-real-hardware/index.html" target="_blank" rel="noopener">↗ Blog</a></div>
           </div>
         </article>
       </div>
@@ -842,12 +840,12 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">06</span> Writing</div>
     <div class="blog-grid">
-      <a class="blog-card" href="https://medium.com/@_monitsharma/quantum-optimization-on-real-hardware-what-247-experiments-on-ibm-heron-revealed-49c6f53a7cc9" target="_blank" rel="noopener">
+      <a class="blog-card" href="https://monitsharma.github.io/writing/quantum-optimization-on-real-hardware/index.html" target="_blank" rel="noopener">
         <span class="bnum">N° 01 · 2026</span>
         <h3>Quantum Optimization on Real Hardware</h3>
         <p>What 247 experiments on IBM Heron revealed about standard and qubit-efficient quantum optimization workflows.</p>
         <div class="btags"><span class="tag">Quantum Hardware</span><span class="tag">Optimization</span><span class="tag">Benchmarks</span></div>
-        <span class="read">Read on Medium ↗</span>
+        <span class="read">Read the article ↗</span>
       </a>
       <a class="blog-card" href="https://medium.com/@_monitsharma/when-cooking-gas-becomes-a-national-security-problem-c47babcea911" target="_blank" rel="noopener">
         <span class="bnum">N° 02 · 2026</span>
@@ -964,6 +962,18 @@
 </footer>
 
 <script>
+  // shared light/dark mode with the Quantum Classroom and writing pages
+  const root = document.documentElement;
+  const themeToggle = document.querySelector('[data-theme-toggle]');
+  if (themeToggle) {
+    themeToggle.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = nextTheme;
+      localStorage.setItem('writing-theme', nextTheme);
+      themeToggle.setAttribute('aria-pressed', String(nextTheme === 'dark'));
+    });
+  }
   // reveal on scroll
   const io = new IntersectionObserver((es) => {
     es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
