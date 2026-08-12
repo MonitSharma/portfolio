@@ -448,7 +448,7 @@
       <a href="#software">Software</a>
       <a href="#publications">Publications</a>
       <a href="#writing">Writing</a>
-      <a href="https://monitsharma.github.io/">Classroom ↗</a>
+      <a href="https://monitsharma.github.io/">Classroom</a>
       <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" data-theme-toggle>◐</button>
     </nav>
   </div>
@@ -981,6 +981,15 @@
   document.querySelectorAll('.section, .hero-grid, .metrics').forEach(el => { el.classList.add('reveal'); io.observe(el); });
   // failsafe: ensure everything resolves visible even if observer is missed
   setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in')), 1400);
+
+  document.querySelectorAll('a[target="_blank"]').forEach(link => {
+    try {
+      if (new URL(link.href, location.href).origin === location.origin) {
+        link.removeAttribute('target');
+        link.removeAttribute('rel');
+      }
+    } catch (error) { /* keep malformed external links unchanged */ }
+  });
 
   // publications toggle
   const tog = document.getElementById('pubToggle');
