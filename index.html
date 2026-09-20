@@ -339,6 +339,9 @@
   .software-fact .k { font-family: var(--mono); color: var(--ink-3); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 8px; }
   .software-actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
   .plot-grid { margin-top: 36px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .plot-grid-recovery { grid-template-columns: 1fr 1fr; }
+  .plot-grid-recovery .result-card { grid-column: 1 / -1; }
+  .plot-card figcaption a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
   .plot-card { background: var(--paper); padding: 18px; min-width: 0; }
   .plot-frame { background: white; border: 1px solid var(--line-2); min-height: 320px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .plot-frame img { width: 100%; height: auto; object-fit: contain; }
@@ -346,6 +349,7 @@
   .result-card { background: var(--paper); padding: 18px; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
   .result-card h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; line-height: 1.15; }
   .result-note { color: var(--ink-2); font-size: 0.92rem; line-height: 1.5; }
+  .result-note + .result-note { margin-top: 10px; }
   .result-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; }
   .result-table th, .result-table td { padding: 10px 8px; border-top: 1px solid var(--line-2); text-align: left; vertical-align: top; }
   .result-table th { color: var(--ink-3); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
@@ -393,6 +397,30 @@
   .blog-card .read { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 18px; display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
   .blog-card:hover .read { color: var(--accent); }
 
+  /* teaching */
+  .course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .course-card { background: var(--paper); padding: 26px 24px; display: flex; flex-direction: column; transition: background .2s; min-height: 218px; }
+  .course-card:hover { background: var(--paper-2); }
+  .course-card .stars { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
+  .course-card h3 { font-family: var(--serif); font-size: 1.22rem; line-height: 1.18; margin-top: 14px; overflow-wrap: anywhere; }
+  .course-card p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.54; margin-top: 12px; flex: 1; }
+  .course-card .read { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 16px; display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
+  .course-card:hover .read { color: var(--accent); }
+  .course-note { margin-top: 26px; color: var(--ink-2); font-size: 0.98rem; line-height: 1.65; }
+  .course-note a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* writing series */
+  .sub-label { margin: 46px 0 18px; color: var(--accent); }
+  .eyebrow + .sub-label { margin-top: 0; }
+  .series-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .series-card { background: var(--paper); padding: 26px 24px; display: flex; flex-direction: column; transition: background .2s; min-height: 210px; }
+  .series-card:hover { background: var(--paper-2); }
+  .series-card .count { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
+  .series-card h3 { font-family: var(--serif); font-size: 1.22rem; line-height: 1.18; margin-top: 14px; overflow-wrap: anywhere; }
+  .series-card p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.54; margin-top: 12px; flex: 1; }
+  .series-card .read { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 16px; display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
+  .series-card:hover .read { color: var(--accent); }
+
   /* education */
   .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .edu-card { background: var(--paper); padding: 30px; }
@@ -415,6 +443,8 @@
     .metric:nth-child(2) { border-right: 0; }
     .metric:nth-child(1), .metric:nth-child(2) { border-bottom: 1px solid var(--line-2); }
     .blog-grid { grid-template-columns: 1fr; }
+    .course-grid { grid-template-columns: 1fr; }
+    .series-grid { grid-template-columns: 1fr; }
     .edu-grid { grid-template-columns: 1fr; }
     .software-head { grid-template-columns: 1fr; }
     .software-facts { grid-template-columns: repeat(2, 1fr); }
@@ -445,7 +475,8 @@
     <nav class="navlinks">
       <a href="#about">About</a>
       <a href="#research">Research</a>
-      <a href="#software">Software</a>
+      <a href="#work">Work</a>
+      <a href="#teaching">Teaching</a>
       <a href="#publications">Publications</a>
       <a href="#writing">Writing</a>
       <a href="https://monitsharma.github.io/">Classroom</a>
@@ -560,10 +591,10 @@
   </div>
 </section>
 
-<!-- SOFTWARE -->
-<section class="section" id="software">
+<!-- WORK -->
+<section class="section" id="work">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">04</span> Software</div>
+    <div class="eyebrow"><span class="num">04</span> Work</div>
     <div class="software-project">
       <div class="software-head">
         <div>
@@ -654,13 +685,166 @@
         </div>
       </div>
     </div>
+    <div class="software-project">
+      <div class="software-head">
+        <div>
+          <div class="software-kicker">Competition result · Peaked circuits on hardware and in simulation</div>
+          <h2 class="software-title">Peaked Circuit Recovery</h2>
+        </div>
+        <div>
+          <p class="software-copy">I placed <b>first on the BlueQubit Peaked Portal leaderboard</b> with a perfect <b>2570/2570</b>, solving all twelve P1–P12 peaked circuits. For the two 98-qubit instances I documented end to end, I recovered the accepted bitstrings from noisy <b>Quantinuum Helios-1</b> samples using deterministic, target-blind decoding — preserving the raw provider output, repairing only result framing, and publishing a reproducible evidence package. The same circuits also fall to classical simulation: <b>MettleQ</b> recovered the 56-qubit P9 oracle exactly and did it roughly a third faster than the reference solver on identical hardware.</p>
+          <div class="software-facts">
+            <div class="software-fact"><div class="v">#1</div><div class="k">Leaderboard rank</div></div>
+            <div class="software-fact"><div class="v">12/12</div><div class="k">Peaked circuits solved</div></div>
+            <div class="software-fact"><div class="v">98</div><div class="k">Qubit instances</div></div>
+            <div class="software-fact"><div class="v">2</div><div class="k">Externally accepted</div></div>
+          </div>
+          <div class="software-actions">
+            <a class="btn" href="https://github.com/MonitSharma/peaked_circuits" target="_blank" rel="noopener">Repository <span class="arr">↗</span></a>
+            <a class="btn btn-ghost" href="https://app.bluequbit.io/hackathons/oEOtLSSrPSVH60Ah?tab=leaderboard" target="_blank" rel="noopener">Leaderboard</a>
+            <a class="btn btn-ghost" href="https://github.com/MonitSharma/MettleQ/tree/a850c793c011ac21cb4ef9ac1db75eb381e6852e/benchmarks/p9_seed123_m3pro" target="_blank" rel="noopener">P9 benchmark</a>
+          </div>
+        </div>
+      </div>
+      <div class="plot-grid plot-grid-recovery">
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/peaked/p11_frequency_and_distance.png" alt="P11 recovery diagnostics: exact-string frequencies across the hardware shots, Hamming distances to the recovered bitstring, per-bit agreement across shots, and a dataset summary" loading="lazy"></div>
+          <figcaption>P11 · 98 qubits · 50 shots · <a href="assets/imgs/peaked/p11_frequency_and_distance.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
+        </figure>
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/peaked/p12_frequency_and_distance.png" alt="P12 recovery diagnostics: exact-string frequencies across the reconstructed shots, Hamming distances to the recovered bitstring, per-bit agreement across shots, and a dataset summary" loading="lazy"></div>
+          <figcaption>P12 · 98 qubits · 200 shots · <a href="assets/imgs/peaked/p12_frequency_and_distance.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
+        </figure>
+        <div class="result-card">
+          <div>
+            <h3>Recovered from hardware samples</h3>
+            <p class="result-note">Both instances were decoded offline from the complete shot distribution. The most frequent string, the weighted observed medoid, and cluster consensus agreed on the accepted answer — with no shot filtering and no target leakage.</p>
+          </div>
+          <table class="result-table" aria-label="Peaked circuit hardware recovery results">
+            <thead>
+              <tr><th>Problem</th><th>Qubits</th><th>Shots</th><th>Provider cost</th><th>Recovery</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>P11</td><td>98</td><td>50</td><td>282.98 HQC</td><td><b>Accepted</b></td></tr>
+              <tr><td>P12</td><td>98</td><td>200</td><td>1,373.4 HQC</td><td><b>Accepted</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="result-card">
+          <div>
+            <h3>Classical simulation — P9, 56 qubits</h3>
+            <p class="result-note">The same circuit family also falls to classical simulation. MettleQ contracts a midpoint matrix-product operator with greedy unswapping, materialises it as an MPS, and samples it — pure CPU, no GPU and no quantum hardware. It recovered the exact published 56-bit oracle (100% of oracle bits, appearing 102 times in 1000 samples), with the oracle used only for post-run validation, never to guide routing, compression, or sampling.</p>
+            <p class="result-note">Against the upstream reference on the same machine and thread budget, wall time fell 32.6%. A prior tracker entry reports 734 s on an Apple M5 Pro; that comparison is cross-machine and is not presented as hardware-normalized.</p>
+          </div>
+          <table class="result-table" aria-label="P9 peaked circuit classical simulation timing comparison">
+            <thead>
+              <tr><th>Solver</th><th>Machine</th><th>Threads</th><th>Wall time</th><th>vs reference</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Upstream reference (CPU)</td><td>Apple M3 Pro</td><td>2</td><td>990.9 s</td><td>—</td></tr>
+              <tr><td><b>MettleQ MPO + unswapping</b></td><td><b>Apple M3 Pro</b></td><td><b>2</b></td><td><b>668.3 s</b></td><td><b>−32.6%</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="software-project">
+      <div class="software-head">
+        <div>
+          <div class="software-kicker">Ongoing research · Strongly correlated transition-metal chemistry</div>
+          <h2 class="software-title">Quantum Chemistry</h2>
+        </div>
+        <div>
+          <p class="software-copy">Iron–sulfur clusters are a benchmark of strong static correlation, where single-reference methods struggle to reach the ground state. I have established a high-accuracy <b>[2Fe–2S]</b> reference energy for a 30-electron, 20-orbital active space — 40 qubits in the tracker's mapping — using <b>DMRG</b> at bond dimension 1500, and I am extending the same workflow to <b>N₂</b> and the larger <b>[4Fe–4S]</b> cubane, the motifs behind biological nitrogen fixation. The classical bound is the point: it is the number a quantum method has to beat before any advantage claim holds.</p>
+          <div class="software-facts">
+            <div class="software-fact"><div class="v">30e/20o</div><div class="k">Active space</div></div>
+            <div class="software-fact"><div class="v">1500</div><div class="k">Bond dimension</div></div>
+            <div class="software-fact"><div class="v">42 min</div><div class="k">Wall time</div></div>
+            <div class="software-fact"><div class="v">2.2 GB</div><div class="k">Peak memory</div></div>
+          </div>
+          <div class="software-actions">
+            <a class="btn" href="https://github.com/MonitSharma/qat-2fe2s-submission" target="_blank" rel="noopener">Repository <span class="arr">↗</span></a>
+            <a class="btn btn-ghost" href="https://quantum-advantage-tracker.github.io" target="_blank" rel="noopener">Tracker</a>
+          </div>
+        </div>
+      </div>
+      <div class="plot-grid">
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/chemistry/convergence.png" alt="DMRG ground-state energy versus discarded weight for the 2Fe-2S iron-sulfur cluster, showing convergence across bond dimensions and the extrapolation to the zero-discarded-weight limit" loading="lazy"></div>
+          <figcaption>Ground-state energy against discarded weight across bond dimensions, with the extrapolation to the zero-discarded-weight limit.</figcaption>
+        </figure>
+        <div class="result-card">
+          <div>
+            <h3>DMRG convergence, [2Fe–2S]</h3>
+            <p class="result-note">Ground-state DMRG (block2 v0.5.3) with SU(2) spin symmetry and Fiedler orbital reordering, on a single Apple M3 Pro. The headline is the largest bond-dimension variational upper bound; the discarded-weight extrapolation is reported separately and never as the headline. Submitted to the Quantum Advantage Tracker as a variational baseline, currently under review.</p>
+          </div>
+          <table class="result-table" aria-label="DMRG convergence for the 2Fe-2S iron-sulfur cluster">
+            <thead>
+              <tr><th>Bond dim. M</th><th>Energy (Eh)</th><th>Discarded weight</th><th>Wall time</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>250 (warmup)</td><td>−116.526238</td><td>6.8×10⁻⁴</td><td>24 s</td></tr>
+              <tr><td>500</td><td>−116.535772</td><td>3.3×10⁻⁴</td><td>91 s</td></tr>
+              <tr><td>1000</td><td>−116.605053</td><td>7.7×10⁻⁵</td><td>582 s</td></tr>
+              <tr><td><b>1500</b></td><td><b>−116.605477</b></td><td><b>3.0×10⁻⁵</b></td><td><b>1844 s</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section class="section" id="teaching">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">05</span> Teaching</div>
+    <div class="course-grid">
+      <a class="course-card" href="https://monitsharma.github.io/Learn-Quantum-Computing-For-Free/" target="_blank" rel="noopener">
+        <span class="stars">148 ★</span>
+        <h3>Learn Quantum Computing for Free</h3>
+        <p>A complete, curated path of resources to learn quantum computing from scratch.</p>
+        <span class="read">Open course ↗</span>
+      </a>
+      <a class="course-card" href="https://monitsharma.github.io/Quantum-Machine-Learning-on-Near-Term-Quantum-Devices/" target="_blank" rel="noopener">
+        <span class="stars">115 ★</span>
+        <h3>QML on Near-Term Quantum Devices</h3>
+        <p>Projects and case studies running quantum machine learning on today's NISQ hardware.</p>
+        <span class="read">Open course ↗</span>
+      </a>
+      <a class="course-card" href="https://monitsharma.github.io/Learn-Quantum-Machine-Learning/" target="_blank" rel="noopener">
+        <span class="stars">85 ★</span>
+        <h3>Learn Quantum Machine Learning</h3>
+        <p>A guided introduction to getting started with quantum machine learning.</p>
+        <span class="read">Open course ↗</span>
+      </a>
+      <a class="course-card" href="https://monitsharma.github.io/Learn-Quantum-Computing-with-Qiskit/" target="_blank" rel="noopener">
+        <span class="stars">63 ★</span>
+        <h3>Learn QC with Qiskit</h3>
+        <p>Write and run quantum programs hands-on with IBM Qiskit.</p>
+        <span class="read">Open course ↗</span>
+      </a>
+      <a class="course-card" href="https://monitsharma.github.io/Quantum-Finance-and-Numerical-Methods/" target="_blank" rel="noopener">
+        <span class="stars">55 ★</span>
+        <h3>Quantum Finance</h3>
+        <p>Quantum computing in finance through hands-on, numerical labs.</p>
+        <span class="read">Open course ↗</span>
+      </a>
+      <a class="course-card" href="https://monitsharma.github.io/Numerical-Linear-Algebra/" target="_blank" rel="noopener">
+        <span class="stars">50 ★</span>
+        <h3>Numerical Linear Algebra</h3>
+        <p>Computational numerical linear algebra, from theory to working code.</p>
+        <span class="read">Open course ↗</span>
+      </a>
+    </div>
+    <p class="course-note">Six of the most-used courses. The full set also covers <b>Nielsen &amp; Chuang Solutions</b>, <b>LeetCode Solutions</b>, <b>Computational Physics</b>, <b>High-Energy Physics</b>, <b>QSVT linear solvers</b>, and GPU kernel practice with <b>LeetGPU Solutions</b> — all free at the <a href="https://monitsharma.github.io/" target="_blank" rel="noopener">Quantum Classroom ↗</a></p>
   </div>
 </section>
 
 <!-- PUBLICATIONS -->
 <section class="section" id="publications">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">05</span> Publications</div>
+    <div class="eyebrow"><span class="num">06</span> Publications</div>
     <div class="pub-feature" id="pubFeature">
 
       <!-- ── Journal papers ── -->
@@ -838,7 +1022,8 @@
 <!-- BLOGS -->
 <section class="section" id="writing">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">06</span> Writing</div>
+    <div class="eyebrow"><span class="num">07</span> Writing</div>
+    <div class="mono-label sub-label">Featured essays</div>
     <div class="blog-grid">
       <a class="blog-card" href="https://monitsharma.github.io/writing/quantum-optimization-on-real-hardware/index.html" target="_blank" rel="noopener">
         <span class="bnum">N° 01 · 2026</span>
@@ -861,54 +1046,50 @@
         <div class="btags"><span class="tag">QKD</span><span class="tag">Quantum Security</span><span class="tag">India</span></div>
         <span class="read">Read on Medium ↗</span>
       </a>
-      <a class="blog-card" href="https://medium.com/@_monitsharma/to-you-10-000-qubits-from-now-9ba48f323ecb" target="_blank" rel="noopener">
-        <span class="bnum">N° 04 · 2026</span>
-        <h3>To You, 10,000 Qubits From Now</h3>
-        <p>A look at ambitious new resource estimates for quantum factoring and what they imply for Shor's algorithm at cryptographic scale.</p>
-        <div class="btags"><span class="tag">Factoring</span><span class="tag">Cryptography</span><span class="tag">Qubits</span></div>
-        <span class="read">Read on Medium ↗</span>
+    </div>
+    <div class="mono-label sub-label">Series on Medium</div>
+    <div class="series-grid">
+      <a class="series-card" href="https://medium.com/@_monitsharma/list/quantum-factoring-8d25eddc0b4d" target="_blank" rel="noopener">
+        <span class="count">4 chapters · 2026</span>
+        <h3>Quantum Factoring</h3>
+        <p>A four-chapter arc on what quantum factoring can actually do — a 133/156-qubit run, honest metrics applied to every published Shor's result, what breaking RSA would really take, and the most ambitious resource estimate yet published.</p>
+        <span class="read">Read the series ↗</span>
       </a>
-      <a class="blog-card" href="https://medium.com/@_monitsharma/the-fault-in-our-qubits-8c66ef11f0c5" target="_blank" rel="noopener">
-        <span class="bnum">N° 05 · 2026</span>
-        <h3>The Fault in Our Qubits</h3>
-        <p>What it would actually take to break RSA with a quantum computer, from hardware assumptions to fault-tolerant overheads.</p>
-        <div class="btags"><span class="tag">Quantum Hardware</span><span class="tag">RSA</span><span class="tag">Shor</span></div>
-        <span class="read">Read on Medium ↗</span>
+      <a class="series-card" href="https://medium.com/@_monitsharma/list/quantum-papers-explained-with-codes-0d2169569685" target="_blank" rel="noopener">
+        <span class="count">9 stories · 2025</span>
+        <h3>Quantum Papers Explained with Codes</h3>
+        <p>Landmark papers read alongside runnable code — quantum utility before fault tolerance, zero-noise extrapolation, quanvolutional networks, quantum volume, Grover mixers, and classically hard combinatorial benchmarks.</p>
+        <span class="read">Read the series ↗</span>
       </a>
-      <a class="blog-card" href="https://medium.com/@_monitsharma/the-emperor-has-no-factors-9eaec0d9bd0d" target="_blank" rel="noopener">
-        <span class="bnum">N° 06 · 2026</span>
-        <h3>The Emperor Has No Factors</h3>
-        <p>An honest-metrics tour through published Shor's algorithm results and the classical post-processing baselines behind them.</p>
-        <div class="btags"><span class="tag">Shor</span><span class="tag">Factoring</span><span class="tag">Benchmarks</span></div>
-        <span class="read">Read on Medium ↗</span>
+      <a class="series-card" href="https://medium.com/@_monitsharma/list/quantum-algorithms-de108f8b1e0b" target="_blank" rel="noopener">
+        <span class="count">6 lectures · 2023</span>
+        <h3>Quantum Algorithms</h3>
+        <p>The algorithm core, implemented in Qiskit: Deutsch–Jozsa, Bernstein–Vazirani, Simon, the quantum Fourier transform, phase estimation, and Shor.</p>
+        <span class="read">Read the series ↗</span>
       </a>
-      <a class="blog-card" href="https://medium.com/@_monitsharma/sometimes-its-too-slow-for-shor-c01677032324" target="_blank" rel="noopener">
-        <span class="bnum">N° 07 · 2026</span>
-        <h3>Sometimes It's Too Slow... for Shor!!</h3>
-        <p>A hands-on deep dive into running Shor's factoring algorithm on IBM quantum hardware and the limits visible today.</p>
-        <div class="btags"><span class="tag">Shor</span><span class="tag">Hardware</span><span class="tag">QPE</span></div>
-        <span class="read">Read on Medium ↗</span>
+      <a class="series-card" href="https://medium.com/@_monitsharma/list/introduction-to-quantum-computing-with-qiskit-6caba64cc007" target="_blank" rel="noopener">
+        <span class="count">18 lectures · 2023</span>
+        <h3>Introduction to Quantum Computing with Qiskit</h3>
+        <p>The full eighteen-part lecture course, from installing Qiskit to running Shor's algorithm — every lecture paired with working code.</p>
+        <span class="read">Read the series ↗</span>
       </a>
-      <a class="blog-card" href="https://medium.com/@_monitsharma/solving-the-multi-dimensional-knapsack-problem-a-classically-hard-benchmark-for-quantum-2610e955d114" target="_blank" rel="noopener">
-        <span class="bnum">N° 08 · 2025</span>
-        <h3>Solving the Multi-Dimensional Knapsack Problem</h3>
-        <p>Exploring the complexity of the MDKP and how quantum algorithms attempt to tackle this constrained optimization challenge.</p>
-        <div class="btags"><span class="tag">Quantum</span><span class="tag">Knapsack</span><span class="tag">Optimization</span></div>
-        <span class="read">Read on Medium ↗</span>
+      <a class="series-card" href="https://medium.com/@_monitsharma/list/computational-physics-and-scientific-programming-f8d4b52726ba" target="_blank" rel="noopener">
+        <span class="count">22 lectures · 2023</span>
+        <h3>Computational Physics and Scientific Programming</h3>
+        <p>Twenty-two lectures building a computational physicist's toolkit in Python — ODEs and PDEs, Fourier methods, random numbers, Bayesian inference, optimisation, and the Ising model.</p>
+        <span class="read">Read the series ↗</span>
       </a>
-      <a class="blog-card" href="https://medium.com/@_monitsharma/solving-the-maximum-independent-set-problem-a-classically-hard-benchmark-for-quantum-optimization-5d8e9c267052" target="_blank" rel="noopener">
-        <span class="bnum">N° 09 · 2025</span>
-        <h3>Solving the Maximum Independent Set Problem</h3>
-        <p>A deep dive into the MIS problem, its importance in network analysis, and the potential of quantum approaches.</p>
-        <div class="btags"><span class="tag">Quantum</span><span class="tag">Graph Theory</span><span class="tag">Optimization</span></div>
-        <span class="read">Read on Medium ↗</span>
+      <a class="series-card" href="https://medium.com/@_monitsharma/list/computational-linear-algebra-c25866dd2935" target="_blank" rel="noopener">
+        <span class="count">15 lectures · 2023</span>
+        <h3>Computational Linear Algebra</h3>
+        <p>Fifteen lectures on the linear algebra underneath data science — matrix decompositions, NMF and SVD topic modelling, compressed sensing for CT scans, and linear regression.</p>
+        <span class="read">Read the series ↗</span>
       </a>
-      <a class="blog-card" href="https://medium.com/@_monitsharma/solving-the-quadratic-assignment-problem-a-classically-hard-benchmark-for-quantum-optimization-f6dcd7e91a87" target="_blank" rel="noopener">
-        <span class="bnum">N° 10 · 2025</span>
-        <h3>Solving the Quadratic Assignment Problem</h3>
-        <p>Analyzing the QAP, known for its extreme computational difficulty, and benchmarking quantum solvers against it.</p>
-        <div class="btags"><span class="tag">Quantum</span><span class="tag">QAP</span><span class="tag">Optimization</span></div>
-        <span class="read">Read on Medium ↗</span>
+      <a class="series-card" href="https://medium.com/@_monitsharma/list/ibm-quantum-challenges-a4c03faa5b72" target="_blank" rel="noopener">
+        <span class="count">5 labs · 2023</span>
+        <h3>IBM Quantum Challenges</h3>
+        <p>Worked solutions to all five labs of the IBM Quantum Challenge Spring 2023, from basic circuits through to the final challenge.</p>
+        <span class="read">Read the series ↗</span>
       </a>
     </div>
   </div>
@@ -917,7 +1098,7 @@
 <!-- EDUCATION -->
 <section class="section" id="education">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">07</span> Education</div>
+    <div class="eyebrow"><span class="num">08</span> Education</div>
     <div class="edu-grid">
       <div class="edu-card">
         <div class="yr">June 2022</div>
@@ -936,7 +1117,7 @@
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="wrap-narrow contact-inner">
-    <div class="eyebrow" style="justify-content:center"><span class="num">08</span> Contact</div>
+    <div class="eyebrow" style="justify-content:center"><span class="num">09</span> Contact</div>
     <h2>Let's talk quantum<br> &amp; AI systems. <a href="mailto:monitsharma437@gmail.com">Say hello ↗</a></h2>
     <p>Open to research collaborations, talks, and hard problems across quantum computing, algorithms, agents, and scientific AI.</p>
   </div>
