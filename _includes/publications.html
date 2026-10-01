@@ -1,0 +1,22 @@
+{% assign categories = "journal,conference,preprint" | split: "," %}
+<div class="pub-feature" id="pubFeature">
+  {% for category in categories %}
+    {% assign papers = site.data.publications | where: "category", category | sort: "order" %}
+    {% if papers.size > 0 %}
+    <div class="pub-group">
+      <div class="pub-group-head">
+        <h2 class="pub-group-name">{% case category %}{% when "journal" %}Journal Papers{% when "conference" %}Conference Papers{% when "preprint" %}arXiv Preprints{% endcase %}</h2>
+        <span class="pub-group-count">{% if papers.size < 10 %}0{% endif %}{{ papers.size }}</span>
+      </div>
+      {% for paper in papers %}
+        {% include publication-card.html paper=paper category=category index=forloop.index %}
+      {% endfor %}
+      {% if category == "preprint" and papers.size > 1 %}
+      <div class="pubs-toggle">
+        <button class="btn btn-ghost" id="pubToggle" aria-expanded="false" data-count="{{ papers.size }}">Show all {{ papers.size }} preprints <span class="arr" aria-hidden="true">↓</span></button>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>

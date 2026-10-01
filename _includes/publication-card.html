@@ -1,0 +1,15 @@
+{% assign paper = include.paper %}
+<article class="pub-card{% if paper.selected %} is-sel{% endif %}{% if include.category == 'preprint' and include.index > 1 %} pub-hidden{% endif %}">
+  <div class="pub-yr">{{ paper.year }}</div>
+  <div>
+    <h3 class="pub-title">{{ paper.title | escape }}</h3>
+    <div class="pub-meta">{{ paper.meta | escape }}</div>
+    <ul class="pub-desc">
+      {% for point in paper.description %}<li>{{ point | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+    </ul>
+    {% if paper.venue %}<span class="tag tag-accent pub-venue">{{ paper.venue | escape }}</span>{% endif %}
+    <div class="pub-links">
+      {% for link in paper.links %}{% if link.url %}<a href="{{ link.url | escape }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="noopener"{% endunless %}>↗ {{ link.text | escape }}</a>{% endif %}{% endfor %}
+    </div>
+  </div>
+</article>

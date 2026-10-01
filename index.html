@@ -1,3 +1,8 @@
+---
+layout: null
+---
+{% assign journal_count = site.data.publications | where: "category", "journal" | size %}
+{% assign conference_count = site.data.publications | where: "category", "conference" | size %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,188 +66,22 @@
   {
    "@type": "ItemList",
    "name": "Publications",
-   "numberOfItems": 12,
+   "numberOfItems": {{ site.data.publications.size }},
    "itemListElement": [
+    {% for paper in site.data.publications %}
     {
-     "@type": "ListItem",
-     "position": 1,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "From Circuits to Hardware: Benchmarking Standard and Qubit-Efficient Quantum Optimization on Real Hardware",
-      "datePublished": "2026",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://arxiv.org/abs/2607.11637",
-      "isPartOf": {
-       "@type": "Periodical",
-       "name": "Quantum Science and Technology · Accepted 2026"
+      "@type": "ListItem",
+      "position": {{ forloop.index }},
+      "item": {
+        "@type": "ScholarlyArticle",
+        "headline": {{ paper.title | jsonify }},
+        "datePublished": {{ paper.year | append: "" | jsonify }},
+        "author": {"@id": "https://monitsharma.github.io/portfolio/#monit"}{% if paper.links.first.url %},
+        "url": {{ paper.links.first.url | jsonify }}{% endif %}{% if paper.venue %},
+        "isPartOf": {"@type": "{% if paper.category == 'journal' %}Periodical{% else %}CreativeWork{% endif %}", "name": {{ paper.venue | jsonify }}}{% endif %}
       }
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 2,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "AutoQResearch: LLM-Guided Closed-Loop Policy Search for Adaptive Variational Quantum Optimization",
-      "datePublished": "2026",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://arxiv.org/abs/2604.24283",
-      "isPartOf": {
-       "@type": "Periodical",
-       "name": "IEEE QCE26 Quantum–GenAI Co-Design & Discovery (QGDD) Technical Paper"
-      }
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 3,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "Learning-Based Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems",
-      "datePublished": "2026",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://link.springer.com/chapter/10.1007/978-3-032-17625-7_3",
-      "isPartOf": {
-       "@type": "Periodical",
-       "name": "Springer QC+AI 2026 · AAAI Workshop on Quantum Computing"
-      }
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 4,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "Hybrid Learning and Optimization Methods for Solving Capacitated Vehicle Routing Problem",
-      "datePublished": "2026",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://link.springer.com/chapter/10.1007/978-3-032-17625-7_2",
-      "isPartOf": {
-       "@type": "Periodical",
-       "name": "Springer QC+AI 2026 · AAAI Workshop on Quantum Computing"
-      }
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 5,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems",
-      "datePublished": "2024",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://ieeexplore.ieee.org/document/10821393",
-      "isPartOf": {
-       "@type": "Periodical",
-       "name": "IEEE Xplore · IEEE QCE24 Quantum Applications Technical Paper · Poster at QIP 2024"
-      }
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 6,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "Quantum Relaxation for Solving Multiple Knapsack Problems",
-      "datePublished": "2024",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://ieeexplore.ieee.org/document/10821401",
-      "isPartOf": {
-       "@type": "Periodical",
-       "name": "IEEE Xplore · IEEE QCE24 Quantum Applications Technical Paper"
-      }
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 7,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "Securing the Flow: Maritime Energy Resilience under Correlated and Decision-Dependent Disruptions",
-      "datePublished": "2026",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://arxiv.org/abs/2605.11990"
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 8,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "Diagnosing Simulation and Hardware Barriers to Cross-Size Transfer in Equivariant Quantum Reinforcement Learning",
-      "datePublished": "2026",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://arxiv.org/abs/2510.14533"
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 9,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "Qubit-Scalable CVRP via Lagrangian Knapsack Decomposition and Noise-Aware Quantum Execution",
-      "datePublished": "2026",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://arxiv.org/abs/2604.22194"
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 10,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "Cutting Slack: Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks",
-      "datePublished": "2025",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://arxiv.org/abs/2507.12159"
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 11,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "A Comparative Study of Quantum Optimization Techniques for Combinatorial Benchmark Problems",
-      "datePublished": "2025",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://arxiv.org/abs/2503.12121"
-     }
-    },
-    {
-     "@type": "ListItem",
-     "position": 12,
-     "item": {
-      "@type": "ScholarlyArticle",
-      "headline": "Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers",
-      "datePublished": "2024",
-      "author": {
-       "@id": "https://monitsharma.github.io/portfolio/#monit"
-      },
-      "url": "https://arxiv.org/abs/2409.07183"
-     }
-    }
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
    ]
   }
  ]
@@ -326,6 +165,12 @@
   .exp li b { color: var(--ink); font-weight: 600; }
 
   /* software */
+  .software-project { scroll-margin-top: 100px; }
+  .project-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 40px; }
+  .project-nav-label { width: 100%; font: 11px var(--mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+  .project-nav a { display: inline-flex; gap: 18px; align-items: center; border: 1px solid var(--line); padding: 11px 14px; font: 12px var(--mono); color: var(--ink-2); background: var(--paper); }
+  .project-nav a:hover { color: var(--accent); border-color: var(--accent); }
+  .project-nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .software-head { display: grid; grid-template-columns: 1.05fr 1.35fr; gap: clamp(28px,5vw,64px); align-items: start; }
   .software-title { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem,4vw,3.25rem); line-height: 1.02; letter-spacing: -0.02em; }
   .software-kicker { font-family: var(--mono); color: var(--accent); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
@@ -350,6 +195,8 @@
   .result-card h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; line-height: 1.15; }
   .result-note { color: var(--ink-2); font-size: 0.92rem; line-height: 1.5; }
   .result-note + .result-note { margin-top: 10px; }
+  .result-table-scroll { overflow-x: auto; }
+  .result-table-scroll .result-table { min-width: 560px; }
   .result-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; }
   .result-table th, .result-table td { padding: 10px 8px; border-top: 1px solid var(--line-2); text-align: left; vertical-align: top; }
   .result-table th { color: var(--ink-3); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
@@ -414,6 +261,7 @@
   .eyebrow + .sub-label { margin-top: 0; }
   .series-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .series-card { background: var(--paper); padding: 26px 24px; display: flex; flex-direction: column; transition: background .2s; min-height: 210px; }
+  .series-card:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
   .series-card:hover { background: var(--paper-2); }
   .series-card .count { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
   .series-card h3 { font-family: var(--serif); font-size: 1.22rem; line-height: 1.18; margin-top: 14px; overflow-wrap: anywhere; }
@@ -509,8 +357,8 @@
     </div>
 
     <div class="metrics">
-      <div class="metric"><a class="metric-link" href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&amp;hl=en" target="_blank" rel="noopener"><div class="n">12</div><div class="l">Publications</div></a></div>
-      <div class="metric"><a class="metric-link" href="#publications"><div class="n">6</div><div class="l">Peer-Reviewed Papers</div></a></div>
+      <div class="metric"><a class="metric-link" href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&amp;hl=en" target="_blank" rel="noopener"><div class="n">{{ site.data.publications.size }}</div><div class="l">Publications</div></a></div>
+      <div class="metric"><a class="metric-link" href="#publications"><div class="n">{{ journal_count | plus: conference_count }}</div><div class="l">Peer-Reviewed Papers</div></a></div>
       <div class="metric"><a class="metric-link" href="https://monitsharma.github.io/"><div class="n">18</div><div class="l">Open Courses</div></a></div>
       <div class="metric"><a class="metric-link" href="#research"><div class="n">3</div><div class="l">Research Roles</div></a></div>
     </div>
@@ -541,6 +389,7 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">02</span> Recent News</div>
     <div class="news-list">
+      <div class="news-row"><span class="d">Oct 2026</span><span class="c">📰 <a href="https://arxiv.org/abs/2605.11990" target="_blank" rel="noopener"><b>Securing the Flow: Maritime Energy Resilience under Correlated and Decision-Dependent Disruptions</b></a> has been accepted to <a href="https://www.sciencedirect.com/journal/transportation-research-part-e-logistics-and-transportation-review" target="_blank" rel="noopener"><b>Transportation Research Part E: Logistics and Transportation Review</b></a>.</span></div>
       <div class="news-row"><span class="d">Jul 2026</span><span class="c">📰 <b>From Circuits to Hardware: Benchmarking Standard and Qubit-Efficient Quantum Optimization on Real Hardware</b> has been accepted at <b>Quantum Science and Technology</b>.</span></div>
       <div class="news-row"><span class="d">Jul 2026</span><span class="c">🎉 <b>AutoQResearch</b> accepted as a technical paper at <b>IEEE QCE26 Quantum–GenAI Co-Design &amp; Discovery (QGDD)</b>.</span></div>
       <div class="news-row"><span class="d">Oct 2025</span><span class="c">🎉 Two papers accepted at the <b>AAAI 2026 Workshop on Quantum Computing</b> — Hybrid Learning for CVRP and Learning-Based Graph Shrinking.</span></div>
@@ -595,7 +444,15 @@
 <section class="section" id="work">
   <div class="wrap">
     <div class="eyebrow"><span class="num">04</span> Work</div>
-    <div class="software-project">
+    <nav class="project-nav" aria-label="Work projects">
+      <span class="project-nav-label">Explore projects</span>
+      <a href="#mettleq">MettleQ <span aria-hidden="true">↘</span></a>
+      <a href="#atelier-lab">The Atelier Lab <span aria-hidden="true">↘</span></a>
+      <a href="#peaked-circuits">Peaked Circuits <span aria-hidden="true">↘</span></a>
+      <a href="#quantum-chemistry">Quantum Chemistry <span aria-hidden="true">↘</span></a>
+      <a href="#classiq-hackathon">Classiq Hackathon <span aria-hidden="true">↘</span></a>
+    </nav>
+    <div class="software-project" id="mettleq">
       <div class="software-head">
         <div>
           <div class="software-kicker">Open-source package · Apple Silicon quantum simulation</div>
@@ -627,7 +484,7 @@
             <h3>Selected results</h3>
             <p class="result-note">Ratio above 1.0x means MettleQ GPU was faster. In this latest run, MettleQ crosses PennyLane Lightning at 16 qubits and Qiskit Aer at 20 qubits.</p>
           </div>
-          <table class="result-table" aria-label="MettleQ crossover benchmark results">
+          <div class="result-table-scroll"><table class="result-table" aria-label="MettleQ crossover benchmark results">
             <thead>
               <tr><th>Qubits</th><th>Qiskit CPU/GPU</th><th>PennyLane CPU/GPU</th></tr>
             </thead>
@@ -636,11 +493,11 @@
               <tr><td>24</td><td><b>4.554x</b></td><td><b>18.713x</b></td></tr>
               <tr><td>29</td><td><b>2.739x</b></td><td><b>16.005x</b></td></tr>
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>
-    <div class="software-project">
+    <div class="software-project" id="atelier-lab">
       <div class="software-head">
         <div>
           <div class="software-kicker">Local-first AI research lab · Agents and foundation models</div>
@@ -673,7 +530,7 @@
             <h3>Local foundation track</h3>
             <p class="result-note">Baseline training measurements on an Apple M3 Pro, alongside a local agent stack for RAG, memory, code repair, and test-verified edits.</p>
           </div>
-          <table class="result-table" aria-label="The Atelier Lab foundation model benchmark results">
+          <div class="result-table-scroll"><table class="result-table" aria-label="The Atelier Lab foundation model benchmark results">
             <thead>
               <tr><th>Model</th><th>Throughput</th><th>Run cost</th><th>Loss</th></tr>
             </thead>
@@ -681,11 +538,11 @@
               <tr><td>73.5M</td><td><b>~18.7k tok/s</b></td><td>~1.2 h</td><td>1.1664 BPB</td></tr>
               <tr><td>286.2M</td><td><b>~4.47k tok/s</b></td><td>~5.1 h</td><td>1.0954 BPB</td></tr>
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>
-    <div class="software-project">
+    <div class="software-project" id="peaked-circuits">
       <div class="software-head">
         <div>
           <div class="software-kicker">Competition result · Peaked circuits on hardware and in simulation</div>
@@ -720,7 +577,7 @@
             <h3>Recovered from hardware samples</h3>
             <p class="result-note">Both instances were decoded offline from the complete shot distribution. The most frequent string, the weighted observed medoid, and cluster consensus agreed on the accepted answer — with no shot filtering and no target leakage.</p>
           </div>
-          <table class="result-table" aria-label="Peaked circuit hardware recovery results">
+          <div class="result-table-scroll"><table class="result-table" aria-label="Peaked circuit hardware recovery results">
             <thead>
               <tr><th>Problem</th><th>Qubits</th><th>Shots</th><th>Provider cost</th><th>Recovery</th></tr>
             </thead>
@@ -728,7 +585,7 @@
               <tr><td>P11</td><td>98</td><td>50</td><td>282.98 HQC</td><td><b>Accepted</b></td></tr>
               <tr><td>P12</td><td>98</td><td>200</td><td>1,373.4 HQC</td><td><b>Accepted</b></td></tr>
             </tbody>
-          </table>
+          </table></div>
         </div>
         <div class="result-card">
           <div>
@@ -736,7 +593,7 @@
             <p class="result-note">The same circuit family also falls to classical simulation. MettleQ contracts a midpoint matrix-product operator with greedy unswapping, materialises it as an MPS, and samples it — pure CPU, no GPU and no quantum hardware. It recovered the exact published 56-bit oracle (100% of oracle bits, appearing 102 times in 1000 samples), with the oracle used only for post-run validation, never to guide routing, compression, or sampling.</p>
             <p class="result-note">Against the upstream reference on the same machine and thread budget, wall time fell 32.6%. A prior tracker entry reports 734 s on an Apple M5 Pro; that comparison is cross-machine and is not presented as hardware-normalized.</p>
           </div>
-          <table class="result-table" aria-label="P9 peaked circuit classical simulation timing comparison">
+          <div class="result-table-scroll"><table class="result-table" aria-label="P9 peaked circuit classical simulation timing comparison">
             <thead>
               <tr><th>Solver</th><th>Machine</th><th>Threads</th><th>Wall time</th><th>vs reference</th></tr>
             </thead>
@@ -744,52 +601,115 @@
               <tr><td>Upstream reference (CPU)</td><td>Apple M3 Pro</td><td>2</td><td>990.9 s</td><td>—</td></tr>
               <tr><td><b>MettleQ MPO + unswapping</b></td><td><b>Apple M3 Pro</b></td><td><b>2</b></td><td><b>668.3 s</b></td><td><b>−32.6%</b></td></tr>
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>
-    <div class="software-project">
+    <div class="software-project" id="quantum-chemistry">
       <div class="software-head">
         <div>
-          <div class="software-kicker">Ongoing research · Strongly correlated transition-metal chemistry</div>
+          <div class="software-kicker">Updated September 2026 · Strongly correlated chemistry</div>
           <h2 class="software-title">Quantum Chemistry</h2>
         </div>
         <div>
-          <p class="software-copy">Iron–sulfur clusters are a benchmark of strong static correlation, where single-reference methods struggle to reach the ground state. I have established a high-accuracy <b>[2Fe–2S]</b> reference energy for a 30-electron, 20-orbital active space — 40 qubits in the tracker's mapping — using <b>DMRG</b> at bond dimension 1500, and I am extending the same workflow to <b>N₂</b> and the larger <b>[4Fe–4S]</b> cubane, the motifs behind biological nitrogen fixation. The classical bound is the point: it is the number a quantum method has to beat before any advantage claim holds.</p>
+          <p class="software-copy">The <b>[2Fe–2S]</b> iron–sulfur cluster models the electron-transfer active site of ferredoxin and tests methods for strongly correlated electrons. For <b>CAS(30e,20o)</b> — 40 spin orbitals and 240,374,016 determinants in the fixed-spin sector — my matrix-free <b>full-space Davidson</b> calculation reached an independently rechecked variational energy of <b>−116.605609120429 Eh</b>. <b>Block2 DMRG at M=4000</b> is within 2.607 µEh of that state. These classical references anchor my quantum and hybrid sampling studies, alongside work on N₂ and [4Fe–4S].</p>
           <div class="software-facts">
             <div class="software-fact"><div class="v">30e/20o</div><div class="k">Active space</div></div>
-            <div class="software-fact"><div class="v">1500</div><div class="k">Bond dimension</div></div>
-            <div class="software-fact"><div class="v">42 min</div><div class="k">Wall time</div></div>
-            <div class="software-fact"><div class="v">2.2 GB</div><div class="k">Peak memory</div></div>
+            <div class="software-fact"><div class="v">4000</div><div class="k">DMRG bond dimension</div></div>
+            <div class="software-fact"><div class="v">2.607 µEh</div><div class="k">DMRG gap to Davidson</div></div>
+            <div class="software-fact"><div class="v">9.86×10⁻⁸</div><div class="k">Davidson residual (Eh)</div></div>
           </div>
           <div class="software-actions">
-            <a class="btn" href="https://github.com/MonitSharma/qat-2fe2s-submission" target="_blank" rel="noopener">Repository <span class="arr">↗</span></a>
+            <a class="btn" href="https://github.com/MonitSharma/quantum_chemistry/tree/2fe2s" target="_blank" rel="noopener">2Fe–2S repository <span class="arr">↗</span></a>
+            <a class="btn btn-ghost" href="https://github.com/MonitSharma/quantum_chemistry/blob/2fe2s/research/2fe2s/RESULTS.md" target="_blank" rel="noopener">Results &amp; verification</a>
             <a class="btn btn-ghost" href="https://quantum-advantage-tracker.github.io" target="_blank" rel="noopener">Tracker</a>
           </div>
         </div>
       </div>
-      <div class="plot-grid">
+      <div class="plot-grid plot-grid-recovery">
         <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/chemistry/convergence.png" alt="DMRG ground-state energy versus discarded weight for the 2Fe-2S iron-sulfur cluster, showing convergence across bond dimensions and the extrapolation to the zero-discarded-weight limit" loading="lazy"></div>
-          <figcaption>Ground-state energy against discarded weight across bond dimensions, with the extrapolation to the zero-discarded-weight limit.</figcaption>
+          <div class="plot-frame"><img src="assets/imgs/chemistry/energy_ladder.png" width="2027" height="925" alt="Classical 2Fe–2S variational energy offsets relative to the best checked Davidson state" loading="lazy"></div>
+          <figcaption>Classical energy ladder · comparison with external HCI and HI-VQE · <a href="assets/imgs/chemistry/energy_ladder.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
+        </figure>
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/chemistry/convergence_to_final_energy.png" width="1697" height="846" alt="Direct saved-MPS energies across DMRG sweeps at bond dimensions 2000 and 4000" loading="lazy"></div>
+          <figcaption>DMRG sweep convergence · M=2000 and M=4000 · <a href="assets/imgs/chemistry/convergence_to_final_energy.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
         </figure>
         <div class="result-card">
           <div>
-            <h3>DMRG convergence, [2Fe–2S]</h3>
-            <p class="result-note">Ground-state DMRG (block2 v0.5.3) with SU(2) spin symmetry and Fiedler orbital reordering, on a single Apple M3 Pro. The headline is the largest bond-dimension variational upper bound; the discarded-weight extrapolation is reported separately and never as the headline. Submitted to the Quantum Advantage Tracker as a variational baseline, currently under review.</p>
+            <h3>Classical references, [2Fe–2S]</h3>
+            <p class="result-note">All values below are explicit variational-state energies in Eh. The Davidson result is a one-sided upper bound: its 10⁻⁸ Eh residual target was not reached, so it is not an exact ground-state energy or a two-sided FCI error bound. The M=4000 DMRG run recorded two stable cycles; a fresh-process replay of its final checkpoint is not recorded.</p>
           </div>
-          <table class="result-table" aria-label="DMRG convergence for the 2Fe-2S iron-sulfur cluster">
-            <thead>
-              <tr><th>Bond dim. M</th><th>Energy (Eh)</th><th>Discarded weight</th><th>Wall time</th></tr>
-            </thead>
+          <div class="result-table-scroll">
+          <table class="result-table" aria-label="Updated 2Fe–2S classical energy comparison">
+            <thead><tr><th>Method</th><th>Energy (Eh)</th><th>Gap to Davidson (µEh)</th><th>Evidence</th></tr></thead>
             <tbody>
-              <tr><td>250 (warmup)</td><td>−116.526238</td><td>6.8×10⁻⁴</td><td>24 s</td></tr>
-              <tr><td>500</td><td>−116.535772</td><td>3.3×10⁻⁴</td><td>91 s</td></tr>
-              <tr><td>1000</td><td>−116.605053</td><td>7.7×10⁻⁵</td><td>582 s</td></tr>
-              <tr><td><b>1500</b></td><td><b>−116.605477</b></td><td><b>3.0×10⁻⁵</b></td><td><b>1844 s</b></td></tr>
+              <tr><td><b>Full-space Davidson, Phase B</b></td><td><b>−116.605609120429</b></td><td><b>0</b></td><td>Independent vector checks; residual 9.86×10⁻⁸ Eh</td></tr>
+              <tr><td>Block2 DMRG, M=4000</td><td>−116.605606513308</td><td>2.607</td><td>10 sweeps; discarded weight 2.76×10⁻⁷</td></tr>
+              <tr><td>Block2 DMRG, M=2000</td><td>−116.605540903472</td><td>68.217</td><td>24 sweeps; fresh-process replays passed</td></tr>
+              <tr><td>External HCI reference</td><td>−116.605425000000</td><td>184.120</td><td>Accepted QAT reference, issue #187</td></tr>
             </tbody>
           </table>
+          </div>
+          <p class="result-note">Phase B used 2.02 hours and 128.7 GiB peak RSS on 64 threads; DMRG M=4000 used 3.59 hours and 183.3 GiB on 36 threads. The tested quantum-sampling, core-embedding, and residual-informed proposals have not demonstrated an advantage over matched classical controls.</p>
         </div>
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/chemistry/davidson_phase_b_progress.png" width="1482" height="1093" alt="Davidson Phase B explicit-vector energy and residual across recorded updates" loading="lazy"></div>
+          <figcaption>Davidson continuation · residual reduced sevenfold; target not reached · <a href="assets/imgs/chemistry/davidson_phase_b_progress.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
+        </figure>
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/chemistry/quantum_best_result.png" width="1804" height="674" alt="Best local quantum-sampled recovery compared with Davidson and external HCI and HI-VQE results" loading="lazy"></div>
+          <figcaption>Quantum and hybrid exploration · tested local recovery remains above classical references · <a href="assets/imgs/chemistry/quantum_best_result.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="software-project" id="classiq-hackathon">
+      <div class="software-head">
+        <div>
+          <div class="software-kicker">Classiq Hackathon · 2026 Quantum Circuit Challenge</div>
+          <h2 class="software-title">Classiq Logo Phase Oracle</h2>
+        </div>
+        <div>
+          <p class="software-copy">My entry implements a phase oracle for a <b>64 × 64 Classiq logo</b> using 18 qubits: 12 coordinate qubits and six clean ancillas. Exploiting just <b>11 distinct row and column patterns</b>, I compressed the image into class codes, applied a 63-term phase polynomial, then uncomputed the loaders. Optimizing the loader–kernel interface with ready-time scheduling, beam search, MILP, and local resynthesis reduced circuit depth from <b>5,329 to 111</b> and CX count from <b>3,502 to 557</b>.</p>
+          <div class="software-facts">
+            <div class="software-fact"><div class="v">111</div><div class="k">Final circuit depth</div></div>
+            <div class="software-fact"><div class="v">557</div><div class="k">CX gates</div></div>
+            <div class="software-fact"><div class="v">18</div><div class="k">Qubits</div></div>
+            <div class="software-fact"><div class="v">4096/4096</div><div class="k">Valid inputs verified</div></div>
+          </div>
+          <div class="software-actions">
+            <a class="btn" href="https://github.com/MonitSharma/classiq" target="_blank" rel="noopener">Repository <span class="arr">↗</span></a>
+            <a class="btn btn-ghost" href="https://github.com/MonitSharma/classiq/blob/main/docs/technical-report.md" target="_blank" rel="noopener">Technical report</a>
+          </div>
+        </div>
+      </div>
+      <div class="plot-grid plot-grid-recovery">
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/classiq/fig5_progress.png" width="1917" height="811" alt="Circuit optimization history from baseline depth 5329 to final depth 111, with CX gate counts" loading="lazy"></div>
+          <figcaption>Optimization history · architectural changes and final gate reductions · <a href="assets/imgs/classiq/fig5_progress.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
+        </figure>
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/classiq/fig2_pipeline.png" width="2049" height="605" alt="Classiq phase-oracle construction with coordinate class-code loaders, phase kernel and inverse loaders" loading="lazy"></div>
+          <figcaption>Circuit architecture · compute class codes, apply phase, uncompute · <a href="assets/imgs/classiq/fig2_pipeline.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
+        </figure>
+        <div class="result-card">
+          <div><h3>Exhaustively verified submission</h3><p class="result-note">The final circuit uses 557 CX and 423 U3 gates. A NumPy state-propagation verifier checked every valid input |x, y, 0⁶⟩: the expected sign, a common global phase, unchanged coordinates, and all six ancillas restored to zero. The largest numerical error was 5.57×10⁻¹⁴. The result measures circuit synthesis and numerical verification.</p></div>
+          <div class="result-table-scroll">
+          <table class="result-table" aria-label="Classiq circuit baseline and final submission comparison">
+            <thead><tr><th>Circuit</th><th>Depth</th><th>CX gates</th><th>U3 gates</th></tr></thead>
+            <tbody><tr><td>Challenge baseline</td><td>5,329</td><td>3,502</td><td>—</td></tr><tr><td><b>Final submission</b></td><td><b>111</b></td><td><b>557</b></td><td><b>423</b></td></tr></tbody>
+          </table>
+          </div>
+          <p class="result-note">The hackathon page now requires access. The repository and technical report preserve the construction and verification evidence. Depth 111 is the best completed construction in this work, not a general lower bound.</p>
+        </div>
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/classiq/fig3_schedule.png" width="2087" height="1062" alt="Final depth-111 circuit schedule across coordinate and ancilla wires" loading="lazy"></div>
+          <figcaption>Final schedule · loaders overlap with the phase kernel · <a href="assets/imgs/classiq/fig3_schedule.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
+        </figure>
+        <figure class="plot-card">
+          <div class="plot-frame"><img src="assets/imgs/classiq/fig6_verification.png" width="1996" height="706" alt="Exhaustive numerical verification of the phase oracle over all 4096 valid basis inputs" loading="lazy"></div>
+          <figcaption>Verification diagnostics · all valid inputs and clean ancillas · <a href="assets/imgs/classiq/fig6_verification.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
+        </figure>
       </div>
     </div>
   </div>
@@ -845,177 +765,7 @@
 <section class="section" id="publications">
   <div class="wrap">
     <div class="eyebrow"><span class="num">06</span> Publications</div>
-    <div class="pub-feature" id="pubFeature">
-
-      <!-- ── Journal papers ── -->
-      <div class="pub-group">
-        <div class="pub-group-head"><h2 class="pub-group-name">Journal Papers</h2><span class="pub-group-count">01</span></div>
-        <article class="pub-card is-sel">
-          <div class="pub-yr">2026</div>
-          <div>
-            <h3 class="pub-title">From Circuits to Hardware: Benchmarking Standard and Qubit-Efficient Quantum Optimization on Real Hardware</h3>
-            <div class="pub-meta">with H. C. Lau · Quantum hardware benchmarking for hard combinatorial optimization · arXiv:2607.11637</div>
-            <ul class="pub-desc">
-              <li>Benchmarked gate-based quantum optimization across MDKP, MIS, QAP, and MSP on IBM Heron processors under a common protocol.</li>
-              <li>Compared VQE, CVaR-VQE, QAOA variants, PCE, and QRAO, identifying fidelity limits and noise-dominated execution regimes.</li>
-            </ul>
-            <span class="tag tag-accent pub-venue">Quantum Science and Technology · Accepted 2026</span>
-            <div class="pub-links"><a href="https://iopscience.iop.org/article/10.1088/2058-9565/ae94a4" target="_blank" rel="noopener">↗ Journal</a><a href="https://arxiv.org/abs/2607.11637" target="_blank" rel="noopener">↗ arXiv</a><a href="https://github.com/SMU-Quantum/quantum-optimization-benchmarks/tree/from-circuits-to-hardware" target="_blank" rel="noopener">↗ Code</a><a href="https://monitsharma.github.io/writing/quantum-optimization-on-real-hardware/index.html" target="_blank" rel="noopener">↗ Blog</a></div>
-          </div>
-        </article>
-      </div>
-
-      <!-- ── Conference papers ── -->
-      <div class="pub-group">
-        <div class="pub-group-head"><h2 class="pub-group-name">Conference Papers</h2><span class="pub-group-count">05</span></div>
-        <article class="pub-card is-sel">
-          <div class="pub-yr">2026</div>
-          <div>
-            <h3 class="pub-title">AutoQResearch: LLM-Guided Closed-Loop Policy Search for Adaptive Variational Quantum Optimization</h3>
-            <div class="pub-meta">with H. C. Lau · Quantum-GenAI co-design · arXiv:2604.24283</div>
-            <ul class="pub-desc">
-              <li>Introduced an LLM-guided experimentation loop that searches adaptive solver-control policies for variational quantum optimization.</li>
-              <li>Evaluated on MIS and CVRP, showing that staged confirmation is essential to avoid proxy-evaluation failures.</li>
-            </ul>
-            <span class="tag tag-accent pub-venue">IEEE QCE26 Quantum–GenAI Co-Design &amp; Discovery (QGDD) Technical Paper</span>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2604.24283" target="_blank" rel="noopener">↗ PDF</a><a href="https://github.com/SMU-Quantum/autoqresearch" target="_blank" rel="noopener">↗ Code</a></div>
-          </div>
-        </article>
-        <article class="pub-card is-sel">
-          <div class="pub-yr">2026</div>
-          <div>
-            <h3 class="pub-title">Learning-Based Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems</h3>
-            <div class="pub-meta">with H. C. Lau · Learning-guided graph shrinking for quantum optimization</div>
-            <ul class="pub-desc">
-              <li>Introduced a learning-based graph shrinking approach for reducing constrained combinatorial optimization instances.</li>
-              <li>Targets hardware-limited quantum optimization workflows while preserving problem structure for downstream solution recovery.</li>
-            </ul>
-            <span class="tag tag-accent pub-venue">Springer QC+AI 2026 · AAAI Workshop on Quantum Computing</span>
-            <div class="pub-links"><a href="https://link.springer.com/chapter/10.1007/978-3-032-17625-7_3" target="_blank" rel="noopener">↗ Paper</a><a href="mailto:monitsharma437@gmail.com?subject=Graph%20shrinking%20code%20request">↗ Request code</a></div>
-          </div>
-        </article>
-        <article class="pub-card is-sel">
-          <div class="pub-yr">2026</div>
-          <div>
-            <h3 class="pub-title">Hybrid Learning and Optimization Methods for Solving Capacitated Vehicle Routing Problem</h3>
-            <div class="pub-meta">with H. C. Lau · Hybrid RL + Quantum CVRP · Springer QC+AI 2026</div>
-            <ul class="pub-desc">
-              <li>Soft Actor-Critic policies tune augmented Lagrangian penalties for both classical and quantum solvers, <b>accelerating convergence and feasibility</b>.</li>
-              <li>Benchmarks across synthetic and real CVRP instances quantify runtime and solution-quality trade-offs.</li>
-            </ul>
-            <span class="tag tag-accent pub-venue">Springer QC+AI 2026 · AAAI Workshop on Quantum Computing</span>
-            <div class="pub-links"><a href="https://link.springer.com/chapter/10.1007/978-3-032-17625-7_2" target="_blank" rel="noopener">↗ Paper</a><a href="https://github.com/SMU-Quantum/adaptive_quantum_cvrp" target="_blank" rel="noopener">↗ Code</a></div>
-          </div>
-        </article>
-        <article class="pub-card is-sel">
-          <div class="pub-yr">2024</div>
-          <div>
-            <h3 class="pub-title">Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems</h3>
-            <div class="pub-meta">with H. C. Lau &amp; R. Raymond</div>
-            <ul class="pub-desc">
-              <li>Employed qGANs to learn demand distributions, <b>reducing qubit requirements</b> with a tailored comparator.</li>
-              <li>Expanded the newsvendor formulation to maximise profit and support broader decision scenarios.</li>
-            </ul>
-            <span class="tag tag-accent pub-venue">IEEE Xplore · IEEE QCE24 Quantum Applications Technical Paper · Poster at QIP 2024</span>
-            <div class="pub-links"><a href="https://ieeexplore.ieee.org/document/10821393" target="_blank" rel="noopener">↗ PDF</a></div>
-          </div>
-        </article>
-        <article class="pub-card is-sel">
-          <div class="pub-yr">2024</div>
-          <div>
-            <h3 class="pub-title">Quantum Relaxation for Solving Multiple Knapsack Problems</h3>
-            <div class="pub-meta">with Y. Jin, H. C. Lau &amp; R. Raymond</div>
-            <ul class="pub-desc">
-              <li>Combined Quantum Random Access Optimisation with linear relaxation to solve large-scale procurement problems.</li>
-              <li>Showed <b>feasibility and optimality preservation</b> on instances exceeding 100 decision variables.</li>
-            </ul>
-            <span class="tag tag-accent pub-venue">IEEE Xplore · IEEE QCE24 Quantum Applications Technical Paper</span>
-            <div class="pub-links"><a href="https://ieeexplore.ieee.org/document/10821401" target="_blank" rel="noopener">↗ PDF</a></div>
-          </div>
-        </article>
-      </div>
-
-      <!-- ── arXiv preprints ── -->
-      <div class="pub-group">
-        <div class="pub-group-head"><h2 class="pub-group-name">arXiv Preprints</h2><span class="pub-group-count">06</span></div>
-        <article class="pub-card">
-          <div class="pub-yr">2026</div>
-          <div>
-            <h3 class="pub-title">Securing the Flow: Maritime Energy Resilience under Correlated and Decision-Dependent Disruptions</h3>
-            <div class="pub-meta">with H. C. Lau · Maritime energy resilience · arXiv:2605.11990</div>
-            <ul class="pub-desc">
-              <li>Developed a two-stage stochastic multi-commodity flow model for resilient energy supply under correlated chokepoint disruptions.</li>
-              <li>Calibrated to Indian maritime energy imports, identifying <b>LPG exposure</b> and structural joint-failure resilience.</li>
-            </ul>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2605.11990" target="_blank" rel="noopener">↗ PDF</a><a href="https://medium.com/@_monitsharma/when-cooking-gas-becomes-a-national-security-problem-c47babcea911" target="_blank" rel="noopener">↗ Blog</a></div>
-          </div>
-        </article>
-        <article class="pub-card">
-          <div class="pub-yr">2026</div>
-          <div>
-            <h3 class="pub-title">Diagnosing Simulation and Hardware Barriers to Cross-Size Transfer in Equivariant Quantum Reinforcement Learning</h3>
-            <div class="pub-meta">with H. C. Lau · Equivariant quantum reinforcement learning transfer diagnostics · arXiv:2510.14533</div>
-            <ul class="pub-desc">
-              <li>Diagnosed cross-size transfer for EQC reinforcement-learning policies across simulators, noisy execution, and hardware.</li>
-              <li>Identified finite-shot, circuit-depth, and hardware-noise barriers that limit scaling beyond validated transfer regimes.</li>
-            </ul>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2510.14533" target="_blank" rel="noopener">↗ PDF</a><a href="https://zenodo.org/records/21277812?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjU4OTZkZGMzLTNkNmYtNDhiMS05MGZhLTQ0NTU0ODdkMjI1MSIsImRhdGEiOnt9LCJyYW5kb20iOiI2MjQ0MjI2ZDY3MjNjMWU2ZmVmMTA0ZDVkN2VjMzQ3MyJ9.Rqy_muKrIPLowpqPyDCO1aY-1hyHy2MKJqLdoaH2KNEz_HTKrPPVQXIffqWBxUMEnsbawo0OTSM7CEQ" target="_blank" rel="noopener">↗ Code</a></div>
-          </div>
-        </article>
-        <article class="pub-card pub-hidden">
-          <div class="pub-yr">2026</div>
-          <div>
-            <h3 class="pub-title">Qubit-Scalable CVRP via Lagrangian Knapsack Decomposition and Noise-Aware Quantum Execution</h3>
-            <div class="pub-meta">with H. C. Lau · Quantum CVRP decomposition · arXiv:2604.22194</div>
-            <ul class="pub-desc">
-              <li>Converted CVRP into bounded-width quantum subproblems using Lagrangian relaxation and per-vehicle knapsack QUBOs.</li>
-              <li>Combined learned multiplier updates with hardware-aware execution policies for noisy, heterogeneous quantum resources.</li>
-            </ul>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2604.22194" target="_blank" rel="noopener">↗ PDF</a></div>
-          </div>
-        </article>
-        <article class="pub-card pub-hidden">
-          <div class="pub-yr">2025</div>
-          <div>
-            <h3 class="pub-title">Cutting Slack: Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks</h3>
-            <div class="pub-meta">with H. C. Lau · Slack-free QUBO formulations · arXiv:2507.12159</div>
-            <ul class="pub-desc">
-              <li>Dual ascent, bundle, and augmented Lagrangian updates enforce constraints without auxiliary slack variables, <b>reducing qubit counts</b>.</li>
-              <li>Validated on TSP, MDKP, and MIS using both simulators and hardware executions.</li>
-            </ul>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2507.12159" target="_blank" rel="noopener">↗ PDF</a><a href="https://github.com/SMU-Quantum/cutting_slack" target="_blank" rel="noopener">↗ Code</a></div>
-          </div>
-        </article>
-        <article class="pub-card pub-hidden">
-          <div class="pub-yr">2025</div>
-          <div>
-            <h3 class="pub-title">A Comparative Study of Quantum Optimization Techniques for Combinatorial Benchmark Problems</h3>
-            <div class="pub-meta">with H. C. Lau · Standardised benchmarking suite · arXiv:2503.12121</div>
-            <ul class="pub-desc">
-              <li>Evaluated VQE, CVaR-VQE, QAOA variants, and compression techniques such as PCE and QRAO across NP-hard benchmarks.</li>
-              <li>Delivered <b>actionable guidance on feasibility gaps</b>, scaling behaviour, and resource allocation.</li>
-            </ul>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2503.12121" target="_blank" rel="noopener">↗ PDF</a><a href="https://github.com/SMU-Quantum/quantum-optimization-algorithms" target="_blank" rel="noopener">↗ Algorithms</a><a href="https://github.com/SMU-Quantum/quantum-optimization-benchmarks" target="_blank" rel="noopener">↗ Benchmarks</a></div>
-          </div>
-        </article>
-        <article class="pub-card pub-hidden">
-          <div class="pub-yr">2024</div>
-          <div>
-            <h3 class="pub-title">Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers</h3>
-            <div class="pub-meta">with H. C. Lau · Risk-aware inventory analytics · arXiv:2409.07183</div>
-            <ul class="pub-desc">
-              <li>Integrated decision-maker risk profiles into a quantum Monte Carlo framework for multi-supplier newsvendor problems.</li>
-              <li>Secured <b>near-quadratic speed-ups</b> in expectation estimation via Quantum Amplitude Estimation.</li>
-            </ul>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2409.07183" target="_blank" rel="noopener">↗ PDF</a></div>
-          </div>
-        </article>
-        <div class="pubs-toggle">
-          <button class="btn btn-ghost" id="pubToggle">Show all 6 preprints <span class="arr">↓</span></button>
-        </div>
-      </div>
-
-    </div>
+    {% include publications.html %}
   </div>
 </section>
 
@@ -1174,12 +924,13 @@
 
   // publications toggle
   const tog = document.getElementById('pubToggle');
-  tog.addEventListener('click', () => {
+  if (tog) tog.addEventListener('click', () => {
     const hidden = document.querySelectorAll('.pub-hidden');
     const expanded = tog.getAttribute('data-open') === '1';
     hidden.forEach(h => h.classList.toggle('show', !expanded));
     tog.setAttribute('data-open', expanded ? '0' : '1');
-    tog.innerHTML = expanded ? 'Show all 6 preprints <span class="arr">↓</span>' : 'Show fewer <span class="arr">↑</span>';
+    tog.setAttribute('aria-expanded', String(!expanded));
+    tog.innerHTML = expanded ? `Show all ${tog.dataset.count} preprints <span class="arr" aria-hidden="true">↓</span>` : 'Show fewer <span class="arr">↑</span>';
   });
 </script>
 </body>
