@@ -1,0 +1,11 @@
+{% assign paper = include.paper %}
+{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
+<article class="paper"{% if include.hidden %} hidden{% endif %}>
+  <div class="paper-num">{{ paper.year }}</div>
+  <div class="paper-copy">
+    <div class="venue">{% if paper.venue %}{{ paper.venue | escape }}{% else %}arXiv preprint{% endif %}</div>
+    <h3>{% if primary.url %}<a href="{{ primary.url | escape }}" target="_blank" rel="noopener">{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h3>
+    {% if include.description %}<p>{{ paper.description.first | markdownify | remove: '<p>' | remove: '</p>' }}</p>{% endif %}
+    <div class="paper-links">{% for link in paper.links %}{% if link.url %}<a href="{{ link.url | escape }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="noopener"{% endunless %}>{{ link.text | escape }} <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}</div>
+  </div>
+</article>

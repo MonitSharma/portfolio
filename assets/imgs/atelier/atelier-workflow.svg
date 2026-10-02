@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Atelier research and coding workflow</title>
+  <desc id="desc">A restrained four-step workflow: read material, ask grounded questions, build with repository tools, and verify with citations and tests.</desc>
+  <rect width="1200" height="520" rx="10" fill="#fbfaf7"/>
+  <text x="70" y="64" fill="#797a80" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="13" letter-spacing="2">THE ATELIER LAB  /  WORKFLOW</text>
+  <text x="70" y="112" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="38">Read deeply. Ask clearly. Build carefully.</text>
+  <text x="70" y="143" fill="#4c4c54" font-family="IBM Plex Sans, Arial, sans-serif" font-size="16">One local workbench for research papers, code, and scientific experiments.</text>
+  <line x1="70" y1="178" x2="1130" y2="178" stroke="#d8d9dd"/>
+
+  <g font-family="IBM Plex Sans, Arial, sans-serif">
+    <rect x="70" y="220" width="235" height="152" rx="4" fill="#f4f3f0" stroke="#d8d9dd"/>
+    <text x="94" y="250" fill="#6457c1" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="12" letter-spacing="1.4">01  READ</text>
+    <text x="94" y="286" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="25">Bring evidence in.</text>
+    <text x="94" y="317" fill="#4c4c54" font-size="14">papers · notes · repos</text>
+    <text x="94" y="342" fill="#797a80" font-size="13">structured extraction + citations</text>
+
+    <rect x="335" y="220" width="235" height="152" rx="4" fill="#f4f3f0" stroke="#d8d9dd"/>
+    <text x="359" y="250" fill="#6457c1" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="12" letter-spacing="1.4">02  ASK</text>
+    <text x="359" y="286" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="25">Find what matters.</text>
+    <text x="359" y="317" fill="#4c4c54" font-size="14">semantic + lexical search</text>
+    <text x="359" y="342" fill="#797a80" font-size="13">grounded answers with sources</text>
+
+    <rect x="600" y="220" width="235" height="152" rx="4" fill="#f4f3f0" stroke="#d8d9dd"/>
+    <text x="624" y="250" fill="#6457c1" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="12" letter-spacing="1.4">03  BUILD</text>
+    <text x="624" y="286" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="25">Turn insight into code.</text>
+    <text x="624" y="317" fill="#4c4c54" font-size="14">inspect · edit · run tests</text>
+    <text x="624" y="342" fill="#797a80" font-size="13">guarded repository workflows</text>
+
+    <rect x="865" y="220" width="265" height="152" rx="4" fill="#e8e8ff" stroke="#bcb7e4"/>
+    <text x="889" y="250" fill="#483a9a" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="12" letter-spacing="1.4">04  VERIFY</text>
+    <text x="889" y="286" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="25">Keep the evidence.</text>
+    <text x="889" y="317" fill="#4c4c54" font-size="14">citations · tests · traces</text>
+    <text x="889" y="342" fill="#797a80" font-size="13">review before you trust or publish</text>
+  </g>
+
+  <g stroke="#b5b6bc" stroke-width="1.5" fill="none">
+    <path d="M305 296 H330"/><path d="M570 296 H595"/><path d="M835 296 H860"/>
+  </g>
+  <g fill="#6457c1">
+    <circle cx="318" cy="296" r="3"/><circle cx="583" cy="296" r="3"/><circle cx="848" cy="296" r="3"/>
+  </g>
+
+  <line x1="70" y1="425" x2="1130" y2="425" stroke="#d8d9dd"/>
+  <text x="70" y="462" fill="#4c4c54" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14">LOCAL BY DEFAULT</text>
+  <text x="305" y="462" fill="#4c4c54" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14">WORKSPACE BOUNDARIES</text>
+  <text x="590" y="462" fill="#4c4c54" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14">MODEL ROUTING</text>
+  <text x="820" y="462" fill="#4c4c54" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14">HUMAN REVIEW</text>
+  <text x="70" y="486" fill="#797a80" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="12">The point is not more models. It is a dependable path from question to evidence to tested work.</text>
+</svg>

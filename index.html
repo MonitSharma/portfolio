@@ -1,937 +1,104 @@
 ---
 layout: null
 ---
-{% assign journal_count = site.data.publications | where: "category", "journal" | size %}
-{% assign conference_count = site.data.publications | where: "category", "conference" | size %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Monit Sharma — Research Engineer, Quantum Computing &amp; AI</title>
-<meta name="description" content="Monit Sharma — Research Engineer at Singapore Management University working across quantum computing, quantum algorithms, AI agents, language models, and scientific software.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="canonical" href="https://monitsharma.github.io/portfolio/">
+<meta name="description" content="Quantum computing research, scientific software, and open education by Monit Sharma.">
+<link rel="canonical" href="{{ '/' | absolute_url }}">
+<title>Monit Sharma — Selected research &amp; software</title>
 
-<!-- social preview -->
-<meta property="og:type" content="profile">
-<meta property="og:site_name" content="Monit Sharma">
-<meta property="og:title" content="Monit Sharma — Research Engineer, Quantum Computing &amp; AI">
-<meta property="og:description" content="Research Engineer at Singapore Management University working across quantum computing, quantum algorithms, AI agents, language models, and scientific software.">
-<meta property="og:url" content="https://monitsharma.github.io/portfolio/">
-<meta property="og:image" content="https://monitsharma.github.io/portfolio/assets/imgs/image.png">
-<meta property="profile:first_name" content="Monit">
-<meta property="profile:last_name" content="Sharma">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@_MonitSharma">
-<meta name="twitter:creator" content="@_MonitSharma">
-<meta name="twitter:title" content="Monit Sharma — Research Engineer, Quantum Computing &amp; AI">
-<meta name="twitter:description" content="Research Engineer at Singapore Management University working across quantum computing, quantum algorithms, AI agents, language models, and scientific software.">
-<meta name="twitter:image" content="https://monitsharma.github.io/portfolio/assets/imgs/image.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<script>try{const savedTheme=localStorage.getItem('writing-theme');if(savedTheme)document.documentElement.dataset.theme=savedTheme;}catch(error){}</script>
-<link href="design-system.css" rel="stylesheet">
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "Person",
-   "@id": "https://monitsharma.github.io/portfolio/#monit",
-   "name": "Monit Sharma",
-   "url": "https://monitsharma.github.io/portfolio/",
-   "image": "https://monitsharma.github.io/portfolio/assets/imgs/image.png",
-   "jobTitle": "Research Engineer",
-   "worksFor": {
-    "@type": "Organization",
-    "name": "Singapore Management University"
-   },
-   "knowsAbout": [
-    "Quantum Computing",
-    "Quantum Algorithms",
-    "Combinatorial Optimization",
-    "Machine Learning",
-    "Large Language Models"
-   ],
-   "sameAs": [
-    "https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&hl=en",
-    "https://github.com/MonitSharma",
-    "https://www.linkedin.com/in/monitsharma/",
-    "https://twitter.com/_MonitSharma",
-    "https://medium.com/@_monitsharma"
-   ]
-  },
-  {
-   "@type": "ItemList",
-   "name": "Publications",
-   "numberOfItems": {{ site.data.publications.size }},
-   "itemListElement": [
-    {% for paper in site.data.publications %}
-    {
-      "@type": "ListItem",
-      "position": {{ forloop.index }},
-      "item": {
-        "@type": "ScholarlyArticle",
-        "headline": {{ paper.title | jsonify }},
-        "datePublished": {{ paper.year | append: "" | jsonify }},
-        "author": {"@id": "https://monitsharma.github.io/portfolio/#monit"}{% if paper.links.first.url %},
-        "url": {{ paper.links.first.url | jsonify }}{% endif %}{% if paper.venue %},
-        "isPartOf": {"@type": "{% if paper.category == 'journal' %}Periodical{% else %}CreativeWork{% endif %}", "name": {{ paper.venue | jsonify }}}{% endif %}
-      }
-    }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-   ]
-  }
- ]
-}
-</script>
-
-<style>
-  /* ---------- hero ---------- */
-  .hero { position: relative; padding-top: clamp(48px, 9vh, 110px); padding-bottom: clamp(56px, 9vh, 110px); overflow: hidden; }
-  .hero-grid {
-    display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center;
-  }
-  .hero .status {
-    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 30px;
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-2);
-    border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; background: var(--paper-2);
-  }
-  .pulse { width: 7px; height: 7px; border-radius: 50%; background: oklch(0.65 0.17 150); position: relative; }
-  .pulse::after { content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid oklch(0.65 0.17 150); animation: ring 2.4s ease-out infinite; }
-  @keyframes ring { 0%{transform:scale(.6);opacity:.9} 100%{transform:scale(1.9);opacity:0} }
-
-  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(3rem, 7.5vw, 6rem); line-height: 0.95; letter-spacing: -0.025em; }
-  .hero h1 em { font-style: italic; color: var(--accent); }
-  .hero .role { margin-top: 22px; font-size: clamp(1.05rem, 1.7vw, 1.35rem); color: var(--ink-2); max-width: 46ch; line-height: 1.5; }
-  .hero .role b { color: var(--ink); font-weight: 500; }
-  .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
-
-  /* orbit motif (pure CSS, circles only) */
-  .orbit { position: relative; aspect-ratio: 1; width: 100%; max-width: 320px; margin-inline: auto; }
-  .orbit .ring { position: absolute; inset: 0; border: 1px solid var(--line); border-radius: 50%; }
-  .orbit .ring.r2 { inset: 15%; border-color: color-mix(in oklch, var(--accent) 35%, var(--line)); }
-  .orbit .ring.r3 { inset: 32%; }
-  .orbit .core { position: absolute; inset: 44%; border-radius: 50%; background: var(--accent); box-shadow: 0 0 50px -6px var(--accent); }
-  .orbit .node { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); }
-  .orbit .e1 { animation: spin 18s linear infinite; }
-  .orbit .e2 { animation: spin 12s linear infinite reverse; }
-  .orbit .e1 .node { top: -6px; left: calc(50% - 6px); }
-  .orbit .e2 .node { top: 15%; left: calc(15% - 6px); background: var(--accent); }
-  .orbit .e1, .orbit .e2 { position: absolute; inset: 0; }
-  .orbit .e2 { inset: 15%; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  @media (prefers-reduced-motion: reduce){ .orbit .e1,.orbit .e2{animation:none} }
-
-  /* metrics strip */
-  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: clamp(48px,7vh,84px); }
-  .metric { padding: 26px 0; border-right: 1px solid var(--line-2); }
-  .metric-link { display: block; color: inherit; }
-  .metric-link:hover .n, .metric-link:hover .l { color: var(--accent); }
-  .metric:last-child { border-right: 0; }
-  .metric .n { font-family: var(--serif); font-size: clamp(2rem,3.4vw,2.8rem); line-height: 1; }
-  .metric .l { font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-top: 10px; transition: color .2s; }
-
-  /* about */
-  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(28px, 5vw, 64px); }
-  .about-body p { font-size: clamp(1.05rem,1.5vw,1.22rem); line-height: 1.6; color: var(--ink); }
-  .focus-list { margin-top: 28px; display: grid; gap: 0; }
-  .focus-list .f { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line-2); align-items: baseline; }
-  .focus-list .f:last-child { border-bottom: 1px solid var(--line-2); }
-  .focus-list .fn { font-family: var(--mono); font-size: 12px; color: var(--accent); }
-  .focus-list .ft { font-size: 0.98rem; color: var(--ink-2); }
-  .focus-list .ft b { color: var(--ink); font-weight: 500; }
-
-  /* news */
-  .news-list { display: grid; gap: 0; }
-  .news-row { display: grid; grid-template-columns: 130px 1fr; gap: 24px; padding: 20px 0; border-top: 1px solid var(--line-2); align-items: baseline; }
-  .news-row:last-child { border-bottom: 1px solid var(--line-2); }
-  .news-row .d { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ink-3); }
-  .news-row .c { font-size: 1.02rem; color: var(--ink); }
-  .news-row .c b { font-weight: 600; }
-
-  /* experience */
-  .exp { display: grid; grid-template-columns: 200px 1fr; gap: clamp(20px,4vw,48px); padding: 34px 0; border-top: 1px solid var(--line); }
-  .exp:first-of-type { border-top: 1px solid var(--ink); }
-  .exp .when { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ink-3); }
-  .exp .when .co { display: block; color: var(--ink-2); margin-top: 8px; font-size: 12px; line-height: 1.45; }
-  .exp h3 { font-family: var(--serif); font-size: clamp(1.3rem,2.4vw,1.75rem); }
-  .exp .loc { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 4px; letter-spacing: 0.04em; }
-  .exp ul { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
-  .exp li { position: relative; padding-left: 22px; color: var(--ink-2); font-size: 0.99rem; line-height: 1.55; }
-  .exp li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
-  .exp li b { color: var(--ink); font-weight: 600; }
-
-  /* software */
-  .software-project { scroll-margin-top: 100px; }
-  .project-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 40px; }
-  .project-nav-label { width: 100%; font: 11px var(--mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
-  .project-nav a { display: inline-flex; gap: 18px; align-items: center; border: 1px solid var(--line); padding: 11px 14px; font: 12px var(--mono); color: var(--ink-2); background: var(--paper); }
-  .project-nav a:hover { color: var(--accent); border-color: var(--accent); }
-  .project-nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .software-head { display: grid; grid-template-columns: 1.05fr 1.35fr; gap: clamp(28px,5vw,64px); align-items: start; }
-  .software-title { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem,4vw,3.25rem); line-height: 1.02; letter-spacing: -0.02em; }
-  .software-kicker { font-family: var(--mono); color: var(--accent); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
-  .software-copy { color: var(--ink-2); font-size: clamp(1rem,1.45vw,1.14rem); line-height: 1.6; }
-  .software-copy b { color: var(--ink); font-weight: 600; }
-  .software-project + .software-project { margin-top: 58px; padding-top: 54px; border-top: 1px solid var(--line); }
-  .software-facts { margin-top: 24px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .software-fact { padding: 18px 16px 18px 0; border-right: 1px solid var(--line-2); min-width: 0; }
-  .software-fact:last-child { border-right: 0; }
-  .software-fact .v { font-family: var(--serif); font-size: clamp(1.5rem,2.6vw,2.1rem); line-height: 1; }
-  .software-fact .k { font-family: var(--mono); color: var(--ink-3); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 8px; }
-  .software-actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
-  .plot-grid { margin-top: 36px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  .plot-grid-recovery { grid-template-columns: 1fr 1fr; }
-  .plot-grid-recovery .result-card { grid-column: 1 / -1; }
-  .plot-card figcaption a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
-  .plot-card { background: var(--paper); padding: 18px; min-width: 0; }
-  .plot-frame { background: white; border: 1px solid var(--line-2); min-height: 320px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .plot-frame img { width: 100%; height: auto; object-fit: contain; }
-  .plot-card figcaption { margin-top: 12px; font-family: var(--mono); color: var(--ink-3); font-size: 11px; line-height: 1.45; letter-spacing: 0.03em; text-transform: uppercase; }
-  .result-card { background: var(--paper); padding: 18px; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
-  .result-card h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; line-height: 1.15; }
-  .result-note { color: var(--ink-2); font-size: 0.92rem; line-height: 1.5; }
-  .result-note + .result-note { margin-top: 10px; }
-  .result-table-scroll { overflow-x: auto; }
-  .result-table-scroll .result-table { min-width: 560px; }
-  .result-table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11.5px; }
-  .result-table th, .result-table td { padding: 10px 8px; border-top: 1px solid var(--line-2); text-align: left; vertical-align: top; }
-  .result-table th { color: var(--ink-3); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
-  .result-table td { color: var(--ink-2); }
-  .result-table b { color: var(--ink); font-weight: 600; }
-  .atelier-panel { margin-top: 34px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  .atelier-plot .plot-frame { min-height: 280px; }
-
-  /* publications */
-  .pub-feature { display: grid; grid-template-columns: 1fr; gap: 0; }
-  .pub-card { padding: 28px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 64px 1fr; gap: 24px; }
-  .pub-card:first-of-type { border-top: 1px solid var(--ink); }
-  .pub-yr { font-family: var(--mono); font-size: 12px; color: var(--ink-3); padding-top: 4px; }
-  .pub-card.is-sel .pub-yr { color: var(--accent); }
-  .pub-title { font-family: var(--serif); font-size: clamp(1.2rem,2.1vw,1.55rem); line-height: 1.18; letter-spacing: -0.01em; }
-  .pub-meta { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-top: 9px; letter-spacing: 0.02em; }
-  .pub-desc { margin-top: 14px; display: grid; gap: 7px; }
-  .pub-desc li { list-style: none; padding-left: 18px; position: relative; color: var(--ink-2); font-size: 0.96rem; line-height: 1.5; }
-  .pub-desc li::before { content: "·"; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
-  .pub-desc li b { color: var(--ink); font-weight: 600; }
-  .pub-venue { display: inline-block; margin-top: 14px; }
-  .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .pub-links a {
-    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.03em; padding: 6px 12px;
-    border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink-2); transition: all .18s;
-    display: inline-flex; align-items: center; gap: 7px;
-  }
-  .pub-links a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-  .pub-group + .pub-group { margin-top: 54px; }
-  .pub-group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 12px; }
-  .pub-group-name { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
-  .pub-group-count { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--ink-3); }
-  .pubs-toggle { margin-top: 28px; }
-  .pub-hidden { display: none; }
-  .pub-hidden.show { display: grid; }
-
-  /* blogs */
-  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  .blog-card { background: var(--paper); padding: 28px 26px; display: flex; flex-direction: column; transition: background .2s; min-height: 280px; }
-  .blog-card:hover { background: var(--paper-2); }
-  .blog-card .bnum { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
-  .blog-card h3 { font-family: var(--serif); font-size: 1.3rem; line-height: 1.18; margin-top: 18px; overflow-wrap: anywhere; }
-  .blog-card p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.55; margin-top: 14px; flex: 1; }
-  .blog-card .btags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-  .blog-card .read { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 18px; display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
-  .blog-card:hover .read { color: var(--accent); }
-
-  /* teaching */
-  .course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  .course-card { background: var(--paper); padding: 26px 24px; display: flex; flex-direction: column; transition: background .2s; min-height: 218px; }
-  .course-card:hover { background: var(--paper-2); }
-  .course-card .stars { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
-  .course-card h3 { font-family: var(--serif); font-size: 1.22rem; line-height: 1.18; margin-top: 14px; overflow-wrap: anywhere; }
-  .course-card p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.54; margin-top: 12px; flex: 1; }
-  .course-card .read { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 16px; display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
-  .course-card:hover .read { color: var(--accent); }
-  .course-note { margin-top: 26px; color: var(--ink-2); font-size: 0.98rem; line-height: 1.65; }
-  .course-note a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-
-  /* writing series */
-  .sub-label { margin: 46px 0 18px; color: var(--accent); }
-  .eyebrow + .sub-label { margin-top: 0; }
-  .series-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  .series-card { background: var(--paper); padding: 26px 24px; display: flex; flex-direction: column; transition: background .2s; min-height: 210px; }
-  .series-card:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
-  .series-card:hover { background: var(--paper-2); }
-  .series-card .count { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
-  .series-card h3 { font-family: var(--serif); font-size: 1.22rem; line-height: 1.18; margin-top: 14px; overflow-wrap: anywhere; }
-  .series-card p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.54; margin-top: 12px; flex: 1; }
-  .series-card .read { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 16px; display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
-  .series-card:hover .read { color: var(--accent); }
-
-  /* education */
-  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  .edu-card { background: var(--paper); padding: 30px; }
-  .edu-card .yr { font-family: var(--mono); font-size: 11.5px; color: var(--accent); letter-spacing: 0.05em; }
-  .edu-card h3 { font-family: var(--serif); font-size: 1.4rem; margin-top: 14px; line-height: 1.15; }
-  .edu-card .uni { color: var(--ink-2); font-size: 0.95rem; margin-top: 10px; }
-
-  /* contact */
-  .contact-inner { text-align: center; }
-  .contact-inner h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem,5.5vw,4.4rem); letter-spacing: -0.02em; line-height: 1; }
-  .contact-inner h2 a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
-  .contact-inner p { color: var(--ink-2); margin-top: 22px; font-size: 1.1rem; }
-
-  @media (max-width: 860px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .orbit { display: none; }
-    .about-grid { grid-template-columns: 1fr; }
-    .exp { grid-template-columns: 1fr; gap: 12px; }
-    .metrics { grid-template-columns: repeat(2,1fr); }
-    .metric:nth-child(2) { border-right: 0; }
-    .metric:nth-child(1), .metric:nth-child(2) { border-bottom: 1px solid var(--line-2); }
-    .blog-grid { grid-template-columns: 1fr; }
-    .course-grid { grid-template-columns: 1fr; }
-    .series-grid { grid-template-columns: 1fr; }
-    .edu-grid { grid-template-columns: 1fr; }
-    .software-head { grid-template-columns: 1fr; }
-    .software-facts { grid-template-columns: repeat(2, 1fr); }
-    .software-fact:nth-child(2) { border-right: 0; }
-    .software-fact:nth-child(1), .software-fact:nth-child(2) { border-bottom: 1px solid var(--line-2); }
-    .plot-grid { grid-template-columns: 1fr; }
-    .atelier-panel { grid-template-columns: 1fr; }
-    .news-row { grid-template-columns: 100px 1fr; gap: 14px; }
-  }
-  @media (max-width: 600px) {
-    .pub-card { grid-template-columns: 1fr; gap: 10px; }
-    .pub-card > div:last-child { min-width: 0; }
-    .pub-yr { padding-top: 0; }
-    .pub-title, .pub-meta, .pub-venue { overflow-wrap: anywhere; }
-    .pub-venue { white-space: normal; }
-  }
-</style>
+<link rel="stylesheet" href="{{ '/assets/css/preview-fonts.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/research-preview.css' | relative_url }}">
 </head>
 <body>
-
-<!-- NAV -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="index.html">
-      <span class="dot"></span>
-      <span class="name">Monit Sharma</span>
-    </a>
-    <nav class="navlinks">
-      <a href="#about">About</a>
-      <a href="#research">Research</a>
-      <a href="#work">Work</a>
-      <a href="#teaching">Teaching</a>
-      <a href="#publications">Publications</a>
-      <a href="#writing">Writing</a>
-      <a href="https://monitsharma.github.io/">Classroom</a>
-      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" data-theme-toggle>◐</button>
-    </nav>
-  </div>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="identity" href="#overview"><img class="portrait" width="54" height="54" decoding="async" src="assets/imgs/portrait-preview.jpg" alt="Monit Sharma"><div><div class="name">Monit Sharma</div><div class="location">Singapore · Research Engineer</div></div></a>
+  <p class="side-bio">Quantum computing, algorithms &amp; AI systems.<br><br><strong>Singapore Management<br>University</strong></p>
+  <nav class="side-nav" aria-label="Main navigation">
+    <a href="#overview" aria-current="location"><span>00</span> Overview</a>
+    <a href="#research"><span>01</span> Publications</a>
+    <a href="#projects"><span>02</span> Projects</a>
+    <a href="#writing"><span>03</span> Writing</a>
+    <a href="#teaching"><span>04</span> Teaching</a>
+    <a href="#about"><span>05</span> Background</a>
+  </nav>
+  <div class="side-bottom"><div class="side-links"><a href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub ↗</a><a href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&amp;hl=en" target="_blank" rel="noopener">Scholar ↗</a><a href="https://www.linkedin.com/in/monitsharma/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="mailto:monitsharma437@gmail.com">Email ↗</a></div><p class="side-note">RESEARCH · SOFTWARE · OPEN EDUCATION</p></div>
+</aside>
+<main id="main">
+<div class="topline"><div class="availability"><span class="dot"></span> SELECTED RESEARCH &amp; SOFTWARE</div><span>MONIT SHARMA / 2026</span></div>
+<header class="intro" id="overview">
+  <div class="hero-heading"><h1>Quantum algorithms.<br>Scientific software.<br><em>Real-world questions.</em></h1>
+  <div class="orbit" aria-hidden="true"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="e1"><span class="node"></span></div><div class="e2"><span class="node"></span></div><div class="core"></div></div></div>
+  <p>I’m Monit, a Research Engineer at SMU. I build and benchmark quantum algorithms, develop AI research systems, and turn scientific ideas into reproducible software.</p>
+  <div class="intro-actions"><a class="solid-link" href="#research">Explore my research ↓</a><a class="quiet-link" href="mailto:monitsharma437@gmail.com">Get in touch ↗</a></div>
+  {% assign journals = site.data.publications | where: 'category', 'journal' | size %}{% assign conferences = site.data.publications | where: 'category', 'conference' | size %}
+  <div class="intro-foot"><span><b>{{ site.data.publications.size }}</b> publications</span><span><b>{{ journals | plus: conferences }}</b> peer-reviewed papers</span><span><b>18</b> open courses</span></div>
 </header>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <span class="status"><span class="pulse"></span> Research Engineer · Quantum &amp; AI</span>
-        <h1>Monit<br>Sharma</h1>
-        <p class="role">Building <b>quantum algorithms and AI systems</b> across optimization, simulation, scientific discovery, agents, and language-model workflows — from Shor's algorithm and quantum differential-equation solvers to hybrid quantum–classical software.</p>
-        <div class="hero-cta">
-          <a class="btn" href="#publications">Read the research <span class="arr">↗</span></a>
-          <a class="btn btn-ghost" href="mailto:monitsharma437@gmail.com?subject=Portfolio%20enquiry">Contact me</a>
-        </div>
-      </div>
-      <div class="orbit" aria-hidden="true">
-        <div class="ring r1"></div>
-        <div class="ring r2"></div>
-        <div class="ring r3"></div>
-        <div class="e1"><span class="node"></span></div>
-        <div class="e2"><span class="node"></span></div>
-        <div class="core"></div>
-      </div>
-    </div>
-
-    <div class="metrics">
-      <div class="metric"><a class="metric-link" href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&amp;hl=en" target="_blank" rel="noopener"><div class="n">{{ site.data.publications.size }}</div><div class="l">Publications</div></a></div>
-      <div class="metric"><a class="metric-link" href="#publications"><div class="n">{{ journal_count | plus: conference_count }}</div><div class="l">Peer-Reviewed Papers</div></a></div>
-      <div class="metric"><a class="metric-link" href="https://monitsharma.github.io/"><div class="n">18</div><div class="l">Open Courses</div></a></div>
-      <div class="metric"><a class="metric-link" href="#research"><div class="n">3</div><div class="l">Research Roles</div></a></div>
-    </div>
-  </div>
+<section id="news"><div class="section-head"><h2>News</h2><span style="font:9px var(--mono);color:var(--muted)">2025–2026</span></div>{% for item in site.data.news limit:4 %}<div class="news-item"><time>{{ item.date }}</time><div>{{ item.content | replace: '📰 ', '' | replace: '🎉 ', '' | markdownify }}</div></div>{% endfor %}</section>
+<section id="research">
+<div class="section-head"><h2><span>01</span>Publications</h2><span class="publication-total">{{ site.data.publications.size }} papers</span></div>
+<p class="section-note">From resilient energy networks to quantum hardware and AI-guided optimization.</p>
+{% assign journals = site.data.publications | where: 'category', 'journal' | sort: 'order' %}{% assign conferences = site.data.publications | where: 'category', 'conference' | sort: 'order' %}{% assign preprints = site.data.publications | where: 'category', 'preprint' | sort: 'order' %}{% assign selected = journals | concat: conferences | concat: preprints %}
+<div class="paper-list" id="publication-list">{% for paper in selected %}{% assign hidden_paper = false %}{% if forloop.index > 3 %}{% assign hidden_paper = true %}{% endif %}{% include preview-paper.html paper=paper description=true hidden=hidden_paper %}{% endfor %}</div>
+<div class="publication-controls"><button id="more-papers" aria-controls="publication-list">Show 3 more papers ↓</button><button id="fewer-papers" hidden aria-controls="publication-list">Show fewer ↑</button><span id="paper-status" role="status" aria-live="polite">Showing 3 of {{ selected.size }} papers</span></div>
 </section>
-
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div class="wrap">
-    <div class="eyebrow"><span class="num">01</span> About</div>
-    <div class="about-grid">
-      <div><h2 class="h-sec">Working across quantum computing, quantum algorithms, and AI systems.</h2></div>
-      <div class="about-body">
-        <p>I am a Research Engineer at Singapore Management University working across quantum computing, quantum algorithms, and AI. My work spans hybrid quantum-classical optimization, Shor-style factoring experiments, quantum simulation and differential-equation solvers, LLM-guided research loops, AI agents, and scientific software systems.</p>
-        <div class="focus-list">
-          <div class="f"><span class="fn">A</span><span class="ft"><b>Quantum algorithms</b> — optimization, factoring, simulation, differential equations, and resource-aware execution on near-term hardware.</span></div>
-          <div class="f"><span class="fn">B</span><span class="ft"><b>AI systems</b> — language-model workflows, research agents, tool use, and LLM-guided experimentation for scientific discovery.</span></div>
-          <div class="f"><span class="fn">C</span><span class="ft"><b>Scientific software</b> — Python, C/C++, JavaScript/TypeScript, Java, CUDA, JAX, PyTorch, and high-performance benchmarking pipelines.</span></div>
-          <div class="f"><span class="fn">D</span><span class="ft"><b>Quantum tooling</b> — Qiskit, PennyLane, Cirq, D-Wave workflows, tensor-network simulators, and open-source teaching materials.</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section id="projects">
+<div class="section-head"><h2><span>02</span>Things I build</h2><a href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub ↗</a></div>
+<p class="section-note">Research software, local AI systems, and quantum experiments. Explore the methods, results, and evidence behind each project.</p>
+<div class="filters" role="group" aria-label="Filter projects"><button class="filter" data-filter="all" aria-pressed="true">All projects</button><button class="filter" data-filter="research" aria-pressed="false">Research</button><button class="filter" data-filter="software" aria-pressed="false">Software</button><button class="filter" data-filter="challenge" aria-pressed="false">Challenges</button></div>
+<p class="filter-status" id="filter-status" role="status" aria-live="polite">Showing all {{ site.data.projects.size }} projects</p>
+<div class="project-grid">{% for project in site.data.projects %}
+<a class="project" data-type="{{ project.type }}" href="{{ project.page | relative_url }}" aria-labelledby="project-title-{{ project.slug }}">
+<div class="project-meta"><span>{{ project.category | escape }}</span><span>0{{ forloop.index }}</span></div>
+<h3 id="project-title-{{ project.slug }}">{{ project.title | escape }}</h3><p>{{ project.summary | escape }}</p>
+<div class="result"><b>{{ project.metric | escape }}</b><span>{{ project.metric_label | escape }}</span></div>
+<span class="project-link">View project &amp; results <span aria-hidden="true">→</span></span>
+</a>{% endfor %}</div>
 </section>
-
-<!-- NEWS -->
-<section class="section" id="news">
-  <div class="wrap">
-    <div class="eyebrow"><span class="num">02</span> Recent News</div>
-    <div class="news-list">
-      <div class="news-row"><span class="d">Oct 2026</span><span class="c">📰 <a href="https://arxiv.org/abs/2605.11990" target="_blank" rel="noopener"><b>Securing the Flow: Maritime Energy Resilience under Correlated and Decision-Dependent Disruptions</b></a> has been accepted to <a href="https://www.sciencedirect.com/journal/transportation-research-part-e-logistics-and-transportation-review" target="_blank" rel="noopener"><b>Transportation Research Part E: Logistics and Transportation Review</b></a>.</span></div>
-      <div class="news-row"><span class="d">Jul 2026</span><span class="c">📰 <b>From Circuits to Hardware: Benchmarking Standard and Qubit-Efficient Quantum Optimization on Real Hardware</b> has been accepted at <b>Quantum Science and Technology</b>.</span></div>
-      <div class="news-row"><span class="d">Jul 2026</span><span class="c">🎉 <b>AutoQResearch</b> accepted as a technical paper at <b>IEEE QCE26 Quantum–GenAI Co-Design &amp; Discovery (QGDD)</b>.</span></div>
-      <div class="news-row"><span class="d">Oct 2025</span><span class="c">🎉 Two papers accepted at the <b>AAAI 2026 Workshop on Quantum Computing</b> — Hybrid Learning for CVRP and Learning-Based Graph Shrinking.</span></div>
-      <div class="news-row"><span class="d">Sep 2024</span><span class="c">📄 New papers accepted as <b>IEEE QCE24 Quantum Applications Technical Papers</b> on Quantum Relaxation and Newsvendor Optimization.</span></div>
-      <div class="news-row"><span class="d">Jan 2024</span><span class="c">🎤 Presented a poster on Quantum Newsvendor Optimization at <b>QIP 2024</b>.</span></div>
-    </div>
-  </div>
+<section id="writing">
+<div class="section-head"><h2><span>03</span>Writing</h2><a href="https://medium.com/@_monitsharma" target="_blank" rel="noopener">All essays ↗</a></div>
+<div class="essays">
+<a class="essay" href="https://monitsharma.github.io/writing/quantum-optimization-on-real-hardware/index.html" target="_blank" rel="noopener"><span>01</span><div><h3>Quantum Optimization on Real Hardware</h3><p>What 247 experiments on IBM Heron revealed about quantum optimization workflows.</p></div><i>↗</i></a>
+<a class="essay" href="https://medium.com/@_monitsharma/when-cooking-gas-becomes-a-national-security-problem-c47babcea911" target="_blank" rel="noopener"><span>02</span><div><h3>When Cooking Gas Becomes a National Security Problem</h3><p>Maritime chokepoints, energy resilience, and the mathematics of national supply networks.</p></div><i>↗</i></a>
+<a class="essay" href="https://medium.com/@_monitsharma/the-key-to-the-quantum-garden-indias-1-000-km-leap-into-un-hackable-communication-ab6277f0f98e" target="_blank" rel="noopener"><span>03</span><div><h3>The Key to the Quantum Garden</h3><p>India’s 1,000 km quantum communication demonstration and the infrastructure behind QKD.</p></div><i>↗</i></a>
+</div>
 </section>
+<section id="teaching"><div class="section-head"><h2><span>04</span>Open education</h2><a href="https://monitsharma.github.io/" target="_blank" rel="noopener">The Quantum Classroom ↗</a></div><div class="teaching"><div><h3>Learn it. Implement it.<br>Make it your own.</h3><p>18 free learning paths across quantum computing, mathematics, and scientific programming. Resources, worked examples, and code for learning by doing.</p></div><div><a class="course" href="https://monitsharma.github.io/Learn-Quantum-Computing-For-Free/" target="_blank" rel="noopener">Learn Quantum Computing for Free <span>↗</span></a><a class="course" href="https://monitsharma.github.io/Quantum-Machine-Learning-on-Near-Term-Quantum-Devices/" target="_blank" rel="noopener">Quantum Machine Learning <span>↗</span></a><a class="course" href="https://monitsharma.github.io/Numerical-Linear-Algebra/" target="_blank" rel="noopener">Numerical Linear Algebra <span>↗</span></a></div></div></section>
+<section id="about"><div class="section-head"><h2><span>05</span>Background</h2><a href="https://www.linkedin.com/in/monitsharma/" target="_blank" rel="noopener">LinkedIn ↗</a></div><div class="timeline"><div><div class="label">EXPERIENCE</div>{% for item in site.data.experience %}<div class="career-row"><h3>{{ item.role | escape }}</h3><p>{{ item.company | escape }}</p><div class="date">{{ item.period }}</div></div>{% endfor %}</div><div><div class="label">EDUCATION</div>{% for item in site.data.education %}<div class="career-row"><h3>{{ item.degree | escape }}</h3><p>{{ item.university | escape }}</p><div class="date">{{ item.year }}</div></div>{% endfor %}</div></div></section>
 
-<!-- EXPERIENCE -->
-<section class="section" id="research">
-  <div class="wrap">
-    <div class="eyebrow"><span class="num">03</span> Experience</div>
-    <div class="exp">
-      <div class="when">2023 — Present<span class="co">School of Computing &amp; Information Systems, Singapore Management University</span></div>
-      <div>
-        <h3>Research Engineer</h3>
-        <div class="loc">Singapore</div>
-        <ul>
-          <li>Lead <b>quantum algorithm and AI research</b> spanning optimization, LLM-guided policy search, agents, and scientific discovery workflows.</li>
-          <li>Build benchmarking infrastructure comparing quantum, tensor-network, GPU/TPU, and classical solvers on <b>enterprise-scale workloads</b>.</li>
-          <li>Develop open-source quantum and AI education through the <b>Quantum Classroom</b>, including Qiskit, quantum algorithms, language-model, and programming tracks.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="exp">
-      <div class="when">2022 — 2023<span class="co">TATA Consultancy Services</span></div>
-      <div>
-        <h3>Research &amp; Development Engineer</h3>
-        <div class="loc">Mumbai, India</div>
-        <ul>
-          <li>Deployed D-Wave quantum annealing workflows for large-scale vehicle routing (<b>200 nodes</b>) and industrial optimization workloads.</li>
-          <li>Engineered qubit-efficient mappings and production software pipelines for constrained quantum hardware.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="exp">
-      <div class="when">2021 — 2022<span class="co">IISER Mohali</span></div>
-      <div>
-        <h3>M.S. Thesis Researcher</h3>
-        <div class="loc">Mohali, India</div>
-        <ul>
-          <li>Investigated high-energy physics simulation, quantum machine learning, and NISQ-era circuit design (Advisor: Dr. Satyajit Jena).</li>
-          <li>Demonstrated <b>superior accuracy</b> using single-qubit data re-uploading strategies over multi-qubit baselines.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="contact" id="contact"><div><h2>Get in touch.</h2><p>Research collaborations, scientific software, and conversations about quantum &amp; AI.</p><div class="contact-socials"><a href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/monitsharma/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&amp;hl=en" target="_blank" rel="noopener">Scholar ↗</a></div></div><a href="mailto:monitsharma437@gmail.com">Say hello ↗</a></div>
+<footer><span>© 2026 Monit Sharma</span><a href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub ↗</a></footer>
+</main>
+</div>
 
-<!-- WORK -->
-<section class="section" id="work">
-  <div class="wrap">
-    <div class="eyebrow"><span class="num">04</span> Work</div>
-    <nav class="project-nav" aria-label="Work projects">
-      <span class="project-nav-label">Explore projects</span>
-      <a href="#mettleq">MettleQ <span aria-hidden="true">↘</span></a>
-      <a href="#atelier-lab">The Atelier Lab <span aria-hidden="true">↘</span></a>
-      <a href="#peaked-circuits">Peaked Circuits <span aria-hidden="true">↘</span></a>
-      <a href="#quantum-chemistry">Quantum Chemistry <span aria-hidden="true">↘</span></a>
-      <a href="#classiq-hackathon">Classiq Hackathon <span aria-hidden="true">↘</span></a>
-    </nav>
-    <div class="software-project" id="mettleq">
-      <div class="software-head">
-        <div>
-          <div class="software-kicker">Open-source package · Apple Silicon quantum simulation</div>
-          <h2 class="software-title">MettleQ</h2>
-        </div>
-        <div>
-          <p class="software-copy">I worked on <b>MettleQ</b>, a trustworthy local quantum-circuit simulation package for Apple Silicon. It integrates with <b>Qiskit</b> and <b>PennyLane</b>, exposes exact statevector and matrix-product-state simulation paths, and uses MLX/Metal execution with measured dispatch policies and reproducible benchmark evidence.</p>
-          <div class="software-facts">
-            <div class="software-fact"><div class="v">0.2.0</div><div class="k">Package version</div></div>
-            <div class="software-fact"><div class="v">386</div><div class="k">Tests reported</div></div>
-            <div class="software-fact"><div class="v">29</div><div class="k">SDK tutorials</div></div>
-            <div class="software-fact"><div class="v">MIT</div><div class="k">License</div></div>
-          </div>
-          <div class="software-actions">
-            <a class="btn" href="https://monitsharma.github.io/MettleQ/" target="_blank" rel="noopener">Project site <span class="arr">↗</span></a>
-            <a class="btn btn-ghost" href="https://github.com/MonitSharma/MettleQ" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn btn-ghost" href="https://github.com/MonitSharma/MettleQ/tree/main/examples" target="_blank" rel="noopener">Examples</a>
-            <a class="btn btn-ghost" href="https://medium.com/@_monitsharma/can-a-macbook-simulate-quantum-circuits-fast-writing-custom-metal-kernels-for-apple-silicon-03194f54923c" target="_blank" rel="noopener">Blog</a>
-          </div>
-        </div>
-      </div>
-      <div class="plot-grid" aria-label="MettleQ CPU GPU crossover benchmark">
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/mettleq/sdk_cpu_gpu_crossover.png" alt="MettleQ SDK CPU GPU crossover benchmark plot"></div>
-          <figcaption>Latest radix-16 idle SDK CPU/GPU crossover benchmark on Apple M3 Pro, depth-3 full-state circuits.</figcaption>
-        </figure>
-        <div class="result-card">
-          <div>
-            <h3>Selected results</h3>
-            <p class="result-note">Ratio above 1.0x means MettleQ GPU was faster. In this latest run, MettleQ crosses PennyLane Lightning at 16 qubits and Qiskit Aer at 20 qubits.</p>
-          </div>
-          <div class="result-table-scroll"><table class="result-table" aria-label="MettleQ crossover benchmark results">
-            <thead>
-              <tr><th>Qubits</th><th>Qiskit CPU/GPU</th><th>PennyLane CPU/GPU</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>20</td><td><b>1.327x</b></td><td><b>11.097x</b></td></tr>
-              <tr><td>24</td><td><b>4.554x</b></td><td><b>18.713x</b></td></tr>
-              <tr><td>29</td><td><b>2.739x</b></td><td><b>16.005x</b></td></tr>
-            </tbody>
-          </table></div>
-        </div>
-      </div>
-    </div>
-    <div class="software-project" id="atelier-lab">
-      <div class="software-head">
-        <div>
-          <div class="software-kicker">Local-first AI research lab · Agents and foundation models</div>
-          <h2 class="software-title">The Atelier Lab</h2>
-        </div>
-        <div>
-          <p class="software-copy">I also built <b>The Atelier Lab</b>, a local AI research laboratory for reproducing modern AI systems from first principles. It combines a foundation-model track with an autonomous local agent that runs on a single MacBook using Ollama, local embeddings, RAG, durable memory, and test-verified build mode.</p>
-          <div class="software-facts">
-            <div class="software-fact"><div class="v">0-7</div><div class="k">Agent phases complete</div></div>
-            <div class="software-fact"><div class="v">41</div><div class="k">Eval tasks</div></div>
-            <div class="software-fact"><div class="v">73M</div><div class="k">Nanochat baseline</div></div>
-            <div class="software-fact"><div class="v">286M</div><div class="k">Scale-up model</div></div>
-          </div>
-          <div class="software-actions">
-            <a class="btn" href="https://monitsharma.github.io/The-Atelier-Lab/" target="_blank" rel="noopener">Project site <span class="arr">↗</span></a>
-            <a class="btn btn-ghost" href="https://github.com/MonitSharma/The-Atelier-Lab" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn btn-ghost" href="https://github.com/MonitSharma/The-Atelier-Lab/tree/master/atelier_agent" target="_blank" rel="noopener">Agent stack</a>
-          </div>
-        </div>
-      </div>
-      <div class="atelier-panel">
-        <figure class="plot-card atelier-plot">
-          <div class="plot-frame">
-            <img src="assets/imgs/atelier/foundation_scaling.png" alt="The Atelier Lab foundation model scaling plot comparing throughput and validation loss for 73M and 286M nanochat models on Apple Silicon" loading="lazy">
-          </div>
-          <figcaption>Foundation-model scaling run on Apple Silicon: the larger local model trades throughput for lower validation loss.</figcaption>
-        </figure>
-        <div class="result-card">
-          <div>
-            <h3>Local foundation track</h3>
-            <p class="result-note">Baseline training measurements on an Apple M3 Pro, alongside a local agent stack for RAG, memory, code repair, and test-verified edits.</p>
-          </div>
-          <div class="result-table-scroll"><table class="result-table" aria-label="The Atelier Lab foundation model benchmark results">
-            <thead>
-              <tr><th>Model</th><th>Throughput</th><th>Run cost</th><th>Loss</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>73.5M</td><td><b>~18.7k tok/s</b></td><td>~1.2 h</td><td>1.1664 BPB</td></tr>
-              <tr><td>286.2M</td><td><b>~4.47k tok/s</b></td><td>~5.1 h</td><td>1.0954 BPB</td></tr>
-            </tbody>
-          </table></div>
-        </div>
-      </div>
-    </div>
-    <div class="software-project" id="peaked-circuits">
-      <div class="software-head">
-        <div>
-          <div class="software-kicker">Competition result · Peaked circuits on hardware and in simulation</div>
-          <h2 class="software-title">Peaked Circuit Recovery</h2>
-        </div>
-        <div>
-          <p class="software-copy">I placed <b>first on the BlueQubit Peaked Portal leaderboard</b> with a perfect <b>2570/2570</b>, solving all twelve P1–P12 peaked circuits. For the two 98-qubit instances I documented end to end, I recovered the accepted bitstrings from noisy <b>Quantinuum Helios-1</b> samples using deterministic, target-blind decoding — preserving the raw provider output, repairing only result framing, and publishing a reproducible evidence package. The same circuits also fall to classical simulation: <b>MettleQ</b> recovered the 56-qubit P9 oracle exactly and did it roughly a third faster than the reference solver on identical hardware.</p>
-          <div class="software-facts">
-            <div class="software-fact"><div class="v">#1</div><div class="k">Leaderboard rank</div></div>
-            <div class="software-fact"><div class="v">12/12</div><div class="k">Peaked circuits solved</div></div>
-            <div class="software-fact"><div class="v">98</div><div class="k">Qubit instances</div></div>
-            <div class="software-fact"><div class="v">2</div><div class="k">Externally accepted</div></div>
-          </div>
-          <div class="software-actions">
-            <a class="btn" href="https://github.com/MonitSharma/peaked_circuits" target="_blank" rel="noopener">Repository <span class="arr">↗</span></a>
-            <a class="btn btn-ghost" href="https://app.bluequbit.io/hackathons/oEOtLSSrPSVH60Ah?tab=leaderboard" target="_blank" rel="noopener">Leaderboard</a>
-            <a class="btn btn-ghost" href="https://github.com/MonitSharma/MettleQ/tree/a850c793c011ac21cb4ef9ac1db75eb381e6852e/benchmarks/p9_seed123_m3pro" target="_blank" rel="noopener">P9 benchmark</a>
-          </div>
-        </div>
-      </div>
-      <div class="plot-grid plot-grid-recovery">
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/peaked/p11_frequency_and_distance.png" alt="P11 recovery diagnostics: exact-string frequencies across the hardware shots, Hamming distances to the recovered bitstring, per-bit agreement across shots, and a dataset summary" loading="lazy"></div>
-          <figcaption>P11 · 98 qubits · 50 shots · <a href="assets/imgs/peaked/p11_frequency_and_distance.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/peaked/p12_frequency_and_distance.png" alt="P12 recovery diagnostics: exact-string frequencies across the reconstructed shots, Hamming distances to the recovered bitstring, per-bit agreement across shots, and a dataset summary" loading="lazy"></div>
-          <figcaption>P12 · 98 qubits · 200 shots · <a href="assets/imgs/peaked/p12_frequency_and_distance.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-        <div class="result-card">
-          <div>
-            <h3>Recovered from hardware samples</h3>
-            <p class="result-note">Both instances were decoded offline from the complete shot distribution. The most frequent string, the weighted observed medoid, and cluster consensus agreed on the accepted answer — with no shot filtering and no target leakage.</p>
-          </div>
-          <div class="result-table-scroll"><table class="result-table" aria-label="Peaked circuit hardware recovery results">
-            <thead>
-              <tr><th>Problem</th><th>Qubits</th><th>Shots</th><th>Provider cost</th><th>Recovery</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>P11</td><td>98</td><td>50</td><td>282.98 HQC</td><td><b>Accepted</b></td></tr>
-              <tr><td>P12</td><td>98</td><td>200</td><td>1,373.4 HQC</td><td><b>Accepted</b></td></tr>
-            </tbody>
-          </table></div>
-        </div>
-        <div class="result-card">
-          <div>
-            <h3>Classical simulation — P9, 56 qubits</h3>
-            <p class="result-note">The same circuit family also falls to classical simulation. MettleQ contracts a midpoint matrix-product operator with greedy unswapping, materialises it as an MPS, and samples it — pure CPU, no GPU and no quantum hardware. It recovered the exact published 56-bit oracle (100% of oracle bits, appearing 102 times in 1000 samples), with the oracle used only for post-run validation, never to guide routing, compression, or sampling.</p>
-            <p class="result-note">Against the upstream reference on the same machine and thread budget, wall time fell 32.6%. A prior tracker entry reports 734 s on an Apple M5 Pro; that comparison is cross-machine and is not presented as hardware-normalized.</p>
-          </div>
-          <div class="result-table-scroll"><table class="result-table" aria-label="P9 peaked circuit classical simulation timing comparison">
-            <thead>
-              <tr><th>Solver</th><th>Machine</th><th>Threads</th><th>Wall time</th><th>vs reference</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Upstream reference (CPU)</td><td>Apple M3 Pro</td><td>2</td><td>990.9 s</td><td>—</td></tr>
-              <tr><td><b>MettleQ MPO + unswapping</b></td><td><b>Apple M3 Pro</b></td><td><b>2</b></td><td><b>668.3 s</b></td><td><b>−32.6%</b></td></tr>
-            </tbody>
-          </table></div>
-        </div>
-      </div>
-    </div>
-    <div class="software-project" id="quantum-chemistry">
-      <div class="software-head">
-        <div>
-          <div class="software-kicker">Updated September 2026 · Strongly correlated chemistry</div>
-          <h2 class="software-title">Quantum Chemistry</h2>
-        </div>
-        <div>
-          <p class="software-copy">The <b>[2Fe–2S]</b> iron–sulfur cluster models the electron-transfer active site of ferredoxin and tests methods for strongly correlated electrons. For <b>CAS(30e,20o)</b> — 40 spin orbitals and 240,374,016 determinants in the fixed-spin sector — my matrix-free <b>full-space Davidson</b> calculation reached an independently rechecked variational energy of <b>−116.605609120429 Eh</b>. <b>Block2 DMRG at M=4000</b> is within 2.607 µEh of that state. These classical references anchor my quantum and hybrid sampling studies, alongside work on N₂ and [4Fe–4S].</p>
-          <div class="software-facts">
-            <div class="software-fact"><div class="v">30e/20o</div><div class="k">Active space</div></div>
-            <div class="software-fact"><div class="v">4000</div><div class="k">DMRG bond dimension</div></div>
-            <div class="software-fact"><div class="v">2.607 µEh</div><div class="k">DMRG gap to Davidson</div></div>
-            <div class="software-fact"><div class="v">9.86×10⁻⁸</div><div class="k">Davidson residual (Eh)</div></div>
-          </div>
-          <div class="software-actions">
-            <a class="btn" href="https://github.com/MonitSharma/quantum_chemistry/tree/2fe2s" target="_blank" rel="noopener">2Fe–2S repository <span class="arr">↗</span></a>
-            <a class="btn btn-ghost" href="https://github.com/MonitSharma/quantum_chemistry/blob/2fe2s/research/2fe2s/RESULTS.md" target="_blank" rel="noopener">Results &amp; verification</a>
-            <a class="btn btn-ghost" href="https://quantum-advantage-tracker.github.io" target="_blank" rel="noopener">Tracker</a>
-          </div>
-        </div>
-      </div>
-      <div class="plot-grid plot-grid-recovery">
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/chemistry/energy_ladder.png" width="2027" height="925" alt="Classical 2Fe–2S variational energy offsets relative to the best checked Davidson state" loading="lazy"></div>
-          <figcaption>Classical energy ladder · comparison with external HCI and HI-VQE · <a href="assets/imgs/chemistry/energy_ladder.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/chemistry/convergence_to_final_energy.png" width="1697" height="846" alt="Direct saved-MPS energies across DMRG sweeps at bond dimensions 2000 and 4000" loading="lazy"></div>
-          <figcaption>DMRG sweep convergence · M=2000 and M=4000 · <a href="assets/imgs/chemistry/convergence_to_final_energy.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-        <div class="result-card">
-          <div>
-            <h3>Classical references, [2Fe–2S]</h3>
-            <p class="result-note">All values below are explicit variational-state energies in Eh. The Davidson result is a one-sided upper bound: its 10⁻⁸ Eh residual target was not reached, so it is not an exact ground-state energy or a two-sided FCI error bound. The M=4000 DMRG run recorded two stable cycles; a fresh-process replay of its final checkpoint is not recorded.</p>
-          </div>
-          <div class="result-table-scroll">
-          <table class="result-table" aria-label="Updated 2Fe–2S classical energy comparison">
-            <thead><tr><th>Method</th><th>Energy (Eh)</th><th>Gap to Davidson (µEh)</th><th>Evidence</th></tr></thead>
-            <tbody>
-              <tr><td><b>Full-space Davidson, Phase B</b></td><td><b>−116.605609120429</b></td><td><b>0</b></td><td>Independent vector checks; residual 9.86×10⁻⁸ Eh</td></tr>
-              <tr><td>Block2 DMRG, M=4000</td><td>−116.605606513308</td><td>2.607</td><td>10 sweeps; discarded weight 2.76×10⁻⁷</td></tr>
-              <tr><td>Block2 DMRG, M=2000</td><td>−116.605540903472</td><td>68.217</td><td>24 sweeps; fresh-process replays passed</td></tr>
-              <tr><td>External HCI reference</td><td>−116.605425000000</td><td>184.120</td><td>Accepted QAT reference, issue #187</td></tr>
-            </tbody>
-          </table>
-          </div>
-          <p class="result-note">Phase B used 2.02 hours and 128.7 GiB peak RSS on 64 threads; DMRG M=4000 used 3.59 hours and 183.3 GiB on 36 threads. The tested quantum-sampling, core-embedding, and residual-informed proposals have not demonstrated an advantage over matched classical controls.</p>
-        </div>
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/chemistry/davidson_phase_b_progress.png" width="1482" height="1093" alt="Davidson Phase B explicit-vector energy and residual across recorded updates" loading="lazy"></div>
-          <figcaption>Davidson continuation · residual reduced sevenfold; target not reached · <a href="assets/imgs/chemistry/davidson_phase_b_progress.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/chemistry/quantum_best_result.png" width="1804" height="674" alt="Best local quantum-sampled recovery compared with Davidson and external HCI and HI-VQE results" loading="lazy"></div>
-          <figcaption>Quantum and hybrid exploration · tested local recovery remains above classical references · <a href="assets/imgs/chemistry/quantum_best_result.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-      </div>
-    </div>
-    <div class="software-project" id="classiq-hackathon">
-      <div class="software-head">
-        <div>
-          <div class="software-kicker">Classiq Hackathon · 2026 Quantum Circuit Challenge</div>
-          <h2 class="software-title">Classiq Logo Phase Oracle</h2>
-        </div>
-        <div>
-          <p class="software-copy">My entry implements a phase oracle for a <b>64 × 64 Classiq logo</b> using 18 qubits: 12 coordinate qubits and six clean ancillas. Exploiting just <b>11 distinct row and column patterns</b>, I compressed the image into class codes, applied a 63-term phase polynomial, then uncomputed the loaders. Optimizing the loader–kernel interface with ready-time scheduling, beam search, MILP, and local resynthesis reduced circuit depth from <b>5,329 to 111</b> and CX count from <b>3,502 to 557</b>.</p>
-          <div class="software-facts">
-            <div class="software-fact"><div class="v">111</div><div class="k">Final circuit depth</div></div>
-            <div class="software-fact"><div class="v">557</div><div class="k">CX gates</div></div>
-            <div class="software-fact"><div class="v">18</div><div class="k">Qubits</div></div>
-            <div class="software-fact"><div class="v">4096/4096</div><div class="k">Valid inputs verified</div></div>
-          </div>
-          <div class="software-actions">
-            <a class="btn" href="https://github.com/MonitSharma/classiq" target="_blank" rel="noopener">Repository <span class="arr">↗</span></a>
-            <a class="btn btn-ghost" href="https://github.com/MonitSharma/classiq/blob/main/docs/technical-report.md" target="_blank" rel="noopener">Technical report</a>
-          </div>
-        </div>
-      </div>
-      <div class="plot-grid plot-grid-recovery">
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/classiq/fig5_progress.png" width="1917" height="811" alt="Circuit optimization history from baseline depth 5329 to final depth 111, with CX gate counts" loading="lazy"></div>
-          <figcaption>Optimization history · architectural changes and final gate reductions · <a href="assets/imgs/classiq/fig5_progress.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/classiq/fig2_pipeline.png" width="2049" height="605" alt="Classiq phase-oracle construction with coordinate class-code loaders, phase kernel and inverse loaders" loading="lazy"></div>
-          <figcaption>Circuit architecture · compute class codes, apply phase, uncompute · <a href="assets/imgs/classiq/fig2_pipeline.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-        <div class="result-card">
-          <div><h3>Exhaustively verified submission</h3><p class="result-note">The final circuit uses 557 CX and 423 U3 gates. A NumPy state-propagation verifier checked every valid input |x, y, 0⁶⟩: the expected sign, a common global phase, unchanged coordinates, and all six ancillas restored to zero. The largest numerical error was 5.57×10⁻¹⁴. The result measures circuit synthesis and numerical verification.</p></div>
-          <div class="result-table-scroll">
-          <table class="result-table" aria-label="Classiq circuit baseline and final submission comparison">
-            <thead><tr><th>Circuit</th><th>Depth</th><th>CX gates</th><th>U3 gates</th></tr></thead>
-            <tbody><tr><td>Challenge baseline</td><td>5,329</td><td>3,502</td><td>—</td></tr><tr><td><b>Final submission</b></td><td><b>111</b></td><td><b>557</b></td><td><b>423</b></td></tr></tbody>
-          </table>
-          </div>
-          <p class="result-note">The hackathon page now requires access. The repository and technical report preserve the construction and verification evidence. Depth 111 is the best completed construction in this work, not a general lower bound.</p>
-        </div>
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/classiq/fig3_schedule.png" width="2087" height="1062" alt="Final depth-111 circuit schedule across coordinate and ancilla wires" loading="lazy"></div>
-          <figcaption>Final schedule · loaders overlap with the phase kernel · <a href="assets/imgs/classiq/fig3_schedule.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-        <figure class="plot-card">
-          <div class="plot-frame"><img src="assets/imgs/classiq/fig6_verification.png" width="1996" height="706" alt="Exhaustive numerical verification of the phase oracle over all 4096 valid basis inputs" loading="lazy"></div>
-          <figcaption>Verification diagnostics · all valid inputs and clean ancillas · <a href="assets/imgs/classiq/fig6_verification.png" target="_blank" rel="noopener">Full resolution ↗</a></figcaption>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TEACHING -->
-<section class="section" id="teaching">
-  <div class="wrap">
-    <div class="eyebrow"><span class="num">05</span> Teaching</div>
-    <div class="course-grid">
-      <a class="course-card" href="https://monitsharma.github.io/Learn-Quantum-Computing-For-Free/" target="_blank" rel="noopener">
-        <span class="stars">148 ★</span>
-        <h3>Learn Quantum Computing for Free</h3>
-        <p>A complete, curated path of resources to learn quantum computing from scratch.</p>
-        <span class="read">Open course ↗</span>
-      </a>
-      <a class="course-card" href="https://monitsharma.github.io/Quantum-Machine-Learning-on-Near-Term-Quantum-Devices/" target="_blank" rel="noopener">
-        <span class="stars">115 ★</span>
-        <h3>QML on Near-Term Quantum Devices</h3>
-        <p>Projects and case studies running quantum machine learning on today's NISQ hardware.</p>
-        <span class="read">Open course ↗</span>
-      </a>
-      <a class="course-card" href="https://monitsharma.github.io/Learn-Quantum-Machine-Learning/" target="_blank" rel="noopener">
-        <span class="stars">85 ★</span>
-        <h3>Learn Quantum Machine Learning</h3>
-        <p>A guided introduction to getting started with quantum machine learning.</p>
-        <span class="read">Open course ↗</span>
-      </a>
-      <a class="course-card" href="https://monitsharma.github.io/Learn-Quantum-Computing-with-Qiskit/" target="_blank" rel="noopener">
-        <span class="stars">63 ★</span>
-        <h3>Learn QC with Qiskit</h3>
-        <p>Write and run quantum programs hands-on with IBM Qiskit.</p>
-        <span class="read">Open course ↗</span>
-      </a>
-      <a class="course-card" href="https://monitsharma.github.io/Quantum-Finance-and-Numerical-Methods/" target="_blank" rel="noopener">
-        <span class="stars">55 ★</span>
-        <h3>Quantum Finance</h3>
-        <p>Quantum computing in finance through hands-on, numerical labs.</p>
-        <span class="read">Open course ↗</span>
-      </a>
-      <a class="course-card" href="https://monitsharma.github.io/Numerical-Linear-Algebra/" target="_blank" rel="noopener">
-        <span class="stars">50 ★</span>
-        <h3>Numerical Linear Algebra</h3>
-        <p>Computational numerical linear algebra, from theory to working code.</p>
-        <span class="read">Open course ↗</span>
-      </a>
-    </div>
-    <p class="course-note">Six of the most-used courses. The full set also covers <b>Nielsen &amp; Chuang Solutions</b>, <b>LeetCode Solutions</b>, <b>Computational Physics</b>, <b>High-Energy Physics</b>, <b>QSVT linear solvers</b>, and GPU kernel practice with <b>LeetGPU Solutions</b> — all free at the <a href="https://monitsharma.github.io/" target="_blank" rel="noopener">Quantum Classroom ↗</a></p>
-  </div>
-</section>
-
-<!-- PUBLICATIONS -->
-<section class="section" id="publications">
-  <div class="wrap">
-    <div class="eyebrow"><span class="num">06</span> Publications</div>
-    {% include publications.html %}
-  </div>
-</section>
-
-<!-- BLOGS -->
-<section class="section" id="writing">
-  <div class="wrap">
-    <div class="eyebrow"><span class="num">07</span> Writing</div>
-    <div class="mono-label sub-label">Featured essays</div>
-    <div class="blog-grid">
-      <a class="blog-card" href="https://monitsharma.github.io/writing/quantum-optimization-on-real-hardware/index.html" target="_blank" rel="noopener">
-        <span class="bnum">N° 01 · 2026</span>
-        <h3>Quantum Optimization on Real Hardware</h3>
-        <p>What 247 experiments on IBM Heron revealed about standard and qubit-efficient quantum optimization workflows.</p>
-        <div class="btags"><span class="tag">Quantum Hardware</span><span class="tag">Optimization</span><span class="tag">Benchmarks</span></div>
-        <span class="read">Read the article ↗</span>
-      </a>
-      <a class="blog-card" href="https://medium.com/@_monitsharma/when-cooking-gas-becomes-a-national-security-problem-c47babcea911" target="_blank" rel="noopener">
-        <span class="bnum">N° 02 · 2026</span>
-        <h3>When Cooking Gas Becomes a National Security Problem</h3>
-        <p>A non-technical walkthrough of maritime energy resilience, chokepoint disruptions, and stochastic optimization for national supply networks.</p>
-        <div class="btags"><span class="tag">Energy Security</span><span class="tag">Maritime</span><span class="tag">Optimization</span></div>
-        <span class="read">Read on Medium ↗</span>
-      </a>
-      <a class="blog-card" href="https://medium.com/@_monitsharma/the-key-to-the-quantum-garden-indias-1-000-km-leap-into-un-hackable-communication-ab6277f0f98e" target="_blank" rel="noopener">
-        <span class="bnum">N° 03 · 2026</span>
-        <h3>The Key to the Quantum Garden</h3>
-        <p>India's 1,000 km quantum communication demonstration, what QKD changes, and why quantum security is becoming infrastructure.</p>
-        <div class="btags"><span class="tag">QKD</span><span class="tag">Quantum Security</span><span class="tag">India</span></div>
-        <span class="read">Read on Medium ↗</span>
-      </a>
-    </div>
-    <div class="mono-label sub-label">Series on Medium</div>
-    <div class="series-grid">
-      <a class="series-card" href="https://medium.com/@_monitsharma/list/quantum-factoring-8d25eddc0b4d" target="_blank" rel="noopener">
-        <span class="count">4 chapters · 2026</span>
-        <h3>Quantum Factoring</h3>
-        <p>A four-chapter arc on what quantum factoring can actually do — a 133/156-qubit run, honest metrics applied to every published Shor's result, what breaking RSA would really take, and the most ambitious resource estimate yet published.</p>
-        <span class="read">Read the series ↗</span>
-      </a>
-      <a class="series-card" href="https://medium.com/@_monitsharma/list/quantum-papers-explained-with-codes-0d2169569685" target="_blank" rel="noopener">
-        <span class="count">9 stories · 2025</span>
-        <h3>Quantum Papers Explained with Codes</h3>
-        <p>Landmark papers read alongside runnable code — quantum utility before fault tolerance, zero-noise extrapolation, quanvolutional networks, quantum volume, Grover mixers, and classically hard combinatorial benchmarks.</p>
-        <span class="read">Read the series ↗</span>
-      </a>
-      <a class="series-card" href="https://medium.com/@_monitsharma/list/quantum-algorithms-de108f8b1e0b" target="_blank" rel="noopener">
-        <span class="count">6 lectures · 2023</span>
-        <h3>Quantum Algorithms</h3>
-        <p>The algorithm core, implemented in Qiskit: Deutsch–Jozsa, Bernstein–Vazirani, Simon, the quantum Fourier transform, phase estimation, and Shor.</p>
-        <span class="read">Read the series ↗</span>
-      </a>
-      <a class="series-card" href="https://medium.com/@_monitsharma/list/introduction-to-quantum-computing-with-qiskit-6caba64cc007" target="_blank" rel="noopener">
-        <span class="count">18 lectures · 2023</span>
-        <h3>Introduction to Quantum Computing with Qiskit</h3>
-        <p>The full eighteen-part lecture course, from installing Qiskit to running Shor's algorithm — every lecture paired with working code.</p>
-        <span class="read">Read the series ↗</span>
-      </a>
-      <a class="series-card" href="https://medium.com/@_monitsharma/list/computational-physics-and-scientific-programming-f8d4b52726ba" target="_blank" rel="noopener">
-        <span class="count">22 lectures · 2023</span>
-        <h3>Computational Physics and Scientific Programming</h3>
-        <p>Twenty-two lectures building a computational physicist's toolkit in Python — ODEs and PDEs, Fourier methods, random numbers, Bayesian inference, optimisation, and the Ising model.</p>
-        <span class="read">Read the series ↗</span>
-      </a>
-      <a class="series-card" href="https://medium.com/@_monitsharma/list/computational-linear-algebra-c25866dd2935" target="_blank" rel="noopener">
-        <span class="count">15 lectures · 2023</span>
-        <h3>Computational Linear Algebra</h3>
-        <p>Fifteen lectures on the linear algebra underneath data science — matrix decompositions, NMF and SVD topic modelling, compressed sensing for CT scans, and linear regression.</p>
-        <span class="read">Read the series ↗</span>
-      </a>
-      <a class="series-card" href="https://medium.com/@_monitsharma/list/ibm-quantum-challenges-a4c03faa5b72" target="_blank" rel="noopener">
-        <span class="count">5 labs · 2023</span>
-        <h3>IBM Quantum Challenges</h3>
-        <p>Worked solutions to all five labs of the IBM Quantum Challenge Spring 2023, from basic circuits through to the final challenge.</p>
-        <span class="read">Read the series ↗</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section class="section" id="education">
-  <div class="wrap">
-    <div class="eyebrow"><span class="num">08</span> Education</div>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <div class="yr">June 2022</div>
-        <h3>M.S., Physics &amp; Data Science</h3>
-        <div class="uni">Indian Institute of Science Education and Research, Mohali</div>
-      </div>
-      <div class="edu-card">
-        <div class="yr">June 2020</div>
-        <h3>B.S., Physics &amp; Data Science</h3>
-        <div class="uni">Indian Institute of Science Education and Research, Mohali</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <div class="wrap-narrow contact-inner">
-    <div class="eyebrow" style="justify-content:center"><span class="num">09</span> Contact</div>
-    <h2>Let's talk quantum<br> &amp; AI systems. <a href="mailto:monitsharma437@gmail.com">Say hello ↗</a></h2>
-    <p>Open to research collaborations, talks, and hard problems across quantum computing, algorithms, agents, and scientific AI.</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="site-foot">
-  <div class="wrap foot-grid">
-    <div>
-      <div class="brand" style="margin-bottom:14px"><span class="dot"></span><span class="name">Monit Sharma</span></div>
-      <div class="foot-fine">Research Engineer · Singapore Management University</div>
-    </div>
-    <div class="foot-soc">
-      <a href="mailto:monitsharma437@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/monitsharma/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
-      <a href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://medium.com/@_monitsharma" target="_blank" rel="noopener">Medium</a>
-      <a href="https://monitsharma.github.io/">Quantum Classroom</a>
-    </div>
-  </div>
-  <div class="wrap" style="margin-top:36px"><div class="foot-fine">© 2026 Monit Sharma — Designed as a connected system.</div></div>
-</footer>
-
+<noscript><style>#publication-list .paper[hidden]{display:grid}.publication-controls{display:none}</style></noscript>
 <script>
-  // shared light/dark mode with the Quantum Classroom and writing pages
-  const root = document.documentElement;
-  const themeToggle = document.querySelector('[data-theme-toggle]');
-  if (themeToggle) {
-    themeToggle.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
-    themeToggle.addEventListener('click', () => {
-      const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-      root.dataset.theme = nextTheme;
-      localStorage.setItem('writing-theme', nextTheme);
-      themeToggle.setAttribute('aria-pressed', String(nextTheme === 'dark'));
-    });
-  }
-  // reveal on scroll
-  const io = new IntersectionObserver((es) => {
-    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.section, .hero-grid, .metrics').forEach(el => { el.classList.add('reveal'); io.observe(el); });
-  // failsafe: ensure everything resolves visible even if observer is missed
-  setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in')), 1400);
-
-  document.querySelectorAll('a[target="_blank"]').forEach(link => {
-    try {
-      if (new URL(link.href, location.href).origin === location.origin) {
-        link.removeAttribute('target');
-        link.removeAttribute('rel');
-      }
-    } catch (error) { /* keep malformed external links unchanged */ }
-  });
-
-  // publications toggle
-  const tog = document.getElementById('pubToggle');
-  if (tog) tog.addEventListener('click', () => {
-    const hidden = document.querySelectorAll('.pub-hidden');
-    const expanded = tog.getAttribute('data-open') === '1';
-    hidden.forEach(h => h.classList.toggle('show', !expanded));
-    tog.setAttribute('data-open', expanded ? '0' : '1');
-    tog.setAttribute('aria-expanded', String(!expanded));
-    tog.innerHTML = expanded ? `Show all ${tog.dataset.count} preprints <span class="arr" aria-hidden="true">↓</span>` : 'Show fewer <span class="arr">↑</span>';
-  });
+const filterButtons = document.querySelectorAll('[data-filter]');
+const projectCards = [...document.querySelectorAll('.project')];
+filterButtons.forEach(button => button.addEventListener('click', () => {
+  filterButtons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+  projectCards.forEach(project => {project.hidden = button.dataset.filter !== 'all' && project.dataset.type !== button.dataset.filter;});
+  const count = projectCards.filter(project => !project.hidden).length;
+  document.querySelector('#filter-status').textContent = `Showing ${count} ${count === 1 ? 'project' : 'projects'}${button.dataset.filter === 'all' ? '' : ' · ' + button.textContent}`;
+}));
+const papers = [...document.querySelectorAll('#publication-list .paper')];
+const morePapers = document.querySelector('#more-papers');
+const fewerPapers = document.querySelector('#fewer-papers');
+function updatePapers() {const count=papers.filter(p=>!p.hidden).length;morePapers.hidden=count===papers.length;fewerPapers.hidden=count<=3;morePapers.textContent=`Show ${Math.min(3,papers.length-count)} more papers ↓`;document.querySelector('#paper-status').textContent=`Showing ${count} of ${papers.length} papers`;}
+morePapers.addEventListener('click',()=>{papers.filter(p=>p.hidden).slice(0,3).forEach(p=>p.hidden=false);updatePapers();if(morePapers.hidden)fewerPapers.focus({preventScroll:true});});
+fewerPapers.addEventListener('click',()=>{papers.forEach((p,i)=>p.hidden=i>=3);updatePapers();morePapers.focus({preventScroll:true});});
+if(navigator.connection?.saveData!==true){const prefetched=new Set();function warmProject(event){const href=event.currentTarget.href;if(prefetched.has(href))return;prefetched.add(href);const hint=document.createElement('link');hint.rel='prefetch';hint.href=href;document.head.append(hint);}projectCards.forEach(card=>{card.addEventListener('pointerenter',warmProject,{once:true});card.addEventListener('focus',warmProject,{once:true});});}
+const navLinks = document.querySelectorAll('.side-nav a');
+const chapters = [...navLinks].map(link => document.querySelector(link.getAttribute('href')));
+function updateChapter() {let current = chapters[0]; chapters.forEach(chapter => {if(chapter.getBoundingClientRect().top < innerHeight*.38) current = chapter;});navLinks.forEach(link => {if(link.getAttribute('href') === '#' + current.id) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current');});}
+let chapterFramePending = false;
+window.addEventListener('scroll', () => {if (!chapterFramePending) {chapterFramePending = true; requestAnimationFrame(() => {updateChapter(); chapterFramePending = false;});}}, {passive:true});updateChapter();
 </script>
 </body>
 </html>

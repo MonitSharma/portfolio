@@ -1,0 +1,621 @@
+---
+- title: MettleQ
+  category: Scientific software
+  type: software
+  summary: Local quantum-circuit simulation on Apple Silicon, with Qiskit and PennyLane
+    integrations and reproducible CPU/GPU benchmarks.
+  metric: 1.16× / 8.37×
+  metric_label: vs. Aer / Lightning CPU · 20 qubits
+  url: https://monitsharma.github.io/MettleQ/
+  code: https://github.com/MonitSharma/MettleQ
+  detail: MettleQ brings quantum simulation to the Apple GPU through familiar Qiskit
+    and PennyLane interfaces. It combines exact statevectors, bounded matrix-product
+    states, MLX, and custom Metal kernels, with memory checks before execution.
+  figures:
+  - src: assets/imgs/mettleq/sdk_final_crossover.png
+    caption: Full-state SDK crossover · final run on Apple M3 Pro
+    alt: Full-state SDK crossover · final run on Apple M3 Pro
+    width: 2466
+    height: 1596
+    insight: 'The crossover plot compares complete SDK calls. Read ratios together
+      with width and numerical error: a faster call is useful only when the returned
+      state also satisfies the accuracy check.'
+  - src: assets/imgs/mettleq/apple_mps_cpu_gpu.png
+    alt: Apple CPU/GPU · MPS contraction and residency
+    caption: Apple CPU/GPU · MPS contraction and residency
+    insight: This microbenchmark compares CPU contraction, GPU-resident contraction,
+      GPU readback, and CPU SVD across bond dimensions. At these sizes NumPy contraction
+      is faster; SVD becomes the dominant cost. It is distinct from the full-state
+      SDK benchmark above.
+    width: 1584
+    height: 936
+  - src: assets/imgs/mettleq/apple_cuda_matched.png
+    alt: Apple M3 Pro vs CUDA-Q on RTX 3070 · matched widths
+    caption: Apple M3 Pro vs CUDA-Q on RTX 3070 · matched widths
+    insight: Both systems use the same six circuit families at 15–28 qubits with synchronized
+      complex64 full-state output. MettleQ wins all six comparisons at 15 and 20 qubits;
+      CUDA-Q is faster on all six at 28 qubits. This is a cross-machine comparison,
+      not a claim about equivalent hardware.
+    width: 2556
+    height: 1530
+  - src: assets/imgs/mettleq/all_backends_matched.png
+    alt: Apple Metal and Windows CPU/GPU backends · matched widths
+    caption: Apple Metal and Windows CPU/GPU backends · matched widths
+    insight: The all-backend view includes CUDA-Q, Lightning GPU, Aer CPU, and Lightning
+      CPU on the Windows machine. Compare like-for-like circuit widths and full-state
+      contracts. The results are frozen on the MettleQ development branch.
+    width: 2556
+    height: 1512
+  slug: mettleq
+  page: "/work/mettleq/"
+  source_url: https://github.com/MonitSharma/MettleQ/tree/main/bench/runs/20260718-adaptive-final
+  source_label: Read the benchmark record
+  code_url: https://github.com/MonitSharma/MettleQ
+  question: When does an Apple GPU become faster than the CPU backends already used
+    in quantum workflows?
+  findings:
+  - In the supplied final crossover run, the 20-qubit Qiskit full-state call took
+    32.95 ms on MettleQ GPU versus 38.28 ms on Aer CPU.
+  - The PennyLane full-state call took 19.29 ms on MettleQ GPU versus 161.52 ms on
+    Lightning CPU at 20 qubits.
+  - The GPU crossed Aer at 20 qubits and Lightning at 16 qubits in this measured workload.
+    Smaller circuits can favor the CPU.
+  method:
+  - Run the same depth-3 circuits on an Apple M3 Pro with 18 GPU cores and 36 GB RAM.
+  - Compare complete statevectors through each SDK adapter, with warm-up and repeated
+    timing. Disable Aer circuit truncation to preserve agreement with independent
+    references.
+  - Accept a row only after phase-aligned state error passes the 5×10⁻⁶ threshold.
+    The accepted rows had errors below 4.1×10⁻⁷.
+  boundary: These are measured full-state calls at 16–20 qubits, not a universal speedup
+    claim. CPU references use complex128; GPU correctness is assessed against the
+    stated numerical tolerance. The source checkout identifies MettleQ as alpha research
+    software.
+  table:
+    caption: Apple M3 Pro · depth 3 · CPU time / GPU time; a ratio above 1 means GPU
+      was faster
+    columns:
+    - Qubits
+    - Aer / MettleQ
+    - Lightning / MettleQ
+    rows:
+    - - '16'
+      - 0.234×
+      - 1.453×
+    - - '18'
+      - 0.801×
+      - 3.488×
+    - - '20'
+      - 1.162×
+      - 8.371×
+  resources:
+  - label: Source code & SDK examples
+    url: https://github.com/MonitSharma/MettleQ
+  - label: Raw timing and accuracy CSV
+    url: https://github.com/MonitSharma/MettleQ/blob/main/bench/runs/20260718-adaptive-final/results.csv
+  - label: Apple/NVIDIA benchmark contracts & data
+    url: https://github.com/MonitSharma/MettleQ/tree/development/windows_baseline
+  explanation:
+  - title: An SDK-first simulator
+    text: The goal is to keep existing quantum workflows usable while changing the
+      execution engine underneath them. A Qiskit BackendV2 and registered PennyLane
+      devices expose the simulator through each library’s normal circuit and result
+      interfaces. Adaptive devices can select a CPU or Apple-GPU path based on the
+      circuit, precision, and available memory.
+  - title: Choosing the right simulation contract
+    text: 'An exact statevector stores every amplitude, so its memory cost grows exponentially
+      with qubit count. Matrix-product states offer a different tradeoff: their useful
+      range depends on entanglement and the allowed bond dimension. Asking an MPS
+      backend to materialize a complete dense state removes much of that advantage,
+      which is why this benchmark states its full-state contract explicitly.'
+  - title: Apple and NVIDIA at matched circuit widths
+    text: The comparison record runs six circuit families at 15, 20, 24, 26, and 28
+      qubits on M3 Pro Metal and an RTX 3070 under Windows/WSL. Each uses one warm-up
+      and three measured repetitions. The small-width results favor MettleQ, while
+      CUDA-Q wins at 28 qubits; launch overhead and circuit structure affect the crossover.
+      These are separate machines, and the full-state contract should be kept in view.
+- title: Quantum Chemistry
+  category: Strongly correlated electrons
+  type: research
+  summary: Classical variational references for the 2Fe–2S cluster, used to evaluate
+    quantum and hybrid sampling methods.
+  metric: 30e / 20o
+  metric_label: active space · 240 million fixed-spin determinants
+  url: https://github.com/MonitSharma/quantum_chemistry/tree/2fe2s
+  code: https://github.com/MonitSharma/quantum_chemistry/blob/2fe2s/research/2fe2s/RESULTS.md
+  detail: The checked full-space Davidson state reaches −116.605609120429 Eh, with
+    residual 9.86×10⁻⁸ Eh. Block2 DMRG at M=4000 is 2.607 µEh above that state. The
+    Davidson value is a one-sided variational upper bound; the residual target was
+    not reached. Tested quantum proposals have not demonstrated an advantage over
+    matched classical controls.
+  figures:
+  - src: assets/imgs/chemistry/energy_ladder.png
+    caption: Checked classical states and reported hybrid baselines
+    alt: Checked classical states and reported hybrid baselines
+    width: 2027
+    height: 925
+    insight: The energy ladder puts the gaps on a common scale. The external HCI and
+      HI-VQE entries are reported baselines, while the Davidson state was explicitly
+      rechecked in this work.
+  - src: assets/imgs/chemistry/davidson_phase_b_progress.png
+    caption: Davidson Phase B · residual and energy progress
+    alt: Davidson Phase B · residual and energy progress
+    width: 1482
+    height: 1093
+    insight: The residual tracks eigenstate quality during the Phase B refinement.
+      Its final value remains above the requested tolerance even though the energy
+      changes very little.
+  - src: assets/imgs/chemistry/convergence_to_final_energy.png
+    caption: Convergence relative to the final checked reference
+    alt: Convergence relative to the final checked reference
+    width: 1697
+    height: 846
+    insight: This view resolves the small changes near the final reference energy.
+      Use it alongside the residual rather than interpreting a flat energy trace as
+      proof of convergence.
+  - src: assets/imgs/chemistry/quantum_best_result.png
+    caption: Quantum proposals compared with classical controls
+    alt: Quantum proposals compared with classical controls
+    width: 1804
+    height: 674
+    insight: The quantum-proposal comparison is read against matched classical controls.
+      The tested proposals have not established an advantage under those comparisons.
+  slug: quantum-chemistry
+  page: "/work/quantum-chemistry/"
+  source_url: https://github.com/MonitSharma/quantum_chemistry/blob/2fe2s/research/2fe2s/RESULTS.md
+  source_label: Read the 2Fe–2S results
+  code_url: https://github.com/MonitSharma/quantum_chemistry/tree/2fe2s
+  question: How strong a classical reference can we build for a strongly correlated
+    iron–sulfur cluster before evaluating quantum proposals?
+  findings:
+  - The checked full-space Davidson state reaches −116.60560912042881 Eh with residual
+    9.8649×10⁻⁸ Eh.
+  - 'The state spans CAS(30e,20o): 40 spin orbitals and 240,374,016 fixed-spin determinants.'
+  - Direct and reduced-density-matrix energy evaluations agree to 3.98×10⁻¹³ Eh; the
+    checked spin expectation is approximately 5.96×10⁻¹¹.
+  method:
+  - Build and check the Hamiltonian in the fixed-spin active space.
+  - Compare independently checked full-space Davidson states with block2 DMRG and
+    reported external baselines.
+  - Replay explicit vectors and evaluate residuals, norm, spin, and direct/RDM energy
+    agreement. Test quantum proposals against matched classical controls.
+  boundary: The Davidson energy is a one-sided variational upper bound. Phase B stopped
+    at linear dependence after 72 updates and did not meet the 10⁻⁸ residual target.
+    The M=4000 DMRG result has no recorded fresh-process replay. The tested quantum
+    proposals have not demonstrated a matched classical advantage.
+  table:
+    caption: Energy gap relative to the checked Phase B Davidson state
+    columns:
+    - State
+    - Energy (Eh)
+    - Gap (µEh)
+    rows:
+    - - Davidson Phase B
+      - "−116.60560912042881"
+      - '0'
+    - - DMRG M=4000
+      - "−116.60560651330825"
+      - '2.607'
+    - - DMRG M=2000
+      - "−116.60554090347244"
+      - '68.217'
+    - - 'External HCI / QAT #187'
+      - "−116.605425"
+      - '184.120'
+    - - 'External HI-VQE / QAT #114'
+      - "−116.6046821"
+      - '927.020'
+  resources:
+  - label: 2Fe–2S branch & reproduction instructions
+    url: https://github.com/MonitSharma/quantum_chemistry/tree/2fe2s
+  - label: Detailed scientific results
+    url: https://github.com/MonitSharma/quantum_chemistry/blob/2fe2s/research/2fe2s/RESULTS.md
+  explanation:
+  - title: Why this cluster is a demanding benchmark
+    text: Iron–sulfur clusters contain strongly interacting electrons, making them
+      useful tests of electronic-structure methods. Here the active space contains
+      30 electrons in 20 spatial orbitals. Even after fixing the spin sector, the
+      explicit determinant space contains more than 240 million states, so both numerical
+      correctness and computational resources matter.
+  - title: Energy alone is not enough
+    text: A variational energy gives an upper bound, but a very small energy change
+      does not guarantee that an eigenstate is fully converged. The residual checks
+      how closely the explicit state satisfies the eigenvalue equation. Comparing
+      it with norm, spin, and independently evaluated energies makes the quality of
+      the reference easier to assess before judging a quantum proposal.
+- title: The Atelier Lab
+  category: Local AI research
+  type: software
+  summary: A local research workbench for reading papers, grounded questions, scientific
+    tools, and verified code changes.
+  metric: 17/18 · 13/13
+  metric_label: knowledge answers / code tasks · small frozen suites
+  url: https://monitsharma.github.io/The-Atelier-Lab/
+  code: https://github.com/MonitSharma/The-Atelier-Lab
+  detail: Atelier gives a single interface to a local document library, hybrid retrieval,
+    model routing, guarded repository tools, deterministic scientific tools, and durable
+    memory. A separate foundation track explores language models from first principles.
+  figures:
+  - src: assets/imgs/atelier/atelier-workflow.svg
+    caption: The research workbench · ingest, retrieve, act, verify
+    alt: The research workbench · ingest, retrieve, act, verify
+    width: 1200
+    height: 700
+    insight: The workflow connects document ingestion with retrieval, grounded reasoning,
+      tools, and verification. It shows where evidence and checks enter the daily
+      research loop.
+  - src: assets/imgs/atelier/atelier-build-loop.svg
+    caption: Build mode · inspect, edit, test, review
+    alt: Build mode · inspect, edit, test, review
+    width: 1200
+    height: 700
+    insight: The build loop makes inspection, edits, and tests distinct steps. Its
+      output includes reviewable changes and a verification record rather than only
+      a model’s claim that a task succeeded.
+  - src: assets/imgs/atelier/atelier-model-stack.svg
+    caption: Local model and tool architecture
+    alt: Local model and tool architecture
+    width: 1200
+    height: 700
+    insight: The model stack separates routing, retrieval, and specialist tools. This
+      allows capabilities and latency to be investigated as components instead of
+      treating every task as a single large-model call.
+  slug: atelier-lab
+  page: "/work/atelier-lab/"
+  source_url: https://github.com/MonitSharma/The-Atelier-Lab/blob/main/docs/CURRENT_RESULTS.md
+  source_label: Read the current results
+  code_url: https://github.com/MonitSharma/The-Atelier-Lab
+  question: How much reliable research capability can one person obtain from local
+    models under fixed memory, latency, and compute constraints?
+  findings:
+  - The latest expanded reports record 17/18 knowledge answers correct, 13/13 code
+    tasks solved, and 10/10 combined tasks solved.
+  - Local Q4_K_M inference on an M3 Pro with 36 GB RAM measures 39.3 tok/s for qwen3:4b,
+    11.5 tok/s for qwen3:14b, and 27.9 tok/s for gemma4:26b.
+  - Historical nanochat runs compare 73.5M and 286.2M parameter models at 5,000 steps.
+    The larger model improves validation BPB while reducing throughput.
+  method:
+  - Ingest documents and source code into a local library with page-aware extraction.
+  - Retrieve semantic and lexical evidence, route the task to a local model, and retain
+    citations and workflow traces.
+  - Verify build tasks with tests and diff review; keep scientific inspection and
+    optimization validation deterministic.
+  boundary: The evaluation suites are modest, frozen, and mostly single-file; they
+    do not establish repository-scale reliability. The foundation numbers describe
+    historical nanochat runs, not the educational minillm implementation. This preview
+    also reflects the newer local workbench documentation.
+  table:
+    caption: Historical nanochat baselines · 5,000 steps · lower BPB is better
+    columns:
+    - Parameters
+    - Throughput (tok/s)
+    - Validation BPB
+    rows:
+    - - 73.5M
+      - "≈18,700"
+      - '1.1664'
+    - - 286.2M
+      - "≈4,470"
+      - '1.0954'
+  resources:
+  - label: Workbench & installation guide
+    url: https://github.com/MonitSharma/The-Atelier-Lab
+  - label: Experiment registry
+    url: https://github.com/MonitSharma/The-Atelier-Lab/tree/main/foundation/experiments
+  explanation:
+  - title: A workbench organized around evidence
+    text: The daily loop starts with a local library of papers, notes, and code. Semantic
+      retrieval finds related ideas, while lexical retrieval preserves exact names
+      and terms. The resulting context supports grounded questions and paper analysis;
+      citations and workflow traces let the researcher return to the evidence behind
+      an answer.
+  - title: From an answer to a verified action
+    text: Build mode extends this loop to repository inspection, constrained edits,
+      tests, and diff review. Scientific tools provide deterministic circuit inspection
+      and optimization checks alongside language-model reasoning. Model training,
+      inference benchmarks, and the educational implementation remain separate research
+      tracks so their results are not conflated.
+- title: Peaked Circuit Recovery
+  category: BlueQubit competition
+  type: challenge
+  summary: Recovering the P11 and P12 98-qubit circuit answers from Quantinuum Helios-1
+    samples, with an auditable decoding pipeline.
+  metric: "#1 · 2570/2570"
+  metric_label: BlueQubit Peaked Portal leaderboard
+  url: https://github.com/MonitSharma/peaked_circuits
+  code: https://app.bluequbit.io/hackathons/oEOtLSSrPSVH60Ah?tab=leaderboard
+  detail: The current research record focuses on P11 and P12. Both answers were externally
+    accepted by the BlueQubit portal. Raw provider records, structural framing repairs,
+    canonical shots, recovery reports, timing, and checksums make the result independently
+    reviewable.
+  figures:
+  - src: assets/imgs/peaked/p11_frequency_and_distance.png
+    alt: P11 98-qubit recovery diagnostics, shot frequencies and bitstring agreement
+    caption: P11 · 98 qubits · 50 shots
+    width: 2839
+    height: 1951
+    insight: P11’s 50 corrected shots include a broad distribution of exact strings.
+      Frequency, Hamming distance, and per-bit agreement reveal the structure used
+      by the target-blind decoders.
+  - src: assets/imgs/peaked/p12_frequency_and_distance.png
+    alt: P12 98-qubit recovery diagnostics, shot frequencies and bitstring agreement
+    caption: P12 · 98 qubits · 200 shots
+    width: 2839
+    height: 1951
+    insight: P12 uses 200 reconstructed shots after structural overlap repair. The
+      frequency view and bitwise agreement complement the agreement between the most
+      frequent string, medoid, and cluster consensus.
+  slug: peaked-circuits
+  page: "/work/peaked-circuits/"
+  source_url: https://github.com/MonitSharma/peaked_circuits
+  source_label: Read the recovery record
+  code_url: https://github.com/MonitSharma/peaked_circuits
+  question: Can deterministic decoding recover the accepted 98-bit answers from noisy
+    hardware samples?
+  findings:
+  - P11 used 50 analyzed shots and 282.98 HQC. The weighted observed medoid and cluster
+    consensus agreed on the accepted answer.
+  - P12 used 200 reconstructed shots and 1,373.4 HQC. The most frequent string, weighted
+    medoid, and cluster consensus agreed.
+  - 'The leaderboard records rank #1 and 2570/2570. It corroborates the accepted hackathon
+    submissions but does not attribute individual points to P11 or P12.'
+  method:
+  - 'Preserve raw provider output and metadata. Repair structural duplicate framing:
+    one duplicate in P11 and five overlap replicas in P12.'
+  - Canonicalize every valid 98-bit shot. No candidate-based or hidden-answer-based
+    shot filtering is used.
+  - Run target-blind weighted-medoid and cluster-consensus decoding, then retain candidates,
+    reports, figures, and SHA256 manifests.
+  boundary: Successful recovery of classically verifiable answers is not evidence
+    of quantum advantage. Hardware cost, classical decoding, and framing repairs are
+    reported separately. Earlier P1–P10 work remains in the repository archive.
+  table:
+    caption: Corrected active hardware datasets
+    columns:
+    - Circuit
+    - Qubits
+    - Analyzed shots
+    - Hardware cost
+    rows:
+    - - P11
+      - '98'
+      - '50'
+      - 282.98 HQC
+    - - P12
+      - '98'
+      - '200'
+      - 1,373.4 HQC
+  resources:
+  - label: P11 evidence package
+    url: https://github.com/MonitSharma/peaked_circuits/tree/main/results/tracker_submissions/p11
+  - label: P12 evidence package
+    url: https://github.com/MonitSharma/peaked_circuits/tree/main/results/tracker_submissions/p12
+  - label: Offline reproducibility guide
+    url: https://github.com/MonitSharma/peaked_circuits/blob/main/REPRODUCIBILITY_QUANTUM.md
+  - label: BlueQubit leaderboard
+    url: https://app.bluequbit.io/hackathons/oEOtLSSrPSVH60Ah?tab=leaderboard
+  explanation:
+  - title: Recovering a center from noisy samples
+    text: A peaked circuit concentrates its ideal output near a particular bitstring.
+      Hardware noise spreads the observations into a cloud of nearby strings, so the
+      most frequent exact sample may be an incomplete description. The weighted observed
+      medoid selects an actual sample that minimizes total Hamming distance to the
+      complete distribution; cluster consensus estimates the common bit at each position
+      in the dominant group.
+  - title: Keeping repairs separate from decoding
+    text: 'Provider framing problems are addressed before candidate recovery. The
+      original output is preserved, structural duplicates are documented, and all
+      corrected valid shots enter the analysis. This separation matters: repairing
+      repeated output segments is different from discarding shots because they disagree
+      with a desired answer. The P11 and P12 packages retain enough intermediate evidence
+      to audit that distinction offline.'
+- title: Classiq Logo Phase Oracle
+  category: Classiq Quantum Circuit Challenge
+  type: challenge
+  summary: An 18-qubit phase oracle exploiting the structure of a 64 × 64 logo, with
+    exhaustive numerical verification.
+  metric: 5329 → 111
+  metric_label: circuit depth · 557 CX gates in the final submission
+  url: https://github.com/MonitSharma/classiq
+  code: https://github.com/MonitSharma/classiq/blob/main/docs/technical-report.md
+  detail: Class-code loaders, a 63-term phase polynomial, and ready-time scheduling
+    reduced the circuit to depth 111, with 557 CX and 423 U3 gates. All 4,096 valid
+    inputs passed verification; six ancillas returned to zero. The largest numerical
+    error was 5.57×10⁻¹⁴. Depth 111 is the best completed construction here, not a
+    general lower bound.
+  figures:
+  - src: assets/imgs/classiq/fig2_pipeline.png
+    caption: Class-code loaders, phase polynomial, and uncomputation
+    alt: Class-code loaders, phase polynomial, and uncomputation
+    width: 2049
+    height: 605
+    insight: The pipeline makes the load–phase–uncompute structure explicit. Cleaning
+      the ancillary register is part of implementing the intended oracle.
+  - src: assets/imgs/classiq/fig5_progress.png
+    caption: Depth and gate-count optimization history
+    alt: Depth and gate-count optimization history
+    width: 1917
+    height: 811
+    insight: The optimization history shows depth and gate count changing together.
+      The final depth of 111 is a completed construction, not a proof that shallower
+      circuits are impossible.
+  - src: assets/imgs/classiq/fig3_schedule.png
+    caption: Ready-time circuit scheduling
+    alt: Ready-time circuit scheduling
+    width: 2087
+    height: 1062
+    insight: The schedule shows how operations are arranged around dependency and
+      ready-time constraints. This is why two circuits with similar gate counts can
+      have different depths.
+  - src: assets/imgs/classiq/fig6_verification.png
+    caption: Exhaustive phase-oracle verification
+    alt: Exhaustive phase-oracle verification
+    width: 1996
+    height: 706
+    insight: Verification covers all valid inputs and checks both phase behavior and
+      ancillary cleanup. The reported numerical error is measured up to a common global
+      phase.
+  slug: classiq
+  page: "/work/classiq/"
+  source_url: https://github.com/MonitSharma/classiq/blob/main/docs/technical-report.md
+  source_label: Read the technical report
+  code_url: https://github.com/MonitSharma/classiq
+  question: How much circuit depth can be removed by exploiting the structure of a
+    binary logo rather than synthesizing every pixel independently?
+  findings:
+  - The completed circuit reduces depth from 5,329 to 111, with 557 CX gates and 423
+    U3 gates.
+  - All 4,096 valid inputs pass exhaustive numerical verification with maximum error
+    5.57×10⁻¹⁴.
+  - Six ancillas return to zero, and the target phase oracle is reproduced up to a
+    common global phase.
+  method:
+  - Compress 11 distinct row and column patterns into four-bit class codes.
+  - Load the class codes, apply a 63-term phase polynomial, then uncompute the loaders.
+  - Use ready-time scheduling and interface optimization to reduce depth; verify the
+    final 18-qubit U3/CX construction exhaustively.
+  boundary: Depth 111 is the best completed construction in the record, not a general
+    lower bound. The depth-110 search did not produce a successful construction. The
+    public repository supplies the result even though the hackathon page is protected.
+  table:
+    caption: Final submission compared with the starting construction
+    columns:
+    - Measurement
+    - Baseline
+    - Final
+    rows:
+    - - Circuit depth
+      - '5,329'
+      - '111'
+    - - CX gates
+      - '3,502'
+      - '557'
+    - - Verified inputs
+      - "—"
+      - 4,096 / 4,096
+  resources:
+  - label: Source & final submission
+    url: https://github.com/MonitSharma/classiq
+  - label: Verified circuit records
+    url: https://github.com/MonitSharma/classiq/blob/main/results/verified_circuits.csv
+  explanation:
+  - title: Using the logo’s structure
+    text: 'The oracle must assign the required phase to each of the 4,096 pixels of
+      a 64 × 64 image while cleaning up its work qubits. Rather than treating every
+      pixel independently, the construction uses the repeated row and column patterns:
+      11 classes can each be represented by a four-bit code. This reduces the structure
+      that the central phase operation has to encode.'
+  - title: Optimizing the interfaces as well as the gates
+    text: 'The circuit loads class codes, applies a 63-term phase polynomial, and
+      reverses the loading computation. Gate count alone does not determine depth:
+      the arrival time of each signal and the dependencies between operations also
+      affect the schedule. Ready-time scheduling and loader/phase interfaces therefore
+      form part of the optimization, followed by exhaustive verification of the completed
+      circuit.'
+- slug: qsvt-linear-solvers
+  page: "/work/qsvt-linear-solvers/"
+  title: QSVT Linear Solvers
+  category: Quantum scientific computing
+  type: research
+  summary: A quantum linear-system solver built from primitives, tested on IBM and
+    Quantinuum hardware, and compared with classical solvers.
+  metric: 2 vendors
+  metric_label: hardware validation · explicit classical baselines
+  code_url: https://github.com/MonitSharma/qsvt-linear-solvers
+  source_url: https://github.com/MonitSharma/qsvt-linear-solvers/blob/main/README.md
+  source_label: Read the findings
+  question: What actually limits a quantum linear solver on the matrices used inside
+    computational fluid dynamics?
+  detail: QSVT approximates matrix inversion with a bounded polynomial applied to
+    a block-encoding. This project checks each layer against ordinary linear algebra,
+    runs a small solve on two hardware platforms, and measures the classical baseline
+    on the same matrix families.
+  findings:
+  - For the 2×2 hardware solve, IBM Kingston measured 11.4% solution probability against
+    an 11.9% noiseless ideal; its 95% interval includes the ideal.
+  - Quantinuum Helios-1 measured 7.9%, with a 95% interval of 5.8–10.7%. The 3.2σ
+    discrepancy is not explained by shot noise alone.
+  - On the CFD benchmark, even the smallest 16×16 matrix requires polynomial degree
+    11,357 under the reported cost model. All four classical systems solve in under
+    1.4 ms.
+  method:
+  - Build block-encoding and polynomial approximation from primitives, checking simulated
+    solutions against NumPy.
+  - Report hardware probabilities with 95% Wilson confidence intervals, including
+    post-selection counts.
+  - Reproduce the open Rolls-Royce CFD matrix spectra, estimate polynomial and gate
+    costs, and measure sparse-LU baselines.
+  boundary: This is a correctness and toolchain demonstration, not a quantum advantage
+    result. Circuit depth and conditioning remain the binding constraints. CFD resource
+    counts are estimates rather than executed hardware runs; the Helios discrepancy
+    remains undiagnosed.
+  resources:
+  - label: Findings & limitations
+    url: https://github.com/MonitSharma/qsvt-linear-solvers/blob/main/LIMITATIONS.md
+  - label: Hardware evidence
+    url: https://github.com/MonitSharma/qsvt-linear-solvers/tree/main/hardware
+  - label: CFD analysis script
+    url: https://github.com/MonitSharma/qsvt-linear-solvers/blob/main/docs/cfd_analysis.py
+  table:
+    caption: 2×2 QSVT solve · probabilities conditional on post-selection
+    columns:
+    - Backend
+    - Shots / selected
+    - P(|1⟩)
+    - 95% interval
+    rows:
+    - - Noiseless ideal
+      - "—"
+      - 11.9%
+      - "—"
+    - - IBM Kingston
+      - 1,024 / 949
+      - 11.4%
+      - 9.5–13.6%
+    - - Helios-1
+      - 500 / 469
+      - 7.9%
+      - 5.8–10.7%
+    - - Helios emulator
+      - 100 / 98
+      - 17.3%
+      - 11.1–26.0%
+  figures:
+  - src: assets/imgs/qsvt/hardware_solution.png
+    caption: Hardware solution probabilities and confidence intervals
+    alt: Hardware solution probabilities and confidence intervals
+    width: 1923
+    height: 1002
+    insight: Confidence intervals distinguish shot uncertainty from disagreement with
+      the noiseless prediction. IBM’s interval includes the ideal probability; the
+      Helios-1 interval does not.
+  - src: assets/imgs/qsvt/qsvt_polynomial.png
+    caption: Polynomial approximation to the matrix inverse
+    alt: Polynomial approximation to the matrix inverse
+    width: 1902
+    height: 1006
+    insight: The polynomial must approximate the reciprocal on the permitted spectral
+      interval while remaining bounded. Conditioning controls how demanding that approximation
+      becomes.
+  - src: assets/imgs/qsvt/solver_convergence.png
+    caption: Simulated solver convergence against classical linear algebra
+    alt: Simulated solver convergence against classical linear algebra
+    width: 2203
+    height: 868
+    insight: The simulated convergence study tests the solver against classical linear
+      algebra. These checks establish numerical behavior of the toolchain, separate
+      from the hardware measurements.
+  explanation:
+  - title: Turning inversion into polynomial approximation
+    text: QSVT acts on a block-encoding of a matrix and applies a polynomial to its
+      singular values. Approximating the reciprocal implements the core of a linear
+      solve without reading out each eigenvalue. The project checks this chain against
+      ordinary linear algebra before using a small hardware experiment to test the
+      compiled toolchain.
+  - title: Why the CFD comparison changes the question
+    text: Pressure-correction solves appear repeatedly inside computational fluid
+      dynamics. Their matrices can be sparse yet poorly conditioned, and the polynomial
+      degree grows with the condition number. A modest qubit count therefore does
+      not imply an executable circuit. The measured classical baselines and resource
+      estimates point toward conditioning and usable preconditioners as the research
+      bottleneck.
