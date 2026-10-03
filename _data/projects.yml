@@ -514,7 +514,7 @@
       circuit.'
 - slug: qsvt-linear-solvers
   page: "/work/qsvt-linear-solvers/"
-  title: QSVT Linear Solvers
+  title: Quantum CFD
   category: Quantum scientific computing
   type: research
   summary: A quantum linear-system solver built from primitives, tested on IBM and

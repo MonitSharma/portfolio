@@ -4,7 +4,8 @@
   year: 2026
   category: conference
   selected: true
-  venue: IEEE QCE26 Quantum–GenAI Co-Design & Discovery (QGDD) Technical Paper
+  venue: IEEE QCE26 Quantum–GenAI Co-Design & Discovery (QGDD) Technical Paper ·
+    Presented September 2026, Toronto
   description:
     - Introduced an LLM-guided experimentation loop that searches adaptive
       solver-control policies for variational quantum optimization.
@@ -95,7 +96,8 @@
   year: 2026
   selected: true
   category: journal
-  venue: Quantum Science and Technology · Accepted 2026
+  venue: Quantum Science and Technology · Published September 2026
+  new: true
   description:
     - Benchmarked gate-based quantum optimization across MDKP, MIS, QAP, and MSP
       on IBM Heron processors under a common protocol.
@@ -119,6 +121,7 @@
   category: journal
   venue: "Transportation Research Part E: Logistics and Transportation Review ·
     Accepted 2026"
+  new: true
   description:
     - Developed a two-stage stochastic multi-commodity flow model for resilient
       energy supply under correlated chokepoint disruptions.

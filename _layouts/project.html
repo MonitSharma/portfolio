@@ -1,12 +1,121 @@
-{% assign project = site.data.projects | where: 'slug', page.project | first %}
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="{{ page.url | absolute_url }}"><meta name="description" content="{{ project.summary | escape }}"><title>{{ project.title | escape }} — Monit Sharma</title>
-<link rel="stylesheet" href="{{ '/assets/css/preview-fonts.css' | relative_url }}"><link rel="stylesheet" href="{{ '/assets/css/research-preview.css' | relative_url }}"></head>
-<body class="project-page"><a class="skip" href="#main">Skip to content</a><div class="shell">{% include project-sidebar.html %}<main id="main">
-<header class="project-intro" id="overview"><a class="back-link" href="{{ '/#projects' | relative_url }}">← All projects</a><p class="category">{{ project.category | escape }}</p><h1>{{ project.title | escape }}</h1><p class="project-question">{{ project.question | escape }}</p><p class="project-description">{{ project.detail | escape }}</p><div class="intro-actions"><a class="solid-link" href="#results">Explore the results ↓</a><a class="quiet-link" href="{{ project.code_url }}" target="_blank" rel="noopener">Source code ↗</a></div><div class="project-highlight"><b>{{ project.metric | escape }}</b><span>{{ project.metric_label | escape }}</span></div></header>
-<section id="results"><div class="section-head"><h2><span>01</span>Results</h2><a href="{{ project.source_url }}" target="_blank" rel="noopener">{{ project.source_label }} ↗</a></div><div class="findings">{% for finding in project.findings %}<div class="finding"><span>0{{ forloop.index }}</span><p>{{ finding | escape }}</p></div>{% endfor %}</div>
-{% if project.table %}<div class="benchmark-wrap"><table class="benchmark"><caption>{{ project.table.caption | escape }}</caption><thead><tr>{% for col in project.table.columns %}<th scope="col">{{ col | escape }}</th>{% endfor %}</tr></thead><tbody>{% for row in project.table.rows %}<tr>{% for cell in row %}{% if forloop.first %}<th scope="row">{{ cell | escape }}</th>{% else %}<td>{{ cell | escape }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</tbody></table></div>{% endif %}<div class="boundary"><h3>What these results establish</h3><p>{{ project.boundary | escape }}</p></div></section>
-<section id="method"><div class="section-head"><h2><span>02</span>Method</h2></div><div class="project-story">{% for paragraph in project.explanation %}<div><h3>{{ paragraph.title | escape }}</h3><p>{{ paragraph.text | escape }}</p></div>{% endfor %}</div><ol class="method-list">{% for step in project.method %}<li>{{ step | escape }}</li>{% endfor %}</ol></section>
-<section id="figures"><div class="section-head"><h2><span>03</span>Figures &amp; evidence</h2></div><div class="figure-index">{% for figure in project.figures %}<a href="#figure-{{ forloop.index }}">Figure {{ forloop.index }} ↓</a>{% endfor %}</div><div class="evidence-gallery">{% for figure in project.figures %}<figure id="figure-{{ forloop.index }}"><div class="figure-explainer"><h3>{{ figure.caption | escape }}</h3><p>{{ figure.insight | escape }}</p></div><a href="{{ figure.src | relative_url }}" target="_blank" rel="noopener" aria-label="Open full-resolution figure {{ forloop.index }}"><img src="{{ figure.src | relative_url }}" width="{{ figure.width }}" height="{{ figure.height }}" alt="{{ figure.alt | escape }}" loading="lazy"></a><figcaption><span>{{ figure.caption | escape }}</span><a href="{{ figure.src | relative_url }}" target="_blank" rel="noopener">Full resolution ↗</a></figcaption></figure>{% endfor %}</div></section>
-<section id="resources"><div class="section-head"><h2><span>04</span>Explore &amp; reproduce</h2></div><p class="section-note">Source documentation, experiment records, and reproduction instructions.</p><div class="resource-list">{% for resource in project.resources %}<a href="{{ resource.url }}" target="_blank" rel="noopener">{{ resource.label | escape }}<span aria-hidden="true">↗</span></a>{% endfor %}</div></section>
-<nav class="project-pagination" aria-label="More projects"><a href="{{ '/#projects' | relative_url }}">← Project index</a>{% for item in site.data.projects %}{% if item.slug == project.slug %}{% assign next_index = forloop.index0 | plus: 1 %}{% if next_index == site.data.projects.size %}{% assign next_index = 0 %}{% endif %}{% assign next_project = site.data.projects[next_index] %}<a href="{{ next_project.page | relative_url }}">Next: {{ next_project.title | escape }} →</a>{% endif %}{% endfor %}</nav><footer><span>© 2026 Monit Sharma</span><a href="mailto:monitsharma437@gmail.com">Get in touch ↗</a></footer></main></div>
-<script>const links=[...document.querySelectorAll('.side-nav a[href^="#"]')];const chapters=links.map(a=>document.querySelector(a.hash));let pending=false;function update(){let current=chapters[0];chapters.forEach(section=>{if(section.getBoundingClientRect().top<innerHeight*.38)current=section;});links.forEach(link=>{if(link.hash==='#'+current.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});}addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(()=>{update();pending=false;});}},{passive:true});update();</script></body></html>
+{% assign project = site.data.projects | where: 'slug', page.project | first %}{% assign guide = site.data.project_guides | where: 'slug', page.project | first %}
+{% assign total = site.data.projects.size %}{% assign idx = 0 %}{% for item in site.data.projects %}{% if item.slug == project.slug %}{% assign idx = forloop.index0 %}{% endif %}{% endfor %}
+{% assign next_i = idx | plus: 1 | modulo: total %}{% assign prev_i = idx | plus: total | minus: 1 | modulo: total %}{% assign next_p = site.data.projects[next_i] %}{% assign prev_p = site.data.projects[prev_i] %}
+{% capture page_title %}{{ project.title }} — Monit Sharma{% endcapture %}{% capture page_desc %}{% if guide.tldr %}{{ guide.tldr }}{% else %}{{ project.summary }}{% endif %}{% endcapture %}
+{% assign social_image = nil %}{% for figure in project.figures %}{% unless social_image %}{% if figure.src contains '.png' %}{% assign social_image = figure.src | prepend: '/' %}{% endif %}{% endunless %}{% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include rd-head.html title=page_title description=page_desc type="article" image=social_image %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"{% if project.type == 'software' %}SoftwareSourceCode{% else %}CreativeWork{% endif %}","name":{{ project.title | jsonify }},"description":{{ page_desc | strip | jsonify }},"url":"{{ page.url | absolute_url }}","about":{{ project.category | jsonify }},"author":{"@type":"Person","name":"Monit Sharma","url":"{{ '/' | absolute_url }}"}{% if project.code_url %},"{% if project.type == 'software' %}codeRepository{% else %}sameAs{% endif %}":{{ project.code_url | jsonify }}{% endif %}}
+</script>
+</head>
+<body class="project-page">
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+<div class="shell">
+{% include rd-sidebar.html nav="project" %}
+
+<main id="main"><div class="main-inner">
+<div class="topline"><a class="crumb" href="{{ '/#projects' | relative_url }}">← All projects</a><span>Project {{ idx | plus: 1 | prepend: '0' }} / {{ total | prepend: '0' }} · {{ project.type }}</span></div>
+
+<header class="p-hero" id="overview">
+  <div class="p-hero-copy">
+    <p class="section-index">{{ project.category | escape }}</p>
+    <h1>{{ project.title | escape }}</h1>
+    {% if guide.tldr %}<p class="p-tldr">{{ guide.tldr | escape }}</p>{% else %}<p class="p-tldr">{{ project.summary | escape }}</p>{% endif %}
+    <div class="hero-actions">
+      {% if guide %}<a class="btn btn-primary" href="#in-short">Start with the short version <span class="arr down" aria-hidden="true">↓</span></a>{% else %}<a class="btn btn-primary" href="#results">Explore the results <span class="arr down" aria-hidden="true">↓</span></a>{% endif %}
+      {% if project.code_url %}<a class="btn btn-ghost" href="{{ project.code_url }}" target="_blank" rel="noopener">Source code <span class="arr" aria-hidden="true">↗</span></a>{% endif %}
+    </div>
+  </div>
+  <aside class="glance" aria-label="At a glance">
+    <p class="glance-label">Headline result</p>
+    <b class="glance-metric">{{ project.metric | escape }}</b>
+    <p class="glance-sub">{{ project.metric_label | escape }}</p>
+    {% if guide.metric_plain %}<p class="glance-plain">{{ guide.metric_plain | escape }}</p>{% endif %}
+    <dl class="glance-facts">
+      <div><dt>Type</dt><dd class="cap">{{ project.type }}</dd></div>
+      <div><dt>Field</dt><dd>{{ project.category | escape }}</dd></div>
+      <div><dt>Evidence</dt><dd>{{ project.figures.size }} figures · {{ project.resources.size }} sources{% if project.table %} · data table{% endif %}</dd></div>
+    </dl>
+    {% if guide.stack %}<ul class="stack" aria-label="Tools and techniques">{% for item in guide.stack %}<li>{{ item | escape }}</li>{% endfor %}</ul>{% endif %}
+  </aside>
+</header>
+
+<div class="question reveal">
+  <p class="question-label">The question</p>
+  <p class="question-text">“{{ project.question | escape }}”</p>
+</div>
+
+{% if guide %}
+<section id="in-short">
+  <div class="section-head reveal"><div><p class="section-index">01 · For everyone</p><h2>In short</h2></div><span class="toolbar-status">About a minute to read</span></div>
+  <div class="short-grid">
+    <div class="short-block reveal"><h3>The problem</h3><p>{{ guide.problem | escape }}</p></div>
+    <div class="short-block reveal" style="--d:1"><h3>Why it matters</h3><p>{{ guide.why | escape }}</p></div>
+  </div>
+  <div class="takeaways reveal">
+    <h3>Key takeaways</h3>
+    <ol>{% for takeaway in guide.takeaways %}<li><span class="tk-num">0{{ forloop.index }}</span><p>{{ takeaway | escape }}</p></li>{% endfor %}</ol>
+  </div>
+  {% if guide.glossary %}
+  <details class="glossary reveal" open>
+    <summary><span>Words you’ll see on this page</span><span class="glossary-count">{{ guide.glossary.size }} terms</span></summary>
+    <dl class="glossary-grid">{% for entry in guide.glossary %}<div><dt>{{ entry.term | escape }}</dt><dd>{{ entry.def | escape }}</dd></div>{% endfor %}</dl>
+  </details>
+  {% endif %}
+</section>
+{% endif %}
+
+<section id="results">
+  <div class="section-head reveal"><div><p class="section-index">02 · The evidence</p><h2>Results</h2></div>{% if project.source_url %}<a class="head-link" href="{{ project.source_url }}" target="_blank" rel="noopener">{{ project.source_label | default: 'Read the record' }} ↗</a>{% endif %}</div>
+  <p class="section-lede reveal">{{ project.detail | escape }}</p>
+  <div class="findings">{% for finding in project.findings %}<div class="finding reveal" style="--d:{{ forloop.index0 }}"><span class="finding-num">Finding 0{{ forloop.index }}</span><p>{{ finding | escape }}</p></div>{% endfor %}</div>
+  {% if project.table %}
+  <div class="data-table reveal"><div class="table-scroll" tabindex="0" role="region" aria-label="{{ project.table.caption | escape }}"><table>
+    <caption class="sr-only">{{ project.table.caption | escape }}</caption>
+    <thead><tr>{% for col in project.table.columns %}<th scope="col">{{ col | escape }}</th>{% endfor %}</tr></thead>
+    <tbody>{% for row in project.table.rows %}<tr>{% for cell in row %}{% if forloop.first %}<th scope="row">{{ cell | escape }}</th>{% else %}<td>{{ cell | escape }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</tbody>
+  </table></div><p class="table-caption" aria-hidden="true">{{ project.table.caption | escape }}</p></div>
+  {% endif %}
+  <div class="limits reveal"><span class="limits-icon" aria-hidden="true">i</span><div><h3>What this does — and doesn’t — show</h3><p>{{ project.boundary | escape }}</p></div></div>
+</section>
+
+<section id="method">
+  <div class="section-head reveal"><div><p class="section-index">03 · Under the hood</p><h2>How it works</h2></div></div>
+  <div class="story">{% for paragraph in project.explanation %}<article class="story-block reveal" style="--d:{{ forloop.index0 }}"><h3>{{ paragraph.title | escape }}</h3><p>{{ paragraph.text | escape }}</p></article>{% endfor %}</div>
+  <div class="steps reveal"><p class="tl-label">The method, step by step</p><ol class="stepper">{% for step in project.method %}<li><span class="step-num">{{ forloop.index }}</span><p>{{ step | escape }}</p></li>{% endfor %}</ol></div>
+</section>
+
+<section id="figures">
+  <div class="section-head reveal"><div><p class="section-index">04 · Figures</p><h2>Figures &amp; evidence</h2></div><span class="toolbar-status">Select a figure to enlarge it</span></div>
+  <nav class="figure-index reveal" aria-label="Figures">{% for figure in project.figures %}<a href="#figure-{{ forloop.index }}"><span>Fig. {{ forloop.index }}</span>{{ figure.caption | split: ' · ' | first | escape }}</a>{% endfor %}</nav>
+  <div class="figures">{% for figure in project.figures %}
+    <figure class="fig reveal" id="figure-{{ forloop.index }}">
+      <figcaption class="fig-text"><div><span class="fig-num">Figure {{ forloop.index }}</span><h3>{{ figure.caption | escape }}</h3></div><p class="fig-read"><b>How to read it.</b> {{ figure.insight | escape }}</p></figcaption>
+      <a class="fig-image" href="{{ figure.src | relative_url }}" data-lightbox="Figure {{ forloop.index }} · {{ figure.caption | escape }}" aria-label="Enlarge figure {{ forloop.index }}"><img src="{{ figure.src | relative_url }}" width="{{ figure.width }}" height="{{ figure.height }}" alt="{{ figure.alt | escape }}" loading="lazy" decoding="async"><span class="fig-zoom" aria-hidden="true">Enlarge ⤢</span></a>
+    </figure>{% endfor %}
+  </div>
+</section>
+
+<section id="resources">
+  <div class="section-head reveal"><div><p class="section-index">05 · Go deeper</p><h2>Explore &amp; reproduce</h2></div></div>
+  <p class="section-lede reveal">Source code, raw data, and instructions for checking these results yourself.</p>
+  <div class="resource-grid">{% for resource in project.resources %}<a class="resource reveal" style="--d:{{ forloop.index0 | modulo: 3 }}" href="{{ resource.url }}" target="_blank" rel="noopener"><span class="resource-host">{{ resource.url | split: '/' | slice: 2 | first | remove: 'www.' }}</span><span class="resource-label">{{ resource.label | escape }}</span><span class="arrow-dot" aria-hidden="true">↗</span></a>{% endfor %}</div>
+</section>
+
+<div class="ask reveal">
+  <div><h2>Questions about {{ project.title | escape }}?</h2><p>Ask about the method, the results, or how to reproduce them.</p></div>
+  <a class="btn btn-light" href="mailto:monitsharma437@gmail.com?subject={{ project.title | url_encode }}">Email me <span class="arr" aria-hidden="true">↗</span></a>
+</div>
+<nav class="pager" aria-label="More projects">
+  <a class="pager-card" href="{{ prev_p.page | relative_url }}"><span class="pager-dir">← Previous</span><span class="pager-title">{{ prev_p.title | escape }}</span><span class="pager-metric">{{ prev_p.metric | escape }}</span></a>
+  <a class="pager-card next" href="{{ next_p.page | relative_url }}"><span class="pager-dir">Next →</span><span class="pager-title">{{ next_p.title | escape }}</span><span class="pager-metric">{{ next_p.metric | escape }}</span></a>
+</nav>
+<footer><span>© 2026 Monit Sharma</span><a href="#overview">Back to top ↑</a></footer>
+</div></main>
+</div>
+</body>
+</html>
