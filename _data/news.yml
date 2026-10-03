@@ -1,10 +1,16 @@
+# Newest first. `new: true` adds a “New” tag on the home page.
 - date: "2026-10"
+  new: true
   content: "📰 **[Securing the Flow: Maritime Energy Resilience under Correlated and Decision-Dependent Disruptions](https://arxiv.org/abs/2605.11990)** has been accepted to **[Transportation Research Part E: Logistics and Transportation Review](https://www.sciencedirect.com/journal/transportation-research-part-e-logistics-and-transportation-review)**."
 
-- date: "2026-07"
-  content: "📰 **From Circuits to Hardware: Benchmarking Standard and Qubit-Efficient Quantum Optimization on Real Hardware** has been accepted at **Quantum Science and Technology**."
+- date: "2026-09"
+  content: "🎤 Presented **AutoQResearch** at **IEEE Quantum Week 2026 (QCE26)** in Toronto, in the Quantum–GenAI Co-Design & Discovery (QGDD) track."
 
-- date: "2026-07"
+- date: "2026-09"
+  new: true
+  content: "📰 **[From Circuits to Hardware: Benchmarking Standard and Qubit-Efficient Quantum Optimization on Real Hardware](https://iopscience.iop.org/article/10.1088/2058-9565/ae94a4)** has been accepted and published in **Quantum Science and Technology**."
+
+- date: "2026-08"
   content: "🎉 **AutoQResearch** accepted as a technical paper at **IEEE QCE26 Quantum–GenAI Co-Design & Discovery (QGDD)**."
 
 - date: "2025-10"

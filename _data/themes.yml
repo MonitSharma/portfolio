@@ -1,0 +1,35 @@
+# Research themes on the home page. `papers` match the start of titles in publications.yml;
+# `projects` are slugs from projects.yml. A paper or project may appear under several themes.
+
+- id: optimization
+  title: Optimization for real-world systems
+  plain: Delivery routes, inventory and energy supply under disruption. I model these planning problems and test whether quantum and hybrid solvers genuinely help — measuring carefully when they don’t.
+  papers:
+    - Securing the Flow
+    - Hybrid Learning and Optimization Methods
+    - Qubit-Scalable CVRP
+    - Learning-Based Graph Shrinking
+    - Cutting Slack
+    - A Comparative Study of Quantum Optimization
+    - Quantum Relaxation for Solving Multiple Knapsack
+    - Quantum Enhanced Simulation-Based Optimization
+    - Quantum Monte Carlo Methods for Newsvendor
+  projects: []
+
+- id: ai
+  title: AI that helps do research
+  plain: Language-model agents and learning methods that propose experiments, tune solvers and keep the evidence attached — so results can be checked, not just trusted.
+  papers:
+    - AutoQResearch
+    - Hybrid Learning and Optimization Methods
+    - Learning-Based Graph Shrinking
+    - Diagnosing Simulation and Hardware Barriers
+  projects: [atelier-lab]
+
+- id: hardware
+  title: Quantum hardware & scientific software
+  plain: Running algorithms on real quantum processors, building fast simulators and verifying circuits end to end — the engineering that makes quantum results reproducible.
+  papers:
+    - From Circuits to Hardware
+    - Diagnosing Simulation and Hardware Barriers
+  projects: [mettleq, qsvt-linear-solvers, peaked-circuits, classiq, quantum-chemistry]

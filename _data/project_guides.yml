@@ -1,0 +1,147 @@
+# Plain-language layer for each project page, keyed by the slug in projects.yml.
+# tldr: one sentence for anyone · problem/why: short paragraphs · metric_plain: what the headline number means
+# takeaways: three plain findings · stack: tools & techniques · glossary: terms used on the page
+
+- slug: mettleq
+  tldr: MettleQ lets researchers simulate quantum circuits on a Mac’s GPU, using the Qiskit and PennyLane code they already write.
+  problem: Before running on real quantum hardware, researchers test circuits by simulating them on ordinary computers. The cost doubles with every qubit — a 20-qubit simulation tracks more than a million numbers at once. Popular simulators do this work on the CPU; MettleQ moves it to the Apple Silicon GPU without changing how people write their programs.
+  why: Faster local simulation means quicker experiments on a laptop. Careful benchmarks show exactly when the GPU helps — and when the CPU is still the better choice.
+  metric_plain: At 20 qubits, MettleQ’s GPU path completed a full simulation 1.16× faster than Qiskit Aer and 8.37× faster than PennyLane Lightning on the CPU. Only results that passed an accuracy check were counted.
+  takeaways:
+    - The GPU wins on larger circuits — at 20 qubits it beat both CPU simulators tested.
+    - Small circuits can still run faster on the CPU. The GPU overtook Lightning at 16 qubits and Aer only at 20.
+    - Every speed number is paired with an accuracy check, so a fast but wrong answer never counts.
+  stack: [Qiskit, PennyLane, Apple Metal, MLX, NumPy]
+  glossary:
+    - term: Qubit
+      def: The basic unit of quantum information. Unlike an ordinary bit, it can be in a blend of 0 and 1.
+    - term: Statevector
+      def: The complete list of numbers describing a quantum system. For n qubits it has 2ⁿ entries, which is why simulation gets expensive so quickly.
+    - term: Matrix-product state (MPS)
+      def: A compressed way to store a quantum state. It saves memory when the qubits are only lightly entangled.
+    - term: SDK
+      def: Software development kit — here, the Python libraries (Qiskit, PennyLane) used to write quantum programs.
+    - term: Crossover
+      def: The circuit size at which the GPU becomes faster than the CPU.
+    - term: Metal
+      def: Apple’s interface for running general computations on the graphics processor of M-series Macs.
+
+- slug: quantum-chemistry
+  tldr: A very high-accuracy classical calculation of a difficult iron–sulfur molecule, built as a fair yardstick for judging quantum chemistry methods.
+  problem: In iron–sulfur clusters the electrons interact so strongly that standard approximations struggle, which is why molecules like this are popular test cases for quantum algorithms. But to know whether a quantum method actually helps, you first need a trustworthy classical answer to compare against. This project builds that reference and checks it from several independent directions.
+  why: A claim that a quantum method is better is only as strong as the classical baseline it is compared with. A carefully checked reference keeps those comparisons honest.
+  metric_plain: The calculation covers 30 electrons in 20 orbitals — about 240 million possible electron arrangements that the classical solver handled explicitly.
+  takeaways:
+    - The checked classical energy sits below every external result it was compared with, including a hybrid quantum–classical one. In this kind of calculation, lower is better.
+    - Independent checks agree — two different ways of computing the energy match to within 4×10⁻¹³ hartree.
+    - The quantum proposals tested so far have not beaten matched classical controls. That honest negative result is part of the record.
+  stack: [Davidson eigensolver, block2 DMRG, Active-space Hamiltonians, Reduced density matrices]
+  glossary:
+    - term: Hartree (Eh)
+      def: The natural unit of energy in quantum chemistry. A µEh is one millionth of a hartree.
+    - term: Active space
+      def: The electrons and orbitals treated in full detail — here 30 electrons in 20 orbitals, written CAS(30e,20o).
+    - term: Determinant
+      def: One specific way of placing the electrons into orbitals. The true state is a weighted mix of millions of them.
+    - term: Variational upper bound
+      def: A guarantee that the true lowest energy is at or below the computed value, so lower numbers are better.
+    - term: Residual
+      def: How far a computed state is from exactly satisfying the governing equations. Smaller means better converged.
+    - term: DMRG
+      def: Density-matrix renormalization group — a strong classical method that compresses the quantum state. M sets how much detail it keeps.
+
+- slug: atelier-lab
+  tldr: A private AI research assistant that runs entirely on a laptop — it reads papers, answers with citations, and makes code changes that are tested before they are trusted.
+  problem: Cloud AI tools are powerful, but they depend on remote services and their answers can be hard to verify. Atelier asks how much dependable research help one person can get from AI models running locally, on a single machine with fixed memory and speed.
+  why: Keeping evidence attached to every answer — citations for questions, tests for code — turns AI help into something a researcher can check rather than simply trust.
+  metric_plain: On small, fixed test sets, the workbench answered 17 of 18 knowledge questions correctly and solved all 13 coding tasks.
+  takeaways:
+    - Answers carry citations and workflow traces, so you can see where they came from.
+    - Code changes are verified with tests and a reviewable diff, not just a model’s claim that they work.
+    - Local models run at usable speed on an M3 Pro laptop — about 39 tokens per second for the smallest model tested.
+  stack: [Local LLMs (Qwen3, Gemma), Hybrid retrieval, Model routing, Tests & diff review]
+  glossary:
+    - term: Local model
+      def: An AI language model that runs on your own computer instead of a cloud server.
+    - term: Retrieval
+      def: Finding relevant passages by meaning (semantic search) and by exact wording (lexical search).
+    - term: Grounded answer
+      def: A response tied to specific sources that you can open and check.
+    - term: Tokens per second
+      def: How fast a model writes. A token is roughly a short word or part of a word.
+    - term: Model routing
+      def: Sending each task to the model best suited to it, balancing quality against speed.
+    - term: BPB
+      def: Bits per byte — a measure of how well a language model predicts text. Lower is better.
+
+- slug: peaked-circuits
+  tldr: Recovering the hidden 98-bit answers of two quantum circuits from noisy hardware runs — and finishing first on the BlueQubit leaderboard.
+  problem: A “peaked” circuit is designed so that one specific answer should appear far more often than any other. Real quantum hardware is noisy, so the measured results scatter around that answer. The task was to work out the intended 98-bit answer from 50–200 noisy samples, without using the answer to decide which samples to trust.
+  why: It shows how careful, auditable decoding can pull a reliable signal out of noisy quantum data — with every repair documented so that anyone can verify it.
+  metric_plain: First place on the BlueQubit Peaked Portal leaderboard, with a score of 2570 out of 2570.
+  takeaways:
+    - Both 98-bit answers, P11 and P12, were recovered and accepted by the BlueQubit portal.
+    - Independent decoding methods agreed on each answer, which builds confidence that it is not a fluke.
+    - Data repairs were kept separate from decoding, and no sample was discarded for disagreeing with a desired answer.
+  stack: [Quantinuum Helios-1, Weighted medoid, Cluster consensus, SHA-256 manifests]
+  glossary:
+    - term: Shot
+      def: One run of a quantum circuit, producing one measured string of bits.
+    - term: Bitstring
+      def: The sequence of 0s and 1s read out from the qubits — here 98 bits long.
+    - term: Hamming distance
+      def: The number of positions at which two bitstrings differ.
+    - term: Medoid
+      def: The actual sample that is, on average, closest to all the others — a robust “centre” of the data.
+    - term: Cluster consensus
+      def: A majority vote at each bit position within the main group of similar samples.
+    - term: HQC
+      def: Hardware quantum credits — Quantinuum’s unit for the cost of running jobs.
+
+- slug: classiq
+  tldr: A quantum circuit that encodes a 64×64 logo, made about 48 times shallower by exploiting the patterns in the image.
+  problem: The challenge asked for a quantum circuit — a phase oracle — that marks each of the 4,096 pixels of a binary logo with the right phase. Building it pixel by pixel produces a very deep circuit, with far too many sequential steps for today’s noisy hardware. Because many rows and columns of the logo repeat, the image can be described much more compactly.
+  why: Circuit depth is one of the main limits on what current quantum hardware can run. Exploiting structure instead of brute force is a general lesson for compiling real algorithms.
+  metric_plain: Circuit depth — the number of sequential steps — fell from 5,329 to 111, using 557 two-qubit CX gates in the final submission.
+  takeaways:
+    - The logo has only 11 distinct row and column patterns, so each can be stored as a short four-bit code.
+    - Scheduling when each operation runs mattered as much as reducing the number of gates.
+    - All 4,096 inputs were checked numerically, with a maximum error below 6×10⁻¹⁴.
+  stack: [18 qubits, U3 + CX gates, Phase polynomial, Ready-time scheduling]
+  glossary:
+    - term: Oracle
+      def: A circuit that marks certain inputs. It is a building block inside larger quantum algorithms.
+    - term: Phase
+      def: A property of a quantum state that steers interference. In a binary image oracle it encodes whether a pixel is on or off.
+    - term: Circuit depth
+      def: The number of sequential layers of gates. Shallower circuits are less affected by noise.
+    - term: CX gate
+      def: A two-qubit controlled-NOT gate — typically the most error-prone operation on hardware.
+    - term: Ancilla
+      def: A helper qubit used during the computation. It must be returned to zero at the end.
+    - term: Global phase
+      def: A phase shared by the entire state. It has no observable effect.
+
+- slug: qsvt-linear-solvers
+  tldr: Testing whether a well-known quantum approach to solving equations is practical for engineering simulations — on real IBM and Quantinuum hardware.
+  problem: Solving large systems of linear equations sits at the heart of engineering simulations such as computational fluid dynamics (CFD). Quantum algorithms built on QSVT promise to help in theory. This project builds such a solver from basic pieces, checks every layer against ordinary maths, runs a small version on two quantum computers, and asks what realistic problems would require.
+  why: It separates what works today — a correct toolchain, validated on hardware — from what still blocks practical use, namely circuit depth and poorly conditioned matrices.
+  metric_plain: The same small solve was validated on hardware from two different vendors, IBM and Quantinuum, and compared with classical solvers on the same matrix families.
+  takeaways:
+    - On IBM hardware the measured result matched the noiseless prediction within statistical uncertainty (11.4% against 11.9%).
+    - On Quantinuum Helios-1 the result (7.9%) differed by more than sampling noise explains — a discrepancy that is still undiagnosed.
+    - For realistic fluid-dynamics matrices the required polynomial degree runs into the thousands, while classical solvers finish in under 1.4 ms.
+  stack: [IBM Kingston, Quantinuum Helios-1, NumPy, Sparse LU]
+  glossary:
+    - term: Linear system
+      def: A set of equations written Ax = b. Solving it means finding x.
+    - term: QSVT
+      def: Quantum singular value transformation — a framework for applying a polynomial function to a matrix inside a quantum circuit.
+    - term: Block-encoding
+      def: A way of embedding a matrix inside a larger quantum operation so that a circuit can act with it.
+    - term: Condition number
+      def: How sensitive a problem is to small errors. High values make both classical and quantum solvers work much harder.
+    - term: Post-selection
+      def: Keeping only the runs in which helper qubits give the expected result.
+    - term: Confidence interval
+      def: A range that likely contains the true value given the number of samples. This project reports 95% Wilson intervals.

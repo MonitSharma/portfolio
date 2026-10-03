@@ -1,0 +1,239 @@
+% Monit Sharma --- CV. Build with: pdflatex main.tex
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage[margin=0.55in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{needspace}
+\input{glyphtounicode}
+
+\pdfgentounicode=1
+\hypersetup{pdftitle={Monit Sharma -- Curriculum Vitae},pdfauthor={Monit Sharma}}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\setlength{\emergencystretch}{1em}
+\definecolor{rulegray}{gray}{0.65}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\footnotesize\color{gray}Monit Sharma \textbullet{} Curriculum Vitae}
+\fancyfoot[R]{\footnotesize\color{gray}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}{\large\bfseries\raggedright}{}{0pt}{}[\color{rulegray}\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\newcommand{\cvsection}[1]{\needspace{4\baselineskip}\section{#1}}
+
+\newcommand{\resumeItem}[1]{\item {\small #1}}
+
+\newcommand{\resumeSubheading}[4]{%
+  \needspace{4\baselineskip}
+  \item
+  \textbf{#1}\hfill {\small #2}\par\nobreak
+  {\small #3\hfill #4\par}
+}
+
+\newcommand{\resumeProjectHeading}[2]{%
+  \needspace{2\baselineskip}
+  \item {\small #1\hfill #2\par}
+}
+
+\newcommand{\paperheading}[3]{%
+  \item
+  \begin{minipage}[t]{\linewidth}
+    \small
+    \begin{tabularx}{\linewidth}[t]{@{}X@{\hspace{1em}}r@{}}
+      \textbf{#1} & #3 \\
+    \end{tabularx}\par
+    #2\par
+  \end{minipage}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0pt,label={},itemsep=3pt,topsep=0pt,parsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=1.2em,label=\textbullet,itemsep=1pt,topsep=3pt,parsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+\newcommand{\pubgroup}[1]{\needspace{4\baselineskip}\item[]{\small\bfseries #1}}
+
+\begin{document}
+
+\begin{center}
+    {\fontsize{28}{32}\selectfont\textbf{Monit Sharma}}\\[5pt]
+    {Research Engineer \textbullet{} Singapore Management University \textbullet{} Singapore}\\[5pt]
+    \small
+    \href{https://monitsharma.github.io/portfolio}{Website} \textbullet{}
+    \href{mailto:monitsharma437@gmail.com}{Email} \textbullet{}
+    \href{https://www.linkedin.com/in/monitsharma/}{LinkedIn} \textbullet{}
+    \href{https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&hl=en}{Google Scholar} \textbullet{}
+    \href{https://github.com/MonitSharma}{GitHub}
+\end{center}
+
+
+
+%-----------EXPERIENCE-----------
+\cvsection{Research \& Professional Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Research Engineer}{2023 -- Present}
+    {Singapore Management University, School of Computing \& Information Systems}{Singapore}
+    \resumeItemListStart
+      \resumeItem{Lead hybrid quantum, reinforcement-learning, and classical optimization research for vehicle routing and inventory control.}
+      \resumeItem{Collaborated with IBM Quantum on quantum optimization for supply-chain and finance problems.}
+      \resumeItem{Benchmarked standard and qubit-efficient quantum optimization on IBM Heron processors (\textit{Quantum Science and Technology}, 2026); built infrastructure to compare quantum and tensor-network solvers on enterprise-scale workloads.}
+      \resumeItem{Developed AutoQResearch, an LLM-guided system for adaptive policy search in variational quantum optimization (IEEE QCE 2026).}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Research \& Development Engineer}{2022 -- 2023}
+    {Tata Consultancy Services}{Mumbai, India}
+    \resumeItemListStart
+      \resumeItem{Solved vehicle-routing instances with 200 customers and 25 vehicles using a quantum-annealing workflow on D-Wave hardware.}
+      \resumeItem{Developed qubit-efficient mappings for mixed-integer linear programming (MILP) supply-chain problems, enabling execution on constrained hardware.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Master's Thesis Researcher}{2021 -- 2022}
+    {Indian Institute of Science Education and Research (IISER)}{Mohali, India}
+    \resumeItemListStart
+      \resumeItem{Investigated quantum-computing methods for high-energy physics with \href{https://scholar.google.com/citations?user=od_3VI8AAAAJ&hl=en}{Dr.\ Satyajit Jena}.}
+      \resumeItem{Demonstrated higher accuracy with single-qubit data re-uploading than comparison algorithms requiring at least three qubits.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+
+
+%-----------EDUCATION-----------
+\cvsection{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Master of Science in Physics; Minor in Data Science}{Aug. 2020 -- May 2022}
+      {Indian Institute of Science Education and Research (IISER)}{Mohali, India}
+    \resumeSubheading
+      {Bachelor of Science in Physics}{Aug. 2017 -- May 2020}
+      {Indian Institute of Science Education and Research (IISER)}{Mohali, India}
+  \resumeSubHeadingListEnd
+
+
+%-----------PUBLICATIONS-----------
+\cvsection{Research Publications}
+\resumeSubHeadingListStart
+
+  \pubgroup{Journal Articles}
+
+  \paperheading
+    {Securing the Flow: Maritime Energy Resilience under Correlated and Decision-Dependent Disruptions}
+    {With H.\ C.\ Lau \textbullet{} \textit{Transportation Research Part E: Logistics and Transportation Review}, accepted \textbullet{} \href{https://arxiv.org/abs/2605.11990}{arXiv:2605.11990}}
+    {2026}
+
+  \paperheading
+    {From Circuits to Hardware: Benchmarking Standard and Qubit-Efficient Quantum Optimization on Real Hardware}
+    {With H.\ C.\ Lau \textbullet{} \textit{Quantum Science and Technology}, published (Sep.\ 2026) \textbullet{} \href{https://iopscience.iop.org/article/10.1088/2058-9565/ae94a4}{DOI} \textbullet{} \href{https://arxiv.org/abs/2607.11637}{arXiv:2607.11637}}
+    {2026}
+
+  \pubgroup{Conference Papers}
+
+  \paperheading
+    {AutoQResearch: LLM-Guided Closed-Loop Policy Search for Adaptive Variational Quantum Optimization}
+    {With H.\ C.\ Lau \textbullet{} IEEE QCE 2026, Quantum--GenAI Co-Design \& Discovery (QGDD) \textbullet{} \href{https://arxiv.org/abs/2604.24283}{arXiv:2604.24283}}
+    {2026}
+
+  \paperheading
+    {Learning-Based Graph Shrinking for Quantum Optimization of Constrained Combinatorial Problems}
+    {With H.\ C.\ Lau \textbullet{} QC+AI 2026 (AAAI Workshop on Quantum Computing), Springer CCIS \textbullet{} \href{https://link.springer.com/chapter/10.1007/978-3-032-17625-7_3}{DOI}}
+    {2026}
+
+  \paperheading
+    {Hybrid Learning and Optimization Methods for Solving Capacitated Vehicle Routing Problem}
+    {With H.\ C.\ Lau \textbullet{} QC+AI 2026 (AAAI Workshop on Quantum Computing), Springer CCIS \textbullet{} \href{https://link.springer.com/chapter/10.1007/978-3-032-17625-7_2}{DOI} \textbullet{} \href{https://arxiv.org/abs/2509.15262}{arXiv:2509.15262}}
+    {2026}
+
+  \paperheading
+    {Quantum Enhanced Simulation-Based Optimization for Newsvendor Problems}
+    {With H.\ C.\ Lau, R.\ Raymond \textbullet{} IEEE QCE 2024 (poster at QIP 2024) \textbullet{} \href{https://doi.org/10.1109/QCE60285.2024.00060}{DOI}}
+    {2024}
+
+  \paperheading
+    {Quantum Relaxation for Solving Multiple Knapsack Problems}
+    {With Y.\ Jin, H.\ C.\ Lau, R.\ Raymond \textbullet{} IEEE QCE 2024 \textbullet{} \href{https://doi.org/10.1109/QCE60285.2024.00086}{DOI}}
+    {2024}
+
+  \pubgroup{Preprints}
+
+  \paperheading
+    {Diagnosing Simulation and Hardware Barriers to Cross-Size Transfer in Equivariant Quantum Reinforcement Learning}
+    {With H.\ C.\ Lau \textbullet{} \href{https://arxiv.org/abs/2510.14533}{arXiv:2510.14533}}
+    {2026}
+
+  \paperheading
+    {Qubit-Scalable CVRP via Lagrangian Knapsack Decomposition and Noise-Aware Quantum Execution}
+    {With H.\ C.\ Lau \textbullet{} \href{https://arxiv.org/abs/2604.22194}{arXiv:2604.22194}}
+    {2026}
+
+  \paperheading
+    {Cutting Slack: Quantum Optimization with Slack-Free Methods for Combinatorial Benchmarks}
+    {With H.\ C.\ Lau \textbullet{} \href{https://arxiv.org/abs/2507.12159}{arXiv:2507.12159}}
+    {2025}
+
+  \paperheading
+    {A Comparative Study of Quantum Optimization Techniques for Solving Combinatorial Optimization Benchmark Problems}
+    {With H.\ C.\ Lau \textbullet{} \href{https://arxiv.org/abs/2503.12121}{arXiv:2503.12121}}
+    {2025}
+
+  \paperheading
+    {Quantum Monte Carlo Methods for Newsvendor Problem with Multiple Unreliable Suppliers}
+    {With H.\ C.\ Lau \textbullet{} \href{https://arxiv.org/abs/2409.07183}{arXiv:2409.07183}}
+    {2024}
+
+\resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\cvsection{Selected Projects}
+\begin{itemize}[leftmargin=0pt,label={},itemsep=3pt,topsep=0pt,parsep=0pt]
+  \resumeItem{\textbf{\href{https://github.com/MonitSharma/peaked_circuits}{Peaked Circuit Recovery}} -- Ranked first (score: 2570/2570) on the BlueQubit Peaked Portal leaderboard; recovered 98-bit answers from Quantinuum Helios-1 samples with an auditable, target-blind decoding pipeline.}
+  \resumeItem{\textbf{\href{https://github.com/MonitSharma/MettleQ}{MettleQ}} -- Developed a quantum-circuit simulator for Apple Silicon GPUs (Metal, MLX), with Qiskit and PennyLane integrations; benchmarked speedups of 1.16$\times$ over Aer and 8.37$\times$ over Lightning CPU at 20 qubits, with accuracy checks.}
+  \resumeItem{\textbf{\href{https://github.com/MonitSharma/qsvt-linear-solvers}{Quantum CFD}} -- Built a quantum linear-system solver from primitives; validated on IBM Kingston and Quantinuum Helios-1 and estimated resources for computational fluid dynamics (CFD) matrices.}
+  \resumeItem{\textbf{\href{https://github.com/MonitSharma/The-Atelier-Lab}{The Atelier Lab}} -- Developed a local AI-assisted research workbench integrating hybrid retrieval, model routing, and code-change validation to support scientific research and software development.}
+  \resumeItem{\textbf{\href{https://monitsharma.github.io/}{The Quantum Classroom}} -- Lead workshops and maintain open-source tools and 18 free learning paths in quantum computing, mathematics, and scientific programming, with worked solutions and a browser-based practice lab.}
+\end{itemize}
+
+
+%-----------PROGRAMMING SKILLS-----------
+\cvsection{Technical Skills}
+\begin{itemize}[leftmargin=0pt,label={},itemsep=3pt,topsep=0pt,parsep=0pt]
+  \small{
+  \item{
+    \textbf{Languages:} Python, C/C++, Java, JavaScript/TypeScript, R, Julia, MATLAB, Mathematica \\
+    \textbf{Quantum Frameworks:} Qiskit, PennyLane, Cirq, CUDA-Q, Pytket, TensorFlow Quantum, QuTiP, AWS Braket, D-Wave Ocean, Tensorly-Quantum \\
+    \textbf{Quantum Hardware:} IBM Quantum (Heron, Kingston), Quantinuum Helios-1, IonQ, Rigetti, QuEra, IQM, D-Wave quantum annealers \\
+    \textbf{AI \& Machine Learning:} PyTorch, JAX, TensorFlow, scikit-learn, reinforcement learning, LLM agents \& RAG \\
+    \textbf{Scientific Computing \& HPC:} CUDA, Apple Metal \& MLX, MPI, OpenMP, NumPy, pandas \\
+    \textbf{Tools:} Git, Docker, HPC clusters
+  }}
+\end{itemize}
+
+\cvsection{Awards \& Presentations}
+\resumeSubHeadingListStart
+  \resumeProjectHeading{\textbf{Conference Paper Presentation} \textbullet{} \textit{IEEE Quantum Week (QCE), Toronto, Canada}}{2026}
+  \resumeProjectHeading{\textbf{Research Staff Excellence Award} \textbullet{} \textit{Singapore Management University}}{2024}
+  \resumeProjectHeading{\textbf{Conference Paper Presentation} \textbullet{} \textit{IEEE Quantum Week (QCE), Montreal, Canada}}{2024}
+  \resumeProjectHeading{\textbf{Poster Presentation} \textbullet{} \textit{Quantum Information Processing (QIP), Taipei, Taiwan}}{2024}
+\resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
