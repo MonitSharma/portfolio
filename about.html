@@ -1,0 +1,44 @@
+---
+layout: editorial
+title: About
+nav: about
+permalink: /about/
+description: Monit Sharma's background, experience, education, and open learning resources.
+---
+<header class="page-intro about-intro"><div class="about-copy">
+  <h1>About</h1>
+  <p>I’m a Research Engineer at Singapore Management University, working across quantum computing, algorithms, and AI. I build computational methods and scientific software, and share what I learn through writing and open education.</p>
+  <div class="intro-links"><a href="{{ '/assets/Monit_Sharma_CV.pdf' | relative_url }}" target="_blank" rel="noopener">Curriculum vitae <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/monitsharma/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></div>
+</div><img class="about-portrait" src="{{ '/assets/imgs/portrait-preview.jpg' | relative_url }}" width="208" height="208" alt="Monit Sharma" fetchpriority="high"></header>
+<section id="background">
+  <div class="timeline">
+    <div class="reveal" id="experience">
+      <h2 class="tl-label">Experience</h2>
+      <div class="tl">{% for item in site.data.experience %}
+        <div class="tl-item{% if forloop.first %} is-current{% endif %}"><div class="tl-date">{{ item.period | strip }}</div><h3>{{ item.role | escape }}</h3><p class="tl-org">{{ item.company | escape }}</p>{% if item.highlights %}<ul>{% for h in item.highlights %}<li>{{ h | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>{% endfor %}</ul>{% endif %}</div>{% endfor %}
+      </div>
+    </div>
+    <div class="reveal" id="education" style="--d:1">
+      <h2 class="tl-label">Education</h2>
+      <div class="tl">{% for item in site.data.education %}
+        <div class="tl-item"><div class="tl-date">{{ item.year }}</div><h3>{{ item.degree | escape }}</h3><p class="tl-org">{{ item.university | escape }}</p></div>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<section id="teaching">
+  <div class="section-head reveal"><div><p class="section-index">04</p><h2>Open education</h2></div><a class="head-link" href="https://monitsharma.github.io/" target="_blank" rel="noopener">The Quantum Classroom ↗</a></div>
+  <div class="teaching reveal">
+    <div class="teach-intro">
+      <h3>Learn it. Implement it.<br><em>Make it your own.</em></h3>
+      <p>Resources, worked examples, and code for learning by doing.</p>
+      <div class="teach-stat"><b>18</b><span>free learning paths across quantum computing, mathematics, and scientific programming</span></div>
+    </div>
+    <div class="course-list">
+      <a class="course" href="https://monitsharma.github.io/Learn-Quantum-Computing-For-Free/" target="_blank" rel="noopener"><span class="course-num">01</span>Learn Quantum Computing for Free<span class="arrow-dot" aria-hidden="true">↗</span></a>
+      <a class="course" href="https://monitsharma.github.io/Quantum-Machine-Learning-on-Near-Term-Quantum-Devices/" target="_blank" rel="noopener"><span class="course-num">02</span>Quantum Machine Learning<span class="arrow-dot" aria-hidden="true">↗</span></a>
+      <a class="course" href="https://monitsharma.github.io/Numerical-Linear-Algebra/" target="_blank" rel="noopener"><span class="course-num">03</span>Numerical Linear Algebra<span class="arrow-dot" aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+<section class="editorial-section" id="contact"><div class="list-heading"><h2>Contact</h2></div><p class="education-note">For research collaborations, scientific software, or a conversation about quantum computing and AI, reach me at <a href="mailto:monitsharma437@gmail.com">monitsharma437@gmail.com</a>.</p></section>

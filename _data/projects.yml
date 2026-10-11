@@ -460,6 +460,7 @@
   source_url: https://github.com/MonitSharma/classiq/blob/main/docs/technical-report.md
   source_label: Read the technical report
   code_url: https://github.com/MonitSharma/classiq
+  blog_url: https://medium.com/@_monitsharma/from-5-329-layers-to-111-how-i-optimized-a-quantum-phase-oracle-73c50fdcbeb9
   question: How much circuit depth can be removed by exploiting the structure of a
     binary logo rather than synthesizing every pixel independently?
   findings:
@@ -498,6 +499,8 @@
     url: https://github.com/MonitSharma/classiq
   - label: Verified circuit records
     url: https://github.com/MonitSharma/classiq/blob/main/results/verified_circuits.csv
+  - label: "Medium: From 5,329 Layers to 111"
+    url: https://medium.com/@_monitsharma/from-5-329-layers-to-111-how-i-optimized-a-quantum-phase-oracle-73c50fdcbeb9
   explanation:
   - title: Using the logo’s structure
     text: 'The oracle must assign the required phase to each of the 4,096 pixels of

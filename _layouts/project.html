@@ -7,18 +7,19 @@
 <html lang="en">
 <head>
 {% include rd-head.html title=page_title description=page_desc type="article" image=social_image %}
+<link rel="stylesheet" href="{{ '/assets/css/editorial.css' | relative_url }}">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"{% if project.type == 'software' %}SoftwareSourceCode{% else %}CreativeWork{% endif %}","name":{{ project.title | jsonify }},"description":{{ page_desc | strip | jsonify }},"url":"{{ page.url | absolute_url }}","about":{{ project.category | jsonify }},"author":{"@type":"Person","name":"Monit Sharma","url":"{{ '/' | absolute_url }}"}{% if project.code_url %},"{% if project.type == 'software' %}codeRepository{% else %}sameAs{% endif %}":{{ project.code_url | jsonify }}{% endif %}}
 </script>
 </head>
-<body class="project-page">
+<body class="editorial project-page">
 <a class="skip" href="#main">Skip to content</a>
-<div class="progress" aria-hidden="true"></div>
-<div class="shell">
-{% include rd-sidebar.html nav="project" %}
+
+<div class="editorial-wrap">
+{% include editorial-header.html %}
 
 <main id="main"><div class="main-inner">
-<div class="topline"><a class="crumb" href="{{ '/#projects' | relative_url }}">← All projects</a><span>Project {{ idx | plus: 1 | prepend: '0' }} / {{ total | prepend: '0' }} · {{ project.type }}</span></div>
+<div class="topline"><a class="crumb" href="{{ '/projects/' | relative_url }}">← All projects</a><span>Project {{ idx | plus: 1 | prepend: '0' }} / {{ total | prepend: '0' }} · {{ project.type }}</span></div>
 
 <header class="p-hero" id="overview">
   <div class="p-hero-copy">
@@ -28,6 +29,7 @@
     <div class="hero-actions">
       {% if guide %}<a class="btn btn-primary" href="#in-short">Start with the short version <span class="arr down" aria-hidden="true">↓</span></a>{% else %}<a class="btn btn-primary" href="#results">Explore the results <span class="arr down" aria-hidden="true">↓</span></a>{% endif %}
       {% if project.code_url %}<a class="btn btn-ghost" href="{{ project.code_url }}" target="_blank" rel="noopener">Source code <span class="arr" aria-hidden="true">↗</span></a>{% endif %}
+      {% if project.blog_url %}<a class="text-link" href="{{ project.blog_url }}" target="_blank" rel="noopener">Read the blog <span class="arr" aria-hidden="true">↗</span></a>{% endif %}
     </div>
   </div>
   <aside class="glance" aria-label="At a glance">
@@ -114,8 +116,8 @@
   <a class="pager-card" href="{{ prev_p.page | relative_url }}"><span class="pager-dir">← Previous</span><span class="pager-title">{{ prev_p.title | escape }}</span><span class="pager-metric">{{ prev_p.metric | escape }}</span></a>
   <a class="pager-card next" href="{{ next_p.page | relative_url }}"><span class="pager-dir">Next →</span><span class="pager-title">{{ next_p.title | escape }}</span><span class="pager-metric">{{ next_p.metric | escape }}</span></a>
 </nav>
-<footer><span>© 2026 Monit Sharma</span><a href="#overview">Back to top ↑</a></footer>
 </div></main>
+{% include editorial-footer.html %}
 </div>
 </body>
 </html>

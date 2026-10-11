@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% capture page_title %}{{ page.title }} — Monit Sharma{% endcapture %}
+{% include rd-head.html title=page_title description=page.description %}
+<link rel="stylesheet" href="{{ '/assets/css/editorial.css' | relative_url }}">
+{% if page.interactive %}<script defer src="{{ '/assets/js/rd-home.js' | relative_url }}"></script>{% endif %}
+</head>
+<body class="editorial {{ page.body_class }}">
+<a class="skip" href="#main">Skip to content</a>
+<div class="editorial-wrap">
+{% include editorial-header.html %}
+<main id="main" class="editorial-main">
+{{ content }}
+</main>
+{% include editorial-footer.html %}
+</div>
+</body>
+</html>

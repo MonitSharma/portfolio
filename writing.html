@@ -1,0 +1,16 @@
+---
+layout: editorial
+title: Writing
+nav: writing
+permalink: /writing/
+description: Essays by Monit Sharma on quantum computing, optimization, and scientific software.
+---
+<section class="page-section" id="writing">
+  <div class="section-head page-heading"><div><p class="section-index">03</p><h1>Writing</h1></div><a class="head-link" href="https://monitsharma.github.io/writing/" target="_blank" rel="noopener">Writing archive ↗</a></div>
+  <p class="section-lede">Notes and essays on quantum computing, optimization, and the systems around them.</p>
+  <div class="essay-list">
+  {% assign essays = site.data.essays | concat: site.data.blogs %}{% for essay in essays %}
+    <a class="essay reveal" href="{{ essay.url | escape }}" target="_blank" rel="noopener"><span class="essay-num">0{{ forloop.index }}</span><div><h3>{{ essay.title | escape }}</h3><p>{{ essay.summary | escape }}</p></div><span class="essay-side"><span class="source">{% if essay.source %}{{ essay.source | remove: 'the ' | capitalize }}{% else %}Medium{% endif %}</span><span class="arrow-dot" aria-hidden="true">↗</span></span></a>
+  {% endfor %}
+  </div>
+</section>

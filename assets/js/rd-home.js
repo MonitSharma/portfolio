@@ -5,25 +5,27 @@
   const papers = [...document.querySelectorAll('#publication-list .paper')];
   const morePapers = document.querySelector('#more-papers');
   const paperStatus = document.querySelector('#paper-status');
-  if (morePapers) {
+  if (papers.length && paperStatus) {
     const LIMIT = 4; let paperFilter = 'all', expanded = false;
     const render = () => {
       const matching = papers.filter(p => paperFilter === 'all' || p.dataset.category === paperFilter);
-      const capped = paperFilter === 'all' && !expanded;
+      const capped = !!morePapers && paperFilter === 'all' && !expanded;
       papers.forEach(p => {p.hidden = true;});
       matching.forEach((p, i) => {p.hidden = capped && i >= LIMIT;});
       const shown = matching.filter(p => !p.hidden).length;
       paperStatus.textContent = `Showing ${shown} of ${matching.length} ${paperFilter === 'all' ? 'papers' : paperFilter + (matching.length === 1 ? ' paper' : ' papers')}`;
-      morePapers.hidden = paperFilter !== 'all';
-      morePapers.setAttribute('aria-expanded', String(expanded));
-      morePapers.innerHTML = expanded ? 'Show fewer <span class="arr" aria-hidden="true">↑</span>' : `Show all ${papers.length} papers <span class="arr down" aria-hidden="true">↓</span>`;
+      if (morePapers) {
+        morePapers.hidden = paperFilter !== 'all';
+        morePapers.setAttribute('aria-expanded', String(expanded));
+        morePapers.innerHTML = expanded ? 'Show fewer <span class="arr" aria-hidden="true">↑</span>' : `Show all ${papers.length} papers <span class="arr down" aria-hidden="true">↓</span>`;
+      }
     };
     paperButtons.forEach(button => button.addEventListener('click', () => {
       paperFilter = button.dataset.paperFilter;
       paperButtons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
       render();
     }));
-    morePapers.addEventListener('click', () => {
+    morePapers?.addEventListener('click', () => {
       expanded = !expanded; render();
       if (!expanded) document.querySelector('#research').scrollIntoView({block: 'start'});
     });

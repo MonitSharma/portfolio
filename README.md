@@ -10,8 +10,11 @@ This repository contains the source code for my personal academic portfolio webs
 ## Structure
 - `_data/`: Contains content for Profile, Experience, Publications, etc.
 - `_layouts/`: Page templates.
-- `_includes/`: Reusable components (Sidebar).
+- `_includes/`: Shared navigation, footer, and publication rows.
 - `assets/css/`: Custom styles.
+- `index.html`: Brief introduction and recent updates.
+- `research.html`, `projects.html`, `writing.html`, `about.html`: Focused pages.
+- `work/`: Detailed project pages with methods, results, and figures.
 
 ## Running Locally
 ```bash
@@ -21,10 +24,9 @@ bundle exec jekyll serve
 
 ## Updating publications
 
-Edit `_data/publications.yml` to add or update a paper. The home page uses
-`_includes/publications.html` and `_includes/publication-card.html` to generate
-cards, category counts, the preprint toggle, headline publication totals, and
-structured publication metadata at build time.
+Edit `_data/publications.yml` to add or update a paper. The Research page reuses
+the original publication rows, journal/conference/preprint badges, and link pills.
+All papers are shown initially; category filters are powered by `rd-home.js`.
 
 Use `category: journal`, `conference`, or `preprint`; `order` sets the display
 order within a category. Each paper has a title, year, meta line, description
@@ -35,6 +37,13 @@ Run `bundle exec jekyll serve` and open `http://localhost:4000/portfolio/`.
 Jekyll rebuilds when the YAML changes; refresh the browser to see the update.
 Serve the Jekyll output, since the source home page now contains Liquid templates.
 
-The Work section's `project-nav` links jump to the project IDs in `index.html`.
-When adding a project, give its `software-project` container a unique ID and add
-its link to that menu.
+Projects are listed from `_data/projects.yml` and link to their individual pages
+under `work/`. Writing draws from `_data/essays.yml` and `_data/blogs.yml`.
+
+The shared editorial layout keeps the existing palette and local fonts from
+`redesign.css`; `editorial.css` supplies page framing; the original design system styles the
+publication rows, project cards, timelines, and interactive Bloch sphere. Existing
+home-page anchors redirect to their corresponding pages.
+
+For a local preview without changing the tracked `_site/` files, use
+`bundle exec jekyll serve --host 127.0.0.1 --destination /private/tmp/monit-portfolio-preview --disable-disk-cache`.

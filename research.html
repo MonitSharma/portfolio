@@ -1,0 +1,48 @@
+---
+layout: editorial
+title: Research
+nav: research
+permalink: /research/
+description: Research and publications by Monit Sharma in quantum optimization, AI-guided research, and scientific computing.
+interactive: true
+---
+{% assign journals = site.data.publications | where: 'category', 'journal' | sort: 'order' %}{% assign conferences = site.data.publications | where: 'category', 'conference' | sort: 'order' %}{% assign preprints = site.data.publications | where: 'category', 'preprint' | sort: 'order' %}{% assign selected = journals | concat: conferences | concat: preprints %}{% assign peer_reviewed = journals.size | plus: conferences.size %}
+{% assign research_count = site.data.projects | where: 'type', 'research' | size %}{% assign software_count = site.data.projects | where: 'type', 'software' | size %}{% assign challenge_count = site.data.projects | where: 'type', 'challenge' | size %}
+<section class="page-section" id="research">
+  <div class="section-head page-heading"><div><p class="section-index">01</p><h1>Publications</h1></div><a class="head-link" href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar ↗</a></div>
+  <p class="section-lede reveal">From resilient energy networks to quantum hardware and AI-guided optimization.</p>
+  <div class="toolbar reveal">
+    <div class="segmented" role="group" aria-label="Filter publications"><button type="button" data-paper-filter="all" aria-pressed="true">All<i>{{ selected.size }}</i></button><button type="button" data-paper-filter="journal" aria-pressed="false">Journal<i>{{ journals.size }}</i></button><button type="button" data-paper-filter="conference" aria-pressed="false">Conference<i>{{ conferences.size }}</i></button><button type="button" data-paper-filter="preprint" aria-pressed="false">Preprint<i>{{ preprints.size }}</i></button></div>
+    <span class="toolbar-status" id="paper-status" role="status" aria-live="polite">Showing all {{ selected.size }} papers</span>
+  </div>
+  <div class="paper-list" id="publication-list">{% for paper in selected %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
+    <article class="paper" data-category="{{ paper.category }}">
+      <div class="paper-year">{{ paper.year }}</div>
+      <div>
+        <div class="paper-meta"><span class="badge badge-{{ paper.category }}">{{ paper.category }}</span>{% if paper.new %}<span class="badge badge-new">New</span>{% endif %}<span class="paper-venue">{% if paper.venue %}{{ paper.venue | escape }}{% else %}arXiv preprint{% endif %}</span></div>
+        <h3>{% if primary.url %}<a href="{{ primary.url | escape }}" target="_blank" rel="noopener">{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h3>
+        <p>{{ paper.description.first | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+        <div class="paper-links">{% for link in paper.links %}{% if link.url %}<a class="pill" href="{{ link.url | escape }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="noopener"{% endunless %}>{{ link.text | escape }} <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}</div>
+      </div>
+    </article>{% endfor %}
+  </div>
+</section>
+<section id="focus">
+  <div class="section-head reveal"><div><p class="section-index">Focus</p><h2>What I work on</h2></div></div>
+  <p class="section-lede reveal">Three threads run through my research. Here they are in plain words, with the work behind each one.</p>
+  <div class="focus-grid">{% for theme in site.data.themes %}
+    {% assign theme_papers = '' | split: '' %}{% for paper in selected %}{% assign matched = false %}{% for key in theme.papers %}{% if paper.title contains key %}{% assign matched = true %}{% endif %}{% endfor %}{% if matched %}{% assign theme_papers = theme_papers | push: paper %}{% endif %}{% endfor %}
+    {% assign theme_projects = '' | split: '' %}{% for slug in theme.projects %}{% assign found = site.data.projects | where: 'slug', slug | first %}{% if found %}{% assign theme_projects = theme_projects | push: found %}{% endif %}{% endfor %}
+    {% assign project_slots = theme_projects.size | at_most: 2 %}{% assign paper_slots = 3 | minus: project_slots %}
+    <article class="focus-card reveal" style="--d:{{ forloop.index0 }}">
+      <div class="focus-icon" aria-hidden="true">{% case theme.id %}{% when 'optimization' %}<svg viewBox="0 0 24 24"><circle cx="5" cy="18" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="19" cy="15" r="2"/><path d="M6.4 16.5 10.6 7.6M13.6 7.2l4.2 6.2M7 18.3l10-2.9"/></svg>{% when 'ai' %}<svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg>{% else %}<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>{% endcase %}</div>
+      <h3>{{ theme.title }}</h3>
+      <p>{{ theme.plain }}</p>
+      <p class="focus-count">{% if theme_papers.size > 0 %}<b>{{ theme_papers.size }}</b> {% if theme_papers.size == 1 %}paper{% else %}papers{% endif %}{% endif %}{% if theme_papers.size > 0 and theme_projects.size > 0 %} · {% endif %}{% if theme_projects.size > 0 %}<b>{{ theme_projects.size }}</b> {% if theme_projects.size == 1 %}project{% else %}projects{% endif %}{% endif %}</p>
+      <ul class="focus-links">{% for found in theme_projects limit: project_slots %}
+        <li><a href="{{ found.page | relative_url }}"><span class="kind">Project</span><span class="focus-title">{{ found.title | escape }}</span><span class="arr" aria-hidden="true">→</span></a></li>{% endfor %}{% for paper in theme_papers limit: paper_slots %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
+        <li><a href="{{ primary.url | escape }}" target="_blank" rel="noopener"><span class="kind">Paper</span><span class="focus-title">{{ paper.title | split: ':' | first | truncatewords: 6, '…' | escape }}</span><span class="arr" aria-hidden="true">↗</span></a></li>{% endfor %}
+      </ul>
+    </article>{% endfor %}
+  </div>
+</section>

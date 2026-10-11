@@ -1,40 +1,24 @@
 ---
-layout: null
+layout: editorial
+title: Home
+nav: home
+body_class: home-page
+interactive: true
+description: Monit Sharma is a Research Engineer at Singapore Management University working on quantum algorithms, AI, and scientific software.
 ---
 {% assign journals = site.data.publications | where: 'category', 'journal' | sort: 'order' %}{% assign conferences = site.data.publications | where: 'category', 'conference' | sort: 'order' %}{% assign preprints = site.data.publications | where: 'category', 'preprint' | sort: 'order' %}{% assign selected = journals | concat: conferences | concat: preprints %}{% assign peer_reviewed = journals.size | plus: conferences.size %}
 {% assign research_count = site.data.projects | where: 'type', 'research' | size %}{% assign software_count = site.data.projects | where: 'type', 'software' | size %}{% assign challenge_count = site.data.projects | where: 'type', 'challenge' | size %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-{% include rd-head.html title="Monit Sharma — Quantum algorithms, AI in the loop, real-world problems" description="Monit Sharma is a Research Engineer at Singapore Management University working on quantum and hybrid optimization, AI agents for research, and benchmarking on real quantum hardware." %}
-<script defer src="{{ '/assets/js/rd-home.js' | relative_url }}"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Person","@id":"{{ '/#person' | absolute_url }}","name":"Monit Sharma","jobTitle":"Research Engineer","url":"{{ '/' | absolute_url }}","image":"{{ '/assets/imgs/portrait-preview.jpg' | absolute_url }}","email":"mailto:monitsharma437@gmail.com","affiliation":{"@type":"CollegeOrUniversity","name":"Singapore Management University"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Indian Institute of Science Education and Research Mohali"},"knowsAbout":["Quantum computing","Quantum algorithms","Quantum optimization","Variational quantum algorithms","AI research systems","Scientific software"],"sameAs":["https://github.com/MonitSharma","https://scholar.google.com/citations?user=Q3vRb9oAAAAJ","https://www.linkedin.com/in/monitsharma/","https://medium.com/@_monitsharma","https://twitter.com/_MonitSharma"]}{% for paper in selected %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %},
 {"@type":"ScholarlyArticle","headline":{{ paper.title | strip_newlines | jsonify }},"datePublished":"{{ paper.year }}","author":{"@id":"{{ '/#person' | absolute_url }}"}{% if paper.venue %},"publisher":{{ paper.venue | jsonify }}{% endif %}{% if primary.url %},"url":{{ primary.url | jsonify }}{% endif %}}{% endfor %}
 ]}
 </script>
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="progress" aria-hidden="true"></div>
-<div class="shell">
-{% include rd-sidebar.html nav="home" %}
-
-<main id="main"><div class="main-inner">
-<div class="topline"><div class="status"><span class="pulse" aria-hidden="true"></span>Quantum × AI · research &amp; software</div><span class="clock-wrap">Singapore<span class="clock" hidden> · <time data-clock></time> SGT</span></span></div>
-
 <header class="hero" id="overview">
   <div class="hero-copy">
     <h1><span class="line" style="--i:0">Quantum algorithms.</span><span class="line" style="--i:1">AI in the loop.</span><span class="line" style="--i:2"><em>Real-world problems.</em></span></h1>
-    <p class="hero-lede" style="--i:3">I’m Monit, a Research Engineer at SMU. I develop quantum and classical computational methods across physics, chemistry, and optimization, alongside AI systems for scientific research. My work connects algorithm design, numerical simulation, scientific software, and experiments on real hardware.</p>
-    <div class="hero-actions" style="--i:4"><a class="btn btn-primary" href="#research">Explore my research <span class="arr down" aria-hidden="true">↓</span></a><a class="btn btn-ghost" href="{{ '/assets/Monit_Sharma_CV.pdf' | relative_url }}" target="_blank" rel="noopener">View CV <span class="arr" aria-hidden="true">↗</span></a><a class="text-link" href="#contact">Get in touch <span class="arr" aria-hidden="true">→</span></a></div>
-    <div class="hero-stats" style="--i:5">
-      <div class="stat"><b>{{ site.data.publications.size }}</b><span>Papers &amp; preprints</span></div>
-      <div class="stat"><b>{{ peer_reviewed }}</b><span>Peer-reviewed</span></div>
-      <div class="stat"><b>{{ site.data.projects.size }}</b><span>Projects</span></div>
-      <div class="stat"><b>18</b><span>Free courses</span></div>
-    </div>
+    <p class="hero-lede" style="--i:3">I’m a Research Engineer at Singapore Management University. I develop quantum and classical computational methods across physics, chemistry, and optimization, alongside AI systems for scientific research. My work connects algorithm design, numerical simulation, scientific software, and experiments on real hardware.</p>
+    <div class="hero-actions" style="--i:4"><a class="btn btn-primary" href="{{ '/research/' | relative_url }}">Explore my research <span class="arr down" aria-hidden="true">↓</span></a><a class="btn btn-ghost" href="{{ '/assets/Monit_Sharma_CV.pdf' | relative_url }}" target="_blank" rel="noopener">View CV <span class="arr" aria-hidden="true">↗</span></a><a class="text-link" href="{{ '/about/#contact' | relative_url }}">Get in touch <span class="arr" aria-hidden="true">→</span></a></div>
   </div>
 
   <figure class="lab" style="--i:2" role="group" aria-labelledby="lab-title" data-state="opt">
@@ -78,135 +62,13 @@ layout: null
     <p class="sr-only" aria-live="polite" data-announce></p>
   </figure>
 </header>
-
-</div>
-
-<section id="focus">
-  <div class="section-head reveal"><div><p class="section-index">Focus</p><h2>What I work on</h2></div></div>
-  <p class="section-lede reveal">Three threads run through my research. Here they are in plain words, with the work behind each one.</p>
-  <div class="focus-grid">{% for theme in site.data.themes %}
-    {% assign theme_papers = '' | split: '' %}{% for paper in selected %}{% assign matched = false %}{% for key in theme.papers %}{% if paper.title contains key %}{% assign matched = true %}{% endif %}{% endfor %}{% if matched %}{% assign theme_papers = theme_papers | push: paper %}{% endif %}{% endfor %}
-    {% assign theme_projects = '' | split: '' %}{% for slug in theme.projects %}{% assign found = site.data.projects | where: 'slug', slug | first %}{% if found %}{% assign theme_projects = theme_projects | push: found %}{% endif %}{% endfor %}
-    {% assign project_slots = theme_projects.size | at_most: 2 %}{% assign paper_slots = 3 | minus: project_slots %}
-    <article class="focus-card reveal" style="--d:{{ forloop.index0 }}">
-      <div class="focus-icon" aria-hidden="true">{% case theme.id %}{% when 'optimization' %}<svg viewBox="0 0 24 24"><circle cx="5" cy="18" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="19" cy="15" r="2"/><path d="M6.4 16.5 10.6 7.6M13.6 7.2l4.2 6.2M7 18.3l10-2.9"/></svg>{% when 'ai' %}<svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg>{% else %}<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>{% endcase %}</div>
-      <h3>{{ theme.title }}</h3>
-      <p>{{ theme.plain }}</p>
-      <p class="focus-count">{% if theme_papers.size > 0 %}<b>{{ theme_papers.size }}</b> {% if theme_papers.size == 1 %}paper{% else %}papers{% endif %}{% endif %}{% if theme_papers.size > 0 and theme_projects.size > 0 %} · {% endif %}{% if theme_projects.size > 0 %}<b>{{ theme_projects.size }}</b> {% if theme_projects.size == 1 %}project{% else %}projects{% endif %}{% endif %}</p>
-      <ul class="focus-links">{% for found in theme_projects limit: project_slots %}
-        <li><a href="{{ found.page | relative_url }}"><span class="kind">Project</span><span class="focus-title">{{ found.title | escape }}</span><span class="arr" aria-hidden="true">→</span></a></li>{% endfor %}{% for paper in theme_papers limit: paper_slots %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
-        <li><a href="{{ primary.url | escape }}" target="_blank" rel="noopener"><span class="kind">Paper</span><span class="focus-title">{{ paper.title | split: ':' | first | truncatewords: 6, '…' | escape }}</span><span class="arr" aria-hidden="true">↗</span></a></li>{% endfor %}
-      </ul>
-    </article>{% endfor %}
-  </div>
+<section class="editorial-section home-news" id="news">
+  <div class="list-heading"><h2>Recently</h2><a href="{{ '/research/' | relative_url }}">Research &amp; publications <span aria-hidden="true">→</span></a></div>
+  {% for item in site.data.news limit: 3 %}<div class="update-row"><time datetime="{{ item.date }}">{{ item.date | append: '-01' | date: '%b %Y' }}</time><div>{% if item.new %}<span class="new-tag">New</span>{% endif %}{{ item.content | replace: '📰 ', '' | replace: '🎉 ', '' | replace: '📄 ', '' | replace: '🎤 ', '' | markdownify | remove: '<p>' | remove: '</p>' | strip }}</div></div>{% endfor %}
+  <details class="news-archive"><summary>Earlier updates</summary>{% for item in site.data.news offset: 3 %}<div class="update-row"><time datetime="{{ item.date }}">{{ item.date | append: '-01' | date: '%b %Y' }}</time><div>{{ item.content | replace: '📰 ', '' | replace: '🎉 ', '' | replace: '📄 ', '' | replace: '🎤 ', '' | markdownify | remove: '<p>' | remove: '</p>' | strip }}</div></div>{% endfor %}</details>
 </section>
-
-<section id="news">
-  {% assign news_shown = site.data.news | slice: 0, 5 %}{% assign news_newest = news_shown.first.date | slice: 0, 4 %}{% assign news_oldest = news_shown.last.date | slice: 0, 4 %}
-  <div class="section-head reveal"><div><p class="section-index">Latest</p><h2>News</h2></div><span class="toolbar-status">{% if news_oldest == news_newest %}{{ news_newest }}{% else %}{{ news_oldest }}–{{ news_newest }}{% endif %}</span></div>
-  <div class="news-list reveal">{% for item in news_shown %}<div class="news-item"><time>{{ item.date | append: '-01' | date: '%b %Y' }}</time><p>{% if item.new %}<span class="new-tag">New</span>{% endif %}{{ item.content | replace: '📰 ', '' | replace: '🎉 ', '' | replace: '📄 ', '' | replace: '🎤 ', '' | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p></div>{% endfor %}</div>
-</section>
-
-<section id="research">
-  <div class="section-head reveal"><div><p class="section-index">01</p><h2>Publications</h2></div><a class="head-link" href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar ↗</a></div>
-  <p class="section-lede reveal">From resilient energy networks to quantum hardware and AI-guided optimization.</p>
-  <div class="toolbar reveal">
-    <div class="segmented" role="group" aria-label="Filter publications"><button type="button" data-paper-filter="all" aria-pressed="true">All<i>{{ selected.size }}</i></button><button type="button" data-paper-filter="journal" aria-pressed="false">Journal<i>{{ journals.size }}</i></button><button type="button" data-paper-filter="conference" aria-pressed="false">Conference<i>{{ conferences.size }}</i></button><button type="button" data-paper-filter="preprint" aria-pressed="false">Preprint<i>{{ preprints.size }}</i></button></div>
-    <span class="toolbar-status" id="paper-status" role="status" aria-live="polite">Showing 4 of {{ selected.size }} papers</span>
-  </div>
-  <div class="paper-list" id="publication-list">{% for paper in selected %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
-    <article class="paper" data-category="{{ paper.category }}"{% if forloop.index > 4 %} hidden{% endif %}>
-      <div class="paper-year">{{ paper.year }}</div>
-      <div>
-        <div class="paper-meta"><span class="badge badge-{{ paper.category }}">{{ paper.category }}</span>{% if paper.new %}<span class="badge badge-new">New</span>{% endif %}<span class="paper-venue">{% if paper.venue %}{{ paper.venue | escape }}{% else %}arXiv preprint{% endif %}</span></div>
-        <h3>{% if primary.url %}<a href="{{ primary.url | escape }}" target="_blank" rel="noopener">{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h3>
-        <p>{{ paper.description.first | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
-        <div class="paper-links">{% for link in paper.links %}{% if link.url %}<a class="pill" href="{{ link.url | escape }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="noopener"{% endunless %}>{{ link.text | escape }} <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}</div>
-      </div>
-    </article>{% endfor %}
-  </div>
-  <div class="more-row"><button class="btn btn-ghost" id="more-papers" type="button" aria-controls="publication-list" aria-expanded="false">Show all {{ selected.size }} papers <span class="arr down" aria-hidden="true">↓</span></button></div>
-</section>
-
-<section id="projects">
-  <div class="section-head reveal"><div><p class="section-index">02</p><h2>Things I build</h2></div><a class="head-link" href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub ↗</a></div>
-  <p class="section-lede reveal">Research software, local AI systems, and quantum experiments. Each project page starts with a plain-language summary, then shows the methods, results, and evidence.</p>
-  <div class="toolbar reveal">
-    <div class="segmented" role="group" aria-label="Filter projects"><button type="button" data-filter="all" aria-pressed="true">All<i>{{ site.data.projects.size }}</i></button><button type="button" data-filter="research" aria-pressed="false">Research<i>{{ research_count }}</i></button><button type="button" data-filter="software" aria-pressed="false">Software<i>{{ software_count }}</i></button><button type="button" data-filter="challenge" aria-pressed="false">Challenges<i>{{ challenge_count }}</i></button></div>
-    <span class="toolbar-status" id="filter-status" role="status" aria-live="polite">Showing all {{ site.data.projects.size }} projects</span>
-  </div>
-  <div class="project-grid">{% for project in site.data.projects %}{% assign guide = site.data.project_guides | where: 'slug', project.slug | first %}
-    <a class="project reveal" style="--d:{{ forloop.index0 | modulo: 3 }}" data-type="{{ project.type }}" href="{{ project.page | relative_url }}" aria-labelledby="project-title-{{ project.slug }}">
-      <div class="project-top"><span>0{{ forloop.index }}</span><span class="type-chip">{{ project.type }}</span></div>
-      <p class="project-cat">{{ project.category | escape }}</p>
-      <h3 id="project-title-{{ project.slug }}">{{ project.title | escape }}</h3>
-      <p class="project-summary">{% if guide.tldr %}{{ guide.tldr | escape }}{% else %}{{ project.summary | escape }}{% endif %}</p>
-      <div class="project-foot">
-        <div class="metric"><b>{{ project.metric | escape }}</b><span>{{ project.metric_label | escape }}</span></div>
-        <span class="project-cta">Read the project <span class="arrow-dot" aria-hidden="true">→</span></span>
-      </div>
-    </a>{% endfor %}
-  </div>
-</section>
-
-<section id="writing">
-  <div class="section-head reveal"><div><p class="section-index">03</p><h2>Writing</h2></div><a class="head-link" href="https://medium.com/@_monitsharma" target="_blank" rel="noopener">All essays ↗</a></div>
-  <div class="essay-list">
-    <a class="essay reveal" href="https://monitsharma.github.io/writing/quantum-optimization-on-real-hardware/index.html" target="_blank" rel="noopener"><span class="essay-num">01</span><div><h3>Quantum Optimization on Real Hardware</h3><p>What 247 experiments on IBM Heron revealed about quantum optimization workflows.</p></div><span class="essay-side"><span class="source">Blog</span><span class="arrow-dot" aria-hidden="true">↗</span></span></a>
-    <a class="essay reveal" href="https://medium.com/@_monitsharma/when-cooking-gas-becomes-a-national-security-problem-c47babcea911" target="_blank" rel="noopener"><span class="essay-num">02</span><div><h3>When Cooking Gas Becomes a National Security Problem</h3><p>Maritime chokepoints, energy resilience, and the mathematics of national supply networks.</p></div><span class="essay-side"><span class="source">Medium</span><span class="arrow-dot" aria-hidden="true">↗</span></span></a>
-    <a class="essay reveal" href="https://medium.com/@_monitsharma/the-key-to-the-quantum-garden-indias-1-000-km-leap-into-un-hackable-communication-ab6277f0f98e" target="_blank" rel="noopener"><span class="essay-num">03</span><div><h3>The Key to the Quantum Garden</h3><p>India’s 1,000 km quantum communication demonstration and the infrastructure behind QKD.</p></div><span class="essay-side"><span class="source">Medium</span><span class="arrow-dot" aria-hidden="true">↗</span></span></a>
-  </div>
-</section>
-
-<section id="teaching">
-  <div class="section-head reveal"><div><p class="section-index">04</p><h2>Open education</h2></div><a class="head-link" href="https://monitsharma.github.io/" target="_blank" rel="noopener">The Quantum Classroom ↗</a></div>
-  <div class="teaching reveal">
-    <div class="teach-intro">
-      <h3>Learn it. Implement it.<br><em>Make it your own.</em></h3>
-      <p>Resources, worked examples, and code for learning by doing.</p>
-      <div class="teach-stat"><b>18</b><span>free learning paths across quantum computing, mathematics, and scientific programming</span></div>
-    </div>
-    <div class="course-list">
-      <a class="course" href="https://monitsharma.github.io/Learn-Quantum-Computing-For-Free/" target="_blank" rel="noopener"><span class="course-num">01</span>Learn Quantum Computing for Free<span class="arrow-dot" aria-hidden="true">↗</span></a>
-      <a class="course" href="https://monitsharma.github.io/Quantum-Machine-Learning-on-Near-Term-Quantum-Devices/" target="_blank" rel="noopener"><span class="course-num">02</span>Quantum Machine Learning<span class="arrow-dot" aria-hidden="true">↗</span></a>
-      <a class="course" href="https://monitsharma.github.io/Numerical-Linear-Algebra/" target="_blank" rel="noopener"><span class="course-num">03</span>Numerical Linear Algebra<span class="arrow-dot" aria-hidden="true">↗</span></a>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="section-head reveal"><div><p class="section-index">05</p><h2>Background</h2></div><div class="head-links"><a class="head-link" href="{{ '/assets/Monit_Sharma_CV.pdf' | relative_url }}" target="_blank" rel="noopener">View CV (PDF) ↗</a><a class="head-link" href="https://www.linkedin.com/in/monitsharma/" target="_blank" rel="noopener">LinkedIn ↗</a></div></div>
-  <div class="timeline">
-    <div class="reveal">
-      <p class="tl-label">Experience</p>
-      <div class="tl">{% for item in site.data.experience %}
-        <div class="tl-item{% if forloop.first %} is-current{% endif %}"><div class="tl-date">{{ item.period | strip }}</div><h3>{{ item.role | escape }}</h3><p class="tl-org">{{ item.company | escape }}</p>{% if item.highlights %}<ul>{% for h in item.highlights %}<li>{{ h | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>{% endfor %}</ul>{% endif %}</div>{% endfor %}
-      </div>
-    </div>
-    <div class="reveal" style="--d:1">
-      <p class="tl-label">Education</p>
-      <div class="tl">{% for item in site.data.education %}
-        <div class="tl-item"><div class="tl-date">{{ item.year }}</div><h3>{{ item.degree | escape }}</h3><p class="tl-org">{{ item.university | escape }}</p></div>{% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="contact reveal" id="contact">
-  <div class="contact-orbit" aria-hidden="true"><i></i></div>
-  <p class="section-index">06 · Contact</p>
-  <h2>Get in <em>touch.</em></h2>
-  <p class="contact-lede">Research collaborations, scientific software, and conversations about quantum &amp; AI.</p>
-  <div class="contact-actions">
-    <a class="btn btn-light" href="mailto:monitsharma437@gmail.com">Say hello <span class="arr" aria-hidden="true">↗</span></a>
-    <a class="btn btn-outline-light" href="{{ '/assets/Monit_Sharma_CV.pdf' | relative_url }}" target="_blank" rel="noopener">View CV <span class="arr" aria-hidden="true">↗</span></a>
-    <button class="btn btn-outline-light" type="button" data-copy="monitsharma437@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span class="copy-label">monitsharma437@gmail.com</span></button>
-  </div>
-  <div class="contact-socials"><a href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/monitsharma/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://scholar.google.com/citations?user=Q3vRb9oAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar ↗</a><a href="https://medium.com/@_monitsharma" target="_blank" rel="noopener">Medium ↗</a><a href="https://twitter.com/_MonitSharma" target="_blank" rel="noopener">X / Twitter ↗</a></div>
-</div>
-<footer><span>© 2026 Monit Sharma</span><a href="#overview">Back to top ↑</a></footer>
-</div></main>
-</div>
-<noscript><style>.paper[hidden]{display:grid}.more-row,#paper-status,.lab-controls,.lab-readout,.lab-log,.lab-stages{display:none}</style></noscript>
-</body>
-</html>
+<div class="home-explore"><p>Elsewhere on this site</p><div><a href="{{ '/projects/' | relative_url }}">Projects <span>Scientific software &amp; experiments</span></a><a href="{{ '/writing/' | relative_url }}">Writing <span>Ideas behind the work</span></a><a href="{{ '/about/#teaching' | relative_url }}">Open education <span>Resources for learning by doing</span></a></div></div>
+<script>
+// Keep existing links to the former single-page sections useful.
+(function(){var destinations={research:'research/',publications:'research/',projects:'projects/',writing:'writing/',teaching:'about/#teaching',about:'about/',contact:'about/#contact',focus:'research/'};var target=destinations[location.hash.slice(1)];if(target)location.replace({{ '/' | relative_url | jsonify }}+target);})();
+</script>
