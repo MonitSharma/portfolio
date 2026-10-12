@@ -347,6 +347,23 @@
       frequent string, medoid, and cluster consensus.
   slug: peaked-circuits
   page: "/work/peaked-circuits/"
+  verification:
+    label: Tracker verified
+    date: 12 October 2026
+    summary: Both 98-qubit recovery submissions are listed in the Quantum Advantage
+      Tracker. P11 used 50 hardware samples and P12 used 200, with documented classical
+      decoding and reproducibility packages.
+    note: The tracker verifies the hardware-recovery submissions; the entries make
+      no quantum advantage claim.
+    links:
+    - label: P11 tracker entry
+      url: https://quantum-advantage-tracker.github.io/trackers/classically-verifiable-problems?instance=peaked_circuit_P11_Hqap_98x1999
+    - label: P12 tracker entry
+      url: https://quantum-advantage-tracker.github.io/trackers/classically-verifiable-problems?instance=peaked_circuit_P12_Hqap_98x2457
+    - label: P11 verification
+      url: https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/246#issuecomment-6126732313
+    - label: P12 verification
+      url: https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/247#issuecomment-6126738143
   source_url: https://github.com/MonitSharma/peaked_circuits
   source_label: Read the recovery record
   code_url: https://github.com/MonitSharma/peaked_circuits
@@ -394,6 +411,8 @@
     url: https://github.com/MonitSharma/peaked_circuits/blob/main/REPRODUCIBILITY_QUANTUM.md
   - label: BlueQubit leaderboard
     url: https://app.bluequbit.io/hackathons/oEOtLSSrPSVH60Ah?tab=leaderboard
+  - label: Quantum Advantage Tracker
+    url: https://quantum-advantage-tracker.github.io/trackers/classically-verifiable-problems
   explanation:
   - title: Recovering a center from noisy samples
     text: A peaked circuit concentrates its ideal output near a particular bitstring.

@@ -1,6 +1,10 @@
 # Newest first. `new: true` adds a “New” tag on the home page.
 - date: "2026-10"
   new: true
+  content: "My **[P11 and P12 peaked-circuit recovery results](/portfolio/work/peaked-circuits/#external-verification)** on Quantinuum Helios-1 have been verified and added to the **[Quantum Advantage Tracker](https://quantum-advantage-tracker.github.io/trackers/classically-verifiable-problems)** (12 October 2026)."
+
+- date: "2026-10"
+  new: true
   content: "📰 **[Securing the flow: Strategic storage and corridor design for maritime energy security under chokepoint disruptions](https://www.sciencedirect.com/science/article/pii/S1366554526006344)** is now published online in **Transportation Research Part E: Logistics and Transportation Review** (12 October 2026)."
 
 - date: "2026-09"

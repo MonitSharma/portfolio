@@ -25,6 +25,7 @@
   <div class="p-hero-copy">
     <p class="section-index">{{ project.category | escape }}</p>
     <h1>{{ project.title | escape }}</h1>
+    {% if project.verification %}<a class="badge badge-verification" href="#external-verification"><span aria-hidden="true"></span>{{ project.verification.label | escape }}</a>{% endif %}
     {% if guide.tldr %}<p class="p-tldr">{{ guide.tldr | escape }}</p>{% else %}<p class="p-tldr">{{ project.summary | escape }}</p>{% endif %}
     <div class="hero-actions">
       {% if guide %}<a class="btn btn-primary" href="#in-short">Start with the short version <span class="arr down" aria-hidden="true">↓</span></a>{% else %}<a class="btn btn-primary" href="#results">Explore the results <span class="arr down" aria-hidden="true">↓</span></a>{% endif %}
@@ -74,6 +75,14 @@
 <section id="results">
   <div class="section-head reveal"><div><p class="section-index">02 · The evidence</p><h2>Results</h2></div>{% if project.source_url %}<a class="head-link" href="{{ project.source_url }}" target="_blank" rel="noopener">{{ project.source_label | default: 'Read the record' }} ↗</a>{% endif %}</div>
   <p class="section-lede reveal">{{ project.detail | escape }}</p>
+  {% if project.verification %}
+  <aside class="verification-note" id="external-verification" aria-labelledby="verification-title">
+    <div class="verification-heading"><h3 id="verification-title">External verification</h3><span>Verified {{ project.verification.date | escape }}</span></div>
+    <p>{{ project.verification.summary | escape }}</p>
+    <div class="paper-links">{% for link in project.verification.links %}<a class="pill" href="{{ link.url | escape }}" target="_blank" rel="noopener">{{ link.label | escape }} <span aria-hidden="true">↗</span></a>{% endfor %}</div>
+    <p class="verification-context">{{ project.verification.note | escape }}</p>
+  </aside>
+  {% endif %}
   <div class="findings">{% for finding in project.findings %}<div class="finding reveal" style="--d:{{ forloop.index0 }}"><span class="finding-num">Finding 0{{ forloop.index }}</span><p>{{ finding | escape }}</p></div>{% endfor %}</div>
   {% if project.table %}
   <div class="data-table reveal"><div class="table-scroll" tabindex="0" role="region" aria-label="{{ project.table.caption | escape }}"><table>

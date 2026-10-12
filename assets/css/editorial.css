@@ -65,6 +65,15 @@
 .editorial.project-page .main-inner{max-width:none}
 .editorial.project-page .topline{padding-top:38px}
 .editorial.project-page .p-hero{padding-top:44px}
+.badge-verification{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:7px 12px;background:var(--tint);color:var(--accent-strong)}
+.badge-verification>span{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.badge-verification:hover{text-decoration:underline;text-underline-offset:3px}
+.verification-note{margin-top:28px;padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--soft);scroll-margin-top:24px}
+.verification-heading{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px 20px}
+.verification-heading h3{font:400 27px/1.2 var(--serif)}
+.verification-heading>span{font:11px/1.6 var(--mono);color:var(--accent)}
+.verification-note>p{max-width:840px;margin-top:14px;font-size:15px;line-height:1.7;color:var(--muted)}
+.verification-note .verification-context{font-size:13px;margin-top:16px}
 @media(min-width:1500px){.editorial-wrap{width:min(1280px,calc(100% - 120px))}}
 @media(max-width:1100px){
   .editorial-wrap{width:calc(100% - 64px)}
