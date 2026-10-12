@@ -114,22 +114,24 @@
       url: https://monitsharma.github.io/writing/quantum-optimization-on-real-hardware/index.html
   order: 2
 
-- title: "Securing the Flow: Maritime Energy Resilience under Correlated and
-    Decision-Dependent Disruptions"
+- title: "Securing the flow: Strategic storage and corridor design for maritime
+    energy security under chokepoint disruptions"
   meta: with H. C. Lau · Maritime energy resilience · arXiv:2605.11990
   year: 2026
   category: journal
   venue: "Transportation Research Part E: Logistics and Transportation Review ·
-    Accepted 2026"
+    Published online 12 October 2026"
   new: true
   description:
     - Developed a two-stage stochastic multi-commodity flow model for resilient
       energy supply under correlated chokepoint disruptions.
-    - Calibrated to Indian maritime energy imports, identifying **LPG exposure**
-      and structural joint-failure resilience.
+    - Evaluated strategic storage, corridor commitments, and **LNG and LPG service
+      continuity** in a data-anchored India-inspired case study.
   links:
-    - text: Journal venue
-      url: https://www.sciencedirect.com/journal/transportation-research-part-e-logistics-and-transportation-review
+    - text: Journal
+      url: https://www.sciencedirect.com/science/article/pii/S1366554526006344
+    - text: DOI
+      url: https://doi.org/10.1016/j.tre.2026.105296
     - text: arXiv
       url: https://arxiv.org/abs/2605.11990
     - text: Blog

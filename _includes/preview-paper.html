@@ -1,5 +1,5 @@
 {% assign paper = include.paper %}
-{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
+{% assign primary = paper.links | where: 'text', 'Journal' | first %}{% unless primary %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% endunless %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
 <article class="paper"{% if include.hidden %} hidden{% endif %}>
   <div class="paper-num">{{ paper.year }}</div>
   <div class="paper-copy">

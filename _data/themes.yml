@@ -5,7 +5,7 @@
   title: Optimization for real-world systems
   plain: Delivery routes, inventory and energy supply under disruption. I model these planning problems and test whether quantum and hybrid solvers genuinely help — measuring carefully when they don’t.
   papers:
-    - Securing the Flow
+    - Securing the flow
     - Hybrid Learning and Optimization Methods
     - Qubit-Scalable CVRP
     - Learning-Based Graph Shrinking

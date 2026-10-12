@@ -15,7 +15,7 @@ interactive: true
     <div class="segmented" role="group" aria-label="Filter publications"><button type="button" data-paper-filter="all" aria-pressed="true">All<i>{{ selected.size }}</i></button><button type="button" data-paper-filter="journal" aria-pressed="false">Journal<i>{{ journals.size }}</i></button><button type="button" data-paper-filter="conference" aria-pressed="false">Conference<i>{{ conferences.size }}</i></button><button type="button" data-paper-filter="preprint" aria-pressed="false">Preprint<i>{{ preprints.size }}</i></button></div>
     <span class="toolbar-status" id="paper-status" role="status" aria-live="polite">Showing all {{ selected.size }} papers</span>
   </div>
-  <div class="paper-list" id="publication-list">{% for paper in selected %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
+  <div class="paper-list" id="publication-list">{% for paper in selected %}{% assign primary = paper.links | where: 'text', 'Journal' | first %}{% unless primary %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% endunless %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
     <article class="paper" data-category="{{ paper.category }}">
       <div class="paper-year">{{ paper.year }}</div>
       <div>
@@ -40,7 +40,7 @@ interactive: true
       <p>{{ theme.plain }}</p>
       <p class="focus-count">{% if theme_papers.size > 0 %}<b>{{ theme_papers.size }}</b> {% if theme_papers.size == 1 %}paper{% else %}papers{% endif %}{% endif %}{% if theme_papers.size > 0 and theme_projects.size > 0 %} · {% endif %}{% if theme_projects.size > 0 %}<b>{{ theme_projects.size }}</b> {% if theme_projects.size == 1 %}project{% else %}projects{% endif %}{% endif %}</p>
       <ul class="focus-links">{% for found in theme_projects limit: project_slots %}
-        <li><a href="{{ found.page | relative_url }}"><span class="kind">Project</span><span class="focus-title">{{ found.title | escape }}</span><span class="arr" aria-hidden="true">→</span></a></li>{% endfor %}{% for paper in theme_papers limit: paper_slots %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
+        <li><a href="{{ found.page | relative_url }}"><span class="kind">Project</span><span class="focus-title">{{ found.title | escape }}</span><span class="arr" aria-hidden="true">→</span></a></li>{% endfor %}{% for paper in theme_papers limit: paper_slots %}{% assign primary = paper.links | where: 'text', 'Journal' | first %}{% unless primary %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% endunless %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
         <li><a href="{{ primary.url | escape }}" target="_blank" rel="noopener"><span class="kind">Paper</span><span class="focus-title">{{ paper.title | split: ':' | first | truncatewords: 6, '…' | escape }}</span><span class="arr" aria-hidden="true">↗</span></a></li>{% endfor %}
       </ul>
     </article>{% endfor %}
