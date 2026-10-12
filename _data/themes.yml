@@ -27,9 +27,9 @@
   projects: [atelier-lab]
 
 - id: hardware
-  title: Quantum hardware & scientific software
-  plain: Running algorithms on real quantum processors, building fast simulators and verifying circuits end to end — the engineering that makes quantum results reproducible.
+  title: Quantum hardware, HPC & scientific software
+  plain: Running algorithms on real quantum processors, building fast simulators, exploring how quantum processors will integrate with supercomputers in hybrid quantum–HPC systems, and verifying circuits end to end — the engineering that makes quantum results reproducible.
   papers:
     - From Circuits to Hardware
     - Diagnosing Simulation and Hardware Barriers
-  projects: [mettleq, qsvt-linear-solvers, peaked-circuits, classiq, quantum-chemistry]
+  projects: [mettleq, quantum-hpc, qsvt-linear-solvers, peaked-circuits, classiq, quantum-chemistry]

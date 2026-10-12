@@ -145,3 +145,29 @@
       def: Keeping only the runs in which helper qubits give the expected result.
     - term: Confidence interval
       def: A range that likely contains the true value given the number of samples. This project reports 95% Wilson intervals.
+
+- slug: quantum-hpc
+  tldr: An exploration of how future quantum–HPC systems will look, where quantum processors sit inside supercomputers, by measuring the classical work every quantum algorithm depends on.
+  problem: Quantum computers are not expected to work alone. The likely future is a quantum processor plugged into a supercomputer, with ordinary processors building circuits, translating them for the quantum chip, simulating them, and processing the results, often thousands of times in a loop. To design such systems well, we need to know where that classical time really goes. This project explores that question with six small, reproducible experiments that anyone can rerun on a laptop.
+  why: Knowing where time is really spent shows what a future quantum–HPC system must get right. Ideas such as Amdahl's law, the exponential cost of simulation, and processes versus threads will decide how quantum workloads are scheduled and run alongside supercomputers.
+  metric_plain: Rewriting the circuit-building code in C++ made the whole QAOA optimizer 8.6 times faster at 8 qubits, but only 1% faster at 18 qubits, because by then simulation took 98% of the time.
+  takeaways:
+    - Speeding up one part of a program helps only as much as that part's share of the total time. A 10× faster component made the whole loop just 1.01× faster on large circuits.
+    - Every extra qubit doubles both simulation time and memory, so a computer twice as large buys only one more qubit.
+    - For many small, independent simulations, running separate processes was 2.5 times faster than sharing threads, and grouping the work into batches doubled throughput again.
+  stack: [Qiskit, Qiskit C API, C++, Qiskit Aer, Python multiprocessing]
+  glossary:
+    - term: HPC
+      def: High-performance computing — using many processor cores, or many computers, together to solve large problems faster.
+    - term: QAOA
+      def: The quantum approximate optimization algorithm — a hybrid method in which a classical optimizer repeatedly tunes the angles of a quantum circuit.
+    - term: Amdahl's law
+      def: The rule that the overall speedup is limited by the part of a program that you did not speed up.
+    - term: Transpilation
+      def: Rewriting a circuit so that it uses only the gates and connections available on a particular quantum chip.
+    - term: Statevector simulation
+      def: Simulating a quantum circuit by storing all 2ⁿ numbers that describe n qubits — exact, but exponentially expensive.
+    - term: Strong scaling
+      def: How much faster a fixed-size problem runs as you add more cores. Efficiency is the speedup divided by the number of cores.
+    - term: Threads vs processes
+      def: Threads share memory inside one program; processes are separate programs. Independent jobs usually run best as separate processes.

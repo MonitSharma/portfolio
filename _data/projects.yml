@@ -622,3 +622,168 @@
       not imply an executable circuit. The measured classical baselines and resource
       estimates point toward conditioning and usable preconditioners as the research
       bottleneck.
+- slug: quantum-hpc
+  page: "/work/quantum-hpc/"
+  title: Quantum + HPC
+  category: Quantum–HPC integration
+  type: research
+  summary: Exploring what future quantum-centric supercomputers will look like, by
+    measuring how today's classical HPC stages shape a hybrid quantum workflow.
+  metric: 8.6× → 1.01×
+  metric_label: C++ speedup of the full QAOA loop · 8 → 18 qubits
+  code_url: https://github.com/MonitSharma/quantum_hpc
+  source_url: https://github.com/MonitSharma/quantum_hpc/blob/master/README.md
+  source_label: Read the findings
+  question: As quantum processors join supercomputers, how should the classical HPC
+    side of a hybrid system be designed, and where will its bottlenecks be?
+  detail: Future quantum computers are expected to work as accelerators inside HPC
+    centres, with classical nodes building circuits, compiling them for hardware, simulating,
+    and processing results thousands of times in a loop. This exploration measures
+    each of those stages today, in Python and C++ (through Qiskit's C API) and with
+    Qiskit Aer, on an Apple M3 Pro laptop and an Intel i7-12700K desktop, to understand
+    which parts of a quantum–HPC stack will matter. Correctness is checked before any
+    timing is reported.
+  findings:
+  - C++ adds a gate in about 50 ns versus 2,000 ns in Python, yet the full QAOA optimizer
+    is only 8.6× faster at 8 qubits and 1.01× at 18, where simulation is 98% of the
+    loop. Amdahl's law predicts the measured curve.
+  - A 28-qubit statevector simulation takes 87.5 s and 4.2 GiB on one thread and 11.9
+    s on 12 threads, with 93% efficiency up to the 6 performance cores. Each extra
+    two qubits multiply time by about 4.3× and memory by 4×.
+  - For many independent simulations, 12 processes beat 1 process with 12 threads
+    by 2.5×, and batching parameter sets into a single Aer job gives a further 2.1×.
+  method:
+  - Prove equivalence first. Python and C++ must build identical circuits, simulators
+    must match exact statevectors, and parallel runs must reproduce serial results
+    bit for bit, or the study aborts.
+  - Time every configuration in fresh processes, with repeats, alternating or randomized
+    order, and stated warm-ups. Report medians with observed ranges; discard nothing.
+  - Save host hardware, OS, compiler, package versions, source and binary hashes,
+    configuration, and raw data with every run, then repeat the studies on a second
+    machine.
+  boundary: This is an exploration of future system design, built from small-scale
+    measurements rather than a running quantum–HPC installation. All measurements are
+    CPU-only on a single machine, either a laptop or a desktop. No job was submitted
+    to a quantum processor; the 156-qubit IBM device is used only as a compilation
+    target. The simulator in the QAOA lesson is a small
+    educational engine shared by both languages, and absolute timings will differ on
+    other hardware, even though the ratios and conclusions held on both machines tested.
+  table:
+    caption: Full QAOA loop · p = 4 · Python time ÷ C++ time on the same shared simulator
+    columns:
+    - Qubits
+    - Python loop
+    - C++ loop
+    - Simulation share
+    - Speedup (M3 Pro)
+    - Speedup (i7-12700K)
+    rows:
+    - - '8'
+      - 26.6 ms
+      - 3.1 ms
+      - 7%
+      - 8.63×
+      - 4.84×
+    - - '12'
+      - 76.8 ms
+      - 39.4 ms
+      - 49%
+      - 1.95×
+      - 1.31×
+    - - '16'
+      - 862 ms
+      - 838 ms
+      - 93%
+      - 1.03×
+      - 1.03×
+    - - '18'
+      - 3.71 s
+      - 3.69 s
+      - 98%
+      - 1.01×
+      - "—"
+  figures:
+  - src: assets/imgs/qhpc/amdahl.png
+    caption: Amdahl's law in the full QAOA optimizer
+    alt: Measured Python-to-C++ speedup of the QAOA loop plotted against the share of
+      time spent outside the simulator, following the Amdahl's law curve
+    width: 1646
+    height: 1230
+    insight: Each point is one QAOA case. The horizontal axis is the share of Python's
+      loop spent outside the shared simulator; the curve is Amdahl's law for a frontend
+      that C++ makes 10× faster. As circuits grow, points slide down the curve towards
+      1×, so a faster component stops mattering.
+  - src: assets/imgs/qhpc/construction_machines.png
+    caption: Per-gate circuit construction cost on two machines
+    alt: Bar charts of nanoseconds per gate for Python and C++ circuit construction on
+      an Apple M3 Pro and an Intel i7-12700K
+    width: 2206
+    height: 984
+    insight: The two panels use different scales. Python costs about 2,000 ns per gate
+      and C++ about 50 ns on the M3 Pro, with similar values on the i7. Absolute speeds
+      differ between machines, but the ratio, and the conclusion, do not.
+  - src: assets/imgs/qhpc/first_vs_warm.png
+    caption: First-call vs warm transpilation for IBM ibm_fez
+    alt: Transpile times for Python and C++ at 8, 16 and 32 qubits, comparing the first
+      call in a new process with warm calls
+    width: 2305
+    height: 1024
+    insight: The first call in a new process includes start-up costs, so C++ looks 1.4–2.1×
+      faster. Once the compiler is warm, both languages call the same compiled transpiler
+      and differ by only 1.06–1.17×. Steady-state numbers are the fair comparison.
+  - src: assets/imgs/qhpc/exponential_wall.png
+    caption: The exponential wall · run time and memory per qubit
+    alt: Log-scale plots of simulation time and peak memory against qubit count, showing
+      both doubling with each added qubit
+    width: 2305
+    height: 1041
+    insight: Both axes are logarithmic, so a straight line means exponential growth.
+      Threads shift the time curve down without changing its slope, and measured memory
+      follows 16 bytes × 2ⁿ. On this 36 GiB laptop the limit is about 31 qubits.
+  - src: assets/imgs/qhpc/strong_scaling.png
+    caption: Strong scaling of Qiskit Aer with threads
+    alt: Speedup and parallel efficiency of Qiskit Aer statevector simulation from 1
+      to 12 threads for 22 to 28 qubits
+    width: 2305
+    height: 1021
+    insight: Scaling is close to ideal up to the 6 performance cores. The shaded efficiency
+      cores add less, and smaller circuits flatten earlier because there is less work
+      per thread to hide synchronization and memory traffic.
+  - src: assets/imgs/qhpc/processes_vs_threads.png
+    caption: Processes vs threads for a parameter sweep
+    alt: Bar chart of simulations per second for different combinations of worker processes
+      and threads on 12 cores
+    width: 2008
+    height: 1110
+    insight: Every blue bar uses all 12 cores in a different way. Independent processes
+      share nothing and give the highest throughput; splitting each small simulation
+      across threads pays synchronization costs. The grey bars are oversubscribed and
+      lose about 12% for no benefit.
+  resources:
+  - label: Source code & six experiments
+    url: https://github.com/MonitSharma/quantum_hpc
+  - label: Concepts · quantum + HPC in 10 sections
+    url: https://github.com/MonitSharma/quantum_hpc/blob/master/docs/concepts.md
+  - label: Full plot gallery
+    url: https://github.com/MonitSharma/quantum_hpc/blob/master/PLOTS.md
+  - label: "IBM Quantum Learning: Integrating quantum and HPC"
+    url: https://quantum.cloud.ibm.com/learning/en/courses/integrating-quantum-and-high-performance-computing/introduction
+  explanation:
+  - title: Quantum processors as part of the supercomputer
+    text: The emerging picture of quantum computing is not a standalone machine but
+      a quantum processor working alongside CPUs and GPUs in an HPC centre. A variational
+      algorithm such as QAOA already shows why. It repeats one loop many times; choose
+      angles, build a circuit, compile it for a device, simulate or run it, compute
+      an expectation value, and update the angles. Each experiment isolates one stage
+      of that loop to see where a future system will spend its classical effort. In the QAOA study, Python and C++ call the same compiled simulator
+      and optimizer, so the only thing that differs is the part a language change can
+      actually affect.
+  - title: From one laptop to a quantum-centric supercomputer
+    text: The later experiments test the core ideas of high-performance computing
+      that such a system will rely on.
+      Statevector simulation doubles in time and memory with every qubit, so threads
+      help one large circuit only sub-linearly. Many independent evaluations, such as
+      parameter scans, multi-start optimizers, and error-mitigation families, parallelize
+      best as separate processes with batched work. The same patterns map directly
+      onto MPI ranks and Slurm job arrays, the scheduling layer a quantum–HPC system
+      will share with its quantum processors.
