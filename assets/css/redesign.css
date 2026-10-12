@@ -421,9 +421,6 @@ footer a:hover{color:var(--accent)}
 .resource .arrow-dot{grid-column:2;grid-row:1/3}
 .resource:hover{border-color:var(--accent);transform:translateY(-2px)}
 .resource:hover .arrow-dot{background:var(--accent);border-color:var(--accent);color:var(--paper)}
-.ask{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;margin-top:clamp(64px,8vw,96px);padding:clamp(28px,4vw,40px);border-radius:20px;background:var(--block);color:var(--block-ink)}
-.ask h2{font:400 clamp(28px,3vw,38px)/1.1 var(--serif)}
-.ask p{margin-top:8px;font-size:15px;color:var(--block-muted)}
 .pager{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
 .pager-card{display:flex;flex-direction:column;gap:6px;padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:var(--surface);transition:border-color .25s,transform .3s var(--ease),box-shadow .3s var(--ease)}
 .pager-card.next{align-items:flex-end;text-align:right}
@@ -526,7 +523,7 @@ footer a:hover{color:var(--accent)}
 @media print{
   :root,:root[data-theme="dark"]{--paper:#fff;--surface:#fff;--ink:#111;--muted:#444;--line:#ddd;--line-strong:#bbb;--accent:#216653;--accent-strong:#174c3e;--soft:#f3f5f1;--tint:#e3ede0;--block:#fff;--block-ink:#111;--block-muted:#444;--block-line:#ddd;--block-accent:#216653;--shadow:none}
   body{font-size:11pt}
-  .sidebar,.progress,.skip,.topline,.hero-actions,.lab-controls,.lab-readout,.lab-log,.lab-stages,.toolbar,.more-row,.contact-orbit,.contact-actions,.theme-toggle,.pager,.ask,.figure-index,.fig-zoom,footer a{display:none!important}
+  .sidebar,.progress,.skip,.topline,.hero-actions,.lab-controls,.lab-readout,.lab-log,.lab-stages,.toolbar,.more-row,.contact-orbit,.contact-actions,.theme-toggle,.pager,.figure-index,.fig-zoom,footer a{display:none!important}
   .shell{display:block} main{padding:0}
   .paper[hidden]{display:grid!important} .project[hidden]{display:flex!important}
   .reveal,.hero h1 .line,.hero-lede,.hero-stats,.lab{opacity:1!important;transform:none!important;animation:none!important}

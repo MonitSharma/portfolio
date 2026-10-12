@@ -117,10 +117,6 @@
   <div class="resource-grid">{% for resource in project.resources %}<a class="resource reveal" style="--d:{{ forloop.index0 | modulo: 3 }}" href="{{ resource.url }}" target="_blank" rel="noopener"><span class="resource-host">{{ resource.url | split: '/' | slice: 2 | first | remove: 'www.' }}</span><span class="resource-label">{{ resource.label | escape }}</span><span class="arrow-dot" aria-hidden="true">↗</span></a>{% endfor %}</div>
 </section>
 
-<div class="ask reveal">
-  <div><h2>Questions about {{ project.title | escape }}?</h2><p>Ask about the method, the results, or how to reproduce them.</p></div>
-  <a class="btn btn-light" href="mailto:monitsharma437@gmail.com?subject={{ project.title | url_encode }}">Email me <span class="arr" aria-hidden="true">↗</span></a>
-</div>
 <nav class="pager" aria-label="More projects">
   <a class="pager-card" href="{{ prev_p.page | relative_url }}"><span class="pager-dir">← Previous</span><span class="pager-title">{{ prev_p.title | escape }}</span><span class="pager-metric">{{ prev_p.metric | escape }}</span></a>
   <a class="pager-card next" href="{{ next_p.page | relative_url }}"><span class="pager-dir">Next →</span><span class="pager-title">{{ next_p.title | escape }}</span><span class="pager-metric">{{ next_p.metric | escape }}</span></a>
