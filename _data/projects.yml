@@ -806,3 +806,126 @@
       best as separate processes with batched work. The same patterns map directly
       onto MPI ranks and Slurm job arrays, the scheduling layer a quantum–HPC system
       will share with its quantum processors.
+
+- title: ECDSA Circuit Optimization
+  slug: ecdsa
+  page: /work/ecdsa/
+  category: ECDSA.fail challenge
+  type: challenge
+  summary: Reversible elliptic-curve arithmetic, public benchmark reproduction, and
+    experiments that trade logical qubits against expensive quantum gates.
+  metric: 9,024 / 9,024
+  metric_label: benchmark shots passed · reproduced public circuit
+  code_url: https://github.com/MonitSharma/elliptic_curve_dsa
+  source_url: https://github.com/MonitSharma/elliptic_curve_dsa/blob/main/docs/experiment-outcomes.md
+  source_label: Read the experiment outcomes
+  question: How can reversible point addition use less quantum storage and fewer
+    expensive gates while preserving values, phase, and clean temporary registers?
+  detail: This project studies the secp256k1 point-addition circuit in the ECDSA.fail
+    challenge. I reproduce public circuits, analyze their resource tradeoffs, and
+    develop proof-backed arithmetic changes. The complete passing result is a replay
+    of an existing public design; original optimization candidates remain experimental.
+  findings:
+  - The unchanged benchmark reproduced a public circuit at 1,234 logical qubits,
+    761,658 rounded mean executed Toffolis, and a product of 939,885,972. All 9,024
+    benchmark shots passed value, phase, and ancilla checks on that packet.
+  - In the 14 October 2026 public snapshot, minimum width is 693 qubits, minimum gate
+    count is 761,156 Toffolis, and minimum product is 939,681,128. These objectives
+    select different circuits; none is an original result of this project.
+  - The compact reciprocal saves 572 emitted Toffolis per isolated V-form in three
+    tested layouts. Its focused suite passes 17 tests, but the integrated candidate
+    fails full validation and has no qualified score.
+  method:
+  - Reproduce a pinned public source using the unchanged challenge benchmark and
+    preserve the source revision, gate-stream hash, score, and validation receipt.
+  - Build the public Pareto frontier from accepted and explicitly score-only rejected
+    submissions with consistent positive official metrics; exclude failed and
+    claimed-only records.
+  - Prove the reciprocal arithmetic in its stated domain, test value and measurement
+    phase behavior, and check the complete circuit before admitting an improvement.
+  boundary: This is ongoing circuit-resource research. No original candidate is
+    submission-ready. A passing finite benchmark packet is not universal correctness;
+    subsequent independent diagnostics found structured-input and phase counterexamples
+    in the reproduced baseline. The compact candidate failed full validation, so its
+    component savings are not a whole-circuit performance result. Public comparisons
+    are a snapshot of 14 October 2026 and may change.
+  table:
+    caption: Reproduced public circuit · source c5bb1ec8 · original benchmark packet
+    columns: [Measure, Reproduced result]
+    rows:
+    - [Peak logical qubits, '1,234']
+    - [Rounded mean executed Toffolis, '761,658']
+    - [Product score, '939,885,972']
+    - [Benchmark shots passed, '9,024 / 9,024']
+  figures:
+  - src: assets/imgs/ecdsa/public-frontier.png
+    caption: Public resource frontier · storage versus gates
+    alt: Logarithmic plot of official Toffoli counts against logical qubits, showing
+      1,221 eligible public results and a 45-point Pareto frontier, with the minimum
+      width and minimum product circuits highlighted.
+    width: 2052
+    height: 1278
+    insight: The horizontal axis measures peak logical qubits and the vertical axis
+      uses a logarithmic gate scale. Moving left saves storage; moving down saves
+      gates. The green curve connects nondominated public results. The lowest-width
+      circuit costs far more gates than the product-leading circuit. All points are
+      public reference results, not original submissions from this project.
+  - src: assets/imgs/ecdsa/product-comparison.png
+    caption: Three objectives · different winning circuits
+    alt: Dot plot of product-score excess over the public minimum, comparing the
+      minimum-Toffoli public circuit, the reproduced baseline, and the minimum-product
+      public circuit.
+    width: 2052
+    height: 1278
+    insight: Each point shows how far its product exceeds the best public product.
+      The 1,235-qubit circuit uses the fewest gates, but the extra qubit makes its
+      product slightly worse. The outlined point is the existing circuit reproduced
+      here. The differences are small and explicitly labeled; the reproduction is
+      not the current leader or an original record.
+  - src: assets/imgs/ecdsa/compact-reciprocal.png
+    caption: Compact reciprocal · isolated component evidence
+    alt: Paired horizontal bars show original and compact reciprocal emitted Toffoli
+      counts at zero, four, and eight clean helper lanes. Each fixture saves 572 gates.
+    width: 2052
+    height: 1278
+    insight: The bars start at zero and label the full emitted counts, making the
+      roughly three-percent reduction visible without exaggerating it. These are
+      isolated V-form fixture costs, not the scorer's mean executed whole-circuit
+      metric. The full integrated candidate failed validation and has no qualified score.
+  resources:
+  - label: Source code & research status
+    url: https://github.com/MonitSharma/elliptic_curve_dsa
+  - label: ECDSA.fail challenge
+    url: https://ecdsa.fail/
+  - label: Passing reproduction receipt
+    url: https://github.com/MonitSharma/elliptic_curve_dsa/blob/main/docs/data/server-verification.json
+  - label: Experiment outcomes & limitations
+    url: https://github.com/MonitSharma/elliptic_curve_dsa/blob/main/docs/experiment-outcomes.md
+  - label: Component evidence receipt
+    url: https://github.com/MonitSharma/elliptic_curve_dsa/blob/main/docs/data/qubit-experiment.json
+  - label: Dated public frontier data
+    url: /portfolio/assets/data/ecdsa/public-frontier.json
+  explanation:
+  - title: One arithmetic operation inside a larger quantum algorithm
+    text: ECDSA signatures use elliptic-curve arithmetic. A future fault-tolerant
+      quantum algorithm would need to repeat that arithmetic many times, so its
+      point-addition circuit is a meaningful resource target. The challenge implements
+      P → P + A, with a quantum point P and a classically supplied point A on secp256k1.
+      The output coordinates must be correct, temporary registers must be clean, and
+      the circuit must preserve quantum phase. This project builds and verifies that
+      arithmetic kernel on ordinary computers.
+  - title: Optimizing width and work together
+    text: Logical qubits measure the largest amount of quantum storage in use at once.
+      Mean executed Toffolis measure costly reversible gates, including conditional
+      execution. The challenge scores their product. A design can save storage by
+      recomputing intermediate values, or save gates by keeping more intermediate
+      data. The Pareto frontier exposes those choices, while the scalar product picks
+      one balance. Emitted gate counts and executed gate counts must stay distinct.
+  - title: Why a local saving still needs complete verification
+    text: The compact reciprocal holds its remainder in 24 lanes and uses an existing
+      flag for overflow. Solver checks and native fixtures establish its behavior
+      within their stated domains, and isolated tests show fewer emitted gates.
+      Integration also depends on register ownership, carried information, and phase
+      cleanup throughout the surrounding circuit. The full candidate failed those
+      combined checks. Its local saving remains a useful research result, while paired
+      diagnostics are needed to distinguish inherited defects from introduced ones.

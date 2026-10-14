@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="820.8pt" height="511.2pt" viewBox="0 0 820.8 511.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-14T20:29:25.215585</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 511.2 
+L 820.8 511.2 
+L 820.8 0 
+L 0 0 
+z
+" style="fill: #f6f5f0"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 299.592 388.512 
+L 767.448 388.512 
+L 767.448 132.912 
+L 299.592 132.912 
+z
+" style="fill: #f6f5f0"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="315.245175" y="407.388953" transform="rotate(-0 315.245175 407.388953)">0.00%</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="402.207257" y="407.388953" transform="rotate(-0 402.207257 407.388953)">0.01%</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="489.169338" y="407.388953" transform="rotate(-0 489.169338 407.388953)">0.02%</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="576.13142" y="407.388953" transform="rotate(-0 576.13142 407.388953)">0.03%</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="663.093502" y="407.388953" transform="rotate(-0 663.093502 407.388953)">0.04%</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202e2d" x="533.52" y="437.149812" transform="rotate(-0 533.52 437.149812)">Product score above the public minimum</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="LineCollection_1">
+    <path d="M 315.245175 180.837 
+L 635.940602 180.837 
+" clip-path="url(#pd057268d62)" style="fill: none; stroke: #dedfd5; stroke-width: 3"/>
+   </g>
+   <g id="LineCollection_2">
+    <path d="M 315.245175 260.712 
+L 504.816511 260.712 
+" clip-path="url(#pd057268d62)" style="fill: none; stroke: #dedfd5; stroke-width: 3"/>
+   </g>
+   <g id="LineCollection_3">
+    <path d="M 315.245175 340.587 
+L 315.245175 340.587 
+" clip-path="url(#pd057268d62)" style="fill: none; stroke: #dedfd5; stroke-width: 3"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 315.245175 388.512 
+L 315.245175 132.912 
+" clip-path="url(#pd057268d62)" style="fill: none; stroke: #dedfd5; stroke-linecap: square"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 299.592 388.512 
+L 767.448 388.512 
+" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="mf2c60833b5" d="M 0 5.91608 
+C 1.568963 5.91608 3.073876 5.292724 4.1833 4.1833 
+C 5.292724 3.073876 5.91608 1.568963 5.91608 0 
+C 5.91608 -1.568963 5.292724 -3.073876 4.1833 -4.1833 
+C 3.073876 -5.292724 1.568963 -5.91608 0 -5.91608 
+C -1.568963 -5.91608 -3.073876 -5.292724 -4.1833 -4.1833 
+C -5.292724 -3.073876 -5.91608 -1.568963 -5.91608 0 
+C -5.91608 1.568963 -5.292724 3.073876 -4.1833 4.1833 
+C -3.073876 5.292724 -1.568963 5.91608 0 5.91608 
+z
+" style="stroke: #a66036; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#pd057268d62)">
+     <use xlink:href="#mf2c60833b5" x="635.940602" y="180.837" style="fill: #a66036; stroke: #a66036; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #a66036" x="651.593777" y="184.213953" transform="rotate(-0 651.593777 184.213953)">+0.0369%</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="89.143762" y="175.428211" transform="rotate(-0 89.143762 175.428211)">Lowest Toffolis</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="89.143762" y="195.006805" transform="rotate(-0 89.143762 195.006805)">1,235 Q · 761,156 T</text>
+   </g>
+   <g id="PathCollection_2">
+    <defs>
+     <path id="md2438137c1" d="M 0 5.91608 
+C 1.568963 5.91608 3.073876 5.292724 4.1833 4.1833 
+C 5.292724 3.073876 5.91608 1.568963 5.91608 0 
+C 5.91608 -1.568963 5.292724 -3.073876 4.1833 -4.1833 
+C 3.073876 -5.292724 1.568963 -5.91608 0 -5.91608 
+C -1.568963 -5.91608 -3.073876 -5.292724 -4.1833 -4.1833 
+C -5.292724 -3.073876 -5.91608 -1.568963 -5.91608 0 
+C -5.91608 1.568963 -5.292724 3.073876 -4.1833 4.1833 
+C -3.073876 5.292724 -1.568963 5.91608 0 5.91608 
+z
+" style="stroke: #63716b; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#pd057268d62)">
+     <use xlink:href="#md2438137c1" x="504.816511" y="260.712" style="fill: #f6f5f0; stroke: #63716b; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="520.469685" y="264.088953" transform="rotate(-0 520.469685 264.088953)">+0.0218%</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="89.143762" y="255.303211" transform="rotate(-0 89.143762 255.303211)">Reproduced baseline</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="89.143762" y="274.881805" transform="rotate(-0 89.143762 274.881805)">1,234 Q · 761,658 T</text>
+   </g>
+   <g id="PathCollection_3">
+    <defs>
+     <path id="m35be1ff544" d="M 0 5.91608 
+C 1.568963 5.91608 3.073876 5.292724 4.1833 4.1833 
+C 5.292724 3.073876 5.91608 1.568963 5.91608 0 
+C 5.91608 -1.568963 5.292724 -3.073876 4.1833 -4.1833 
+C 3.073876 -5.292724 1.568963 -5.91608 0 -5.91608 
+C -1.568963 -5.91608 -3.073876 -5.292724 -4.1833 -4.1833 
+C -5.292724 -3.073876 -5.91608 -1.568963 -5.91608 0 
+C -5.91608 1.568963 -5.292724 3.073876 -4.1833 4.1833 
+C -3.073876 5.292724 -1.568963 5.91608 0 5.91608 
+z
+" style="stroke: #216653; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#pd057268d62)">
+     <use xlink:href="#m35be1ff544" x="315.245175" y="340.587" style="fill: #216653; stroke: #216653; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #216653" x="330.898349" y="343.964461" transform="rotate(-0 330.898349 343.964461)">Reference</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="89.143762" y="335.178211" transform="rotate(-0 89.143762 335.178211)">Lowest product</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="89.143762" y="354.756805" transform="rotate(-0 89.143762 354.756805)">1,234 Q · 761,492 T</text>
+   </g>
+  </g>
+  <g id="text_16">
+   <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="53.352" y="44.832563" transform="rotate(-0 53.352 44.832563)">Fewer gates can still cost more</text>
+  </g>
+  <g id="text_17">
+   <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="53.352" y="73.398047" transform="rotate(-0 53.352 73.398047)">Q × T balances circuit width with executed Toffolis · public comparison, not an original record</text>
+  </g>
+  <g id="text_18">
+   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(53.352 468.296344)">Public minimum: 939,681,128. Reproduced baseline: 939,885,972 on its original 9,024-shot packet.</text>
+   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(53.352 484.046344)">The reproduction uses an existing public circuit; passing this packet does not establish arbitrary-input</text>
+   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(53.352 500.510836)">correctness.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd057268d62">
+   <rect x="299.592" y="132.912" width="467.856" height="255.6"/>
+  </clipPath>
+ </defs>
+</svg>

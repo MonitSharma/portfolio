@@ -1,0 +1,29 @@
+{
+  "source": "https://github.com/MonitSharma/elliptic_curve_dsa/blob/main/docs/data/qubit-experiment.json",
+  "recorded_at": "2026-10-14T17:21:57.882360+08:00",
+  "base_revision": "c95b9325913abacca9c86bdebad10a20633cd04e",
+  "scope": "Emitted Toffolis per isolated V-form fixture; these are not mean executed whole-circuit scores.",
+  "prices": [
+    {
+      "helper_lanes": 0,
+      "baseline": 19525,
+      "compact": 18953
+    },
+    {
+      "helper_lanes": 4,
+      "baseline": 18081,
+      "compact": 17509
+    },
+    {
+      "helper_lanes": 8,
+      "baseline": 18009,
+      "compact": 17437
+    }
+  ],
+  "tests_passed": 17,
+  "vform_cases": 1536,
+  "phase_coefficients": 1089536,
+  "full_candidate_status": "failed_validation",
+  "full_candidate_shots": 9024,
+  "full_candidate_official_score": null
+}

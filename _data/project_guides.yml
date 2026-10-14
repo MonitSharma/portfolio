@@ -171,3 +171,47 @@
       def: How much faster a fixed-size problem runs as you add more cores. Efficiency is the speedup divided by the number of cores.
     - term: Threads vs processes
       def: Threads share memory inside one program; processes are separate programs. Independent jobs usually run best as separate processes.
+
+- slug: ecdsa
+  tldr: Studying how to make the quantum arithmetic behind elliptic-curve signatures
+    smaller and cheaper, with public benchmark reproduction and carefully checked experiments.
+  problem: Quantum arithmetic needs more than the right numerical answer. Every
+    temporary bit must be cleaned up, and quantum phase must be preserved. The
+    ECDSA.fail challenge asks researchers to design a reversible point-addition
+    circuit that meets those requirements while using fewer logical qubits and
+    fewer expensive gates.
+  why: Elliptic-curve arithmetic is a central cost in future quantum algorithms for
+    these signature systems. Measuring the storage-versus-gate tradeoff helps make
+    quantum resource estimates concrete and shows which optimizations survive full validation.
+  metric_plain: I reproduced an existing public circuit with all 9,024 shots passing
+    its original benchmark packet. That is a reproducible starting point, not an
+    original leaderboard improvement or a proof for every possible input.
+  takeaways:
+  - Fewer qubits and fewer gates are different goals. The circuit with the fewest
+    gates is not the one with the lowest product score.
+  - The reproduced public circuit passed its finite benchmark packet. Independent
+    diagnostics later found cases it does not handle correctly.
+  - A compact reciprocal saves gates in isolated tests, but its full integration
+    failed validation. No original candidate is ready for submission.
+  stack: [Rust, secp256k1, Reversible arithmetic, Z3, Benchmark reproduction]
+  glossary:
+  - term: ECDSA
+    def: A digital-signature scheme based on elliptic curves, used to verify that a
+      message was signed by the holder of a private key.
+  - term: Point addition
+    def: An arithmetic operation that combines two points on an elliptic curve.
+  - term: Logical qubit
+    def: An error-corrected quantum unit of storage. One logical qubit generally
+      requires many physical qubits.
+  - term: Toffoli gate
+    def: A reversible three-bit gate that flips one bit only when both control bits
+      are one. It is a costly operation in many fault-tolerant quantum designs.
+  - term: Pareto frontier
+    def: Designs for which no other recorded design uses both no more qubits and no
+      more gates, while improving at least one of those resources.
+  - term: Ancilla
+    def: A temporary helper qubit that must be returned to its required clean state
+      before it can be released or reused.
+  - term: Emitted versus executed gates
+    def: Emitted gates appear in the generated circuit. Executed counts reflect
+      which conditional operations actually run on the benchmark inputs.
