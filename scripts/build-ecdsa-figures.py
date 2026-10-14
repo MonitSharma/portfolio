@@ -42,7 +42,9 @@ def save(fig, name, footer):
     wrapped='\n'.join(textwrap.fill(line, width=112) for line in footer.splitlines())
     fig.text(.065,.105,wrapped,fontsize=10.5,color=MUTED,va='top',linespacing=1.5)
     fig.savefig(OUT/(name+'.png'),dpi=180,facecolor=PAPER)
-    fig.savefig(OUT/(name+'.svg'),facecolor=PAPER)
+    svg_path = OUT/(name+'.svg')
+    fig.savefig(svg_path,facecolor=PAPER)
+    svg_path.write_text('\n'.join(line.rstrip() for line in svg_path.read_text().splitlines())+'\n')
     plt.close(fig)
 
 # Public Pareto frontier: strictly admitted records, not claimed or failed experiments.
