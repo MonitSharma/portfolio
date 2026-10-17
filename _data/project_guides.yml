@@ -173,27 +173,27 @@
       def: Threads share memory inside one program; processes are separate programs. Independent jobs usually run best as separate processes.
 
 - slug: ecdsa
-  tldr: Studying how to make the quantum arithmetic behind elliptic-curve signatures
-    smaller and cheaper, with public benchmark reproduction and carefully checked experiments.
-  problem: Quantum arithmetic needs more than the right numerical answer. Every
-    temporary bit must be cleaned up, and quantum phase must be preserved. The
-    ECDSA.fail challenge asks researchers to design a reversible point-addition
-    circuit that meets those requirements while using fewer logical qubits and
-    fewer expensive gates.
-  why: Elliptic-curve arithmetic is a central cost in future quantum algorithms for
-    these signature systems. Measuring the storage-versus-gate tradeoff helps make
-    quantum resource estimates concrete and shows which optimizations survive full validation.
-  metric_plain: I reproduced an existing public circuit with all 9,024 shots passing
-    its original benchmark packet. That is a reproducible starting point, not an
-    original leaderboard improvement or a proof for every possible input.
+  tldr: Two public records for making the quantum arithmetic behind elliptic-curve
+    signatures cheaper — the lowest qubit–gate product and the fewest executed
+    Toffoli gates on ECDSA.fail, as of 17 October 2026.
+  problem: Quantum arithmetic must produce the right coordinates, clean up its
+    temporary workspace, and preserve phase. The ECDSA.fail challenge asks how
+    to achieve this with fewer logical qubits and fewer costly reversible gates.
+  why: Elliptic-curve point addition is a major building block in future quantum
+    algorithms for digital signatures. Better circuits make their resource
+    estimates more concrete, while revealing the tradeoff between storage and work.
+  metric_plain: My two officially scored submissions lead the product and
+    Toffoli-count objectives. The product leader uses 1,234 qubits; the gate-count
+    leader uses 1,556. Verified against the public leaderboard on 17 October 2026.
   takeaways:
-  - Fewer qubits and fewer gates are different goals. The circuit with the fewest
-    gates is not the one with the lowest product score.
-  - The reproduced public circuit passed its finite benchmark packet. Independent
-    diagnostics later found cases it does not handle correctly.
-  - A compact reciprocal saves gates in isolated tests, but its full integration
-    failed validation. No original candidate is ready for submission.
-  stack: [Rust, secp256k1, Reversible arithmetic, Z3, Benchmark reproduction]
+  - The best product is 939,223,314 — 1,234 logical qubits multiplied by
+    761,121 executed Toffoli gates.
+  - The fewest executed Toffolis is 753,694, achieved by a separate, wider
+    circuit. Four of my submissions sit on the public Pareto frontier.
+  - Exact caching reuses repeated computations. Both record circuits pass their
+    full benchmark packets; separate fresh-input tests report the limitations
+    of their inherited approximate arithmetic.
+  stack: [Rust, secp256k1, Exact gate caching, Circuit verification, Resource estimation]
   glossary:
   - term: ECDSA
     def: A digital-signature scheme based on elliptic curves, used to verify that a
