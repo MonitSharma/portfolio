@@ -900,7 +900,7 @@
       higher. Dashed curves connect hypothetical circuits with the same product
       as each record. Both axes use a zoomed linear scale.
   - src: assets/imgs/ecdsa/leaderboard-product-20261017.jpg
-    caption: Product leaderboard · champion on 17 October 2026
+    caption: Spacetime leaderboard · champion on 17 October 2026
     alt: Screenshot of ECDSA.fail showing MonitSharma with the champion crown and
       the leading product score of 939,223,314, ahead of 939,347,948.
     width: 911
@@ -908,16 +908,6 @@
     insight: A dated capture of the challenge's Spacetime leaderboard. The first
       row shows my accepted product record and its underlying qubit and gate
       counts. The live leaderboard and submission receipts are linked above.
-  - src: assets/imgs/ecdsa/leaderboard-pareto-20261017.jpg
-    caption: Pareto leaderboard · two latest frontier advances
-    alt: Screenshot of ECDSA.fail's Pareto view showing MonitSharma's 753,694-Toffoli
-      and 761,121-Toffoli submissions as the two latest frontier advances.
-    width: 911
-    height: 988
-    insight: The Pareto view lists frontier advances by time. My two 17 October
-      entries lower the frontier by 27 gates and 101 gates at their respective
-      widths. This view records improvements in either resource; it is distinct
-      from ranking circuits by their product.
   resources:
   - label: Live ECDSA.fail leaderboard
     url: https://ecdsa.fail/
