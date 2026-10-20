@@ -1,0 +1,34 @@
+{
+  "snapshot_date": "2026-10-20",
+  "scope": "Independent fresh-input diagnostics, distinct from official scored benchmark packets.",
+  "sources": [
+    {
+      "circuit": "Previous Toffoli record",
+      "submission_id": "62341149-b0f8-422e-aef5-9388be813600",
+      "shots": 2097152,
+      "value_failures": 1212,
+      "phase_failures": 816,
+      "dirty_shots": 0,
+      "failed_batches": 1379
+    },
+    {
+      "circuit": "New Toffoli record",
+      "submission_id": "4045a75a-32a0-4d3c-b7ca-03b51dc12b25",
+      "shots": 2097152,
+      "value_failures": 1190,
+      "phase_failures": 663,
+      "dirty_shots": 0,
+      "failed_batches": 1230
+    }
+  ],
+  "product_census": {
+    "submission_id": "d9ae2845-b2d8-4535-8a54-6a9803fdfb19",
+    "shots_per_source": 16777216,
+    "parent_value_failures": 28574,
+    "candidate_value_failures": 28574,
+    "parent_failed_batches": 33203,
+    "candidate_failed_batches": 33148,
+    "dirty_shots": 0,
+    "exact_mcnemar_p": 0.767413091467709
+  }
+}

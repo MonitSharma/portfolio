@@ -8,6 +8,8 @@ interactive: true
 ---
 {% assign journals = site.data.publications | where: 'category', 'journal' | sort: 'order' %}{% assign conferences = site.data.publications | where: 'category', 'conference' | sort: 'order' %}{% assign preprints = site.data.publications | where: 'category', 'preprint' | sort: 'order' %}{% assign selected = journals | concat: conferences | concat: preprints %}{% assign peer_reviewed = journals.size | plus: conferences.size %}
 {% assign research_count = site.data.projects | where: 'type', 'research' | size %}{% assign software_count = site.data.projects | where: 'type', 'software' | size %}{% assign challenge_count = site.data.projects | where: 'type', 'challenge' | size %}
+{% assign project_updates = site.data.projects | group_by: 'updated_at' | sort: 'name' | reverse %}
+{% assign ordered_projects = '' | split: '' %}{% for update in project_updates %}{% assign ordered_projects = ordered_projects | concat: update.items %}{% endfor %}
 <section class="page-section" id="projects">
   <div class="section-head page-heading"><div><p class="section-index">02</p><h1>Things I build</h1></div><a class="head-link" href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub ↗</a></div>
   <p class="section-lede reveal">Research software, local AI systems, and quantum experiments. Each project page starts with a plain-language summary, then shows the methods, results, and evidence.</p>
@@ -15,7 +17,7 @@ interactive: true
     <div class="segmented" role="group" aria-label="Filter projects"><button type="button" data-filter="all" aria-pressed="true">All<i>{{ site.data.projects.size }}</i></button><button type="button" data-filter="research" aria-pressed="false">Research<i>{{ research_count }}</i></button><button type="button" data-filter="software" aria-pressed="false">Software<i>{{ software_count }}</i></button><button type="button" data-filter="challenge" aria-pressed="false">Challenges<i>{{ challenge_count }}</i></button></div>
     <span class="toolbar-status" id="filter-status" role="status" aria-live="polite">Showing all {{ site.data.projects.size }} projects</span>
   </div>
-  <div class="project-grid">{% for project in site.data.projects %}{% assign guide = site.data.project_guides | where: 'slug', project.slug | first %}
+  <div class="project-grid">{% for project in ordered_projects %}{% assign guide = site.data.project_guides | where: 'slug', project.slug | first %}
     <a class="project reveal" style="--d:{{ forloop.index0 | modulo: 3 }}" data-type="{{ project.type }}" href="{{ project.page | relative_url }}" aria-labelledby="project-title-{{ project.slug }}">
       <div class="project-top"><span>0{{ forloop.index }}</span><span class="type-chip">{{ project.type }}</span></div>
       <p class="project-cat">{{ project.category | escape }}</p>

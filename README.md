@@ -40,6 +40,12 @@ Serve the Jekyll output, since the source home page now contains Liquid template
 Projects are listed from `_data/projects.yml` and link to their individual pages
 under `work/`. Writing draws from `_data/essays.yml` and `_data/blogs.yml`.
 
+Project cards are ordered by `updated_at`, newest first. Set this field when adding
+a project, and advance it when its content, results, or figures change, for example
+`updated_at: "2026-10-20T10:00:00+08:00"`. Use the same timestamp format and timezone
+throughout. Projects with equal timestamps retain their order in the data file.
+Project numbering and Previous/Next links follow the same order as the cards.
+
 The shared editorial layout keeps the existing palette and local fonts from
 `redesign.css`; `editorial.css` supplies page framing; the original design system styles the
 publication rows, project cards, timelines, and interactive Bloch sphere. Existing

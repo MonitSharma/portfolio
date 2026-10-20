@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-17T12:32:30.531028</dc:date>
+    <dc:date>2026-10-20T14:59:40.397852</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -30,224 +30,234 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 131.328 383.4
-L 775.656 383.4
-L 775.656 127.8
-L 131.328 127.8
+    <path d="M 139.536 357.84
+L 393.984 357.84
+L 393.984 163.584
+L 139.536 163.584
 z
 " style="fill: #f6f5f0"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
-     <g id="line2d_1"/>
+     <g id="line2d_1">
+      <path d="M 139.536 357.84
+L 139.536 163.584
+" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2"/>
      <g id="text_1">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="180.891692" y="402.276953" transform="rotate(-0 180.891692 402.276953)">1100</text>
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="139.536" y="376.716953" transform="rotate(-0 139.536 376.716953)">0</text>
      </g>
     </g>
     <g id="xtick_2">
-     <g id="line2d_2"/>
+     <g id="line2d_3">
+      <path d="M 194.850783 357.84
+L 194.850783 163.584
+" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4"/>
      <g id="text_2">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="280.019077" y="402.276953" transform="rotate(-0 280.019077 402.276953)">1200</text>
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="194.850783" y="376.716953" transform="rotate(-0 194.850783 376.716953)">500</text>
      </g>
     </g>
     <g id="xtick_3">
-     <g id="line2d_3"/>
+     <g id="line2d_5">
+      <path d="M 250.165565 357.84
+L 250.165565 163.584
+" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6"/>
      <g id="text_3">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="379.146462" y="402.276953" transform="rotate(-0 379.146462 402.276953)">1300</text>
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="250.165565" y="376.716953" transform="rotate(-0 250.165565 376.716953)">1,000</text>
      </g>
     </g>
     <g id="xtick_4">
-     <g id="line2d_4"/>
+     <g id="line2d_7">
+      <path d="M 305.480348 357.84
+L 305.480348 163.584
+" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8"/>
      <g id="text_4">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="478.273846" y="402.276953" transform="rotate(-0 478.273846 402.276953)">1400</text>
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="305.480348" y="376.716953" transform="rotate(-0 305.480348 376.716953)">1,500</text>
      </g>
     </g>
     <g id="xtick_5">
-     <g id="line2d_5"/>
+     <g id="line2d_9">
+      <path d="M 360.79513 357.84
+L 360.79513 163.584
+" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10"/>
      <g id="text_5">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="577.401231" y="402.276953" transform="rotate(-0 577.401231 402.276953)">1500</text>
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="360.79513" y="376.716953" transform="rotate(-0 360.79513 376.716953)">2,000</text>
      </g>
-    </g>
-    <g id="xtick_6">
-     <g id="line2d_6"/>
-     <g id="text_6">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="676.528615" y="402.276953" transform="rotate(-0 676.528615 402.276953)">1600</text>
-     </g>
-    </g>
-    <g id="xtick_7">
-     <g id="line2d_7"/>
-     <g id="text_7">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="775.656" y="402.276953" transform="rotate(-0 775.656 402.276953)">1700</text>
-     </g>
-    </g>
-    <g id="text_8">
-     <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202e2d" x="453.492" y="430.037812" transform="rotate(-0 453.492 430.037812)">Peak logical qubits</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
-     <g id="line2d_8">
-      <path d="M 131.328 376.846154
-L 775.656 376.846154
-" clip-path="url(#p92183b8550)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
-     </g>
-     <g id="line2d_9"/>
-     <g id="text_9">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #63716b" x="122.328" y="381.78463" transform="rotate(-0 122.328 381.78463)">740,000</text>
+     <g id="line2d_11"/>
+     <g id="text_6">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(75.596781 214.350751)">Previous</text>
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(89.007094 229.954306)">record</text>
      </g>
     </g>
     <g id="ytick_2">
-     <g id="line2d_10">
-      <path d="M 131.328 311.307692
-L 775.656 311.307692
-" clip-path="url(#p92183b8550)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
-     </g>
-     <g id="line2d_11"/>
-     <g id="text_10">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #63716b" x="122.328" y="316.246169" transform="rotate(-0 122.328 316.246169)">750,000</text>
+     <g id="line2d_12"/>
+     <g id="text_7">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(102.17975 302.648425)">New</text>
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(89.007094 318.25198)">record</text>
      </g>
     </g>
-    <g id="ytick_3">
-     <g id="line2d_12">
-      <path d="M 131.328 245.769231
-L 775.656 245.769231
-" clip-path="url(#p92183b8550)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
-     </g>
-     <g id="line2d_13"/>
-     <g id="text_11">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #63716b" x="122.328" y="250.707707" transform="rotate(-0 122.328 250.707707)">760,000</text>
-     </g>
-    </g>
-    <g id="ytick_4">
-     <g id="line2d_14">
-      <path d="M 131.328 180.230769
-L 775.656 180.230769
-" clip-path="url(#p92183b8550)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
-     </g>
-     <g id="line2d_15"/>
-     <g id="text_12">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #63716b" x="122.328" y="185.169246" transform="rotate(-0 122.328 185.169246)">770,000</text>
-     </g>
-    </g>
-    <g id="text_13">
-     <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #202e2d" x="50.686125" y="255.6" transform="rotate(-90 50.686125 255.6)">Rounded mean executed Toffolis</text>
-    </g>
-   </g>
-   <g id="line2d_16">
-    <path d="M 257.700669 -1
-L 267.089418 40.718777
-L 277.864134 87.778428
-L 288.638849 133.991682
-L 299.413565 179.381171
-L 312.343224 232.791871
-L 325.272883 285.084022
-L 338.202542 336.292398
-L 351.132201 386.450346
-L 364.06186 435.589858
-L 376.991518 483.741641
-L 384.758156 512.2
-L 384.758156 512.2
-" clip-path="url(#p92183b8550)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #216653; stroke-opacity: 0.32; stroke-width: 1.5"/>
-   </g>
-   <g id="line2d_17">
-    <path d="M 547.910471 -1
-L 560.161686 42.580613
-L 573.091344 87.790889
-L 586.021003 132.219432
-L 598.950662 175.886342
-L 611.880321 218.811039
-L 624.80998 261.012285
-L 637.739639 302.508219
-L 650.669298 343.316374
-L 663.598957 383.453711
-L 676.528615 422.936634
-L 689.458274 461.78102
-L 702.387933 500.002233
-L 706.558556 512.2
-L 706.558556 512.2
-" clip-path="url(#p92183b8550)" style="fill: none; stroke-dasharray: 5.55,2.4; stroke-dashoffset: 0; stroke: #a66036; stroke-opacity: 0.32; stroke-width: 1.5"/>
    </g>
    <g id="patch_3">
-    <path d="M 131.328 383.4
-L 131.328 127.8
-" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+    <path d="M 139.536 232.456582
+L 345.63888 232.456582
+L 345.63888 200.669236
+L 139.536 200.669236
+z
+" clip-path="url(#pff049e325d)" style="fill: #9ca8a1"/>
    </g>
    <g id="patch_4">
-    <path d="M 131.328 383.4
-L 775.656 383.4
-" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+    <path d="M 139.536 320.754764
+L 301.497683 320.754764
+L 301.497683 288.967418
+L 139.536 288.967418
+z
+" clip-path="url(#pff049e325d)" style="fill: #216653"/>
    </g>
    <g id="patch_5">
-    <path d="M 279.259466 210.715116
-Q 295.711599 223.942184 312.163731 237.169252
-" style="fill: none; stroke: #216653; stroke-linecap: round"/>
+    <path d="M 139.536 357.84
+L 393.984 357.84
+" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
-   <g id="text_14">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; fill: #216653" transform="translate(170.978954 160.910757)">Lowest product</text>
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; fill: #216653" transform="translate(170.978954 181.294546)">1,234 Q × 761,121 T</text>
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; fill: #216653" transform="translate(170.978954 201.294546)">Q × T = 939,223,314</text>
+   <g id="text_8">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="352.00008" y="219.680097" transform="rotate(-0 352.00008 219.680097)">1,863</text>
    </g>
+   <g id="text_9">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #216653" x="307.858883" y="307.978278" transform="rotate(-0 307.858883 307.978278)">1,464</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="139.536" y="145.584" transform="rotate(-0 139.536 145.584)">Peak logical qubits</text>
+   </g>
+  </g>
+  <g id="axes_2">
    <g id="patch_6">
-    <path d="M 558.555975 311.654844
-Q 594.783483 299.690322 631.010991 287.7258
-" style="fill: none; stroke: #a66036; stroke-linecap: round"/>
+    <path d="M 508.896 357.84
+L 763.344 357.84
+L 763.344 163.584
+L 508.896 163.584
+z
+" style="fill: #f6f5f0"/>
+   </g>
+   <g id="matplotlib.axis_3">
+    <g id="xtick_6">
+     <g id="line2d_13">
+      <path d="M 508.896 357.84
+L 508.896 163.584
+" clip-path="url(#p4a647b201d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14"/>
+     <g id="text_11">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="508.896" y="376.716953" transform="rotate(-0 508.896 376.716953)">0</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_15">
+      <path d="M 577.296 357.84
+L 577.296 163.584
+" clip-path="url(#p4a647b201d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16"/>
+     <g id="text_12">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="577.296" y="376.716953" transform="rotate(-0 577.296 376.716953)">250K</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_17">
+      <path d="M 645.696 357.84
+L 645.696 163.584
+" clip-path="url(#p4a647b201d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_18"/>
+     <g id="text_13">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="645.696" y="376.716953" transform="rotate(-0 645.696 376.716953)">500K</text>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_19">
+      <path d="M 714.096 357.84
+L 714.096 163.584
+" clip-path="url(#p4a647b201d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_20"/>
+     <g id="text_14">
+      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="714.096" y="376.716953" transform="rotate(-0 714.096 376.716953)">750K</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_3">
+     <g id="line2d_21"/>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_22"/>
+    </g>
+   </g>
+   <g id="patch_7">
+    <path d="M 508.896 232.456582
+L 714.914338 232.456582
+L 714.914338 200.669236
+L 508.896 200.669236
+z
+" clip-path="url(#p4a647b201d)" style="fill: #9ca8a1"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 508.896 320.754764
+L 714.419395 320.754764
+L 714.419395 288.967418
+L 508.896 288.967418
+z
+" clip-path="url(#p4a647b201d)" style="fill: #216653"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 508.896 357.84
+L 763.344 357.84
+" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_15">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; fill: #a66036" transform="translate(408.884677 321.675541)">Lowest Toffolis</text>
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; fill: #a66036" transform="translate(408.884677 340.848392)">1,556 Q × 753,694 T</text>
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; fill: #a66036" transform="translate(408.884677 360.848392)">Q × T = 1,172,747,864</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="721.275538" y="219.680097" transform="rotate(-0 721.275538 219.680097)">752,991</text>
    </g>
-   <g id="PathCollection_1">
-    <defs>
-     <path id="mf6c32eb414" d="M 0 6.123724
-C 1.624031 6.123724 3.181764 5.47849 4.330127 4.330127
-C 5.47849 3.181764 6.123724 1.624031 6.123724 0
-C 6.123724 -1.624031 5.47849 -3.181764 4.330127 -4.330127
-C 3.181764 -5.47849 1.624031 -6.123724 0 -6.123724
-C -1.624031 -6.123724 -3.181764 -5.47849 -4.330127 -4.330127
-C -5.47849 -3.181764 -6.123724 -1.624031 -6.123724 0
-C -6.123724 1.624031 -5.47849 3.181764 -4.330127 4.330127
-C -3.181764 5.47849 -1.624031 6.123724 0 6.123724
-z
-" style="stroke: #f6f5f0; stroke-width: 2"/>
-    </defs>
-    <g clip-path="url(#p92183b8550)">
-     <use xlink:href="#mf6c32eb414" x="313.722388" y="238.422369" style="fill: #216653; stroke: #f6f5f0; stroke-width: 2"/>
-    </g>
+   <g id="text_16">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #216653" x="720.780595" y="307.978278" transform="rotate(-0 720.780595 307.978278)">751,182</text>
    </g>
-   <g id="PathCollection_2">
-    <defs>
-     <path id="m2a62f5a2c3" d="M 0 6.123724
-C 1.624031 6.123724 3.181764 5.47849 4.330127 4.330127
-C 5.47849 3.181764 6.123724 1.624031 6.123724 0
-C 6.123724 -1.624031 5.47849 -3.181764 4.330127 -4.330127
-C 3.181764 -5.47849 1.624031 -6.123724 0 -6.123724
-C -1.624031 -6.123724 -3.181764 -5.47849 -4.330127 -4.330127
-C -5.47849 -3.181764 -6.123724 -1.624031 -6.123724 0
-C -6.123724 1.624031 -5.47849 3.181764 -4.330127 4.330127
-C -3.181764 5.47849 -1.624031 6.123724 0 6.123724
-z
-" style="stroke: #f6f5f0; stroke-width: 2"/>
-    </defs>
-    <g clip-path="url(#p92183b8550)">
-     <use xlink:href="#m2a62f5a2c3" x="632.912566" y="287.097785" style="fill: #a66036; stroke: #f6f5f0; stroke-width: 2"/>
-    </g>
+   <g id="text_17">
+    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="508.896" y="145.584" transform="rotate(-0 508.896 145.584)">Executed Toffolis</text>
    </g>
-  </g>
-  <g id="text_16">
-   <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="53.352" y="44.832563" transform="rotate(-0 53.352 44.832563)">Two records, two resource budgets</text>
-  </g>
-  <g id="text_17">
-   <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="53.352" y="73.398047" transform="rotate(-0 53.352 73.398047)">My officially scored circuits · lower and farther left is better · 2026-10-17</text>
   </g>
   <g id="text_18">
-   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(53.352 468.296344)">Dashed curves show equal Q × T products. Both axes use zoomed linear scales.</text>
-   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(53.352 484.046344)">The lowest-gate circuit uses 322 more qubits, so its product is higher. Source: ECDSA.fail public API.</text>
+   <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="53.352" y="44.832563" transform="rotate(-0 53.352 44.832563)">Fewer gates, less workspace</text>
+  </g>
+  <g id="text_19">
+   <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="53.352" y="73.398047" transform="rotate(-0 53.352 73.398047)">1,809 fewer executed Toffolis · 399 fewer logical qubits · official record comparison</text>
+  </g>
+  <g id="text_20">
+   <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #216653" x="139.536" y="117.576" transform="rotate(-0 139.536 117.576)">−399 qubits  /  −21.42%</text>
+  </g>
+  <g id="text_21">
+   <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #216653" x="508.896" y="117.576" transform="rotate(-0 508.896 117.576)">−1,809 Toffolis  /  −0.24024%</text>
+  </g>
+  <g id="text_22">
+   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(53.352 468.296344)">Both axes start at zero. Labels show whole-circuit official metrics; the small gate reduction is not magnified.</text>
+   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(53.352 484.527867)">Source: ECDSA.fail API. Previous record: 18 Oct 2026; new record: 20 Oct 2026. Gate counts are rounded means.</text>
   </g>
  </g>
  <defs>
-  <clipPath id="p92183b8550">
-   <rect x="131.328" y="127.8" width="644.328" height="255.6"/>
+  <clipPath id="pff049e325d">
+   <rect x="139.536" y="163.584" width="254.448" height="194.256"/>
+  </clipPath>
+  <clipPath id="p4a647b201d">
+   <rect x="508.896" y="163.584" width="254.448" height="194.256"/>
   </clipPath>
  </defs>
 </svg>

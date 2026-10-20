@@ -1,6 +1,8 @@
 {% assign project = site.data.projects | where: 'slug', page.project | first %}{% assign guide = site.data.project_guides | where: 'slug', page.project | first %}
-{% assign total = site.data.projects.size %}{% assign idx = 0 %}{% for item in site.data.projects %}{% if item.slug == project.slug %}{% assign idx = forloop.index0 %}{% endif %}{% endfor %}
-{% assign next_i = idx | plus: 1 | modulo: total %}{% assign prev_i = idx | plus: total | minus: 1 | modulo: total %}{% assign next_p = site.data.projects[next_i] %}{% assign prev_p = site.data.projects[prev_i] %}
+{% assign project_updates = site.data.projects | group_by: 'updated_at' | sort: 'name' | reverse %}
+{% assign ordered_projects = '' | split: '' %}{% for update in project_updates %}{% assign ordered_projects = ordered_projects | concat: update.items %}{% endfor %}
+{% assign total = ordered_projects.size %}{% assign idx = 0 %}{% for item in ordered_projects %}{% if item.slug == project.slug %}{% assign idx = forloop.index0 %}{% endif %}{% endfor %}
+{% assign next_i = idx | plus: 1 | modulo: total %}{% assign prev_i = idx | plus: total | minus: 1 | modulo: total %}{% assign next_p = ordered_projects[next_i] %}{% assign prev_p = ordered_projects[prev_i] %}
 {% capture page_title %}{{ project.title }} — Monit Sharma{% endcapture %}{% capture page_desc %}{% if guide.tldr %}{{ guide.tldr }}{% else %}{{ project.summary }}{% endif %}{% endcapture %}
 {% assign social_image = nil %}{% for figure in project.figures %}{% unless social_image %}{% if figure.src contains '.png' %}{% assign social_image = figure.src | prepend: '/' %}{% endif %}{% endunless %}{% endfor %}
 <!DOCTYPE html>
