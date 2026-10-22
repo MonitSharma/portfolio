@@ -4,6 +4,7 @@
 {% capture page_title %}{{ page.title }} — Monit Sharma{% endcapture %}
 {% include rd-head.html title=page_title description=page.description %}
 <link rel="stylesheet" href="{{ '/assets/css/editorial.css' | relative_url }}">
+{% if page.nav == 'research' %}<link rel="stylesheet" href="{{ '/assets/css/research-publications.css' | relative_url }}?v=20261022-2">{% endif %}
 {% if page.interactive %}<script defer src="{{ '/assets/js/rd-home.js' | relative_url }}"></script>{% endif %}
 </head>
 <body class="editorial {{ page.body_class }}">

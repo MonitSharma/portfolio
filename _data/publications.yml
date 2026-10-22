@@ -6,6 +6,13 @@
   selected: true
   venue: IEEE QCE26 Quantum–GenAI Co-Design & Discovery (QGDD) Technical Paper ·
     Presented September 2026, Toronto
+  preview:
+    src: assets/imgs/publications/2604.24283.jpg
+    width: 696
+    height: 900
+    label: arXiv · first page
+    url: https://arxiv.org/abs/2604.24283
+    source: https://arxiv.org/pdf/2604.24283
   description:
     - Introduced an LLM-guided experimentation loop that searches adaptive
       solver-control policies for variational quantum optimization.
@@ -25,6 +32,13 @@
   category: conference
   selected: true
   venue: Springer QC+AI 2026 · AAAI Workshop on Quantum Computing
+  preview:
+    src: assets/imgs/publications/springer-qcai-2026.jpg
+    width: 600
+    height: 909
+    label: Springer · proceedings cover
+    url: https://link.springer.com/chapter/10.1007/978-3-032-17625-7_3
+    source: https://media.springernature.com/w600/springer-static/cover/book/978-3-032-17625-7.jpg
   description:
     - Introduced a learning-based graph shrinking approach for reducing
       constrained combinatorial optimization instances.
@@ -43,6 +57,13 @@
   category: conference
   selected: true
   venue: Springer QC+AI 2026 · AAAI Workshop on Quantum Computing
+  preview:
+    src: assets/imgs/publications/springer-qcai-2026.jpg
+    width: 600
+    height: 909
+    label: Springer · proceedings cover
+    url: https://link.springer.com/chapter/10.1007/978-3-032-17625-7_2
+    source: https://media.springernature.com/w600/springer-static/cover/book/978-3-032-17625-7.jpg
   description:
     - Soft Actor-Critic policies tune augmented Lagrangian penalties for both
       classical and quantum solvers, **accelerating convergence and
@@ -63,6 +84,16 @@
   selected: true
   venue: IEEE Xplore · IEEE QCE24 Quantum Applications Technical Paper (Poster at
     QIP 2024)
+  preview:
+    src: assets/imgs/publications/newsvendor-ieee-page.png
+    width: 2742
+    height: 1544
+    label: IEEE Xplore · article page
+    alt: >-
+      IEEE Xplore article page for Quantum Enhanced Simulation Based Optimization for Newsvendor Problems
+    url: https://ieeexplore.ieee.org/document/10821393
+    source: https://ieeexplore.ieee.org/document/10821393
+    supplied_by: user
   description:
     - Employed qGANs to learn demand distributions, **reducing qubit
       requirements** with a tailored comparator.
@@ -79,6 +110,16 @@
   category: conference
   selected: true
   venue: IEEE Xplore · IEEE QCE24 Quantum Applications Technical Paper
+  preview:
+    src: assets/imgs/publications/multiple-knapsack-ieee-page.png
+    width: 2748
+    height: 1528
+    label: IEEE Xplore · article page
+    alt: >-
+      IEEE Xplore article page for Quantum Relaxation for Solving Multiple Knapsack Problems
+    url: https://ieeexplore.ieee.org/document/10821401
+    source: https://ieeexplore.ieee.org/document/10821401
+    supplied_by: user
   description:
     - Combined Quantum Random Access Optimisation with linear relaxation to
       solve large-scale procurement problems.
@@ -98,6 +139,16 @@
   category: journal
   venue: Quantum Science and Technology · Published September 2026
   new: true
+  preview:
+    src: assets/imgs/publications/from-circuits-to-hardware-published.png
+    width: 1852
+    height: 1986
+    label: IOP · published paper
+    alt: >-
+      Published first page of From circuits to hardware: benchmarking standard and qubit-efficient quantum optimization on real hardware
+    url: https://iopscience.iop.org/article/10.1088/2058-9565/ae94a4
+    source: https://iopscience.iop.org/article/10.1088/2058-9565/ae94a4
+    supplied_by: user
   description:
     - Benchmarked gate-based quantum optimization across MDKP, MIS, QAP, and MSP
       on IBM Heron processors under a common protocol.
@@ -122,6 +173,16 @@
   venue: "Transportation Research Part E: Logistics and Transportation Review ·
     Published online 12 October 2026"
   new: true
+  preview:
+    src: assets/imgs/publications/securing-the-flow-published.png
+    width: 1146
+    height: 1562
+    label: Elsevier · published paper
+    alt: >-
+      Published first page of Securing the flow: Strategic storage and corridor design for maritime energy security under chokepoint disruptions
+    url: https://www.sciencedirect.com/science/article/pii/S1366554526006344
+    source: https://www.sciencedirect.com/science/article/pii/S1366554526006344
+    supplied_by: user
   description:
     - Developed a two-stage stochastic multi-commodity flow model for resilient
       energy supply under correlated chokepoint disruptions.
@@ -144,6 +205,13 @@
     diagnostics · arXiv:2510.14533
   year: 2026
   category: preprint
+  preview:
+    src: assets/imgs/publications/2510.14533.jpg
+    width: 696
+    height: 900
+    label: arXiv · first page
+    url: https://arxiv.org/abs/2510.14533
+    source: https://arxiv.org/pdf/2510.14533
   description:
     - Diagnosed cross-size transfer for EQC reinforcement-learning policies
       across simulators, noisy execution, and hardware.
@@ -161,6 +229,13 @@
   meta: with H. C. Lau · Quantum CVRP decomposition · arXiv:2604.22194
   year: 2026
   category: preprint
+  preview:
+    src: assets/imgs/publications/2604.22194.jpg
+    width: 696
+    height: 900
+    label: arXiv · first page
+    url: https://arxiv.org/abs/2604.22194
+    source: https://arxiv.org/pdf/2604.22194
   description:
     - Converted CVRP into bounded-width quantum subproblems using Lagrangian
       relaxation and per-vehicle knapsack QUBOs.
@@ -176,6 +251,13 @@
   meta: with H. C. Lau · Slack-free QUBO formulations · arXiv:2507.12159
   year: 2025
   category: preprint
+  preview:
+    src: assets/imgs/publications/2507.12159.jpg
+    width: 696
+    height: 900
+    label: arXiv · first page
+    url: https://arxiv.org/abs/2507.12159
+    source: https://arxiv.org/pdf/2507.12159
   description:
     - Dual ascent, bundle, and augmented Lagrangian updates enforce constraints
       without auxiliary slack variables, **reducing qubit counts**.
@@ -193,6 +275,13 @@
   meta: with H. C. Lau · Standardised benchmarking suite · arXiv:2503.12121
   year: 2025
   category: preprint
+  preview:
+    src: assets/imgs/publications/2503.12121.jpg
+    width: 696
+    height: 900
+    label: arXiv · first page
+    url: https://arxiv.org/abs/2503.12121
+    source: https://arxiv.org/pdf/2503.12121
   description:
     - Evaluated VQE, CVaR-VQE, QAOA variants, and compression techniques such as
       PCE and QRAO across NP-hard benchmarks.
@@ -212,6 +301,13 @@
   meta: with H. C. Lau · Risk-aware inventory analytics · arXiv:2409.07183
   year: 2024
   category: preprint
+  preview:
+    src: assets/imgs/publications/2409.07183.jpg
+    width: 696
+    height: 900
+    label: arXiv · first page
+    url: https://arxiv.org/abs/2409.07183
+    source: https://arxiv.org/pdf/2409.07183
   description:
     - Integrated decision-maker risk profiles into a quantum Monte Carlo
       framework for multi-supplier newsvendor problems.

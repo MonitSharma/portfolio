@@ -16,14 +16,18 @@ interactive: true
     <span class="toolbar-status" id="paper-status" role="status" aria-live="polite">Showing all {{ selected.size }} papers</span>
   </div>
   <div class="paper-list" id="publication-list">{% for paper in selected %}{% assign primary = paper.links | where: 'text', 'Journal' | first %}{% unless primary %}{% assign primary = paper.links | where: 'text', 'arXiv' | first %}{% endunless %}{% unless primary %}{% assign primary = paper.links | first %}{% endunless %}
-    <article class="paper" data-category="{{ paper.category }}">
+    <article class="paper{% if paper.preview %} paper-with-preview{% endif %}" data-category="{{ paper.category }}">
       <div class="paper-year">{{ paper.year }}</div>
-      <div>
+      <div class="paper-copy">
         <div class="paper-meta"><span class="badge badge-{{ paper.category }}">{{ paper.category }}</span>{% if paper.new %}<span class="badge badge-new">New</span>{% endif %}<span class="paper-venue">{% if paper.venue %}{{ paper.venue | escape }}{% else %}arXiv preprint{% endif %}</span></div>
         <h3>{% if primary.url %}<a href="{{ primary.url | escape }}" target="_blank" rel="noopener">{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h3>
         <p>{{ paper.description.first | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
         <div class="paper-links">{% for link in paper.links %}{% if link.url %}<a class="pill" href="{{ link.url | escape }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="noopener"{% endunless %}>{{ link.text | escape }} <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}</div>
       </div>
+      {% if paper.preview %}{% assign preview_height = paper.preview.height | times: 132 | divided_by: paper.preview.width %}<a class="paper-preview" href="{{ paper.preview.url | escape }}" target="_blank" rel="noopener" aria-label="{{ paper.preview.label | escape }}: {{ paper.title | escape }}">
+        <span class="paper-preview-sheet"><img src="{{ paper.preview.src | relative_url }}" width="132" height="{{ preview_height }}" alt="{% if paper.preview.alt %}{{ paper.preview.alt | escape }}{% elsif paper.preview.label contains 'cover' %}Proceedings cover for Quantum Computing and Artificial Intelligence, QC+AI 2026{% else %}First page of {{ paper.title | escape }}{% endif %}"{% unless forloop.first %} loading="lazy"{% endunless %} decoding="async"><span class="paper-preview-open" aria-hidden="true">Read paper ↗</span></span>
+        <span class="paper-preview-caption">{{ paper.preview.label | escape }}</span>
+      </a>{% endif %}
     </article>{% endfor %}
   </div>
 </section>
