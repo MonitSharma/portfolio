@@ -1,0 +1,5 @@
+<div class="record-table" tabindex="0" role="region" aria-label="{{ project.table.caption | escape }}">
+<table><caption>{{ project.table.caption | escape }}</caption>
+<thead><tr>{% for col in project.table.columns %}<th scope="col">{{ col | escape }}</th>{% endfor %}</tr></thead>
+<tbody>{% for row in project.table.rows %}<tr>{% for cell in row %}{% if forloop.first %}<th scope="row">{{ cell | escape }}</th>{% else %}<td>{{ cell | escape }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</tbody>
+</table></div>

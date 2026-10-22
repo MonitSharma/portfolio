@@ -2,6 +2,9 @@
 # tldr: one sentence for anyone · problem/why: short paragraphs · metric_plain: what the headline number means
 # takeaways: three plain findings · stack: tools & techniques · glossary: terms used on the page
 
+- slug: qhack
+  tldr: Completed every QHACK 2026 coding challenge with team Phase Kickback, reaching 79th of 1,662 teams with 5,200 points.
+
 - slug: mettleq
   tldr: MettleQ lets researchers simulate quantum circuits on a Mac’s GPU, using the Qiskit and PennyLane code they already write.
   problem: Before running on real quantum hardware, researchers test circuits by simulating them on ordinary computers. The cost doubles with every qubit — a 20-qubit simulation tracks more than a million numbers at once. Popular simulators do this work on the CPU; MettleQ moves it to the Apple Silicon GPU without changing how people write their programs.

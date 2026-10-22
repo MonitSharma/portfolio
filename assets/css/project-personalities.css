@@ -1,0 +1,343 @@
+/* Each project owns its composition. These are shared reading and evidence primitives. */
+.experience{--project-radius:12px}
+.experience .topline{margin-bottom:32px}
+.experience h1{font:500 clamp(52px,6.7vw,88px)/1.02 var(--sans);letter-spacing:-.055em}
+.experience h2{font:400 clamp(32px,3.4vw,46px)/1.12 var(--serif);letter-spacing:-.02em}
+.experience h3{font-size:20px;line-height:1.35;font-weight:500;letter-spacing:-.02em}
+.experience p{overflow-wrap:break-word}
+.experience .eyebrow{font:11px/1.7 var(--mono);text-transform:uppercase;letter-spacing:.09em;color:var(--accent);margin-bottom:14px}
+.experience .project-section{padding-top:72px}
+.experience .experience-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:30px}
+.experience-heading>a,.experience-heading>span{font:12px/1.6 var(--mono);color:var(--accent)}
+.experience .body-copy{max-width:850px;font-size:17px;line-height:1.8;margin:24px 0}
+.experience .inline-links{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:28px;font-size:14px}
+.experience .action-link{display:inline-block;padding:12px 20px;background:var(--ink);color:var(--paper);border-radius:4px;font-size:14px}
+.experience a:hover{text-decoration-color:currentColor}
+.experience a:focus-visible,.experience summary:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+.experience .small-print{font-size:13px;line-height:1.7;color:var(--muted)}
+.experience .project-media{margin:28px 0 0;min-width:0}
+.experience .media-link{display:block;position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--project-radius);overflow:hidden;cursor:zoom-in}
+.experience .media-link img{width:100%;height:auto;margin:0;object-fit:contain}
+.experience .media-zoom{position:absolute;bottom:12px;right:12px;font:10px/1.5 var(--mono);padding:7px 10px;background:#182321;color:#fff;border-radius:3px;opacity:0;transition:opacity .15s}
+.media-link:hover .media-zoom,.media-link:focus-visible .media-zoom{opacity:1}
+.experience .project-media figcaption{padding:16px 0 0;max-width:900px}
+.experience .project-media figcaption h3{font-size:15px;letter-spacing:0;font-weight:500}
+.experience .project-media figcaption p{margin-top:7px;font-size:13px;line-height:1.75;color:var(--muted)}
+.experience .media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:12px;align-items:start}
+.experience .media-grid>.project-media:only-child{grid-column:1/-1}
+.experience .record-table{overflow:auto;margin-top:32px;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line);padding:0 0 8px}
+.experience .record-table table{width:100%;border-collapse:collapse;text-align:left;font:13px/1.65 var(--mono)}
+.record-table caption{text-align:left;padding:16px 0;font:13px/1.6 var(--sans);color:var(--muted)}
+.record-table th,.record-table td{padding:16px 18px 16px 0;border-top:1px solid var(--line);vertical-align:top}
+.record-table thead th{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);font-weight:400;white-space:nowrap}
+.record-table tbody th{font-weight:400;min-width:140px}
+.record-table td{white-space:nowrap}
+.experience .project-note{margin:48px 0 28px;border-left:3px solid var(--accent);padding:8px 0 8px 22px;max-width:930px}
+.project-note h3{font-size:14px}
+.project-note p{font-size:14px;color:var(--muted);line-height:1.85;margin-top:9px}
+.experience .technical-record{margin-top:24px;border:1px solid var(--line);border-radius:var(--project-radius);background:var(--surface)}
+.technical-record>summary{cursor:pointer;display:flex;justify-content:space-between;gap:18px;padding:22px 24px;font-size:15px;list-style:none;font-weight:500}
+.technical-record>summary::-webkit-details-marker{display:none}
+.technical-record>summary>span{color:var(--accent);font:22px/1 var(--mono)}
+.technical-record[open]>summary>span{transform:rotate(45deg)}
+.technical-content{padding:0 24px 28px;max-width:1000px}
+.technical-content article{margin:24px 0}
+.technical-content h3{font-size:18px;margin:24px 0 10px}
+.technical-content p,.technical-content li{font-size:14px;line-height:1.85;color:var(--muted)}
+.technical-content>p+p{margin-top:18px}
+.technical-content ol{padding-left:22px}
+.technical-content li+li{margin-top:14px}
+.experience .project-links{padding:64px 0 48px}
+.project-links>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;margin-top:26px}
+.project-links a{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);font-size:14px}
+.project-links a:hover{color:var(--accent)}
+.project-links a>span:last-child{flex-shrink:0;color:var(--accent)}
+.experience .pager{margin:12px 0 64px;padding-top:24px;border-top:1px solid var(--line)}
+.experience .pager-card{background:none;border:0;padding:12px 0;border-radius:0;box-shadow:none}
+.experience .pager-card:hover{box-shadow:none;transform:none}
+.experience .record-verification{padding:28px;margin-top:40px;border:1px solid var(--line);background:var(--surface)}
+.record-verification>p:not(.eyebrow){font-size:14px;margin-top:15px;line-height:1.85}
+.record-verification .inline-links{font-size:13px;gap:16px;margin-top:16px;color:var(--accent)}
+
+/* QHACK: an event poster, a scoreboard, and the completed challenge board. */
+.experience--qhack{--paper:#f2f4e9;--surface:#fbfcf6;--ink:#173e32;--muted:#58695e;--accent:#28583d;--line:#d2dac8;--line-strong:#adbda4;--project-radius:5px}
+.hack-poster{background:#173e32;color:#f1f4ce;padding:24px 38px 0;position:relative}
+.event-ticket{display:flex;justify-content:space-between;gap:20px;padding-bottom:22px;border-bottom:1px solid #526e51;font:10px/1.7 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.hack-title{display:flex;justify-content:space-between;align-items:center;gap:30px;padding-top:36px}
+.experience .hack-title h1{font-size:clamp(70px,11.8vw,148px);font-weight:650;line-height:.87;letter-spacing:-.075em}
+.hack-title h1>span{display:block;font-size:.44em;letter-spacing:-.025em;margin-top:12px;color:#ccdf87}
+.hack-title>div>p{margin-top:28px;font:14px var(--mono);color:#d3dec7}
+.completion-seal{border:1px solid #a0bd73;border-radius:50%;width:174px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(8deg);flex-shrink:0;color:#d7ed94}
+.completion-seal strong{font:500 42px/1.2 var(--mono);letter-spacing:-.05em}
+.completion-seal span{font:10px/1.5 var(--mono);text-align:center;margin-top:7px;letter-spacing:.06em}
+.hack-intro{margin-top:30px;font-size:20px;color:#d5dfc7}
+.hack-scoreboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:38px;border-top:1px solid #526e51;border-bottom:1px solid #526e51}
+.hack-scoreboard>div{padding:22px 0 25px}
+.hack-scoreboard>div+div{padding-left:28px;border-left:1px solid #526e51}
+.hack-scoreboard>div>span{font:10px/1.6 var(--mono);color:#c8d6bb;letter-spacing:.07em;display:block}
+.hack-scoreboard strong{display:block;font:500 clamp(29px,3.7vw,48px)/1.2 var(--sans);letter-spacing:-.045em;margin-top:10px;white-space:nowrap}
+.hack-scoreboard small{font:400 .42em var(--mono);letter-spacing:-.04em}
+.event-ticket.bottom{padding:18px 0;border:0;letter-spacing:.01em;font-size:9px;color:#c8d6bb}
+.challenge-board{padding-top:64px}
+.completion-tag{font:11px var(--mono);background:#d7e6bb;padding:8px 12px;white-space:nowrap}
+.challenge-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+.challenge-group{border:1px solid var(--line);background:var(--surface)}
+.challenge-group>header{padding:22px 20px 18px;border-bottom:1px solid var(--line)}
+.experience .challenge-group h3{font-size:19px;min-height:52px}
+.group-points{font:500 26px var(--mono);margin-top:14px}
+.group-points>span{font-size:10px;color:var(--muted)}
+.challenge-group ul{padding:0;list-style:none}
+.challenge-group li{display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:9px;padding:13px 16px;align-items:baseline;font-size:12px;line-height:1.5}
+.challenge-group li+li{border-top:1px solid var(--line)}
+.challenge-group small{font:10px var(--mono);color:var(--muted)}
+.solved-check{color:var(--accent);font-size:11px}
+.ranking-proof{display:grid;grid-template-columns:.75fr 1fr;gap:64px;padding-top:80px;align-items:start}
+.ranking-proof>div{position:sticky;top:35px}
+.ranking-proof h2{font-size:clamp(38px,4vw,54px)}
+.ranking-proof>div>p:not(.eyebrow){margin-top:22px;font-size:15px;line-height:1.8}
+.ranking-proof>div>.small-print{font-size:13px}
+.ranking-proof .project-media{margin:0;max-width:580px}
+.ranking-proof .media-link{box-shadow:12px 12px 0 #dce3c9}
+.ranking-proof figcaption{display:none}
+
+/* MettleQ: hardware, SDKs, and a measured performance story. */
+.experience--mettleq{--accent:#23626c;--paper:#eff2f2;--surface:#f9fbfb;--line:#cfdadc;--muted:#526569;--project-radius:8px}
+.gpu-hero{padding:38px;background:#141f25;color:#e9f2f3;border-radius:8px}
+.experience .gpu-hero .eyebrow{color:#80ced5}
+.gpu-heading{display:grid;grid-template-columns:1.2fr 1fr;gap:54px;align-items:center;padding:20px 0 8px}
+.experience .gpu-heading h1{font-size:clamp(48px,5.6vw,74px);letter-spacing:-.055em}
+.gpu-heading h1 em{color:#8adbe0;font-style:normal}
+.gpu-heading>div>p{color:#adbec6;max-width:500px;margin-top:25px;font-size:16px}
+.gpu-heading .action-link{background:#8adbe0;color:#132b2f}
+.gpu-heading .inline-links>a:not(.action-link){color:#bbd0d8}
+.gpu-chip{display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #59808c;background:repeating-linear-gradient(90deg,transparent 0 16px,#8bbfc908 16px 17px),#253940;box-shadow:0 0 0 12px #1e3037,0 0 0 13px #48626c;aspect-ratio:1;max-width:330px;width:100%;margin:auto;padding:22px;border-radius:10px;transform:rotate(-4deg)}
+.gpu-chip>b{font:500 clamp(32px,4vw,50px) var(--sans);letter-spacing:-.06em}
+.gpu-chip>span{font:9px/1.6 var(--mono);color:#b1c9cf;letter-spacing:.04em}
+.gpu-chip .chip-pin{font-size:10px;margin-bottom:12px;color:#86d9df}
+.chip-cores{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;width:70%;margin:18px 0}
+.chip-cores i{height:14px;background:#8adbe0;opacity:.5;border:1px solid #a0f2ee}
+.benchmark-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;padding:32px 0;border-bottom:1px solid var(--line);align-items:center}
+.benchmark-strip strong{font:500 54px/1.2 var(--sans);letter-spacing:-.05em;display:block}
+.benchmark-strip span{font:11px var(--mono);color:var(--muted)}
+.benchmark-strip>p{border-left:1px solid var(--line);padding-left:24px;font-size:13px;color:var(--muted)}
+.benchmark-details{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;margin-top:30px;align-items:start}
+.benchmark-details>div>p{font-size:14px;line-height:1.8;margin-top:18px;color:var(--muted)}
+.benchmark-details .record-table{margin-top:0}
+
+/* Chemistry: a compact scientific paper with the reference energy at its centre. */
+.experience--quantum-chemistry{--paper:#f7f3e9;--surface:#fffaf0;--ink:#302d29;--muted:#70665b;--accent:#884a38;--line:#dcd2c1;--line-strong:#b7a88c;--project-radius:0}
+.chem-paper{padding-top:14px;border-top:3px double var(--ink)}
+.paper-masthead{display:flex;justify-content:space-between;gap:20px;font:10px var(--mono);padding:0 0 22px;border-bottom:1px solid var(--line);color:var(--muted)}
+.chem-paper>.eyebrow{margin-top:44px}
+.experience .chem-paper h1{font-family:var(--serif);font-weight:400;font-size:clamp(56px,7vw,90px);letter-spacing:-.025em}
+.paper-subtitle{font:italic 26px var(--serif);margin:20px 0 34px;color:var(--muted)}
+.paper-abstract{display:grid;grid-template-columns:120px 1fr;border-top:1px solid var(--line);padding-top:26px;gap:25px;max-width:970px}
+.paper-abstract>span{font:11px var(--mono);padding-top:5px;color:var(--accent)}
+.paper-abstract>p{font:18px/1.85 var(--serif)}
+.chem-specs{display:flex;gap:60px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:32px;padding:22px 0}
+.chem-specs>div{display:flex;align-items:baseline;gap:10px}
+.chem-specs b{font:400 34px var(--serif)}
+.chem-specs span{font:10px var(--mono);color:var(--muted)}
+.chem-result{padding:40px 0 36px;border-bottom:1px solid var(--line)}
+.experience .energy-value{font:400 clamp(24px,3.4vw,44px)/1.4 var(--mono);letter-spacing:-.045em}
+.energy-value>span{font-size:.55em}
+.chem-result>p:last-child{margin-top:22px;max-width:890px;font-size:15px;line-height:1.9}
+.paper-results>div:first-child{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.paper-results>div:first-child>p{font-size:14px;color:var(--muted)}
+.paper-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:30px;font:17px/1.8 var(--serif)}
+
+/* Atelier: a warm studio for a local research workbench. */
+.experience--atelier-lab{--paper:#f5f0e9;--surface:#fffaf4;--ink:#353035;--muted:#726773;--accent:#79618a;--line:#d9cfd9;--line-strong:#b1a0b9;--project-radius:18px}
+.atelier-cover{background:#e5dbea;border-radius:70px 12px 12px 12px;padding:44px 48px 0;position:relative}
+.atelier-cover>.eyebrow{color:#655071}
+.experience .atelier-cover h1{font:400 clamp(64px,8vw,105px)/1 var(--serif);letter-spacing:-.035em;color:#352c3c}
+.atelier-cover h1 em{font-weight:400}
+.atelier-deck{font:400 clamp(26px,3vw,40px)/1.2 var(--serif);padding:32px 0;color:#5e4b68}
+.atelier-intro{display:grid;grid-template-columns:1.5fr 1fr;align-items:center;gap:50px;color:#514657;font-size:15px}
+.atelier-intro .action-link{justify-self:end;background:#514257;color:#f9f4f9}
+.atelier-tabs{display:flex;gap:0;margin-top:36px;border-top:1px solid #b9a5c4;color:#655071}
+.atelier-tabs span{padding:18px 26px 18px 0;font:10px var(--mono)}
+.workbench-flow{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}
+.workbench-flow>div>p:not(.eyebrow){font-size:15px;line-height:1.9;color:var(--muted);margin-top:24px}
+.workbench-flow>.project-media{margin:0}
+.atelier-evaluation{margin-top:64px;padding:32px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.evaluation-scores{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:22px}
+.evaluation-scores b{font:400 66px/1.2 var(--serif)}
+.evaluation-scores b>span{font-size:30px;color:var(--muted)}
+.evaluation-scores p{font-size:13px;color:var(--muted)}
+
+/* Peaked circuits: a competitive score and two signal-recovery case files. */
+.experience--peaked-circuits{--paper:#f0f2f7;--surface:#fafbff;--ink:#252c46;--muted:#606a82;--accent:#4b5797;--line:#d2d7e5;--line-strong:#aeb8d0;--project-radius:5px}
+.signal-hero{padding:32px 38px 0;background:#202b4a;color:#f0f3ff;overflow:hidden}
+.experience .signal-hero>.eyebrow{color:#c3caea}
+.podium{display:grid;grid-template-columns:240px 1fr;gap:46px;align-items:center;padding:25px 0 10px}
+.podium-rank{border:1px solid #7b8eaf;background:#2a385b;padding:30px 20px;text-align:center;transform:rotate(-3deg);color:#daee9f}
+.podium-rank span{font:10px var(--mono);display:block;letter-spacing:.08em}
+.podium-rank b{font:500 116px/1.3 var(--sans);letter-spacing:-.07em;display:block}
+.experience .podium h1{font-size:clamp(40px,4.8vw,64px)}
+.podium>div>p{margin-top:18px;color:#d0d7ee;font-size:13px}
+.podium>div>.signal-intro{font-size:17px;max-width:480px}
+.podium a{display:inline-block;margin-top:25px;font-size:13px;color:#daee9f}
+.signal-trace{display:flex;gap:6px;align-items:end;height:100px;margin:15px 0 0;opacity:.45}
+.signal-trace i{background:#d8ed9c;width:100%;height:calc(12px + var(--n)*8px)}
+.recovery-cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;padding-top:56px}
+.recovery-cases>article{background:var(--surface);padding:25px;border-top:3px solid var(--accent)}
+.experience .recovery-cases h2{font:500 52px var(--mono);letter-spacing:-.07em}
+.recovery-cases dl{display:grid;gap:8px;padding:0;margin:22px 0}
+.recovery-cases dl>div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:8px;font:12px var(--mono)}
+.recovery-cases dt{color:var(--muted)}
+.recovery-cases dd{margin:0}
+.recovery-cases article>p:not(.eyebrow){font-size:14px;line-height:1.8;color:var(--muted)}
+.decoding-track>ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;list-style:none;padding:0;margin:32px 0}
+.decoding-track li{border-top:1px solid var(--line);padding-top:20px}
+.decoding-track li>span{font:24px var(--mono);color:var(--accent)}
+.decoding-track li>p{font-size:14px;line-height:1.8;margin-top:18px}
+
+/* Classiq: a visual circuit-design study, built around depth compression. */
+.experience--classiq{--paper:#f6f3fa;--surface:#fffcff;--ink:#352747;--muted:#746780;--accent:#8154a3;--line:#dfd3e8;--line-strong:#bfa6cd;--project-radius:0}
+.oracle-cover{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;padding:40px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.experience .oracle-cover h1{font:400 clamp(55px,6.4vw,84px)/1.03 var(--serif);letter-spacing:-.025em}
+.oracle-cover h1 em{color:var(--accent);font-style:normal}
+.oracle-cover>div>p:not(.eyebrow){margin-top:24px;max-width:480px;font-size:15px;color:var(--muted)}
+.oracle-cover .action-link{margin-top:26px}
+.depth-study{background:radial-gradient(var(--line-strong) .8px,transparent .8px);background-size:14px 14px;border:1px solid var(--line);text-align:center;display:flex;align-items:center;flex-direction:column;justify-content:center;padding:28px}
+.depth-before{font:32px var(--mono);text-decoration:line-through;text-decoration-thickness:1px;color:var(--muted)}
+.depth-arrow{font-size:25px;color:var(--accent);margin:10px}
+.depth-study>strong{font:500 130px/1 var(--sans);letter-spacing:-.07em}
+.oracle-insight{display:flex;gap:32px;align-items:center;padding:28px;margin-top:28px;background:var(--soft);border-left:3px solid var(--accent)}
+.oracle-insight>b{font:400 74px/1 var(--serif);color:var(--accent)}
+.oracle-insight>p{font-size:15px;max-width:700px}
+.oracle-check{display:grid;grid-template-columns:.85fr 1.15fr;gap:36px;align-items:center}
+.oracle-check>div>p:not(.eyebrow){font-size:14px;line-height:1.9;margin-top:20px}
+.oracle-check .project-media{margin:0}
+
+/* QSVT: an engineering blueprint and a side-by-side hardware comparison. */
+.experience--qsvt-linear-solvers{--paper:#edf3f8;--surface:#f8fbfe;--ink:#20364f;--muted:#586e82;--accent:#346a9c;--line:#c7d7e4;--line-strong:#9ab5cb;--project-radius:3px}
+.solver-blueprint{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;background:#203f65;color:#e5f0fc;padding:40px;background-image:linear-gradient(#edf7ff09 1px,transparent 1px),linear-gradient(90deg,#edf7ff09 1px,transparent 1px);background-size:25px 25px}
+.experience .solver-blueprint .eyebrow{color:#b8d5ef}
+.experience .solver-blueprint h1{font:400 clamp(42px,4.5vw,60px)/1.1 var(--serif);letter-spacing:-.02em}
+.solver-blueprint>div>p:not(.eyebrow){font-size:15px;color:#bed2e7;margin-top:28px;max-width:500px}
+.solver-blueprint a{display:inline-block;font:12px var(--mono);margin-top:28px;color:#d6e7fc}
+.solver-equation{border:1px solid #87a8cd;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center}
+.equation-label{font:9px/1.8 var(--mono);letter-spacing:.06em;color:#bdd8ef}
+.solver-equation>b{font:400 clamp(55px,6vw,85px) var(--serif);white-space:nowrap}
+.equation-line{width:50%;height:1px;background:#91afd0;margin-top:10px}
+.solver-blueprint .solver-equation>p{font:12px/2 var(--mono);color:#d2e4f5;margin:20px 0}
+.hardware-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px}
+.hardware-pair>article{padding:28px;border:1px solid var(--line);background:var(--surface)}
+.hardware-pair strong{font:400 68px/1.1 var(--mono);letter-spacing:-.06em}
+.hardware-pair strong>span{font-size:30px}
+.hardware-pair article>p:not(.eyebrow){font-size:13px;margin-top:16px}
+.hardware-status{padding-top:16px;border-top:1px solid var(--line);color:var(--accent)}
+.hardware-status.unresolved{color:#9a5035}
+.solver-path{display:grid;grid-template-columns:.7fr 1.3fr;gap:55px;align-items:start}
+.solver-path>div:first-child{position:sticky;top:30px}
+.solver-path>div>p:not(.eyebrow){font-size:15px;line-height:1.85;margin-top:25px;color:var(--muted)}
+.solver-path .project-media:first-child{margin-top:0}
+.cfd-conclusion{margin-top:55px;padding:32px;background:var(--surface);border-top:3px solid var(--accent)}
+.cfd-conclusion>p:last-child{font-size:15px;line-height:1.9;max-width:880px;margin-top:24px}
+
+/* HPC: an experiment notebook, organized by measurements. */
+.experience--quantum-hpc{--paper:#f4f1e4;--surface:#fbfaef;--ink:#333b2b;--muted:#69705b;--accent:#657337;--line:#d4d8bb;--line-strong:#a6b17c;--project-radius:2px}
+.hpc-notebook{padding:22px 38px 0;border:1px solid var(--line-strong);border-left:7px solid var(--accent);background:repeating-linear-gradient(transparent 0 31px,#6775370a 31px 32px),var(--surface)}
+.notebook-label{display:flex;justify-content:space-between;font:10px var(--mono);color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:30px}
+.experience .hpc-notebook h1{font:400 clamp(60px,7vw,92px)/.98 var(--serif);letter-spacing:-.02em}
+.hpc-notebook h1 em{font-weight:400}
+.notebook-intro{font-size:17px;max-width:610px;line-height:1.8;margin-top:24px}
+.amdahl-result{display:flex;gap:40px;align-items:center;margin:28px 0;padding:25px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.amdahl-result strong{font:400 clamp(32px,4vw,53px) var(--mono);letter-spacing:-.07em;white-space:nowrap}
+.amdahl-result strong>span{color:var(--muted);font-size:.7em}
+.amdahl-result p{font-size:11px;line-height:1.8;color:var(--muted)}
+.notebook-machines{font:10px/1.8 var(--mono);padding-bottom:22px;color:var(--accent)}
+.experiment-entry{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;border-top:1px solid var(--line);padding:36px 0}
+.experiment-label>span{font:11px var(--mono);color:var(--accent)}
+.experiment-label>h3{margin-top:16px;font:400 29px/1.2 var(--serif)}
+.experiment-label>p{font-size:14px;color:var(--muted);line-height:1.85;margin-top:18px}
+
+/* ECDSA: a resource record and a ledger of independently scored circuits. */
+.experience--ecdsa{--paper:#f4f0eb;--surface:#fffaf4;--ink:#332d29;--muted:#796c61;--accent:#97522c;--line:#ddcfc1;--line-strong:#bd9d84;--project-radius:0}
+.record-cover{padding:24px 36px 0;background:#2c2d2a;color:#f8f1e9;border-top:5px solid #dc9865}
+.ledger-heading{display:flex;justify-content:space-between;gap:24px;border-bottom:1px solid #59564e;padding-bottom:20px;font:9px var(--mono);color:#c4b6a5}
+.experience .record-cover>.eyebrow{color:#edac7b;margin-top:35px}
+.experience .record-cover h1{font:400 clamp(58px,6.7vw,88px)/1 var(--serif);letter-spacing:-.02em}
+.official-record{display:flex;align-items:end;justify-content:space-between;gap:24px;padding:30px 0;border-bottom:1px solid #59564e}
+.official-record>div>span{font:9px var(--mono);color:#edac7b;letter-spacing:.1em}
+.official-record strong{font:400 clamp(50px,7.3vw,96px)/1.3 var(--mono);letter-spacing:-.07em;display:block}
+.official-record p{font:12px var(--mono);color:#c4b6a5}
+.official-record>a{font:11px var(--mono);margin-bottom:5px;color:#edac7b}
+.record-deltas{display:flex;gap:30px;padding:20px 0;font:11px var(--mono);color:#edac7b}
+.record-deltas>span:last-child{color:#c4b6a5;font-size:10px}
+.record-analysis{display:grid;grid-template-columns:.8fr 1.2fr;gap:45px;padding-top:64px;align-items:start}
+.record-analysis>div>p:not(.eyebrow){font-size:14px;line-height:1.85;margin-top:25px;color:var(--muted)}
+.record-analysis .project-media{margin:0}
+.validation-ledger>p:not(.eyebrow){font-size:15px;margin-top:24px;max-width:850px}
+
+/* Theme changes preserve each page's accent while keeping its evidence readable. */
+[data-theme="dark"] .experience{--paper:#171d1c;--surface:#1e2725;--ink:#e8e8df;--muted:#acb7af;--line:#38433c;--line-strong:#617065;--soft:#26332d}
+[data-theme="dark"] .experience--qhack{--accent:#bbd38c;--paper:#17221c;--surface:#1e2c23}
+[data-theme="dark"] .experience--qhack .completion-tag{background:#34472b}
+[data-theme="dark"] .experience--qhack .ranking-proof .media-link{box-shadow:12px 12px 0 #34412b}
+[data-theme="dark"] .experience--mettleq{--accent:#8adbe0;--paper:#141d22;--surface:#1c292f}
+[data-theme="dark"] .experience--quantum-chemistry{--accent:#e3a48e;--paper:#24211d;--surface:#2d2822;--line:#494038;--muted:#bfb0a0}
+[data-theme="dark"] .experience--atelier-lab{--accent:#d2b5e1;--paper:#242128;--surface:#2d2832;--line:#4a3e50}
+[data-theme="dark"] .experience--atelier-lab .atelier-cover{background:#d9cce1}
+[data-theme="dark"] .experience--peaked-circuits{--accent:#bac6f0;--paper:#1a2030;--surface:#222b40;--line:#3e4863;--muted:#acb8d3}
+[data-theme="dark"] .experience--classiq{--accent:#d2acee;--paper:#231b2b;--surface:#2d2336;--line:#4b3b59;--soft:#35293e}
+[data-theme="dark"] .experience--qsvt-linear-solvers{--accent:#9bc6ee;--paper:#192532;--surface:#223346;--line:#3b5269;--muted:#a2bbd1}
+[data-theme="dark"] .experience--qsvt-linear-solvers .hardware-status.unresolved{color:#e6af88}
+[data-theme="dark"] .experience--quantum-hpc{--accent:#c7d692;--paper:#21251b;--surface:#292f21;--line:#48533a;--line-strong:#727e54;--muted:#b4bda0}
+[data-theme="dark"] .experience--ecdsa{--accent:#efb38b;--paper:#24211e;--surface:#302a24;--line:#4d4239;--muted:#c2af9c}
+
+@media(max-width:1000px){
+  .gpu-heading{gap:38px;grid-template-columns:1.2fr 1fr}.gpu-chip{max-width:250px}
+  .chem-specs{gap:30px}.chem-specs>div{flex-direction:column;gap:0}
+  .challenge-groups{gap:12px}.challenge-group li{padding:12px 10px;font-size:11px;gap:7px}.challenge-group>header{padding:18px 14px}
+  .hack-scoreboard>div+div{padding-left:16px}
+  .podium{grid-template-columns:180px 1fr;gap:30px}.podium-rank b{font-size:95px}
+  .solver-blueprint{padding:30px;gap:30px}.ranking-proof{gap:38px}
+  .atelier-intro{gap:25px}.atelier-tabs span{padding-right:20px}
+  .amdahl-result{gap:25px}.record-deltas{gap:20px;flex-wrap:wrap}
+}
+@media(max-width:760px){
+  .experience .topline{font-size:9px;margin-bottom:24px}.experience .topline>span{letter-spacing:0}
+  .experience .project-section,.experience .project-links,.challenge-board{padding-top:48px}
+  .experience .experience-heading{align-items:start;gap:20px;flex-wrap:wrap}
+  .hack-poster{padding:22px 24px 0}.hack-title{padding-top:30px;gap:20px}.completion-seal{width:130px}.completion-seal strong{font-size:31px}
+  .experience .hack-title h1{font-size:clamp(70px,12vw,110px)}.hack-title>div>p{font-size:11px}.hack-intro{font-size:17px}
+  .hack-scoreboard strong{font-size:28px}.hack-scoreboard>div>span{font-size:8px}.hack-scoreboard>div+div{padding-left:12px}
+  .challenge-groups{grid-template-columns:1fr}.challenge-group>header{display:grid;grid-template-columns:1fr auto;padding:20px;gap:4px 16px}.challenge-group .eyebrow{grid-column:1/-1;margin:0}.experience .challenge-group h3{min-height:0;font-size:20px}.group-points{margin:0;font-size:22px}.challenge-group li{padding:13px 20px;font-size:13px;gap:12px}
+  .ranking-proof,.gpu-heading,.benchmark-details,.oracle-cover,.workbench-flow,.solver-path,.record-analysis{grid-template-columns:1fr;gap:30px}
+  .ranking-proof>div,.solver-path>div:first-child{position:static}.ranking-proof{padding-top:50px}.ranking-proof h2 br{display:none}.ranking-proof .project-media{max-width:500px}
+  .gpu-hero{padding:30px}.gpu-heading{padding-top:8px}.gpu-chip{width:240px;margin:20px auto}.gpu-heading>div>p{max-width:none}
+  .benchmark-strip{gap:16px}.benchmark-strip strong{font-size:40px}.benchmark-strip>p{font-size:11px;padding-left:15px}.benchmark-strip span{font-size:9px}
+  .paper-abstract{grid-template-columns:85px 1fr;gap:20px}.paper-columns{grid-template-columns:1fr;gap:20px}.paper-results>div:first-child{grid-template-columns:1fr;gap:18px}
+  .atelier-cover{padding:32px 30px 0;border-top-left-radius:45px}.atelier-intro{grid-template-columns:1fr;gap:20px}.atelier-intro .action-link{justify-self:start}.atelier-tabs{flex-wrap:wrap}.atelier-tabs span{font-size:9px;padding-right:15px}
+  .podium{grid-template-columns:150px 1fr;gap:26px}.signal-hero{padding:28px 24px 0}.podium-rank{padding:20px 12px}.podium-rank b{font-size:80px}.podium-rank span{font-size:8px}.experience .podium h1{font-size:38px}
+  .recovery-cases{gap:20px}.recovery-cases>article{padding:20px}.decoding-track>ol{grid-template-columns:1fr;gap:25px}.decoding-track li{display:grid;grid-template-columns:40px 1fr;gap:20px}.decoding-track li>p{margin:0}
+  .depth-study{min-height:330px}.depth-study>strong{font-size:110px}.oracle-check{grid-template-columns:1fr;gap:20px}
+  .solver-blueprint{grid-template-columns:1fr;gap:32px}.solver-equation{max-width:500px;width:100%;margin:0 auto}.solver-equation>b{font-size:78px}
+  .hardware-pair>article{padding:22px}.hardware-pair strong{font-size:52px}.hardware-pair article>p:not(.eyebrow){font-size:11px}
+  .hpc-notebook{padding:22px 25px 0}.amdahl-result{flex-direction:column;align-items:start;gap:15px}.amdahl-result strong{font-size:42px}.experiment-entry{gap:25px;grid-template-columns:.8fr 1.2fr}.experiment-label>h3{font-size:24px}.experiment-label>p{font-size:12px}
+  .record-cover{padding:24px 26px 0}.official-record{align-items:start;flex-direction:column;gap:18px}.official-record strong{font-size:clamp(54px,10vw,78px)}
+}
+@media(max-width:500px){
+  .experience h1{font-size:48px}.experience h2{font-size:34px}.experience .eyebrow{font-size:9px}.experience .topline>span{font-size:8px}
+  .experience .media-grid,.experience .project-links>div,.recovery-cases,.hardware-pair,.experiment-entry{grid-template-columns:1fr}
+  .experience .media-grid{gap:12px}.experience .project-media figcaption p{font-size:12px}
+  .experience .project-links{padding-bottom:30px}.experience .technical-record>summary{padding:18px;font-size:13px}.technical-content{padding:0 18px 22px}.project-note p{font-size:13px}
+  .experience .pager-title{font-size:22px}.experience .pager-dir{font-size:9px}.experience .pager-metric{font-size:9px}
+  .event-ticket{font-size:8px;gap:10px}.hack-poster{padding:20px 18px 0}.hack-title{gap:10px}.experience .hack-title h1{font-size:64px}.completion-seal{width:95px}.completion-seal strong{font-size:24px}.completion-seal span{font-size:7px}.hack-title>div>p{font-size:10px;margin-top:23px}.hack-intro{font-size:15px;margin-top:24px}
+  .hack-scoreboard{grid-template-columns:1fr 1fr;gap:0;margin-top:25px}.hack-scoreboard>div{padding:18px 0}.hack-scoreboard>div+div{padding-left:14px}.hack-scoreboard>div:last-child{grid-column:1/-1;border-top:1px solid #526e51;border-left:0;padding:15px 0;display:flex;align-items:center;justify-content:space-between}.hack-scoreboard>div:last-child>strong{font-size:24px;margin:0}.hack-scoreboard strong{font-size:28px}.hack-scoreboard small{font-size:.4em}.event-ticket.bottom{font-size:8px;flex-direction:column;gap:8px}.challenge-group>header{padding:18px}.challenge-group .group-points{font-size:18px}.challenge-group .group-points>span{font-size:9px}.experience .challenge-group h3{font-size:17px}.challenge-group li{padding:12px 16px;font-size:12px}.ranking-proof .media-link{box-shadow:7px 7px 0 #dce3c9}
+  .gpu-hero{padding:24px 20px}.experience .gpu-heading h1{font-size:48px}.gpu-heading>div>p{font-size:14px}.gpu-chip{width:210px}.gpu-chip>b{font-size:36px}.gpu-heading .inline-links{font-size:12px;gap:16px}.benchmark-strip{grid-template-columns:1fr 1fr}.benchmark-strip>p{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding:16px 0 0}.benchmark-strip strong{font-size:39px}
+  .paper-masthead{font-size:8px}.experience .chem-paper h1{font-size:52px}.paper-abstract{grid-template-columns:1fr;gap:15px}.paper-abstract>p{font-size:17px}.chem-specs{gap:20px;justify-content:space-between}.chem-specs b{font-size:30px}.chem-specs span{font-size:8px}.experience .energy-value{font-size:21px}.chem-result>p:last-child{font-size:13px}
+  .atelier-cover{padding:28px 22px 0}.experience .atelier-cover h1{font-size:57px}.atelier-deck{font-size:29px}.atelier-tabs{display:grid;grid-template-columns:1fr}.atelier-tabs span{padding:12px 0}.atelier-tabs span+span{border-top:1px solid #c3b0cc}.atelier-evaluation{padding:24px 18px}.evaluation-scores{gap:12px}.evaluation-scores b{font-size:42px}.evaluation-scores b>span{font-size:18px}.evaluation-scores p{font-size:10px}
+  .podium{grid-template-columns:1fr;gap:30px}.podium-rank{width:150px;margin:0 0 0 5px}.experience .podium h1{font-size:40px}.signal-trace{gap:4px}.recovery-cases>article{padding:24px}.recovery-cases .project-media{margin-top:22px}
+  .oracle-cover{padding-top:28px;gap:30px}.experience .oracle-cover h1{font-size:56px}.oracle-insight{gap:20px;padding:22px}.oracle-insight>b{font-size:55px}.oracle-insight>p{font-size:13px}
+  .solver-blueprint{padding:26px 22px}.experience .solver-blueprint h1{font-size:41px}.solver-blueprint>div>p:not(.eyebrow){font-size:14px}.solver-equation{padding:24px 18px}.cfd-conclusion{padding:26px 22px}.hardware-pair{gap:18px}.hardware-pair article>p:not(.eyebrow){font-size:13px}
+  .hpc-notebook{padding:20px 20px 0}.experience .hpc-notebook h1{font-size:58px}.notebook-intro{font-size:15px}.amdahl-result strong{font-size:32px}.notebook-label{font-size:9px}.notebook-machines{font-size:9px}.experiment-entry{gap:20px;padding:28px 0}.experiment-label>p{font-size:14px}
+  .record-cover{padding:20px 20px 0}.ledger-heading{font-size:8px;flex-direction:column;gap:8px}.experience .record-cover h1{font-size:58px}.official-record strong{font-size:54px}.official-record p{font-size:10px}.record-deltas{gap:12px;font-size:10px}.record-deltas>span:last-child{font-size:9px}.experience .record-verification{padding:22px}
+}
+@media(max-width:360px){
+  .experience .hack-title h1{font-size:50px}.hack-title{gap:8px}.completion-seal{width:70px}.completion-seal strong{font-size:18px}.completion-seal span{font-size:6px;margin-top:4px}
+}
+@media(prefers-reduced-motion:reduce){.experience *{transition:none!important;scroll-behavior:auto!important}}

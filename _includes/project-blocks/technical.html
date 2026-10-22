@@ -1,0 +1,4 @@
+<details class="technical-record" id="method"><summary>{{ include.title | default: 'Technical record' }} <span aria-hidden="true">+</span></summary>
+<div class="technical-content">{% for paragraph in project.explanation %}<article><h3>{{ paragraph.title | escape }}</h3><p>{{ paragraph.text | escape }}</p></article>{% endfor %}
+<h3>{{ include.steps_title | default: 'Implementation & checks' }}</h3><ol>{% for step in project.method %}<li>{{ step | escape }}</li>{% endfor %}</ol>
+</div></details>

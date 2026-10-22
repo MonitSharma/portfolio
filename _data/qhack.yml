@@ -1,0 +1,42 @@
+team: Phase Kickback
+rank: 79
+teams: 1662
+score: '5,200'
+completed: 23
+date: 22 October 2026
+groups:
+- name: Group 1
+  points: '1,600'
+  focus: Algorithms & simulation
+  challenges:
+  - {title: 'Goal or No Goal?', points: 100}
+  - {title: Playing Period, points: 100}
+  - {title: Fermionic VQE, points: 200}
+  - {title: The Draft Lottery, points: 200}
+  - {title: The Hidden Subgroup Stage, points: 200}
+  - {title: Diffuse and Conquer, points: 400}
+  - {title: "Grover's Little Helper", points: 400}
+- name: Group 2
+  points: '1,500'
+  focus: Learning & measurement
+  challenges:
+  - {title: Building a Quantum Kernel, points: 100}
+  - {title: Keep your Own Score, points: 100}
+  - {title: The Scouting Report, points: 100}
+  - {title: A Relay of Phases, points: 200}
+  - {title: Nuclear Magnetic Resonance, points: 200}
+  - {title: A Basket of Options, points: 400}
+  - {title: Approximation Ratio for QAOA, points: 400}
+- name: Group 3
+  points: '2,100'
+  focus: Synthesis & control
+  challenges:
+  - {title: My First Quantum Neural Network, points: 100}
+  - {title: Personal Best (Bronze), points: 100}
+  - {title: 'Same Kit, Different Number', points: 100}
+  - {title: Break the Tie, points: 200}
+  - {title: Personal Best (Silver), points: 200}
+  - {title: The Salary Cap, points: 200}
+  - {title: Implementing POVMs, points: 400}
+  - {title: Personal Best (Gold), points: 400}
+  - {title: Pulse Optimization, points: 400}

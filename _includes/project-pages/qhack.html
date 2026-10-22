@@ -1,0 +1,18 @@
+{% assign event = site.data.qhack %}
+<header class="hack-poster" id="overview">
+  <div class="event-ticket"><span>Quantum coding hackathon</span><span>2026 edition</span></div>
+  <div class="hack-title"><div><h1>QHACK<span>2026</span></h1><p>Team {{ event.team }}</p></div><div class="completion-seal"><strong>{{ event.completed }}/{{ event.completed }}</strong><span>CHALLENGES<br>COMPLETE</span></div></div>
+  <p class="hack-intro">Three groups. Every challenge cleared.</p>
+  <div class="hack-scoreboard" aria-label="Team results">
+    <div><span>TEAM RANK</span><strong>{{ event.rank }}<small> / 1,662</small></strong></div>
+    <div><span>TOTAL SCORE</span><strong>{{ event.score }}<small> pts</small></strong></div>
+    <div><span>STANDING</span><strong>Top 4.8<small>%</small></strong></div>
+  </div>
+  <div class="event-ticket bottom"><span>Standings captured {{ event.date }}</span><a href="{{ project.source_url }}" target="_blank" rel="noopener">Official dashboard ↗</a></div>
+</header>
+<section class="challenge-board" id="challenges" aria-labelledby="challenge-title">
+  <div class="experience-heading"><div><p class="eyebrow">The completed board</p><h2 id="challenge-title">23 challenges. 23 solved.</h2></div><span class="completion-tag">✓ All complete</span></div>
+  <div class="challenge-groups">{% for group in event.groups %}<article class="challenge-group"><header><p class="eyebrow">{{ group.name }} · {{ group.challenges.size }}/{{ group.challenges.size }}</p><h3>{{ group.focus }}</h3><p class="group-points">{{ group.points }} <span>points</span></p></header><ul>{% for challenge in group.challenges %}<li><span class="solved-check" aria-label="Completed">✓</span><span>{{ challenge.title | escape }}</span><small>{{ challenge.points }}</small></li>{% endfor %}</ul></article>{% endfor %}</div>
+</section>
+<section class="ranking-proof" id="ranking" aria-labelledby="ranking-title"><div><p class="eyebrow">From the event portal</p><h2 id="ranking-title">Our place on<br>the board.</h2><p>Phase Kickback · {{ event.date }}</p><p>The dashboard records our rank, full score, and completion of all 23 coding challenges.</p><p class="small-print">The competition was still running when this was captured. Rankings may change. Portal links may require sign-in.</p></div>{% assign selected_figure = project.figures[0] %}{% include project-blocks/media.html figure=selected_figure eager=true %}</section>
+{% include project-blocks/resources.html label='QHACK 2026' title='Back to the event' %}

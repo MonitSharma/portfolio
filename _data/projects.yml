@@ -1,5 +1,32 @@
 # Update updated_at when adding or materially updating a project; listings show the newest first.
 ---
+- title: QHACK 2026
+  slug: qhack
+  updated_at: "2026-10-22T18:45:04+08:00"
+  page: /work/qhack/
+  category: Quantum coding challenges
+  type: challenge
+  summary: Completed all 23 QHACK 2026 coding challenges with team Phase Kickback,
+    earning 5,200 points and ranking 79th of 1,662 teams.
+  metric: '79 / 1,662'
+  metric_label: teams · 23/23 complete · 5,200 points
+  source_url: https://qhack.ai/dashboard/rank
+  source_label: View the QHACK standings
+  figures:
+  - src: assets/imgs/qhack/ranking-20261022.png
+    caption: QHACK dashboard · all challenges complete
+    alt: QHACK 2026 dashboard for @monitsharma showing team Phase Kickback
+      ranked 79 of 1662 teams, with 5200 points and 23 of 23 challenges complete.
+    width: 911
+    height: 988
+    insight: Standings captured on 22 October 2026 while the competition was open.
+  resources:
+  - label: QHACK 2026 event
+    url: https://qhack.ai/
+  - label: Team ranking dashboard
+    url: https://qhack.ai/dashboard/rank
+  - label: Coding challenge portal
+    url: https://qhack.ai/dashboard/challenges
 - title: MettleQ
   category: Scientific software
   type: software

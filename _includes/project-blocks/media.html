@@ -1,0 +1,8 @@
+{% assign media = include.figure %}
+<figure class="project-media {{ include.class }}"{% if include.id %} id="{{ include.id }}"{% endif %}>
+  <a class="media-link" href="{{ media.src | relative_url }}" data-lightbox="{{ media.caption | escape }}" aria-label="Enlarge: {{ media.caption | escape }}">
+    <img src="{{ media.src | relative_url }}" width="{{ media.width }}" height="{{ media.height }}" alt="{{ media.alt | escape }}"{% unless include.eager %} loading="lazy"{% endunless %} decoding="async">
+    <span class="media-zoom" aria-hidden="true">View full size ↗</span>
+  </a>
+  <figcaption><h3>{{ media.caption | escape }}</h3><p>{{ media.insight | escape }}</p></figcaption>
+</figure>

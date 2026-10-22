@@ -12,7 +12,7 @@ interactive: true
 {% assign ordered_projects = '' | split: '' %}{% for update in project_updates %}{% assign ordered_projects = ordered_projects | concat: update.items %}{% endfor %}
 <section class="page-section" id="projects">
   <div class="section-head page-heading"><div><p class="section-index">02</p><h1>Things I build</h1></div><a class="head-link" href="https://github.com/MonitSharma" target="_blank" rel="noopener">GitHub ↗</a></div>
-  <p class="section-lede reveal">Research software, local AI systems, and quantum experiments. Each project page starts with a plain-language summary, then shows the methods, results, and evidence.</p>
+  <p class="section-lede reveal">Research software, local AI systems, and quantum experiments. Explore the tools, research, and competition entries through their results, designs, and evidence.</p>
   <div class="toolbar reveal">
     <div class="segmented" role="group" aria-label="Filter projects"><button type="button" data-filter="all" aria-pressed="true">All<i>{{ site.data.projects.size }}</i></button><button type="button" data-filter="research" aria-pressed="false">Research<i>{{ research_count }}</i></button><button type="button" data-filter="software" aria-pressed="false">Software<i>{{ software_count }}</i></button><button type="button" data-filter="challenge" aria-pressed="false">Challenges<i>{{ challenge_count }}</i></button></div>
     <span class="toolbar-status" id="filter-status" role="status" aria-live="polite">Showing all {{ site.data.projects.size }} projects</span>

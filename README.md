@@ -40,6 +40,17 @@ Serve the Jekyll output, since the source home page now contains Liquid template
 Projects are listed from `_data/projects.yml` and link to their individual pages
 under `work/`. Writing draws from `_data/essays.yml` and `_data/blogs.yml`.
 
+Each project has its own composition in `_includes/project-pages/<slug>.html`.
+The `project` layout supplies only metadata, site navigation, and Previous/Next
+links. Add a matching include when creating a project. Choose the structure,
+typography, palette, and evidence placement for that specific work: a hackathon
+should read as a competition entry, a tool as software, and an experiment as
+research. Do not impose a common question, takeaways, glossary, or section order
+on every project. Shared evidence primitives (figures, tables, source links,
+technical disclosures) live in `_includes/project-blocks/`; project-specific
+styles live in `assets/css/project-personalities.css` and support both themes
+and narrow screens. QHACK's completed challenge board is in `_data/qhack.yml`.
+
 Project cards are ordered by `updated_at`, newest first. Set this field when adding
 a project, and advance it when its content, results, or figures change, for example
 `updated_at: "2026-10-20T10:00:00+08:00"`. Use the same timestamp format and timezone

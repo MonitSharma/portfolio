@@ -1,0 +1,4 @@
+<section class="project-links" id="resources" aria-labelledby="resources-title">
+<p class="eyebrow">{{ include.label | default: 'Continue exploring' }}</p><h2 id="resources-title">{{ include.title | default: 'Source & records' }}</h2>
+<div>{% for resource in project.resources %}<a href="{{ resource.url | escape }}" target="_blank" rel="noopener"><span>{{ resource.label | escape }}</span><span aria-hidden="true">↗</span></a>{% endfor %}</div>
+</section>
