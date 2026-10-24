@@ -19,7 +19,7 @@ interactive: true
   </div>
   <div class="project-grid">{% for project in ordered_projects %}{% assign guide = site.data.project_guides | where: 'slug', project.slug | first %}
     <a class="project reveal" style="--d:{{ forloop.index0 | modulo: 3 }}" data-type="{{ project.type }}" href="{{ project.page | relative_url }}" aria-labelledby="project-title-{{ project.slug }}">
-      <div class="project-top"><span>0{{ forloop.index }}</span><span class="type-chip">{{ project.type }}</span></div>
+      <div class="project-top"><span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span class="type-chip">{{ project.type }}</span></div>
       <p class="project-cat">{{ project.category | escape }}</p>
       <h3 id="project-title-{{ project.slug }}">{{ project.title | escape }}</h3>
       <p class="project-summary">{% if guide.tldr %}{{ guide.tldr | escape }}{% else %}{{ project.summary | escape }}{% endif %}</p>

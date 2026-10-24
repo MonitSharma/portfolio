@@ -1,5 +1,20 @@
 # Update updated_at when adding or materially updating a project; listings show the newest first.
 ---
+- title: Verifiable Quantum Circuit Compilation
+  slug: kaggle-quantum-compilation
+  updated_at: "2026-10-24T09:01:36+08:00"
+  page: /work/kaggle-quantum-compilation/
+  category: Google Quantum AI · Kaggle competition
+  type: challenge
+  summary: Participating in Google Quantum AI's Verifiable Quantum Circuit
+    Compilation competition on Kaggle. Work in progress; no results to report yet.
+  metric: In progress
+  metric_label: active participation · results pending
+  source_url: https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation
+  source_label: View the competition
+  resources:
+  - label: Google Quantum AI – Verifiable Quantum Circuit Compilation
+    url: https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation
 - title: QHACK 2026
   slug: qhack
   updated_at: "2026-10-22T18:45:04+08:00"

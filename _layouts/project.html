@@ -22,7 +22,8 @@
 {% include editorial-header.html %}
 
 <main id="main"><div class="main-inner">
-<div class="topline"><a class="crumb" href="{{ '/projects/' | relative_url }}">← All projects</a><span>Project {{ idx | plus: 1 | prepend: '0' }} / {{ total | prepend: '0' }} · {{ project.type }}</span></div>
+{% assign project_number = idx | plus: 1 %}
+<div class="topline"><a class="crumb" href="{{ '/projects/' | relative_url }}">← All projects</a><span>Project {% if project_number < 10 %}0{% endif %}{{ project_number }} / {% if total < 10 %}0{% endif %}{{ total }} · {{ project.type }}</span></div>
 
 {% assign project_view = project.slug | prepend: 'project-pages/' | append: '.html' %}
 {% include {{ project_view }} %}
