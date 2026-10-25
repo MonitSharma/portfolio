@@ -1,0 +1,31 @@
+<header class="factoring-cover" id="overview">
+  <div class="factoring-masthead"><span>Quantum Factoring</span><span>A series by Monit Sharma</span></div>
+  <div class="factoring-cover-grid">
+    <div class="factoring-cover-copy">
+      <p class="eyebrow">Essays / Hardware / Code</p>
+      <h1>Shor’s algorithm.<br><em>Beyond the headline.</em></h1>
+      <p class="factoring-deck">From the algorithm on paper to the experiment on a chip—and the evidence that connects them.</p>
+      <div class="inline-links"><a class="action-link" href="{{ project.blog_url }}" target="_blank" rel="noopener">Read Quantum Factoring ↗</a><a href="#companion-code">Explore the code ↓</a></div>
+    </div>
+    <aside class="factoring-margin" aria-label="The thread through the series">
+      <p class="eyebrow">The starting point</p>
+      <p class="factoring-equation">N <span>=</span> p × q</p>
+      <div class="factoring-margin-notes"><p><span>01</span> Understand the algorithm.</p><p><span>02</span> Inspect the experiment.</p><p><span>03</span> Question the metric.</p><p><span>04</span> Read the assumptions.</p></div>
+      <a href="{{ project.code_url }}" target="_blank" rel="noopener">Companion repository ↗</a>
+    </aside>
+  </div>
+  <div class="factoring-cover-footer"><span>Read the story on Medium.</span><span>Follow the analysis into the code.</span></div>
+</header>
+
+<section class="factoring-reading" id="reading" aria-labelledby="reading-title">
+  <div class="experience-heading"><div><p class="eyebrow">A route through the collection</p><h2 id="reading-title">Start with the experiment.<br>Keep asking what it proves.</h2></div><a href="{{ project.blog_url }}" target="_blank" rel="noopener">Full Medium collection ↗</a></div>
+  <div class="factoring-chapters">{% for chapter in project.chapters %}
+    <article class="factoring-chapter"><span class="factoring-chapter-number" aria-hidden="true">0{{ forloop.index }}</span><div><p class="eyebrow">{{ chapter.theme | escape }}</p><h3><a href="{{ chapter.url | escape }}" target="_blank" rel="noopener">{{ chapter.title | escape }}</a></h3><p>{{ chapter.summary | escape }}</p><a class="factoring-read-link" href="{{ chapter.url | escape }}" target="_blank" rel="noopener" aria-label="Read {{ chapter.title | escape }} on Medium">Read on Medium <span aria-hidden="true">↗</span></a></div></article>
+  {% endfor %}</div>
+</section>
+
+<section class="factoring-code" id="companion-code" aria-labelledby="companion-code-title">
+  <div class="factoring-code-heading"><div><p class="eyebrow">The other half of the series</p><h2 id="companion-code-title">Read it.<br>Then inspect it.</h2></div><p>The companion repository contains the implementation and analysis scripts referenced in the essays. Begin with the README for setup and the distinction between strict and exploratory metrics.</p></div>
+  <div class="factoring-code-list">{% for resource in project.code_resources %}<a href="{{ resource.url | escape }}" target="_blank" rel="noopener"><div><span class="factoring-file">{{ resource.file | escape }}</span><h3>{{ resource.title | escape }}</h3><p>{{ resource.description | escape }}</p></div><span class="factoring-code-arrow" aria-hidden="true">↗</span></a>{% endfor %}</div>
+  <p class="factoring-code-footnote">The implementation is designed for small order-finding experiments; its permutation-based oracle is not a scalable factoring construction.</p>
+</section>

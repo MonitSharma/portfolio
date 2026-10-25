@@ -1,5 +1,58 @@
 # Update updated_at when adding or materially updating a project; listings show the newest first.
 ---
+- title: Shor’s Algorithm & Quantum Factoring
+  slug: shor-quantum-factoring
+  updated_at: "2026-10-25T22:52:12+08:00"
+  page: /work/shor-quantum-factoring/
+  category: Quantum factoring · Essays & experiments
+  type: research
+  summary: A guided series on Shor’s algorithm, hardware experiments, factoring
+    claims, and resource estimates, with the companion code behind the analysis.
+  metric: Read & run
+  metric_label: Quantum Factoring on Medium · companion code on GitHub
+  source_url: https://medium.com/@_monitsharma/list/quantum-factoring-8d25eddc0b4d
+  source_label: Read the Quantum Factoring collection
+  blog_url: https://medium.com/@_monitsharma/list/quantum-factoring-8d25eddc0b4d
+  code_url: https://github.com/MonitSharma/medium_articles/tree/main/sometimes-too-slow-for-shor
+  chapters:
+  - title: Sometimes It’s Too Slow… for Shor!!
+    theme: The hardware experiment
+    summary: Follow the implementation from order-finding circuits to IBM hardware,
+      then examine what the measured outcomes and classical recovery actually show.
+    url: https://medium.com/@_monitsharma/sometimes-its-too-slow-for-shor-c01677032324
+  - title: The Emperor Has No Factors
+    theme: The evidence behind the claim
+    summary: Revisit published factoring demonstrations through null baselines,
+      post-processing choices, and the distinction between recovering factors
+      and observing useful quantum signal.
+    url: https://medium.com/@_monitsharma/the-emperor-has-no-factors-9eaec0d9bd0d
+  - title: The Fault in our Qubits
+    theme: The engineering gap
+    summary: Explore the cost of moving from small demonstrations to useful
+      factoring, including circuit depth, error correction, and the assumptions
+      behind resource estimates.
+    url: https://medium.com/@_monitsharma/the-fault-in-our-qubits-8c66ef11f0c5
+  - title: To You, 10,000 Qubits From Now
+    theme: Reading a resource estimate
+    summary: Look beyond a headline qubit count to the architecture, runtime,
+      and error-correction assumptions in a neutral-atom factoring proposal.
+    url: https://medium.com/@_monitsharma/to-you-10-000-qubits-from-now-9ba48f323ecb
+  code_resources:
+  - title: Order finding & hardware experiments
+    file: shor/ + experiments/
+    description: Circuit construction, modular multiplication, execution helpers,
+      sweep runners, and strict post-processing for toy-scale studies.
+    url: https://github.com/MonitSharma/medium_articles/tree/main/sometimes-too-slow-for-shor
+  - title: Factoring scorecards
+    file: scorecard_engine.py
+    description: The analysis engine accompanying the discussion of published
+      factoring claims and their classical null baselines.
+    url: https://github.com/MonitSharma/medium_articles/blob/main/sometimes-too-slow-for-shor/scorecard_engine.py
+  - title: Resource estimates
+    file: part_iii/resource_estimation.py
+    description: The calculation code behind the series’ discussion of scaling
+      and the resources required for larger factoring problems.
+    url: https://github.com/MonitSharma/medium_articles/blob/main/sometimes-too-slow-for-shor/part_iii/resource_estimation.py
 - title: Verifiable Quantum Circuit Compilation
   slug: kaggle-quantum-compilation
   updated_at: "2026-10-24T09:01:36+08:00"
