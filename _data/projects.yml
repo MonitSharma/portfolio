@@ -95,19 +95,31 @@
     url: https://github.com/MonitSharma/medium_articles/blob/main/sometimes-too-slow-for-shor/part_iii/resource_estimation.py
 - title: Verifiable Quantum Circuit Compilation
   slug: kaggle-quantum-compilation
-  updated_at: "2026-10-24T09:01:36+08:00"
+  updated_at: "2026-10-27T10:18:29+08:00"
   page: /work/kaggle-quantum-compilation/
   category: Google Quantum AI · Kaggle competition
   type: challenge
-  summary: Participating in Google Quantum AI's Verifiable Quantum Circuit
-    Compilation competition on Kaggle. Work in progress; no results to report yet.
-  metric: In progress
-  metric_label: active participation · results pending
+  summary: Ranked 45th on the public leaderboard in Google Quantum AI's Verifiable
+    Quantum Circuit Compilation competition on Kaggle, as of 27 October 2026.
+    The competition is ongoing.
+  metric: '#45'
+  metric_label: public leaderboard · competition ongoing
   source_url: https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation
   source_label: View the competition
+  leaderboard_url: https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation/leaderboard
+  ranking_date: 27 October 2026
+  figures:
+  - src: assets/imgs/kaggle-quantum-compilation/leaderboard-20261027.png
+    width: 1280
+    height: 720
+    alt: Kaggle public leaderboard showing Monit Sharma at rank 45 in Google Quantum AI's Verifiable Quantum Circuit Compilation competition.
+    caption: Public leaderboard · 27 October 2026
+    insight: Monit Sharma at rank 45. The competition is ongoing; standings may change.
   resources:
   - label: Google Quantum AI – Verifiable Quantum Circuit Compilation
     url: https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation
+  - label: Public leaderboard
+    url: https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation/leaderboard
 - title: QHACK 2026
   slug: qhack
   updated_at: "2026-10-22T18:45:04+08:00"

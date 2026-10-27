@@ -4,7 +4,7 @@
     <div>
       <p class="eyebrow">Competition workbench · 2026</p>
       <h1>Verifiable<br>Quantum Circuit<br><em>Compilation.</em></h1>
-      <p class="compiler-deck">An active entry in Google Quantum AI's quantum circuit compilation competition on Kaggle.</p>
+      <p class="compiler-deck">Currently ranked 45th on the public leaderboard in Google Quantum AI's quantum circuit compilation competition on Kaggle.</p>
       <a class="action-link" href="{{ project.source_url }}" target="_blank" rel="noopener">View the competition ↗</a>
     </div>
     <aside class="compiler-panel" aria-labelledby="compiler-panel-title">
@@ -18,7 +18,7 @@
       <p class="compiler-panel-note">Conceptual circuit illustration</p>
     </aside>
   </div>
-  <div class="compiler-footer"><span>PROJECT STATUS</span><strong>In progress</strong><span>Updated 24 October 2026</span></div>
+  <div class="compiler-footer"><span>PROJECT STATUS</span><strong>Competition ongoing</strong><span>Updated {{ project.ranking_date }}</span></div>
 </header>
 
 <section class="compiler-brief" aria-labelledby="compiler-brief-title">
@@ -26,9 +26,9 @@
   <p>Quantum circuit compilation translates and rewrites quantum operations into another circuit representation. Verification checks whether that transformation preserves the intended computation. This project follows my participation in the Google Quantum AI competition on that theme.</p>
 </section>
 
-<section class="compiler-progress" aria-labelledby="compiler-progress-title">
-  <div class="compiler-progress-marker" aria-hidden="true">WIP</div>
-  <div><p class="eyebrow">Participation log</p><h2 id="compiler-progress-title">Work underway.</h2><p>I'm participating in the competition. There are no results to report yet; this page will be updated as the work develops.</p></div>
+<section class="project-section" id="leaderboard" aria-labelledby="compiler-ranking-title">
+  <div class="experience-heading"><div><p class="eyebrow">Public leaderboard</p><h2 id="compiler-ranking-title">Ranked 45th.</h2></div><a href="{{ project.leaderboard_url }}" target="_blank" rel="noopener">View the leaderboard ↗</a></div>
+  {% assign selected_figure = project.figures[0] %}{% include project-blocks/media.html figure=selected_figure %}
 </section>
 
 {% include project-blocks/resources.html label='Official competition' title='Follow the challenge on Kaggle' %}
