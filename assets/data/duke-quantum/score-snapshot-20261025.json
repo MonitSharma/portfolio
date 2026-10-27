@@ -1,0 +1,45 @@
+{
+  "event": "Duke Quantum Hackathon 2026",
+  "event_url": "https://app.bluequbit.io/hackathons/2GMaAenu3iSsIC6Z",
+  "recorded_at": "2026-10-25T03:54:27.571068+00:00",
+  "provenance": "Participant-provided local submission ledger; not a final leaderboard verification.",
+  "scores": [
+    {
+      "problem": "S1",
+      "score": 100,
+      "maximum": 100
+    },
+    {
+      "problem": "S2",
+      "score": 100,
+      "maximum": 100
+    },
+    {
+      "problem": "S3",
+      "score": 100,
+      "maximum": 100
+    },
+    {
+      "problem": "G1",
+      "score": 300,
+      "maximum": 300
+    },
+    {
+      "problem": "G2",
+      "score": 591,
+      "maximum": 600
+    },
+    {
+      "problem": "G3",
+      "score": 216,
+      "maximum": 800
+    },
+    {
+      "problem": "G4",
+      "score": 19,
+      "maximum": 1000
+    }
+  ],
+  "recorded_total": 1426,
+  "maximum_total": 3000
+}

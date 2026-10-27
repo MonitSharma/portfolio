@@ -1,5 +1,45 @@
 # Update updated_at when adding or materially updating a project; listings show the newest first.
 ---
+- title: Duke Quantum Hackathon
+  slug: duke-quantum
+  updated_at: "2026-10-27T09:20:21+08:00"
+  page: /work/duke-quantum/
+  category: BlueQubit × DuQuantum 2026
+  type: challenge
+  summary: A 24-hour quantum simulation hackathon estimating information-scrambling
+    signals with exact, matrix-product-state, and Pauli-path methods.
+  metric: 24 hours
+  metric_label: 7 circuit problems · participation certificate
+  source_url: https://app.bluequbit.io/hackathons/2GMaAenu3iSsIC6Z
+  source_label: View the Duke Quantum Hackathon
+  event_dates: 24–25 October 2026
+  score_snapshot: 25 October 2026, 11:54 SGT
+  recorded_total: '1,426'
+  problem_scores:
+  - {problem: S1, score: 100, maximum: 100, method: Exact statevector}
+  - {problem: S2, score: 100, maximum: 100, method: Exact statevector}
+  - {problem: S3, score: 100, maximum: 100, method: Exact GPU simulation}
+  - {problem: G1, score: 300, maximum: 300, method: Exact CPU/GPU simulation}
+  - {problem: G2, score: 591, maximum: 600, method: Adaptive MPS estimates}
+  - {problem: G3, score: 216, maximum: 800, method: MPS + Pauli-path estimates}
+  - {problem: G4, score: 19, maximum: 1000, method: Pauli-path estimates}
+  figures:
+  - src: assets/imgs/duke-quantum/certificate.png
+    width: 1500
+    height: 1060
+    caption: Duke Quantum Hackathon 2026 · Certificate of Completion
+    alt: BlueQubit Certificate of Completion presented to Monit Sharma for
+      participating in the Duke Quantum Hackathon 2026 in collaboration with DuQuantum.
+    insight: The certificate recognizes participation and effort in the event.
+  resources:
+  - label: Official Duke Quantum Hackathon
+    url: https://app.bluequbit.io/hackathons/2GMaAenu3iSsIC6Z
+  - label: BlueQubit OTOC tutorial
+    url: https://app.bluequbit.io/tutorial/otoc-tutorial
+  - label: Participation certificate (PDF)
+    url: /portfolio/assets/data/duke-quantum/participation-certificate.pdf
+  - label: Saved score snapshot · 25 October 2026
+    url: /portfolio/assets/data/duke-quantum/score-snapshot-20261025.json
 - title: Shor’s Algorithm & Quantum Factoring
   slug: shor-quantum-factoring
   updated_at: "2026-10-25T22:52:12+08:00"

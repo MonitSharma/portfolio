@@ -370,6 +370,61 @@
   .factoring-code{padding:26px 20px;margin-top:44px}.factoring-code-list>a{gap:16px}.experience .factoring-code-list h3{font-size:16px}
 }
 
+/* Duke: a quantum-echo field report, with a dated competition record. */
+.experience--duke-quantum{--paper:#edf1f8;--surface:#f9fbff;--ink:#1a2b4d;--muted:#61708a;--accent:#2756b8;--line:#ccd5e6;--line-strong:#9bafd0;--soft:#dfe7f6;--project-radius:8px}
+.duke-event{padding:24px 36px 0;background:#152545;color:#f2f5ff;border-radius:10px;overflow:hidden}
+.duke-event-line{display:flex;justify-content:space-between;gap:20px;padding-bottom:22px;border-bottom:1px solid #435779;font:10px/1.7 var(--mono);color:#bbcae4}
+.duke-event-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:44px;padding:38px 0;align-items:center}
+.experience .duke-event .eyebrow{color:#a6c4ff}
+.experience .duke-event h1{font:500 clamp(46px,5.6vw,74px)/1.02 var(--sans);letter-spacing:-.055em}
+.duke-event h1 em{font-style:normal;color:#a8c7ff}
+.duke-lead{font:400 26px/1.3 var(--serif);margin-top:24px;color:#d7e4ff}
+.duke-intro{font-size:14px;line-height:1.85;color:#b6c5df;max-width:510px;margin-top:20px}
+.duke-event .action-link{background:#b5cbff;color:#152545;margin-top:25px}
+.duke-echo{border:1px solid #486794;border-radius:120px 120px 8px 8px;padding:30px 20px 22px;background:radial-gradient(ellipse at center,#2b5080 0,#1b3457 45%,#152545 75%);text-align:center;min-width:0}
+.duke-echo-top{display:flex;justify-content:center;gap:14px;color:#c6d7f2;font:7px/1.8 var(--mono);letter-spacing:.04em}
+.duke-echo-field{height:205px;position:relative;display:grid;place-items:center;margin-top:15px}
+.duke-echo-field>span{position:absolute;width:calc(30px + var(--echo-index)*24px);height:calc(22px + var(--echo-index)*21px);border:1px solid #88b1eb;border-radius:50%;transform:rotate(-24deg);opacity:calc(1 - var(--echo-index)*.085)}
+.duke-echo-field>b{font:400 48px var(--serif);color:#b7d3ff;position:relative}
+.duke-echo>p{font:400 23px/1.25 var(--serif);color:#d8e6ff;max-width:220px;margin:auto}
+.duke-echo-caption{display:block;font:8px/1.7 var(--mono);color:#a6bad8;margin-top:15px}
+.duke-event-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #435779}
+.duke-event-stats>div{padding:22px 0;display:flex;flex-direction:column;gap:6px}
+.duke-event-stats>div+div{padding-left:25px;border-left:1px solid #435779}
+.duke-event-stats b{font:400 28px/1.2 var(--mono);letter-spacing:-.05em;color:#d5e5ff}
+.duke-event-stats span{font:9px/1.8 var(--mono);color:#bbcae4}
+.duke-mission{padding-top:58px}
+.duke-mission>div{display:grid;grid-template-columns:1fr 1.15fr;gap:50px}
+.duke-mission>div>p{font-size:15px;line-height:1.9;color:var(--muted)}
+.duke-toolkit{padding-top:60px}
+.duke-methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.duke-methods>article{border-top:2px solid var(--accent);padding:22px 0}
+.duke-methods article>span{font:10px/1.8 var(--mono);color:var(--accent)}
+.experience .duke-methods h3{font-size:21px;margin-top:16px}
+.duke-methods p{font-size:14px;line-height:1.85;color:var(--muted);margin-top:16px}
+.duke-score-record{display:grid;grid-template-columns:.9fr 1.25fr;gap:45px;align-items:start;margin-top:35px;padding:30px;border:1px solid var(--line);background:var(--surface);border-radius:8px}
+.duke-score-record .record-table{margin-top:0}
+.duke-score-record .record-table tbody th{min-width:55px}
+.duke-score-record .record-table td:last-child{white-space:normal;min-width:135px;font:12px/1.7 var(--sans)}
+.duke-score-summary>p:not(.eyebrow){font-size:14px;line-height:1.85;margin-top:18px;color:var(--muted)}
+.duke-score-summary>.small-print{font-size:12px}
+.experience .duke-score-summary .duke-record-total{font:400 clamp(36px,4.3vw,54px)/1.2 var(--mono);letter-spacing:-.07em;color:var(--accent);margin-top:24px}
+.duke-record-total>span{font-size:16px;letter-spacing:-.04em;color:var(--muted)}
+.duke-certificate{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center;padding-top:64px}
+.duke-certificate>div>p:not(.eyebrow){font-size:14px;line-height:1.9;color:var(--muted);margin-top:22px}
+.duke-certificate>div>a{display:inline-block;font:11px/1.8 var(--mono);color:var(--accent);margin-top:22px}
+.duke-certificate .project-media{margin:0}
+.duke-certificate .project-media figcaption{display:none}
+@media(max-width:900px){.duke-event-grid{gap:28px}.duke-echo{padding-left:12px;padding-right:12px}.duke-score-record{grid-template-columns:1fr;gap:25px}.duke-score-record .record-table td:last-child{min-width:0}}
+@media(max-width:700px){
+  .duke-event{padding:22px 24px 0}.duke-event-grid{grid-template-columns:1fr;gap:30px;padding:30px 0}.duke-echo{max-width:350px;width:100%;margin:0 auto}.experience .duke-event h1{font-size:clamp(43px,8.5vw,62px)}
+  .duke-mission>div,.duke-certificate{grid-template-columns:1fr;gap:25px}.duke-methods{grid-template-columns:1fr;gap:5px}.duke-methods>article{display:grid;grid-template-columns:100px 1fr;gap:8px 20px}.duke-methods article>span{grid-row:1/3}.experience .duke-methods h3{margin:0}.duke-methods p{margin:0}
+  .duke-event-stats>div+div{padding-left:15px}.duke-event-stats b{font-size:25px}.duke-event-stats span{font-size:8px}.duke-toolkit,.duke-certificate{padding-top:44px}
+}
+@media(max-width:480px){
+  .duke-event{padding:20px 18px 0}.duke-event-line{font-size:8px;gap:14px}.experience .duke-event h1{font-size:clamp(36px,10vw,47px)}.duke-lead{font-size:25px}.duke-echo-top{font-size:7px;gap:10px}.duke-event-stats{grid-template-columns:1fr 1fr}.duke-event-stats>div:last-child{grid-column:1/-1;border-left:0;border-top:1px solid #435779;padding-left:0}.duke-event-stats>div{padding:17px 0}.duke-methods>article{grid-template-columns:1fr;gap:14px}.duke-methods article>span{grid-row:auto}.duke-score-record{padding:24px 18px}.duke-record-total>span{font-size:14px}
+}
+
 /* Theme changes preserve each page's accent while keeping its evidence readable. */
 [data-theme="dark"] .experience{--paper:#171d1c;--surface:#1e2725;--ink:#e8e8df;--muted:#acb7af;--line:#38433c;--line-strong:#617065;--soft:#26332d}
 [data-theme="dark"] .experience--qhack{--accent:#bbd38c;--paper:#17221c;--surface:#1e2c23}
@@ -387,6 +442,7 @@
 [data-theme="dark"] .experience--ecdsa{--accent:#efb38b;--paper:#24211e;--surface:#302a24;--line:#4d4239;--muted:#c2af9c}
 [data-theme="dark"] .experience--kaggle-quantum-compilation{--accent:#75d5ed;--paper:#15232d;--surface:#1b2e3b;--ink:#e1edf5;--muted:#a8c0ce;--line:#344f60;--line-strong:#57778b;--soft:#253f4e}
 [data-theme="dark"] .experience--shor-quantum-factoring{--accent:#e2b1cd;--paper:#241d25;--surface:#2c2330;--ink:#f0e5ee;--muted:#c0adbc;--line:#4b3a4b;--line-strong:#795d73;--soft:#392c3b}
+[data-theme="dark"] .experience--duke-quantum{--accent:#a2c3ff;--paper:#141f32;--surface:#1c2b43;--ink:#e6efff;--muted:#acbbd3;--line:#354964;--line-strong:#5c779c;--soft:#253c5d}
 
 @media(max-width:1000px){
   .gpu-heading{gap:38px;grid-template-columns:1.2fr 1fr}.gpu-chip{max-width:250px}
