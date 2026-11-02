@@ -3,7 +3,7 @@
   <div class="compiler-intro">
     <div>
       <p class="eyebrow">Competition workbench · 2026</p>
-      <h1>Verifiable<br>Quantum Circuit<br><em>Compilation.</em></h1>
+      <h1>Verifiable Quantum Circuit Compilation</h1>
       <p class="compiler-deck">Currently ranked 45th on the public leaderboard in Google Quantum AI's quantum circuit compilation competition on Kaggle.</p>
       <a class="action-link" href="{{ project.source_url }}" target="_blank" rel="noopener">View the competition ↗</a>
     </div>
@@ -14,7 +14,7 @@
         <div><span>q₁</span><i>R</i><i>H</i><i>⊕</i></div>
         <div><span>q₂</span><i>H</i><i>R</i><i>R</i></div>
       </div>
-      <p class="compiler-concept">Transform the circuit.<br>Preserve the computation.</p>
+      <p class="compiler-concept">Same unitary, cheaper circuit.</p>
       <p class="compiler-panel-note">Conceptual circuit illustration</p>
     </aside>
   </div>
@@ -22,12 +22,12 @@
 </header>
 
 <section class="compiler-brief" aria-labelledby="compiler-brief-title">
-  <div><p class="eyebrow">The area of work</p><h2 id="compiler-brief-title">A different circuit.<br>The same computation.</h2></div>
+  <div><p class="eyebrow">The area of work</p><h2 id="compiler-brief-title">The task: rewrite a circuit without changing what it computes</h2></div>
   <p>Quantum circuit compilation translates and rewrites quantum operations into another circuit representation. Verification checks whether that transformation preserves the intended computation. This project follows my participation in the Google Quantum AI competition on that theme.</p>
 </section>
 
 <section class="project-section" id="leaderboard" aria-labelledby="compiler-ranking-title">
-  <div class="experience-heading"><div><p class="eyebrow">Public leaderboard</p><h2 id="compiler-ranking-title">Ranked 45th.</h2></div><a href="{{ project.leaderboard_url }}" target="_blank" rel="noopener">View the leaderboard ↗</a></div>
+  <div class="experience-heading"><div><p class="eyebrow">Public leaderboard</p><h2 id="compiler-ranking-title">Ranked 45th</h2></div><a href="{{ project.leaderboard_url }}" target="_blank" rel="noopener">View the leaderboard ↗</a></div>
   {% assign selected_figure = project.figures[0] %}{% include project-blocks/media.html figure=selected_figure %}
 </section>
 

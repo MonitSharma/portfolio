@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T14:59:40.397852</dc:date>
+    <dc:date>2026-11-02T08:24:24.517993</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -26,7 +26,7 @@ L 820.8 511.2
 L 820.8 0
 L 0 0
 z
-" style="fill: #f6f5f0"/>
+" style="fill: #fffaf4"/>
   </g>
   <g id="axes_1">
    <g id="patch_2">
@@ -35,62 +35,62 @@ L 393.984 357.84
 L 393.984 163.584
 L 139.536 163.584
 z
-" style="fill: #f6f5f0"/>
+" style="fill: #fffaf4"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
       <path d="M 139.536 357.84
 L 139.536 163.584
-" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p6d898b014f)" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_2"/>
      <g id="text_1">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="139.536" y="376.716953" transform="rotate(-0 139.536 376.716953)">0</text>
+      <text style="font-size: 9.5px; font-family: 'IBM Plex Mono'; text-anchor: middle; fill: #6b5e53" x="139.536" y="374.25" transform="rotate(-0 139.536 374.25)">0</text>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_3">
       <path d="M 194.850783 357.84
 L 194.850783 163.584
-" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p6d898b014f)" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_4"/>
      <g id="text_2">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="194.850783" y="376.716953" transform="rotate(-0 194.850783 376.716953)">500</text>
+      <text style="font-size: 9.5px; font-family: 'IBM Plex Mono'; text-anchor: middle; fill: #6b5e53" x="194.850783" y="374.25" transform="rotate(-0 194.850783 374.25)">500</text>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_5">
       <path d="M 250.165565 357.84
 L 250.165565 163.584
-" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p6d898b014f)" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_6"/>
      <g id="text_3">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="250.165565" y="376.716953" transform="rotate(-0 250.165565 376.716953)">1,000</text>
+      <text style="font-size: 9.5px; font-family: 'IBM Plex Mono'; text-anchor: middle; fill: #6b5e53" x="250.165565" y="374.25" transform="rotate(-0 250.165565 374.25)">1,000</text>
      </g>
     </g>
     <g id="xtick_4">
      <g id="line2d_7">
       <path d="M 305.480348 357.84
 L 305.480348 163.584
-" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p6d898b014f)" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_8"/>
      <g id="text_4">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="305.480348" y="376.716953" transform="rotate(-0 305.480348 376.716953)">1,500</text>
+      <text style="font-size: 9.5px; font-family: 'IBM Plex Mono'; text-anchor: middle; fill: #6b5e53" x="305.480348" y="374.25" transform="rotate(-0 305.480348 374.25)">1,500</text>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_9">
       <path d="M 360.79513 357.84
 L 360.79513 163.584
-" clip-path="url(#pff049e325d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p6d898b014f)" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_10"/>
      <g id="text_5">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="360.79513" y="376.716953" transform="rotate(-0 360.79513 376.716953)">2,000</text>
+      <text style="font-size: 9.5px; font-family: 'IBM Plex Mono'; text-anchor: middle; fill: #6b5e53" x="360.79513" y="374.25" transform="rotate(-0 360.79513 374.25)">2,000</text>
      </g>
     </g>
    </g>
@@ -98,15 +98,15 @@ L 360.79513 163.584
     <g id="ytick_1">
      <g id="line2d_11"/>
      <g id="text_6">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(75.596781 214.350751)">Previous</text>
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(89.007094 229.954306)">record</text>
+      <text style="font-size: 13px; font-family: 'Source Serif 4', serif; fill: #6b5e53" transform="translate(80.471781 214.385409)">Previous</text>
+      <text style="font-size: 13px; font-family: 'Source Serif 4', serif; fill: #6b5e53" transform="translate(92.316 232.208409)">record</text>
      </g>
     </g>
     <g id="ytick_2">
      <g id="line2d_12"/>
      <g id="text_7">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(102.17975 302.648425)">New</text>
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(89.007094 318.25198)">record</text>
+      <text style="font-size: 13px; font-family: 'Source Serif 4', serif; fill: #6b5e53" transform="translate(104.704594 302.683591)">New</text>
+      <text style="font-size: 13px; font-family: 'Source Serif 4', serif; fill: #6b5e53" transform="translate(92.316 320.506591)">record</text>
      </g>
     </g>
    </g>
@@ -116,7 +116,7 @@ L 345.63888 232.456582
 L 345.63888 200.669236
 L 139.536 200.669236
 z
-" clip-path="url(#pff049e325d)" style="fill: #9ca8a1"/>
+" clip-path="url(#p6d898b014f)" style="fill: #b9aa9a"/>
    </g>
    <g id="patch_4">
     <path d="M 139.536 320.754764
@@ -124,21 +124,21 @@ L 301.497683 320.754764
 L 301.497683 288.967418
 L 139.536 288.967418
 z
-" clip-path="url(#pff049e325d)" style="fill: #216653"/>
+" clip-path="url(#p6d898b014f)" style="fill: #97522c"/>
    </g>
    <g id="patch_5">
     <path d="M 139.536 357.84
 L 393.984 357.84
-" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_8">
-    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="352.00008" y="219.680097" transform="rotate(-0 352.00008 219.680097)">1,863</text>
+    <text style="font-size: 12px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #6b5e53" x="352.00008" y="220.768909" transform="rotate(-0 352.00008 220.768909)">1,863</text>
    </g>
    <g id="text_9">
-    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #216653" x="307.858883" y="307.978278" transform="rotate(-0 307.858883 307.978278)">1,464</text>
+    <text style="font-size: 12px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #97522c" x="307.858883" y="309.067091" transform="rotate(-0 307.858883 309.067091)">1,464</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="139.536" y="145.584" transform="rotate(-0 139.536 145.584)">Peak logical qubits</text>
+    <text style="font-size: 14px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #332d29" x="139.536" y="145.584" transform="rotate(-0 139.536 145.584)">Peak logical qubits</text>
    </g>
   </g>
   <g id="axes_2">
@@ -148,51 +148,51 @@ L 763.344 357.84
 L 763.344 163.584
 L 508.896 163.584
 z
-" style="fill: #f6f5f0"/>
+" style="fill: #fffaf4"/>
    </g>
    <g id="matplotlib.axis_3">
     <g id="xtick_6">
      <g id="line2d_13">
       <path d="M 508.896 357.84
 L 508.896 163.584
-" clip-path="url(#p4a647b201d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p674b60b111)" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_14"/>
      <g id="text_11">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="508.896" y="376.716953" transform="rotate(-0 508.896 376.716953)">0</text>
+      <text style="font-size: 9.5px; font-family: 'IBM Plex Mono'; text-anchor: middle; fill: #6b5e53" x="508.896" y="374.25" transform="rotate(-0 508.896 374.25)">0</text>
      </g>
     </g>
     <g id="xtick_7">
      <g id="line2d_15">
       <path d="M 577.296 357.84
 L 577.296 163.584
-" clip-path="url(#p4a647b201d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p674b60b111)" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_16"/>
      <g id="text_12">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="577.296" y="376.716953" transform="rotate(-0 577.296 376.716953)">250K</text>
+      <text style="font-size: 9.5px; font-family: 'IBM Plex Mono'; text-anchor: middle; fill: #6b5e53" x="577.296" y="374.25" transform="rotate(-0 577.296 374.25)">250K</text>
      </g>
     </g>
     <g id="xtick_8">
      <g id="line2d_17">
       <path d="M 645.696 357.84
 L 645.696 163.584
-" clip-path="url(#p4a647b201d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p674b60b111)" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_18"/>
      <g id="text_13">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="645.696" y="376.716953" transform="rotate(-0 645.696 376.716953)">500K</text>
+      <text style="font-size: 9.5px; font-family: 'IBM Plex Mono'; text-anchor: middle; fill: #6b5e53" x="645.696" y="374.25" transform="rotate(-0 645.696 374.25)">500K</text>
      </g>
     </g>
     <g id="xtick_9">
      <g id="line2d_19">
       <path d="M 714.096 357.84
 L 714.096 163.584
-" clip-path="url(#p4a647b201d)" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p674b60b111)" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_20"/>
      <g id="text_14">
-      <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #63716b" x="714.096" y="376.716953" transform="rotate(-0 714.096 376.716953)">750K</text>
+      <text style="font-size: 9.5px; font-family: 'IBM Plex Mono'; text-anchor: middle; fill: #6b5e53" x="714.096" y="374.25" transform="rotate(-0 714.096 374.25)">750K</text>
      </g>
     </g>
    </g>
@@ -210,7 +210,7 @@ L 714.914338 232.456582
 L 714.914338 200.669236
 L 508.896 200.669236
 z
-" clip-path="url(#p4a647b201d)" style="fill: #9ca8a1"/>
+" clip-path="url(#p674b60b111)" style="fill: #b9aa9a"/>
    </g>
    <g id="patch_8">
     <path d="M 508.896 320.754764
@@ -218,45 +218,45 @@ L 714.419395 320.754764
 L 714.419395 288.967418
 L 508.896 288.967418
 z
-" clip-path="url(#p4a647b201d)" style="fill: #216653"/>
+" clip-path="url(#p674b60b111)" style="fill: #97522c"/>
    </g>
    <g id="patch_9">
     <path d="M 508.896 357.84
 L 763.344 357.84
-" style="fill: none; stroke: #dedfd5; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #eadfd3; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_15">
-    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="721.275538" y="219.680097" transform="rotate(-0 721.275538 219.680097)">752,991</text>
+    <text style="font-size: 12px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #6b5e53" x="721.275538" y="220.768909" transform="rotate(-0 721.275538 220.768909)">752,991</text>
    </g>
    <g id="text_16">
-    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #216653" x="720.780595" y="307.978278" transform="rotate(-0 720.780595 307.978278)">751,182</text>
+    <text style="font-size: 12px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #97522c" x="720.780595" y="309.067091" transform="rotate(-0 720.780595 309.067091)">751,182</text>
    </g>
    <g id="text_17">
-    <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="508.896" y="145.584" transform="rotate(-0 508.896 145.584)">Executed Toffolis</text>
+    <text style="font-size: 14px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #332d29" x="508.896" y="145.584" transform="rotate(-0 508.896 145.584)">Executed Toffolis</text>
    </g>
   </g>
   <g id="text_18">
-   <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202e2d" x="53.352" y="44.832563" transform="rotate(-0 53.352 44.832563)">Fewer gates, less workspace</text>
+   <text style="font-weight: 700; font-size: 22px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #332d29" x="53.352" y="50.908" transform="rotate(-0 53.352 50.908)">Fewer gates, less workspace</text>
   </g>
   <g id="text_19">
-   <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #63716b" x="53.352" y="73.398047" transform="rotate(-0 53.352 73.398047)">1,809 fewer executed Toffolis · 399 fewer logical qubits · official record comparison</text>
+   <text style="font-size: 12.5px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #6b5e53" x="53.352" y="76.85" transform="rotate(-0 53.352 76.85)">1,809 fewer executed Toffolis · 399 fewer logical qubits · official record comparison</text>
   </g>
   <g id="text_20">
-   <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #216653" x="139.536" y="117.576" transform="rotate(-0 139.536 117.576)">−399 qubits  /  −21.42%</text>
+   <text style="font-size: 13px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #97522c" x="139.536" y="117.576" transform="rotate(-0 139.536 117.576)">−399 qubits  /  −21.42%</text>
   </g>
   <g id="text_21">
-   <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #216653" x="508.896" y="117.576" transform="rotate(-0 508.896 117.576)">−1,809 Toffolis  /  −0.24024%</text>
+   <text style="font-size: 13px; font-family: 'Source Serif 4', serif; text-anchor: start; fill: #97522c" x="508.896" y="117.576" transform="rotate(-0 508.896 117.576)">−1,809 Toffolis  /  −0.24024%</text>
   </g>
   <g id="text_22">
-   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(53.352 468.296344)">Both axes start at zero. Labels show whole-circuit official metrics; the small gate reduction is not magnified.</text>
-   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; fill: #63716b" transform="translate(53.352 484.527867)">Source: ECDSA.fail API. Previous record: 18 Oct 2026; new record: 20 Oct 2026. Gate counts are rounded means.</text>
+   <text style="font-size: 10.5px; font-family: 'Source Serif 4', serif; fill: #6b5e53" transform="translate(53.352 470.998125)">Both axes start at zero. Labels show whole-circuit official metrics; the small gate reduction is not magnified.</text>
+   <text style="font-size: 10.5px; font-family: 'Source Serif 4', serif; fill: #6b5e53" transform="translate(53.352 492.921961)">Source: ECDSA.fail API. Previous record: 18 Oct 2026; new record: 20 Oct 2026. Gate counts are rounded means.</text>
   </g>
  </g>
  <defs>
-  <clipPath id="pff049e325d">
+  <clipPath id="p6d898b014f">
    <rect x="139.536" y="163.584" width="254.448" height="194.256"/>
   </clipPath>
-  <clipPath id="p4a647b201d">
+  <clipPath id="p674b60b111">
    <rect x="508.896" y="163.584" width="254.448" height="194.256"/>
   </clipPath>
  </defs>

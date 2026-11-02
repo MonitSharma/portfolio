@@ -3,7 +3,7 @@
   <desc id="desc">A calm four-row model role diagram showing worker, coding agent, reserved main local intelligence, and frontier handoffs.</desc>
   <rect width="1200" height="520" rx="10" fill="#fbfaf7"/>
   <text x="70" y="64" fill="#797a80" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="13" letter-spacing="2">THE ATELIER LAB  /  MODEL ROLES</text>
-  <text x="70" y="112" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="38">A small stack with distinct jobs.</text>
+  <text x="70" y="112" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="38">Which model does which job</text>
   <text x="70" y="143" fill="#4c4c54" font-family="IBM Plex Sans, Arial, sans-serif" font-size="16">Models are assigned by capability, memory budget, and measured need.</text>
 
   <g font-family="IBM Plex Sans, Arial, sans-serif">

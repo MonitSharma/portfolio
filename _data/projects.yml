@@ -483,16 +483,16 @@
   - src: assets/imgs/peaked/p11_frequency_and_distance.png
     alt: P11 98-qubit recovery diagnostics, shot frequencies and bitstring agreement
     caption: P11 · 98 qubits · 50 shots
-    width: 2839
-    height: 1951
+    width: 2619
+    height: 1819
     insight: P11’s 50 corrected shots include a broad distribution of exact strings.
       Frequency, Hamming distance, and per-bit agreement reveal the structure used
       by the target-blind decoders.
   - src: assets/imgs/peaked/p12_frequency_and_distance.png
     alt: P12 98-qubit recovery diagnostics, shot frequencies and bitstring agreement
     caption: P12 · 98 qubits · 200 shots
-    width: 2839
-    height: 1951
+    width: 2619
+    height: 1819
     insight: P12 uses 200 reconstructed shots after structural overlap repair. The
       frequency view and bitwise agreement complement the agreement between the most
       frequent string, medoid, and cluster consensus.
@@ -760,24 +760,24 @@
   - src: assets/imgs/qsvt/hardware_solution.png
     caption: Hardware solution probabilities and confidence intervals
     alt: Hardware solution probabilities and confidence intervals
-    width: 1923
-    height: 1002
+    width: 1918
+    height: 1101
     insight: Confidence intervals distinguish shot uncertainty from disagreement with
       the noiseless prediction. IBM’s interval includes the ideal probability; the
       Helios-1 interval does not.
   - src: assets/imgs/qsvt/qsvt_polynomial.png
     caption: Polynomial approximation to the matrix inverse
     alt: Polynomial approximation to the matrix inverse
-    width: 1902
-    height: 1006
+    width: 1745
+    height: 1062
     insight: The polynomial must approximate the reciprocal on the permitted spectral
       interval while remaining bounded. Conditioning controls how demanding that approximation
       becomes.
   - src: assets/imgs/qsvt/solver_convergence.png
     caption: Simulated solver convergence against classical linear algebra
     alt: Simulated solver convergence against classical linear algebra
-    width: 2203
-    height: 868
+    width: 2305
+    height: 893
     insight: The simulated convergence study tests the solver against classical linear
       algebra. These checks establish numerical behavior of the toolchain, separate
       from the hardware measurements.
@@ -881,8 +881,8 @@
     caption: Amdahl's law in the full QAOA optimizer
     alt: Measured Python-to-C++ speedup of the QAOA loop plotted against the share of
       time spent outside the simulator, following the Amdahl's law curve
-    width: 1646
-    height: 1230
+    width: 1668
+    height: 1234
     insight: Each point is one QAOA case. The horizontal axis is the share of Python's
       loop spent outside the shared simulator; the curve is Amdahl's law for a frontend
       that C++ makes 10× faster. As circuits grow, points slide down the curve towards
@@ -891,8 +891,8 @@
     caption: Per-gate circuit construction cost on two machines
     alt: Bar charts of nanoseconds per gate for Python and C++ circuit construction on
       an Apple M3 Pro and an Intel i7-12700K
-    width: 2206
-    height: 984
+    width: 2223
+    height: 986
     insight: The two panels use different scales. Python costs about 2,000 ns per gate
       and C++ about 50 ns on the M3 Pro, with similar values on the i7. Absolute speeds
       differ between machines, but the ratio, and the conclusion, do not.
@@ -900,8 +900,8 @@
     caption: First-call vs warm transpilation for IBM ibm_fez
     alt: Transpile times for Python and C++ at 8, 16 and 32 qubits, comparing the first
       call in a new process with warm calls
-    width: 2305
-    height: 1024
+    width: 2322
+    height: 1043
     insight: The first call in a new process includes start-up costs, so C++ looks 1.4–2.1×
       faster. Once the compiler is warm, both languages call the same compiled transpiler
       and differ by only 1.06–1.17×. Steady-state numbers are the fair comparison.
@@ -909,8 +909,8 @@
     caption: The exponential wall · run time and memory per qubit
     alt: Log-scale plots of simulation time and peak memory against qubit count, showing
       both doubling with each added qubit
-    width: 2305
-    height: 1041
+    width: 2322
+    height: 1040
     insight: Both axes are logarithmic, so a straight line means exponential growth.
       Threads shift the time curve down without changing its slope, and measured memory
       follows 16 bytes × 2ⁿ. On this 36 GiB laptop the limit is about 31 qubits.
@@ -918,8 +918,8 @@
     caption: Strong scaling of Qiskit Aer with threads
     alt: Speedup and parallel efficiency of Qiskit Aer statevector simulation from 1
       to 12 threads for 22 to 28 qubits
-    width: 2305
-    height: 1021
+    width: 2322
+    height: 1020
     insight: Scaling is close to ideal up to the 6 performance cores. The shaded efficiency
       cores add less, and smaller circuits flatten earlier because there is less work
       per thread to hide synchronization and memory traffic.
@@ -927,9 +927,9 @@
     caption: Processes vs threads for a parameter sweep
     alt: Bar chart of simulations per second for different combinations of worker processes
       and threads on 12 cores
-    width: 2008
-    height: 1110
-    insight: Every blue bar uses all 12 cores in a different way. Independent processes
+    width: 2025
+    height: 1114
+    insight: Every olive bar uses all 12 cores in a different way. Independent processes
       share nothing and give the highest throughput; splitting each small simulation
       across threads pays synchronization costs. The grey bars are oversubscribed and
       lose about 12% for no benefit.
@@ -1044,8 +1044,8 @@
     width: 2052
     height: 1278
     insight: Moving left saves quantum storage; moving down saves gates. The
-      green step connects the 85 nondominated public resource pairs, and the
-      orange point is my current Toffoli record. This is my one remaining point
+      dark brown step connects the 85 nondominated public resource pairs, and the
+      rust-coloured point is my current Toffoli record. This is my one remaining point
       on the current frontier. The minimum-width and minimum-product circuits
       belong to other participants. The gate axis is logarithmic.
   - src: assets/imgs/ecdsa/record-tradeoffs.png
@@ -1062,8 +1062,8 @@
     caption: Historical Spacetime leaderboard · champion on 17 October 2026
     alt: Historical screenshot of ECDSA.fail on 17 October 2026 showing
       MonitSharma's champion crown and then-leading product of 939,223,314.
-    width: 911
-    height: 988
+    width: 2052
+    height: 1278
     insight: This dated screenshot preserves the earlier product-champion
       milestone and its crown. It predates the new 20 October results and
       does not represent the current product standings. The current official

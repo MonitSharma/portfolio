@@ -3,7 +3,7 @@
   <desc id="desc">A restrained four-step workflow: read material, ask grounded questions, build with repository tools, and verify with citations and tests.</desc>
   <rect width="1200" height="520" rx="10" fill="#fbfaf7"/>
   <text x="70" y="64" fill="#797a80" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="13" letter-spacing="2">THE ATELIER LAB  /  WORKFLOW</text>
-  <text x="70" y="112" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="38">Read deeply. Ask clearly. Build carefully.</text>
+  <text x="70" y="112" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="38">From a paper to tested code, in one place</text>
   <text x="70" y="143" fill="#4c4c54" font-family="IBM Plex Sans, Arial, sans-serif" font-size="16">One local workbench for research papers, code, and scientific experiments.</text>
   <line x1="70" y1="178" x2="1130" y2="178" stroke="#d8d9dd"/>
 

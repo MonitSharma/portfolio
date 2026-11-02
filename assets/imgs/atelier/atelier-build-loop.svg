@@ -3,7 +3,7 @@
   <desc id="desc">A five-step coding workflow: attach a workspace, inspect the repository, choose an agent workflow, run tests, and review the certificate.</desc>
   <rect width="1200" height="500" rx="10" fill="#f4f3f0"/>
   <text x="70" y="62" fill="#797a80" font-family="IBM Plex Mono, SFMono-Regular, monospace" font-size="13" letter-spacing="2">ATELIER  /  BUILD LOOP</text>
-  <text x="70" y="110" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="38">Use the agent as an engineer, not a magic wand.</text>
+  <text x="70" y="110" fill="#16171d" font-family="Newsreader, Georgia, serif" font-size="38">How a code change gets made and checked</text>
   <text x="70" y="141" fill="#4c4c54" font-family="IBM Plex Sans, Arial, sans-serif" font-size="16">Start with deterministic repository facts, then make the smallest verifiable change.</text>
   <line x1="70" y1="175" x2="1130" y2="175" stroke="#d8d9dd"/>
 

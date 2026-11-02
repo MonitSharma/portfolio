@@ -14,6 +14,8 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"{% if project.type == 'software' %}SoftwareSourceCode{% else %}CreativeWork{% endif %}","name":{{ project.title | jsonify }},"description":{{ page_desc | strip | jsonify }},"url":"{{ page.url | absolute_url }}","about":{{ project.category | jsonify }},"author":{"@type":"Person","name":"Monit Sharma","url":"{{ '/' | absolute_url }}"}{% if project.code_url %},"{% if project.type == 'software' %}codeRepository{% else %}sameAs{% endif %}":{{ project.code_url | jsonify }}{% endif %}}
 </script>
+<link rel="preload" href="{{ '/assets/fonts/SourceSerif4-Variable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/human.css' | relative_url }}">
 </head>
 <body class="editorial project-page experience experience--{{ project.slug }}">
 <a class="skip" href="#main">Skip to content</a>
