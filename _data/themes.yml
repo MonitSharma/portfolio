@@ -20,6 +20,7 @@
   title: AI that helps do research
   plain: Language-model agents and learning methods that propose experiments, tune solvers and keep the evidence attached — so results can be checked, not just trusted.
   papers:
+    - Reducing the arithmetic cost of quantum derivative pricing
     - AutoQResearch
     - Hybrid Learning and Optimization Methods
     - Learning-Based Graph Shrinking

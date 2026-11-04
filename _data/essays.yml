@@ -1,3 +1,7 @@
+- title: The Hidden Arithmetic Behind Quantum Finance
+  summary: The reversible payoff arithmetic behind quantum derivative pricing, and how language-model-assisted circuit design can reduce its cost.
+  url: https://medium.com/@_monitsharma/the-hidden-arithmetic-behind-quantum-finance-dcd6f4c5aa47
+  source: Medium
 - title: "From 5,329 Layers to 111: How I Optimized a Quantum Phase Oracle"
   summary: How class codes, quantum interference, and circuit scheduling reduced the depth of my Classiq challenge phase oracle from 5,329 layers to 111.
   url: https://medium.com/@_monitsharma/from-5-329-layers-to-111-how-i-optimized-a-quantum-phase-oracle-73c50fdcbeb9

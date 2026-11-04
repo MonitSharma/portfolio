@@ -1,3 +1,35 @@
+- title: Reducing the arithmetic cost of quantum derivative pricing with
+    language-model circuit design
+  meta: with H. C. Lau · Language-model-assisted quantum circuit design · arXiv:2611.04431
+  year: 2026
+  category: preprint
+  selected: true
+  venue: arXiv preprint · November 2026
+  new: true
+  preview:
+    src: assets/imgs/publications/2611.04431.jpg
+    width: 637
+    height: 900
+    label: arXiv · first page
+    url: https://arxiv.org/abs/2611.04431
+    source: https://arxiv.org/pdf/2611.04431
+  description:
+    - Used language-model-assisted circuit design to reduce reversible payoff
+      arithmetic for autocallable and target accrual redemption forward (TARF)
+      contracts, cutting **Toffoli-count × peak-logical-qubit cost by factors of
+      2.39 and 4.84** relative to matched internal references.
+    - Proved exact coherent execution of the factor-sum circuit's integer
+      specification and separately assessed pricing bias; resource estimates
+      exclude loading, payoff rotation, and estimation.
+  links:
+    - text: arXiv
+      url: https://arxiv.org/abs/2611.04431
+    - text: PDF
+      url: https://arxiv.org/pdf/2611.04431
+    - text: Blog
+      url: https://medium.com/@_monitsharma/the-hidden-arithmetic-behind-quantum-finance-dcd6f4c5aa47
+  order: 0
+
 - title: "AutoQResearch: LLM-Guided Closed-Loop Policy Search for Adaptive
     Variational Quantum Optimization"
   meta: with H. C. Lau · Quantum-GenAI co-design · arXiv:2604.24283

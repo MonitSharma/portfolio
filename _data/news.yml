@@ -1,4 +1,8 @@
 # Newest first. `new: true` adds a “New” tag on the home page.
+- date: "2026-11"
+  new: true
+  content: "My new paper, **[Reducing the arithmetic cost of quantum derivative pricing with language-model circuit design](https://arxiv.org/abs/2611.04431)**, is now on **arXiv**. We use language-model-assisted circuit design to reduce the reversible arithmetic cost of quantum derivative pricing."
+
 - date: "2026-10"
   new: true
   content: "My **[P11 and P12 peaked-circuit recovery results](/portfolio/work/peaked-circuits/#external-verification)** on Quantinuum Helios-1 have been verified and added to the **[Quantum Advantage Tracker](https://quantum-advantage-tracker.github.io/trackers/classically-verifiable-problems)** (12 October 2026)."
