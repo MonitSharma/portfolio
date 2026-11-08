@@ -39,12 +39,11 @@
       return true;
     });
 
-  const logicalDefault = logicalEstimates.find(estimate => estimate.ours && estimate.toffoli === best) || frontier.at(-1);
   let runtime = false;
   let estimates = logicalEstimates;
   let full = logicalFull;
   let bounds = recent;
-  let pinned = logicalDefault;
+  let pinned = null;
   let hovered = null;
   let frame;
   let brush;
@@ -52,6 +51,7 @@
   let comparison;
   let drag = null;
   let ignoreClick = false;
+  let pointerType = 'mouse';
   const points = new Map();
 
   const formatter = new Intl.NumberFormat('en', { maximumSignificantDigits: 3 });
@@ -120,6 +120,21 @@
   }
 
   function inspect(estimate, announce = false) {
+    inspector.querySelector('[data-inspector-content]').hidden = !estimate;
+    inspector.querySelector('[data-inspector-kind]').hidden = !estimate;
+    estimateSelect.value = estimate ? String(estimates.indexOf(estimate)) : '';
+    for (const [entry, marker] of points) {
+      marker.classList.toggle('is-active', entry === estimate);
+      marker.setAttribute('aria-pressed', String(entry === estimate));
+    }
+    comparison.replaceChildren();
+    crosshair.setAttribute('d', '');
+    if (!estimate) {
+      inspector.classList.remove('is-ours');
+      inspector.querySelector('[data-inspector-title]').textContent = 'Hover over an estimate';
+      status.textContent = '';
+      return;
+    }
     for (const [field, value] of Object.entries({
       kind: (estimate.ours ? 'This work' : 'Published estimate') + (runtime ? ` · ${estimate.architecture}` : ''),
       title: estimate.name,
@@ -135,13 +150,8 @@
     source.href = estimate.url || source.dataset.archive;
     source.textContent = (estimate.source || 'Benchmark archive') + ' ↗';
     inspector.classList.toggle('is-ours', Boolean(estimate.ours));
-    for (const [entry, marker] of points) {
-      marker.classList.toggle('is-active', entry === estimate);
-      marker.setAttribute('aria-pressed', String(entry === pinned));
-    }
     const active = points.get(estimate);
     const baseline = estimate.reference;
-    comparison.replaceChildren();
     if (active) {
       const x = Number(active.dataset.x);
       const y = Number(active.dataset.y);
@@ -266,7 +276,10 @@
       points.set(estimate, point);
 
       point.addEventListener('focus', () => inspect(estimate));
-      point.addEventListener('blur', () => inspect(hovered || pinned));
+      point.addEventListener('blur', () => {
+        pinned = null;
+        inspect(hovered);
+      });
       point.addEventListener('keydown', event => {
         if (event.key !== 'Enter' && event.key !== ' ') return;
         event.preventDefault();
@@ -309,16 +322,14 @@
 
   function setRange(next) {
     bounds = next;
-    if (!visible(pinned)) {
-      const alternative = estimates.filter(visible).sort((a, b) => ordinate(a) - ordinate(b))[0];
-      if (alternative) pin(alternative);
-    }
+    if (pinned && !visible(pinned)) pinned = null;
     render();
     status.textContent = `${points.size} estimates in view.`;
   }
 
   function zoom(factor) {
     const limits = preset();
+    const active = hovered || pinned;
     const resizeAxis = (start, end, min, max, selected) => {
       const center = factor < 1 && selected >= start && selected <= end ? selected : (start + end) / 2;
       const span = Math.min(max - min, Math.max(0.035, (end - start) * factor));
@@ -326,8 +337,8 @@
       return [lo, lo + span];
     };
     const next = [
-      ...resizeAxis(bounds[0], bounds[1], limits[0], limits[1], log(pinned.qubits)),
-      ...resizeAxis(bounds[2], bounds[3], limits[2], limits[3], log(ordinate(pinned))),
+      ...resizeAxis(bounds[0], bounds[1], limits[0], limits[1], active ? log(active.qubits) : NaN),
+      ...resizeAxis(bounds[2], bounds[3], limits[2], limits[3], active ? log(ordinate(active)) : NaN),
     ];
     setRange(next.every((value, index) => Math.abs(value - limits[index]) < 1e-8) ? limits : next);
   }
@@ -352,7 +363,8 @@
   }
 
   plot.addEventListener('click', event => {
-    if (ignoreClick) return;
+    // Mouse inspection follows the pointer; only touch and keyboard activation persist.
+    if (ignoreClick || (event.detail !== 0 && pointerType !== 'touch')) return;
     const marker = event.target.closest('[data-point]');
     const estimate = event.detail === 0 && marker
       ? estimates[Number(marker.dataset.point)]
@@ -364,6 +376,7 @@
   });
 
   plot.addEventListener('pointerdown', event => {
+    pointerType = event.pointerType;
     if (event.button !== 0 || event.pointerType === 'touch' || !frame) return;
     ignoreClick = false;
     const [x, y] = plotPosition(event);
@@ -376,9 +389,10 @@
     if (!drag) {
       if (event.pointerType !== 'touch') {
         const estimate = closestPoint(event);
-        if (estimate !== hovered) {
+        if (estimate !== hovered || pinned) {
+          pinned = null;
           hovered = estimate;
-          inspect(hovered || pinned);
+          inspect(hovered);
         }
       }
       return;
@@ -423,15 +437,19 @@
     drag = null;
     brush.setAttribute('visibility', 'hidden');
   });
-  plot.addEventListener('pointerleave', () => {
+  plot.addEventListener('pointerleave', event => {
+    if (event.pointerType === 'touch') return;
     if (drag && !drag.active) drag = null;
     hovered = null;
-    inspect(pinned);
+    pinned = null;
+    inspect(null);
   });
 
   function populateEstimates() {
-    estimateSelect.replaceChildren(...estimates.map((estimate, index) => new Option(estimate.name, index)));
-    estimateSelect.value = String(estimates.indexOf(pinned));
+    const placeholder = new Option('Choose an estimate', '');
+    placeholder.disabled = true;
+    estimateSelect.replaceChildren(placeholder, ...estimates.map((estimate, index) => new Option(estimate.name, index)));
+    estimateSelect.value = pinned ? String(estimates.indexOf(pinned)) : '';
   }
 
   function configureRuntime() {
@@ -454,26 +472,24 @@
       full = runtimeFull;
     }
     bounds = full;
-    if (!estimates.includes(pinned)) pinned = estimates.find(estimate => estimate.ours) || estimates[0];
+    if (!estimates.includes(pinned)) pinned = null;
     populateEstimates();
   }
 
-  let logicalState = { bounds: recent, pinned: logicalDefault };
-  let runtimePin = runtimeEstimates.find(estimate => estimate.ours);
+  let logicalBounds = recent;
   for (const button of viewButtons) {
     button.addEventListener('click', () => {
       const showRuntime = button.dataset.view === 'runtime';
       if (showRuntime === runtime) return;
-      if (runtime) runtimePin = pinned;
-      else logicalState = { bounds, pinned };
+      if (!runtime) logicalBounds = bounds;
+      pinned = null;
       runtime = showRuntime;
       if (runtime) {
-        pinned = runtimePin;
         configureRuntime();
       } else {
         estimates = logicalEstimates;
         full = logicalFull;
-        ({ bounds, pinned } = logicalState);
+        bounds = logicalBounds;
         populateEstimates();
       }
       for (const item of viewButtons) item.setAttribute('aria-pressed', String(item === button));
@@ -495,6 +511,7 @@
   });
   populateEstimates();
   estimateSelect.addEventListener('change', () => {
+    if (estimateSelect.value === '') return;
     const estimate = estimates[Number(estimateSelect.value)];
     if (!visible(estimate)) {
       if (!runtime && !frontier.includes(estimate)) frontierOnly.checked = false;
