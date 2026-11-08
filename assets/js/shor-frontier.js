@@ -187,6 +187,8 @@
     if (width < 100 || height < 100) return;
 
     const focusIndex = document.activeElement?.dataset.point;
+    // A changed range, architecture, unit, or zoom must not inherit an old selection.
+    pinned = null;
     const factor = runtime ? 1 : gateUnit().factor;
     const [x0, x1, y0, y1] = bounds;
     const left = runtime ? 68 : width < 400 ? 53 : 62;
@@ -315,14 +317,13 @@
     resetView.hidden = !isZoomed;
     zoomButtons.find(button => button.dataset.zoom === 'out').disabled = !isZoomed;
     zoomButtons.find(button => button.dataset.zoom === 'reset').disabled = !isZoomed;
-    inspect(pinned);
+    inspect(null);
 
     if (focusIndex !== undefined) plot.querySelector(`[data-point="${focusIndex}"]`)?.focus({ preventScroll: true });
   }
 
   function setRange(next) {
     bounds = next;
-    if (pinned && !visible(pinned)) pinned = null;
     render();
     status.textContent = `${points.size} estimates in view.`;
   }
@@ -472,7 +473,7 @@
       full = runtimeFull;
     }
     bounds = full;
-    if (!estimates.includes(pinned)) pinned = null;
+    pinned = null;
     populateEstimates();
   }
 
