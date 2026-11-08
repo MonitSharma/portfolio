@@ -458,7 +458,7 @@
       frequency view and bitwise agreement complement the agreement between the most
       frequent string, medoid, and cluster consensus.
   slug: peaked-circuits
-  updated_at: "2026-10-13T05:53:20+08:00"
+  updated_at: "2026-11-08"
   page: "/work/peaked-circuits/"
   verification:
     label: Tracker verified
@@ -480,6 +480,7 @@
   source_url: https://github.com/MonitSharma/peaked_circuits
   source_label: Read the recovery record
   code_url: https://github.com/MonitSharma/peaked_circuits
+  blog_url: https://medium.com/@_monitsharma/peaked-circuit-recovery-on-98-qubits-2e4d87e8d10e
   question: Can deterministic decoding recover the accepted 98-bit answers from noisy
     hardware samples?
   findings:
@@ -516,6 +517,8 @@
       - '200'
       - 1,373.4 HQC
   resources:
+  - label: Peaked-Circuit Recovery on 98 Qubits · Medium
+    url: https://medium.com/@_monitsharma/peaked-circuit-recovery-on-98-qubits-2e4d87e8d10e
   - label: P11 evidence package
     url: https://github.com/MonitSharma/peaked_circuits/tree/main/results/tracker_submissions/p11
   - label: P12 evidence package
