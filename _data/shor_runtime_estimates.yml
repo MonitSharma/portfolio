@@ -1,0 +1,140 @@
+# Physical resources and elapsed time for one successful RSA-2048 factoring.
+# Rounded points follow the companion figure; time_days is the plotting coordinate.
+- name: Gidney & Ekerå (2021)
+  architecture: Surface code
+  qubits: 20000000
+  time_days: 0.333333333
+  time_label: 8 hours
+  source: Quantum · published estimate
+  url: https://quantum-journal.org/papers/q-2021-04-15-433/
+  note: "Headline estimate assuming a 1 μs code cycle, 10 μs reaction time and 0.1% physical gate error."
+
+- name: Gidney (2025)
+  architecture: Surface code
+  qubits: 897864
+  time_days: 4.96
+  time_label: 4.96 days
+  source: Section 3.2
+  url: https://arxiv.org/html/2505.15917v1#S3.SS2
+  note: "Model result before rounding to the headline of fewer than one million qubits and less than a week."
+
+- name: Cain et al. · space-efficient
+  architecture: Neutral atoms
+  qubits: 11033
+  time_days: 43100
+  time_label: "~118 years"
+  source: Figure 3 and Appendix E
+  url: https://arxiv.org/html/2603.28627v1
+  note: "Compact processor with a 1 ms code cycle. Physical qubits are atoms."
+
+- name: Cain et al. · balanced
+  architecture: Neutral atoms
+  qubits: 13255
+  time_days: 9862
+  time_label: "~27 years"
+  source: Figure 3 and Appendix E
+  url: https://arxiv.org/html/2603.28627v1
+  note: "Published balanced neutral-atom architecture at a 1 ms code cycle."
+
+- name: Cain et al. · parallel
+  architecture: Neutral atoms
+  qubits: 102000
+  time_days: 97
+  time_label: 97 days
+  source: Appendix F
+  url: https://arxiv.org/html/2603.28627v1
+  note: "Parallel estimate using an earlier circuit and assuming high-rate parallel operations."
+
+- name: Pinnacle 1.0 · one-month budget
+  architecture: Pinnacle
+  qubits: 94000
+  time_days: 30
+  time_label: "≤30 days"
+  source: Section VI.2.4
+  url: https://arxiv.org/html/2602.11457#S6.SS2.SSS4
+  note: "Approximate resource allocation for a one-month target at a 1 μs cycle and 0.1% physical error. Plotted at the time limit."
+
+- name: Pinnacle 1.2 · standard error
+  architecture: Pinnacle
+  qubits: 72000
+  time_days: 3.7
+  time_label: 3.7 days
+  source: Pinnacle 1.2 release
+  url: https://www.iceberg-quantum.com/blog/releases/pinnacle-1-2/
+  note: "Projected resources with 0.1% physical error and a 1 μs code cycle."
+
+- name: Pinnacle 1.2 · lower error
+  architecture: Pinnacle
+  qubits: 48000
+  time_days: 0.98
+  time_label: 0.98 days
+  source: Pinnacle 1.2 release
+  url: https://www.iceberg-quantum.com/blog/releases/pinnacle-1-2/
+  note: "Projected resources with 0.01% physical error and a 1 μs code cycle."
+
+- name: Pappalardo et al. · serial
+  architecture: Cat qubits
+  qubits: 22593
+  time_days: 3.14
+  time_label: 3.14 days
+  source: Table I
+  url: https://arxiv.org/abs/2610.37839
+  note: "Compiled layout estimate with strongly suppressed bit flips, a 1 μs code cycle and a 10 μs reaction time."
+
+- name: Pappalardo et al. · ten chips
+  architecture: Cat qubits
+  qubits: 611000
+  time_days: 0.052083333
+  time_label: 1.25 hours
+  source: Table II
+  url: https://arxiv.org/abs/2610.37839
+  note: "Parallel layout trades physical space for a shorter runtime."
+
+- name: This work · surface-code scenario
+  architecture: Surface code
+  qubits: 1330000
+  time_days: 1.46
+  time_label: 1.46 days
+  ours: true
+  reference:
+    label: 3.48 days at 980,000 physical qubits
+    qubits: 980000
+    time_days: 3.48
+  note: "Six-prime circuit in our simplified surface-code model. Each added logical qubit receives a hot patch."
+
+- name: This work · balanced neutral atoms
+  architecture: Neutral atoms
+  qubits: 13255
+  time_days: 8364.225
+  time_label: 22.9 years
+  ours: true
+  reference:
+    label: 28.3 years at 13,255 atoms
+    qubits: 13255
+    time_days: 10336.575
+  note: "Two-prime circuit fits the published 1,480-logical-qubit memory. The model uses the balanced processor and a 1 ms code cycle."
+
+- name: This work · Pinnacle 1.0 scenario
+  architecture: Pinnacle
+  qubits: 142260
+  time_days: 5.07
+  time_label: 5.07 days
+  ours: true
+  reference:
+    label: 6.01 days at 142,080 physical qubits
+    qubits: 142080
+    time_days: 6.01
+  note: "Eight-prime circuit with one processing unit. Assumes published timing and errors still apply to the wider unit."
+
+- name: This work · cat-qubit scenario
+  architecture: Cat qubits
+  qubits: 29488
+  time_days: 1.37
+  time_label: 1.37 days
+  time_range_days: [1.21, 1.70]
+  ours: true
+  reference:
+    label: 1.59 days at 29,003 physical cat qubits
+    qubits: 29003
+    time_days: 1.59
+  note: "Eight-prime circuit. Varying the assumed movement and measurement overhead gives 1.21–1.70 days. The whisker shows this sensitivity range."

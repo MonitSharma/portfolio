@@ -1,31 +1,228 @@
-<header class="factoring-cover" id="overview">
-  <div class="factoring-masthead"><span>Quantum Factoring</span><span>A series by Monit Sharma</span></div>
-  <div class="factoring-cover-grid">
-    <div class="factoring-cover-copy">
-      <p class="eyebrow">Essays / Hardware / Code</p>
-      <h1>Shor’s algorithm, and what factoring experiments actually show</h1>
-      <p class="factoring-deck">From the algorithm on paper to the experiment on a chip—and the evidence that connects them.</p>
-      <div class="inline-links"><a class="action-link" href="{{ project.blog_url }}" target="_blank" rel="noopener">Read Quantum Factoring ↗</a><a href="#companion-code">Explore the code ↓</a></div>
+{% assign shor_assets = '/assets/imgs/shor/' %}
+{% assign hardware_figure = shor_assets | append: 'hardware-landscape.png' | relative_url %}
+<header class="shor-cover" id="overview">
+  <div class="shor-masthead">
+    <span><b>RSA-2048</b> <span>Quantum factoring</span></span>
+    <a class="shor-link" href="{{ project.source_url }}" target="_blank" rel="noopener">Benchmark archive ↗</a>
+  </div>
+  <div class="shor-cover-grid">
+    <div>
+      <h1>A cheaper circuit for <span>Shor’s algorithm</span></h1>
+      <p class="shor-intro">We noticed that the circuit uses the same input bits to look up values in many tables. Combining those reads and reusing intermediate values cuts billions of costly gates from the estimate for factoring an RSA-2048 key.</p>
+      <p class="shor-paper-title"><cite>Shared Lookups and Lazy Residues: Fewer Toffoli Gates for Factoring RSA-2048</cite></p>
+      <p class="shor-byline">Monit Sharma and Hoong Chuin Lau · Singapore Management University</p>
+      <div class="inline-links">
+        <a class="action-link" href="#arithmetic">See what changed ↓</a>
+        <a class="shor-link" href="#logical-resources">Explore the estimates ↓</a>
+      </div>
     </div>
-    <aside class="factoring-margin" aria-label="The thread through the series">
-      <p class="eyebrow">The starting point</p>
-      <p class="factoring-equation">N <span>=</span> p × q</p>
-      <div class="factoring-margin-notes"><p><span>01</span> Understand the algorithm.</p><p><span>02</span> Inspect the experiment.</p><p><span>03</span> Question the metric.</p><p><span>04</span> Read the assumptions.</p></div>
-      <a href="{{ project.code_url }}" target="_blank" rel="noopener">Companion repository ↗</a>
+    <aside class="shor-result" aria-label="Main result at a matched qubit budget">
+      <p class="shor-result-kicker">Matched qubit budget</p>
+      <p class="shor-result-number">46<span>%</span></p>
+      <p class="shor-result-label">fewer Toffoli gates</p>
+      <p class="shor-result-budget">Within a budget of 1,806 logical qubits</p>
+      <dl class="shor-bars">
+        <div><dt>Best reference within budget</dt><dd>4.74B</dd><span aria-hidden="true" style="--bar:100%"></span></div>
+        <div><dt>Shared lookups + lazy residues</dt><dd>2.55B</dd><span aria-hidden="true" style="--bar:53.8%"></span></div>
+      </dl>
+      <p class="shor-result-note">Expected Toffoli gates to factor one RSA-2048 key, including repeat runs.</p>
     </aside>
   </div>
-  <div class="factoring-cover-footer"><span>Read the story on Medium.</span><span>Follow the analysis into the code.</span></div>
 </header>
 
-<section class="factoring-reading" id="reading" aria-labelledby="reading-title">
-  <div class="experience-heading"><div><p class="eyebrow">A route through the collection</p><h2 id="reading-title">Reading the experiments critically</h2></div><a href="{{ project.blog_url }}" target="_blank" rel="noopener">Full Medium collection ↗</a></div>
-  <div class="factoring-chapters">{% for chapter in project.chapters %}
-    <article class="factoring-chapter"><span class="factoring-chapter-number" aria-hidden="true">0{{ forloop.index }}</span><div><p class="eyebrow">{{ chapter.theme | escape }}</p><h3><a href="{{ chapter.url | escape }}" target="_blank" rel="noopener">{{ chapter.title | escape }}</a></h3><p>{{ chapter.summary | escape }}</p><a class="factoring-read-link" href="{{ chapter.url | escape }}" target="_blank" rel="noopener" aria-label="Read {{ chapter.title | escape }} on Medium">Read on Medium <span aria-hidden="true">↗</span></a></div></article>
-  {% endfor %}</div>
+<section class="shor-section" id="arithmetic" aria-labelledby="shor-arithmetic-title">
+  <p class="eyebrow">01 / The arithmetic</p>
+  <h2 id="shor-arithmetic-title">Where Shor spends its gates</h2>
+  <p class="shor-section-lede">Shor finds factors by looking for a repeating pattern in powers taken modulo the RSA number. Computing those powers takes most of the work. In <a class="shor-link" href="https://arxiv.org/abs/2505.15917">Gidney’s low-qubit circuit</a>, initial lookups and one cleanup stage account for about <strong>85% of the Toffoli gates</strong>, which are costly on an error-corrected quantum computer.</p>
+  <figure class="shor-gate-share">
+    <figcaption>Share of Toffoli gates in the published RSA-2048 reference circuit</figcaption>
+    <div class="shor-gate-band" aria-hidden="true"><span></span><span></span><span></span></div>
+    <dl>
+      <div><dt>Initial lookups</dt><dd>55%</dd></div>
+      <div><dt>Residue cleanup</dt><dd>30%</dd></div>
+      <div><dt>Other operations</dt><dd>15%</dd></div>
+    </dl>
+  </figure>
+  <figure class="shor-lookup">
+    <figcaption><strong>One address, three results</strong>Each prime needs a different answer, but the same input bits select the row in every table. Packing the answers into a wider row lets one lookup return all three.</figcaption>
+    <div class="shor-lookup-diagram" aria-hidden="true">
+      <div class="shor-lookup-row">
+        <span class="shor-lookup-label">Reference</span>
+        <span class="shor-lookup-address">Same input bits</span><span class="shor-lookup-arrow">→</span>
+        <div class="shor-lookup-cells"><span>Prime 1</span><span>Prime 2</span><span>Prime 3</span></div>
+      </div>
+      <div class="shor-lookup-row is-shared">
+        <span class="shor-lookup-label">This work</span>
+        <span class="shor-lookup-address">Same input bits</span><span class="shor-lookup-arrow">→</span>
+        <div class="shor-lookup-cells"><span>One lookup for all three</span></div>
+      </div>
+    </div>
+  </figure>
+  <div class="shor-method-copy">
+    <p>With the other settings fixed, sharing across three primes cut the estimated Toffoli count by 28.8%. The circuit also keeps some intermediate values in its workspace so it can clear temporary registers without recalculating those values.</p>
+    <p>The arithmetic can then carry larger values forward and take the remainder once at the end. The paper proves that, when the registers are wide enough, these changes preserve the reference circuit’s output and relative quantum phases.</p>
+  </div>
 </section>
 
-<section class="factoring-code" id="companion-code" aria-labelledby="companion-code-title">
-  <div class="factoring-code-heading"><div><p class="eyebrow">The other half of the series</p><h2 id="companion-code-title">Companion code</h2></div><p>The companion repository contains the implementation and analysis scripts referenced in the essays. Begin with the README for setup and the distinction between strict and exploratory metrics.</p></div>
-  <div class="factoring-code-list">{% for resource in project.code_resources %}<a href="{{ resource.url | escape }}" target="_blank" rel="noopener"><div><span class="factoring-file">{{ resource.file | escape }}</span><h3>{{ resource.title | escape }}</h3><p>{{ resource.description | escape }}</p></div><span class="factoring-code-arrow" aria-hidden="true">↗</span></a>{% endfor %}</div>
-  <p class="factoring-code-footnote">The implementation is designed for small order-finding experiments; its permutation-based oracle is not a scalable factoring construction.</p>
+<section class="shor-section" id="logical-resources" aria-labelledby="shor-resources-title">
+  <p class="eyebrow">02 / The evidence</p>
+  <h2 id="shor-resources-title">Fewer gates within the same qubit budget</h2>
+  <p class="shor-section-lede">We searched 534,240 settings of Gidney’s cost model and used the cheapest reference circuit that fit each budget. The savings below count the expected repeat runs needed to factor one key.</p>
+  <dl class="shor-budget-results">
+    <div><dt>1,461 logical qubits</dt><dd><strong>15% fewer Toffolis</strong><span>5.98B → 5.08B per factoring</span></dd></div>
+    <div><dt>1,806 logical qubits</dt><dd><strong>46% fewer Toffolis</strong><span>4.74B → 2.55B per factoring</span></dd></div>
+  </dl>
+  <figure class="shor-plot" data-shor-chart>
+    <script type="application/json" data-estimates>{{ site.data.shor_resource_estimates | jsonify }}</script>
+    <script type="application/json" data-runtime-estimates>{{ site.data.shor_runtime_estimates | jsonify }}</script>
+    <div class="shor-explorer" data-explorer hidden>
+      <div class="shor-chart-toolbar">
+        <div class="shor-chart-views" role="group" aria-label="Resource view">
+          <button type="button" data-view="logical" aria-pressed="true">Circuit cost</button>
+          <button type="button" data-view="runtime" aria-pressed="false">Hardware runtime</button>
+        </div>
+        <div class="shor-chart-actions">
+          <label class="shor-visually-hidden" for="shor-range" data-logical-controls>Chart range</label>
+          <select id="shor-range" data-range data-logical-controls>
+            <option value="recent">Recent circuits</option>
+            <option value="all">All estimates</option>
+          </select>
+          <label class="shor-visually-hidden" for="shor-architecture" data-runtime-controls hidden>Architecture</label>
+          <select id="shor-architecture" data-architecture data-runtime-controls hidden>
+            <option value="">All architectures</option>
+            <option>Surface code</option>
+            <option>Neutral atoms</option>
+            <option>Pinnacle</option>
+            <option>Cat qubits</option>
+          </select>
+          <details class="shor-options" data-options>
+            <summary>Chart options</summary>
+            <div class="shor-options-panel">
+              <div class="shor-option" data-logical-controls>
+                <label for="shor-unit">Gate unit</label>
+                <select id="shor-unit" data-unit>
+                  <option value="t">T equivalents</option>
+                  <option value="toffoli">Toffoli gates</option>
+                </select>
+              </div>
+              <label class="shor-option shor-option-check" data-logical-controls><input type="checkbox" data-frontier-only> Frontier only</label>
+              <div class="shor-option">
+                <span>Zoom</span>
+                <div class="shor-zoom" role="group" aria-label="Chart zoom">
+                  <button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+                  <button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+                  <button type="button" data-zoom="reset">Reset zoom</button>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="shor-chart-main">
+        <div class="shor-chart-meta">
+          <span data-chart-basis>Per circuit execution</span>
+          <span data-chart-count></span>
+          <button type="button" class="shor-reset-view" data-reset-view hidden>Reset view</button>
+        </div>
+        <div class="shor-chart-stage">
+          <svg data-plot role="group" aria-label="Logical qubits versus gates per execution" aria-describedby="shor-chart-help"></svg>
+        </div>
+        <div class="shor-chart-key">
+          <div class="shor-legend" aria-label="Chart legend">
+            <span><i class="shor-legend-point" aria-hidden="true"></i>Published estimate</span>
+            <span><i class="shor-legend-ours" aria-hidden="true"></i>This work</span>
+            <span data-frontier-legend><i class="shor-legend-frontier" aria-hidden="true"></i>Pareto frontier</span>
+            <span data-runtime-legend hidden><i class="shor-legend-baseline" aria-hidden="true"></i>Reference for selected scenario</span>
+          </div>
+          <p class="shor-chart-help" id="shor-chart-help">Select a point for details. Drag to zoom.</p>
+        </div>
+      </div>
+
+      <div class="shor-inspector" data-inspector role="region" aria-label="Estimate details">
+        <div class="shor-inspector-heading">
+          <p class="shor-inspector-badge" data-inspector-kind></p>
+          <h3 data-inspector-title></h3>
+        </div>
+        <div class="shor-inspector-picker">
+          <label class="shor-visually-hidden" for="shor-estimate">Choose an estimate</label>
+          <select id="shor-estimate" data-selection></select>
+        </div>
+        <div class="shor-inspector-content">
+          <dl>
+            <div><dt data-inspector-qubit-label>Logical qubits</dt><dd data-inspector-qubits></dd></div>
+            <div><dt data-inspector-unit></dt><dd data-inspector-gates></dd></div>
+          </dl>
+          <div class="shor-inspector-notes">
+            <p class="shor-inspector-note" data-inspector-note></p>
+            <p class="shor-inspector-reference" data-inspector-reference-box hidden>
+              <strong>Model reference</strong> <span data-inspector-reference></span>
+            </p>
+            <a class="shor-link" data-inspector-source href="{{ project.source_url }}" data-archive="{{ project.source_url }}" target="_blank" rel="noopener"></a>
+          </div>
+        </div>
+        <p class="shor-visually-hidden" aria-live="polite" data-chart-status></p>
+      </div>
+    </div>
+    <div class="shor-chart-grid" data-chart-fallback>
+      {% assign logical_overview = shor_assets | append: 'logical-resources.svg' | relative_url %}
+      {% assign logical_detail = shor_assets | append: 'logical-resources-detail.svg' | relative_url %}
+      <a href="{{ logical_overview }}" target="_blank" rel="noopener"><img src="{{ logical_overview }}" width="612" height="432" alt="Log-scale scatter plot of logical qubits and T equivalents per execution, from early Shor circuits through the new candidates."></a>
+      <a href="{{ logical_detail }}" target="_blank" rel="noopener"><img src="{{ logical_detail }}" width="432" height="432" alt="Detail of recent residue circuits. The eight-prime candidate uses 1,806 logical qubits and 1.12 billion T equivalents per execution."></a>
+    </div>
+    <figcaption>
+      <p data-logical-caption>Gate counts are per circuit execution, before error correction and repeat runs. T equivalents use four T gates per Toffoli.</p>
+      <p data-runtime-caption hidden>Runtime estimates are for factoring one RSA-2048 key. Each architecture uses its own timing, error correction, and retry assumptions.</p>
+    </figcaption>
+  </figure>
+  <script src="{{ '/assets/js/shor-frontier.js' | relative_url }}" defer></script>
+  <details class="technical-record shor-sources">
+    <summary>Chart data and source notes <span aria-hidden="true">+</span></summary>
+    <div class="technical-content">
+      <p>The chart compares published constructions with a logical width and a recoverable Toffoli count for a single RSA-2048 execution. Early entries are extrapolated to that input size. Circuit counts exclude factory overhead and separately synthesized rotations. Width, success probability, and circuit scope follow each source. The frontier marks the lowest gate count among the plotted estimates at each qubit budget.</p>
+      <div class="record-table" tabindex="0" role="region" aria-label="Scrollable circuit estimate table">
+        <table>
+          <caption>Logical resources for a single RSA-2048 circuit execution</caption>
+          <thead><tr><th scope="col">Circuit</th><th scope="col">Logical qubits</th><th scope="col">Toffoli gates</th><th scope="col">T equivalents</th><th scope="col">Source and accounting</th></tr></thead>
+          <tbody>{% for estimate in site.data.shor_resource_estimates %}
+            <tr>
+              <th scope="row">{{ estimate.name | escape }}</th>
+              <td>{{ estimate.qubits }}</td>
+              <td>{{ estimate.toffoli | divided_by: 1000000000.0 | round: 2 }}B</td>
+              <td>{{ estimate.toffoli | times: 4 | divided_by: 1000000000.0 | round: 2 }}B</td>
+              <td>{% if estimate.url %}<a class="shor-link" href="{{ estimate.url }}" target="_blank" rel="noopener">{{ estimate.source | escape }} ↗</a> · {% endif %}{{ estimate.note | escape }}</td>
+            </tr>
+          {% endfor %}</tbody>
+        </table>
+      </div>
+      <p>The <a class="shor-link" href="https://arxiv.org/html/2602.11457#S6.SS2.SSS3" target="_blank" rel="noopener">Pinnacle paper</a> uses this four-T convention for measurement-assisted Toffoli compilation. Actual T-state production depends on the gate set and implementation. Historical accounting follows <a class="shor-link" href="https://arxiv.org/pdf/1905.09749#page=28" target="_blank" rel="noopener">Gidney and Ekerå, Appendix A</a>.</p>
+    </div>
+  </details>
+</section>
+
+<section class="shor-section" id="hardware-estimates" aria-labelledby="shor-hardware-title">
+  <p class="eyebrow">03 / What this means for hardware</p>
+  <h2 id="shor-hardware-title">When do fewer gates save time?</h2>
+  <p class="shor-section-lede">A quantum computer also has to move data, correct errors, and supply resources for gates. Sharing a lookup reduces the gate count but makes its output wider. How much time that saves depends on what the machine can handle efficiently.</p>
+  <div class="shor-runtime-summary">
+    <div><h3>Surface code · Faster with more qubits</h3><p>In our model, the six-prime circuit takes <strong>1.46 days</strong> at 1.33 million physical qubits. The reference takes <strong>3.48 days</strong> at 980,000 qubits.</p></div>
+    <div><h3>Neutral atoms · Faster within the same footprint</h3><p>In the balanced model, the two-prime circuit takes <strong>22.9 years</strong> versus <strong>28.3 years</strong> at 13,255 atoms. The modeled runtime is still measured in decades.</p></div>
+  </div>
+  <p class="shor-chart-intro">These are hardware projections. <a class="shor-link" href="?view=runtime#logical-resources">Compare the runtime estimates ↑</a></p>
+  <figure class="project-media shor-hardware">
+    <a class="media-link" href="{{ hardware_figure }}" target="_blank" rel="noopener">
+      <img src="{{ hardware_figure }}" width="1600" height="1234" loading="lazy" decoding="async" alt="RSA-2048 runtime versus physical qubits. Four blue stars show our surface-code, neutral-atom, Pinnacle 1.0 and cat-qubit estimates. The table pairs each with its reference.">
+      <span class="media-zoom" aria-hidden="true">Open figure ↗</span>
+    </a>
+    <figcaption>
+      <h3>What would it take to factor RSA-2048?</h3>
+      <p>The first figure from the companion article. Stars show conditional hardware projections, and the table compares each scenario with its own reference. For cat qubits, varying the assumed overhead gives 1.21–1.70 days, a range that includes the 1.59-day reference.</p>
+      <p class="shor-reference-links"><a href="https://quantum-journal.org/papers/q-2021-04-15-433/">Gidney &amp; Ekerå</a> · <a href="https://arxiv.org/abs/2505.15917">Gidney</a> · <a href="https://arxiv.org/abs/2603.28627">Cain et al.</a> · <a href="https://arxiv.org/abs/2602.11457">Pinnacle 1.0</a> · <a href="https://www.iceberg-quantum.com/blog/releases/pinnacle-1-2/">Pinnacle 1.2</a> · <a href="https://arxiv.org/abs/2610.37839">Pappalardo et al.</a></p>
+    </figcaption>
+  </figure>
+  <div class="shor-implication">
+    <h3>What the work adds to Shor</h3>
+    <p>It gives hardware designers a cheaper implementation of Shor’s modular arithmetic and a way to choose how much workspace to trade for fewer gates. The next step is to compile the circuits for a specific architecture and check whether the projected savings hold once data movement and scheduling are included.</p>
+    <a class="shor-link" href="{{ project.source_url }}" target="_blank" rel="noopener">See the benchmark, circuits and results ↗</a>
+  </div>
 </section>

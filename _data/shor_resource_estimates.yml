@@ -1,0 +1,93 @@
+# Gate counts are for one circuit execution. Plot labels and table values share this data.
+- name: Vedral, Barenco & Ekert (1996)
+  label: Vedral et al. ’96
+  qubits: 14337
+  toffoli: 687194767360
+  source: Circuit paper
+  url: https://arxiv.org/abs/quant-ph/9511018
+  note: "7n + 1 qubits and leading 80n³ Toffolis, evaluated at n = 2,048 following Gidney & Ekerå, Appendix A."
+
+- name: Zalka, serial addition (1998)
+  label: Zalka ’98 · serial
+  qubits: 6144
+  toffoli: 103079215104
+  source: Section 1.4.1
+  url: https://arxiv.org/abs/quant-ph/9806084
+  note: "Leading estimates of 3n qubits and 12n³ Toffolis at n = 2,048."
+
+- name: Zalka, carry-lookahead (1998)
+  label: Zalka ’98 · lookahead
+  qubits: 10240
+  toffoli: 446676598784
+  source: Section 5
+  url: https://arxiv.org/abs/quant-ph/9806084
+  note: "Leading estimates of 5n qubits and 52n³ Toffolis at n = 2,048."
+
+- name: Fowler et al. (2012)
+  label: Fowler et al. ’12
+  qubits: 6144
+  toffoli: 343597383680
+  source: Table I
+  url: https://arxiv.org/abs/1208.0928
+  note: "40n³ Toffolis. The 3n width includes the workspace correction in Gidney & Ekerå, Appendix A."
+
+- name: Häner, Roetteler & Svore (2017)
+  label: Häner et al. ’17
+  qubits: 4098
+  toffoli: 5200000000000
+  source: Circuit paper
+  url: https://arxiv.org/abs/1611.07995
+  note: "2n + 2 qubits. Toffoli count from the RSA-2048 extrapolation of the controlled-multiplier fit, reported in Roetteler et al., Table 2."
+
+- name: Gidney & Ekerå (2021)
+  label: Gidney & Ekerå ’21
+  qubits: 6189
+  toffoli: 2624225018
+  source: Abstract circuit model
+  url: https://quantum-journal.org/papers/q-2021-04-15-433/
+  note: "3n + 0.002n log₂(n) qubits and 0.3n³ + 0.0005n³ log₂(n) Toffolis, evaluated at n = 2,048."
+
+- name: Chevignard, Fouque & Schrottenloher (2024)
+  label: Chevignard et al. ’24
+  qubits: 1730
+  toffoli: 68719476736
+  source: Preprint
+  url: https://eprint.iacr.org/2024/222
+  note: "Single-run estimate of 2³⁶ Toffolis. The paper estimates 40 runs on average."
+
+- name: Gidney (2025)
+  label: Gidney ’25
+  qubits: 1399
+  toffoli: 706521739
+  source: Table 5
+  url: https://arxiv.org/html/2505.15917v1#S3.T5
+  note: "Abstract circuit width from Table 5. Per-shot Toffolis inferred from 6.5B per factoring divided by 9.2 expected shots."
+
+- name: Pappalardo et al. (2026)
+  label: Pappalardo et al. ’26
+  qubits: 1433
+  toffoli: 756000000
+  source: Table I and Appendix C.7.b.ii
+  url: https://arxiv.org/abs/2610.37839
+  note: "Logical width and per-shot Toffolis for the serial circuit compiled for cat qubits."
+
+- name: This work, two primes
+  label: Two primes
+  qubits: 1461
+  toffoli: 558000000
+  ours: true
+  note: "Trimmed registers, two-prime sharing, lookup window 7. Expected per factoring is 5.08B Toffolis."
+
+- name: This work, six primes
+  label: Six primes
+  qubits: 1699
+  toffoli: 306000000
+  ours: true
+  note: "Lazy residues, six-prime sharing, lookup window 8. Expected per factoring is 2.78B Toffolis."
+
+- name: This work, eight primes
+  label: Eight primes
+  qubits: 1806
+  toffoli: 280000000
+  ours: true
+  note: "Lazy residues, eight-prime sharing, lookup window 8. Expected per factoring is 2.55B Toffolis."
