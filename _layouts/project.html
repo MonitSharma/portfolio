@@ -16,6 +16,7 @@
 </script>
 <link rel="preload" href="{{ '/assets/fonts/SourceSerif4-Variable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/human.css' | relative_url }}">
+{% if project.slug == 'shor-quantum-factoring' %}<link rel="stylesheet" href="{{ '/assets/css/shor.css' | relative_url }}">{% endif %}
 </head>
 <body class="editorial project-page experience experience--{{ project.slug }}">
 <a class="skip" href="#main">Skip to content</a>

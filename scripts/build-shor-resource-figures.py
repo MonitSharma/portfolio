@@ -13,12 +13,12 @@ from matplotlib.ticker import FixedLocator, FuncFormatter, NullLocator
 SITE = Path(__file__).resolve().parents[1]
 OUT = SITE / "assets/imgs/shor"
 ESTIMATES = yaml.safe_load((SITE / "_data/shor_resource_estimates.yml").read_text())
-PAPER = "#fffdfa"
-INK = "#2a2521"
-MUTED = "#635951"
-GRID = "#e9e1d8"
-ACCENT = "#85394b"
-PRIOR = "#5f625d"
+PAPER = "#ffffff"
+INK = "#22262d"
+MUTED = "#626974"
+GRID = "#e9edf3"
+ACCENT = "#335ac6"
+PRIOR = "#858c98"
 
 plt.rcParams.update({
     "font.family": "DejaVu Sans",
@@ -48,7 +48,7 @@ def base_chart(size, subtitle):
     for name in ("top", "right"):
         ax.spines[name].set_visible(False)
     for name in ("bottom", "left"):
-        ax.spines[name].set_color("#a99e92")
+        ax.spines[name].set_color("#aeb8c6")
     return fig, ax
 
 

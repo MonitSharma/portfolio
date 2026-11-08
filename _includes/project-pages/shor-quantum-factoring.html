@@ -2,76 +2,77 @@
 {% assign hardware_figure = shor_assets | append: 'hardware-landscape.png' | relative_url %}
 <header class="shor-cover" id="overview">
   <div class="shor-masthead">
-    <span><b>RSA-2048</b> <span>Quantum factoring</span></span>
+    <span>Quantum algorithms <span aria-hidden="true">/</span> <b>RSA-2048</b></span>
     <a class="shor-link" href="{{ project.source_url }}" target="_blank" rel="noopener">Benchmark archive ↗</a>
   </div>
   <div class="shor-cover-grid">
-    <div>
-      <h1>A cheaper circuit for <span>Shor’s algorithm</span></h1>
-      <p class="shor-intro">We noticed that the circuit uses the same input bits to look up values in many tables. Combining those reads and reusing intermediate values cuts billions of costly gates from the estimate for factoring an RSA-2048 key.</p>
-      <p class="shor-paper-title"><cite>Shared Lookups and Lazy Residues: Fewer Toffoli Gates for Factoring RSA-2048</cite></p>
-      <p class="shor-byline">Monit Sharma and Hoong Chuin Lau · Singapore Management University</p>
-      <div class="inline-links">
-        <a class="action-link" href="#arithmetic">See what changed ↓</a>
-        <a class="shor-link" href="#logical-resources">Explore the estimates ↓</a>
-      </div>
+    <div class="shor-cover-copy">
+      <h1>Fewer gates for <span>Shor’s algorithm.</span></h1>
+      <p class="shor-intro">Most of Shor’s algorithm is arithmetic. We make that arithmetic cheaper by sharing table lookups and keeping useful intermediate results.</p>
+      <p class="shor-cover-finding">For RSA-2048, this cuts the estimated Toffoli count per factoring by <strong>46%</strong> within a budget of 1,806 logical qubits.</p>
+      <a class="shor-read-link" href="#logical-resources">Explore the resource estimates <span aria-hidden="true">↘</span></a>
     </div>
-    <aside class="shor-result" aria-label="Main result at a matched qubit budget">
-      <p class="shor-result-kicker">Matched qubit budget</p>
-      <p class="shor-result-number">46<span>%</span></p>
-      <p class="shor-result-label">fewer Toffoli gates</p>
-      <p class="shor-result-budget">Within a budget of 1,806 logical qubits</p>
-      <dl class="shor-bars">
-        <div><dt>Best reference within budget</dt><dd>4.74B</dd><span aria-hidden="true" style="--bar:100%"></span></div>
-        <div><dt>Shared lookups + lazy residues</dt><dd>2.55B</dd><span aria-hidden="true" style="--bar:53.8%"></span></div>
-      </dl>
-      <p class="shor-result-note">Expected Toffoli gates to factor one RSA-2048 key, including repeat runs.</p>
-    </aside>
+    <figure class="shor-cover-diagram">
+      <svg viewBox="0 0 320 322" role="img" aria-labelledby="shor-schematic-title shor-schematic-desc">
+        <title id="shor-schematic-title">The same address, fewer table reads</title>
+        <desc id="shor-schematic-desc">Before: three separate lookups use the same input x to retrieve residues r1, r2 and r3. After: one shared lookup returns the three residues together. This is a schematic of lookup sharing, not a full quantum circuit.</desc>
+        <g class="shor-schematic-before">
+          <text x="0" y="20" class="shor-schematic-label">Separate lookups</text>
+          <path d="M28 61H112 M28 106H112 M28 151H112 M212 61H278 M212 106H278 M212 151H278"/>
+          <rect x="112" y="43" width="100" height="36"/><rect x="112" y="88" width="100" height="36"/><rect x="112" y="133" width="100" height="36"/>
+          <text x="6" y="66">x</text><text x="6" y="111">x</text><text x="6" y="156">x</text>
+          <text x="162" y="66" text-anchor="middle">Lookup</text><text x="162" y="111" text-anchor="middle">Lookup</text><text x="162" y="156" text-anchor="middle">Lookup</text>
+          <text x="287" y="66">r₁</text><text x="287" y="111">r₂</text><text x="287" y="156">r₃</text>
+        </g>
+        <path d="M162 185V213 M156 207L162 213L168 207" class="shor-schematic-arrow"/>
+        <g class="shor-schematic-after">
+          <text x="0" y="244" class="shor-schematic-label">One shared lookup</text>
+          <path d="M28 283H88 M235 283H242"/>
+          <rect x="88" y="263" width="147" height="40"/>
+          <text x="6" y="288">x</text><text x="162" y="288" text-anchor="middle">Shared lookup</text><text x="248" y="288">r₁ r₂ r₃</text>
+        </g>
+      </svg>
+      <figcaption>Return several residues with one table read.</figcaption>
+    </figure>
   </div>
+  <div class="shor-paper-record">
+    <p><cite>Shared Lookups and Lazy Residues: Fewer Toffoli Gates for Factoring RSA-2048</cite></p>
+    <p>Monit Sharma &amp; Hoong Chuin Lau <span>Singapore Management University</span></p>
+  </div>
+  <nav class="shor-contents" aria-label="On this page"><a href="#arithmetic">The circuit</a><a href="#logical-resources">The estimates</a><a href="#hardware-estimates">The hardware implications</a></nav>
 </header>
 
 <section class="shor-section" id="arithmetic" aria-labelledby="shor-arithmetic-title">
-  <p class="eyebrow">01 / The arithmetic</p>
-  <h2 id="shor-arithmetic-title">Where Shor spends its gates</h2>
-  <p class="shor-section-lede">Shor finds factors by looking for a repeating pattern in powers taken modulo the RSA number. Computing those powers takes most of the work. In <a class="shor-link" href="https://arxiv.org/abs/2505.15917">Gidney’s low-qubit circuit</a>, initial lookups and one cleanup stage account for about <strong>85% of the Toffoli gates</strong>, which are costly on an error-corrected quantum computer.</p>
-  <figure class="shor-gate-share">
-    <figcaption>Share of Toffoli gates in the published RSA-2048 reference circuit</figcaption>
-    <div class="shor-gate-band" aria-hidden="true"><span></span><span></span><span></span></div>
-    <dl>
-      <div><dt>Initial lookups</dt><dd>55%</dd></div>
-      <div><dt>Residue cleanup</dt><dd>30%</dd></div>
-      <div><dt>Other operations</dt><dd>15%</dd></div>
-    </dl>
-  </figure>
-  <figure class="shor-lookup">
-    <figcaption><strong>One address, three results</strong>Each prime needs a different answer, but the same input bits select the row in every table. Packing the answers into a wider row lets one lookup return all three.</figcaption>
-    <div class="shor-lookup-diagram" aria-hidden="true">
-      <div class="shor-lookup-row">
-        <span class="shor-lookup-label">Reference</span>
-        <span class="shor-lookup-address">Same input bits</span><span class="shor-lookup-arrow">→</span>
-        <div class="shor-lookup-cells"><span>Prime 1</span><span>Prime 2</span><span>Prime 3</span></div>
-      </div>
-      <div class="shor-lookup-row is-shared">
-        <span class="shor-lookup-label">This work</span>
-        <span class="shor-lookup-address">Same input bits</span><span class="shor-lookup-arrow">→</span>
-        <div class="shor-lookup-cells"><span>One lookup for all three</span></div>
-      </div>
-    </div>
-  </figure>
+  <div class="shor-section-heading"><span class="shor-section-index">01</span><h2 id="shor-arithmetic-title">The arithmetic inside Shor</h2></div>
+  <div class="shor-arithmetic-layout">
   <div class="shor-method-copy">
-    <p>With the other settings fixed, sharing across three primes cut the estimated Toffoli count by 28.8%. The circuit also keeps some intermediate values in its workspace so it can clear temporary registers without recalculating those values.</p>
-    <p>The arithmetic can then carry larger values forward and take the remainder once at the end. The paper proves that, when the registers are wide enough, these changes preserve the reference circuit’s output and relative quantum phases.</p>
+    <p>Shor finds factors by looking for a repeating pattern in powers taken modulo the RSA number. Computing those powers takes most of the work. In <a class="shor-link" href="https://arxiv.org/abs/2505.15917">Gidney’s low-qubit circuit</a>, lookups and a residue-cleanup stage account for about <strong>85% of the Toffoli gates</strong>.</p>
+    <p>The same input bits select a row in several tables, one for each small prime. We pack their answers into a wider row, so a single lookup returns them together. In a controlled comparison across three primes, sharing alone reduced the estimated Toffoli count by <strong>28.8%</strong>.</p>
+    <p>We also retain intermediate values to avoid recomputing them during cleanup, and let residues grow before reducing them once at the end. The paper proves that, with sufficiently wide registers, the output and relative quantum phases are preserved.</p>
+  </div>
+  <figure class="shor-gate-share">
+    <figcaption><span class="shor-figure-number">Reference circuit</span>Where the Toffolis go</figcaption>
+    <dl>
+      <div style="--share:100%"><dt>Initial lookups</dt><dd>55<span>%</span></dd></div>
+      <div style="--share:54.55%"><dt>Residue cleanup</dt><dd>30<span>%</span></dd></div>
+      <div style="--share:27.27%"><dt>Other operations</dt><dd>15<span>%</span></dd></div>
+    </dl>
+    <p>Published RSA-2048 parameters. The first two stages are the target of this work.</p>
+  </figure>
   </div>
 </section>
 
 <section class="shor-section" id="logical-resources" aria-labelledby="shor-resources-title">
-  <p class="eyebrow">02 / The evidence</p>
-  <h2 id="shor-resources-title">Fewer gates within the same qubit budget</h2>
+  <div class="shor-section-heading"><span class="shor-section-index">02</span><h2 id="shor-resources-title">What changes at the same qubit budget?</h2></div>
   <p class="shor-section-lede">We searched 534,240 settings of Gidney’s cost model and used the cheapest reference circuit that fit each budget. The savings below count the expected repeat runs needed to factor one key.</p>
-  <dl class="shor-budget-results">
-    <div><dt>1,461 logical qubits</dt><dd><strong>15% fewer Toffolis</strong><span>5.98B → 5.08B per factoring</span></dd></div>
-    <div><dt>1,806 logical qubits</dt><dd><strong>46% fewer Toffolis</strong><span>4.74B → 2.55B per factoring</span></dd></div>
-  </dl>
+  <div class="shor-comparison-wrap">
+    <table class="shor-comparison">
+      <caption>Expected Toffoli gates per factoring, including repeat runs</caption>
+      <thead><tr><th scope="col">Logical qubit budget</th><th scope="col">Best reference</th><th scope="col">This work</th><th scope="col">Reduction</th></tr></thead>
+      <tbody><tr><th scope="row">1,461</th><td>5.98B</td><td>5.08B</td><td>15%</td></tr><tr><th scope="row">1,806</th><td>4.74B</td><td>2.55B</td><td>46%</td></tr></tbody>
+    </table>
+  </div>
+  <div class="shor-figure-heading"><h3>The resource landscape</h3><p>Explore qubits, gate counts and projected runtime.</p></div>
   <figure class="shor-plot" data-shor-chart>
     <script type="application/json" data-estimates>{{ site.data.shor_resource_estimates | jsonify }}</script>
     <script type="application/json" data-runtime-estimates>{{ site.data.shor_runtime_estimates | jsonify }}</script>
@@ -201,8 +202,7 @@
 </section>
 
 <section class="shor-section" id="hardware-estimates" aria-labelledby="shor-hardware-title">
-  <p class="eyebrow">03 / What this means for hardware</p>
-  <h2 id="shor-hardware-title">When do fewer gates save time?</h2>
+  <div class="shor-section-heading"><span class="shor-section-index">03</span><h2 id="shor-hardware-title">Fewer gates, but how much faster?</h2></div>
   <p class="shor-section-lede">A quantum computer also has to move data, correct errors, and supply resources for gates. Sharing a lookup reduces the gate count but makes its output wider. How much time that saves depends on what the machine can handle efficiently.</p>
   <div class="shor-runtime-summary">
     <div><h3>Surface code · Faster with more qubits</h3><p>In our model, the six-prime circuit takes <strong>1.46 days</strong> at 1.33 million physical qubits. The reference takes <strong>3.48 days</strong> at 980,000 qubits.</p></div>
