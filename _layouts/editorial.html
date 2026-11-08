@@ -7,7 +7,7 @@
 {% if page.nav == 'research' %}<link rel="stylesheet" href="{{ '/assets/css/research-publications.css' | relative_url }}?v=20261022-2">{% endif %}
 {% if page.interactive %}<script defer src="{{ '/assets/js/rd-home.js' | relative_url }}"></script>{% endif %}
 <link rel="preload" href="{{ '/assets/fonts/SourceSerif4-Variable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{{ '/assets/css/human.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/human.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body class="editorial {{ page.body_class }}">
 <a class="skip" href="#main">Skip to content</a>
