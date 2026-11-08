@@ -481,6 +481,40 @@
   source_label: Read the recovery record
   code_url: https://github.com/MonitSharma/peaked_circuits
   blog_url: https://medium.com/@_monitsharma/peaked-circuit-recovery-on-98-qubits-2e4d87e8d10e
+  article_figures:
+    overview:
+      src: "assets/imgs/peaked/article/00-project-overview.png"
+      alt: "Measured hardware distance curves and classical core sizes for P11 and P12. Both approaches recover the same accepted 98-bit string for each instance."
+      caption: "Two routes to the accepted answers"
+      width: 1980
+      height: 1260
+      insight: "The curves use the corrected Helios-1 shots. The bars compare the published circuit sizes with the inferred classical cores. The bottom strips encode the actual accepted strings."
+    decoder:
+      src: "assets/imgs/peaked/article/05-decoder-bits.png"
+      alt: "Whole-dataset majority misses two P11 bits and thirteen P12 bits. The observed medoid and cluster consensus match all 98 accepted bits for both circuits."
+      caption: "Which bits did each decoder recover?"
+      width: 1800
+      height: 972
+      insight: "Each cell compares a decoded bit with the accepted answer after recovery. Whole-dataset majority differs at two P11 positions and thirteen P12 positions. Both geometry-based decoders recover all 98 bits."
+    reduction:
+      src: "assets/imgs/peaked/article/02-structural-reduction.png"
+      alt: "P11 has 1,999 atomic two-qubit units and an inferred core of 284. P12 has 2,457 units and an inferred core of 279. Surviving inverse-pair anchors reveal the middle structure."
+      caption: "A smaller core behind the obfuscation"
+      width: 1800
+      height: 972
+      insight: "The recorded solver finds 419 inverse-pair anchors for P11 and 569 for P12. The final reduced models retain 284 and 279 atomic two-qubit units, including the accepted frontier moves. Middle-block replacement is approximate."
+    caching:
+      src: "assets/imgs/peaked/article/04-caching-benchmark.png"
+      alt: "Caching reduces recorded P11 solve time from 50.3 to 17.1 seconds and P12 from 86.3 to 27.9 seconds. Marginal reuse is 78.1 and 82.8 percent."
+      caption: "Reusing the work during boundary search"
+      width: 1800
+      height: 972
+      insight: "The same deterministic search was measured once per mode on a MacBook M3 Pro. Solver times exclude imports, numerical certification, and extra cache validation. The right panel shows the fraction of requested marginals reused."
+  accepted_peaks:
+  - circuit: P11
+    bitstring: "10101110111010011111100010110011101011101011111001010101101100001110101110010000010100001001100000"
+  - circuit: P12
+    bitstring: "10100011110010100111000100011100110001011111011100111001010110101011001001000000101000100000111100"
   question: Can deterministic decoding recover the accepted 98-bit answers from noisy
     hardware samples?
   findings:
