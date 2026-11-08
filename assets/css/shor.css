@@ -156,8 +156,9 @@
   display:grid; grid-template-columns:minmax(0,1fr) minmax(0,auto); gap:10px 20px;
   padding:18px 20px; border-block:1px solid var(--shor-board-edge); background:#f5f7fb;
 }
-.shor-inspector-picker {align-self:center; min-width:0}
-.shor-inspector-picker select {max-width:100%; width:clamp(180px,24vw,255px)}
+.shor-inspector-picker {display:flex; align-items:center; gap:12px; align-self:center; min-width:0}
+.shor-inspector-picker select {min-width:0; max-width:100%; width:clamp(180px,24vw,255px)}
+.shor-explorer .shor-clear-selection {flex-shrink:0; padding:4px 0; border:0; background:none; color:var(--shor-primary); font-size:12px; text-decoration:underline; text-underline-offset:3px; cursor:pointer}
 .shor-inspector-badge {font:500 12px/1.4 var(--sans); color:var(--shor-published)}
 .shor-inspector.is-ours .shor-inspector-badge {color:var(--shor-primary)}
 .experience .shor-inspector h3 {margin-top:2px; font:500 19px/1.3 var(--sans); color:var(--shor-board-ink)}

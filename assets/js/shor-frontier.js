@@ -9,6 +9,7 @@
   const stage = plot.parentElement;
   const inspector = figure.querySelector('[data-inspector]');
   const estimateSelect = figure.querySelector('[data-selection]');
+  const clearSelection = figure.querySelector('[data-clear-selection]');
   const gateSelect = figure.querySelector('[data-unit]');
   const architectureSelect = figure.querySelector('[data-architecture]');
   const frontierOnly = figure.querySelector('[data-frontier-only]');
@@ -51,7 +52,6 @@
   let comparison;
   let drag = null;
   let ignoreClick = false;
-  let pointerType = 'mouse';
   const points = new Map();
 
   const formatter = new Intl.NumberFormat('en', { maximumSignificantDigits: 3 });
@@ -120,12 +120,13 @@
   }
 
   function inspect(estimate, announce = false) {
+    clearSelection.hidden = !pinned;
     inspector.querySelector('[data-inspector-content]').hidden = !estimate;
     inspector.querySelector('[data-inspector-kind]').hidden = !estimate;
     estimateSelect.value = estimate ? String(estimates.indexOf(estimate)) : '';
     for (const [entry, marker] of points) {
       marker.classList.toggle('is-active', entry === estimate);
-      marker.setAttribute('aria-pressed', String(entry === estimate));
+      marker.setAttribute('aria-pressed', String(entry === pinned));
     }
     comparison.replaceChildren();
     crosshair.setAttribute('d', '');
@@ -136,7 +137,7 @@
       return;
     }
     for (const [field, value] of Object.entries({
-      kind: (estimate.ours ? 'This work' : 'Published estimate') + (runtime ? ` · ${estimate.architecture}` : ''),
+      kind: (estimate.ours ? 'This work' : 'Published estimate') + (runtime ? ` · ${estimate.architecture}` : '') + (pinned === estimate ? ' · Pinned' : ''),
       title: estimate.name,
       'qubit-label': qubitLabel(),
       qubits: integer.format(estimate.qubits),
@@ -181,14 +182,20 @@
     inspect(estimate, true);
   }
 
-  function render() {
+  function clearPin() {
+    pinned = null;
+    hovered = null;
+    inspect(null);
+  }
+
+  function render({ resetSelection = true } = {}) {
     const width = Math.round(stage.clientWidth);
     const height = Math.round(stage.clientHeight);
     if (width < 100 || height < 100) return;
 
     const focusIndex = document.activeElement?.dataset.point;
     // A changed range, architecture, unit, or zoom must not inherit an old selection.
-    pinned = null;
+    if (resetSelection) pinned = null;
     const factor = runtime ? 1 : gateUnit().factor;
     const [x0, x1, y0, y1] = bounds;
     const left = runtime ? 68 : width < 400 ? 53 : 62;
@@ -277,11 +284,8 @@
       plot.append(point);
       points.set(estimate, point);
 
-      point.addEventListener('focus', () => inspect(estimate));
-      point.addEventListener('blur', () => {
-        pinned = null;
-        inspect(hovered);
-      });
+      point.addEventListener('focus', () => inspect(pinned || estimate));
+      point.addEventListener('blur', () => inspect(pinned || hovered));
       point.addEventListener('keydown', event => {
         if (event.key !== 'Enter' && event.key !== ' ') return;
         event.preventDefault();
@@ -317,7 +321,7 @@
     resetView.hidden = !isZoomed;
     zoomButtons.find(button => button.dataset.zoom === 'out').disabled = !isZoomed;
     zoomButtons.find(button => button.dataset.zoom === 'reset').disabled = !isZoomed;
-    inspect(null);
+    inspect(pinned);
 
     if (focusIndex !== undefined) plot.querySelector(`[data-point="${focusIndex}"]`)?.focus({ preventScroll: true });
   }
@@ -364,8 +368,7 @@
   }
 
   plot.addEventListener('click', event => {
-    // Mouse inspection follows the pointer; only touch and keyboard activation persist.
-    if (ignoreClick || (event.detail !== 0 && pointerType !== 'touch')) return;
+    if (ignoreClick) return;
     const marker = event.target.closest('[data-point]');
     const estimate = event.detail === 0 && marker
       ? estimates[Number(marker.dataset.point)]
@@ -373,13 +376,12 @@
     if (estimate) {
       points.get(estimate).focus({ preventScroll: true });
       pin(estimate);
-    }
+    } else clearPin();
   });
 
   plot.addEventListener('pointerdown', event => {
-    pointerType = event.pointerType;
-    if (event.button !== 0 || event.pointerType === 'touch' || !frame) return;
     ignoreClick = false;
+    if (event.button !== 0 || event.pointerType === 'touch' || !frame) return;
     const [x, y] = plotPosition(event);
     if (x >= frame.left && x <= frame.right && y >= frame.top && y <= frame.bottom) {
       drag = { id: event.pointerId, x, y, active: false };
@@ -390,10 +392,9 @@
     if (!drag) {
       if (event.pointerType !== 'touch') {
         const estimate = closestPoint(event);
-        if (estimate !== hovered || pinned) {
-          pinned = null;
+        if (estimate !== hovered) {
           hovered = estimate;
-          inspect(hovered);
+          inspect(pinned || hovered);
         }
       }
       return;
@@ -442,8 +443,11 @@
     if (event.pointerType === 'touch') return;
     if (drag && !drag.active) drag = null;
     hovered = null;
-    pinned = null;
-    inspect(null);
+    inspect(pinned);
+  });
+  clearSelection.addEventListener('click', clearPin);
+  figure.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && pinned) clearPin();
   });
 
   function populateEstimates() {
@@ -557,6 +561,6 @@
   figure.querySelector('[data-chart-fallback]').hidden = true;
   new ResizeObserver(() => {
     if (drag) return;
-    render();
+    render({ resetSelection: false });
   }).observe(stage);
 })();
