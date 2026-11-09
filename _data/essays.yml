@@ -1,3 +1,7 @@
+- title: How We Cut the Cost of Shor’s Arithmetic for RSA-2048
+  summary: How we share table lookups and reuse intermediate residues to cut the estimated Toffoli count for factoring RSA-2048.
+  url: https://medium.com/@_monitsharma/how-we-cut-the-cost-of-shors-arithmetic-for-rsa-2048-8eca041d1408
+  source: Medium
 - title: The Hidden Arithmetic Behind Quantum Finance
   summary: The reversible payoff arithmetic behind quantum derivative pricing, and how language-model-assisted circuit design can reduce its cost.
   url: https://medium.com/@_monitsharma/the-hidden-arithmetic-behind-quantum-finance-dcd6f4c5aa47
