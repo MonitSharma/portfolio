@@ -1,3 +1,24 @@
+- title: "Shared Lookups and Lazy Residues: Fewer Toffoli Gates for Factoring RSA-2048"
+  slug: shor-quantum-factoring
+  meta: Fault-tolerant quantum factoring · arXiv:2611.08907
+  year: 2026
+  category: preprint
+  selected: true
+  venue: arXiv preprint · November 2026
+  new: true
+  description:
+    - We share table lookups and reuse intermediate residues to cut the estimated
+      Toffoli count per RSA-2048 factoring by **46%** compared with the best
+      reference circuit within the same budget of **1,806 logical qubits**.
+  links:
+    - text: arXiv
+      url: https://arxiv.org/abs/2611.08907
+    - text: PDF
+      url: https://arxiv.org/pdf/2611.08907
+    - text: Blog
+      url: https://medium.com/@_monitsharma/how-we-cut-the-cost-of-shors-arithmetic-for-rsa-2048-8eca041d1408
+  order: -1
+
 - title: Reducing the arithmetic cost of quantum derivative pricing with
     language-model circuit design
   meta: with H. C. Lau · Language-model-assisted quantum circuit design · arXiv:2611.04431

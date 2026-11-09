@@ -1,6 +1,10 @@
 # Newest first. `new: true` adds a “New” tag on the home page.
 - date: "2026-11"
   new: true
+  content: "We posted **[Shared Lookups and Lazy Residues: Fewer Toffoli Gates for Factoring RSA-2048](https://arxiv.org/abs/2611.08907)** on arXiv. We estimate 46% fewer Toffoli gates for factoring within the same budget of 1,806 logical qubits."
+
+- date: "2026-11"
+  new: true
   content: "My new paper, **[Reducing the arithmetic cost of quantum derivative pricing with language-model circuit design](https://arxiv.org/abs/2611.04431)**, is now on **arXiv**. We use language-model-assisted circuit design to reduce the reversible arithmetic cost of quantum derivative pricing."
 
 - date: "2026-10"

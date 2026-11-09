@@ -1,5 +1,8 @@
 {% assign shor_assets = '/assets/imgs/shor/' %}
 {% assign hardware_figure = shor_assets | append: 'hardware-landscape.png' | relative_url %}
+{% assign shor_paper = site.data.publications | where: 'slug', project.slug | first %}
+{% assign shor_pdf = shor_paper.links | where: 'text', 'PDF' | first %}
+{% assign shor_blog = shor_paper.links | where: 'text', 'Blog' | first %}
 <header class="shor-cover" id="overview">
   <div class="shor-masthead">
     <span>Quantum algorithms <span aria-hidden="true">/</span> <b>RSA-2048</b></span>
@@ -36,8 +39,11 @@
     </figure>
   </div>
   <div class="shor-paper-record">
-    <p><cite>Shared Lookups and Lazy Residues: Fewer Toffoli Gates for Factoring RSA-2048</cite></p>
-    <p>Monit Sharma &amp; Hoong Chuin Lau <span>Singapore Management University</span></p>
+    <p><cite>{{ shor_paper.title | escape }}</cite></p>
+    <div class="shor-paper-links">
+      <a class="shor-link" href="{{ shor_pdf.url | escape }}" target="_blank" rel="noopener">Read the preprint (PDF) ↗</a>
+      <a class="shor-link" href="{{ shor_blog.url | escape }}" target="_blank" rel="noopener">Read the blog ↗</a>
+    </div>
   </div>
   <nav class="shor-contents" aria-label="On this page"><a href="#arithmetic">The circuit</a><a href="#logical-resources">The estimates</a><a href="#hardware-estimates">The hardware implications</a></nav>
 </header>
@@ -217,7 +223,7 @@
     </a>
     <figcaption>
       <h3>What would it take to factor RSA-2048?</h3>
-      <p>The first figure from the companion article. Stars show conditional hardware projections, and the table compares each scenario with its own reference. For cat qubits, varying the assumed overhead gives 1.21–1.70 days, a range that includes the 1.59-day reference.</p>
+      <p>The first figure from <a class="shor-link" href="{{ shor_blog.url | escape }}" target="_blank" rel="noopener">our companion article</a>. Stars show conditional hardware projections, and the table compares each scenario with its own reference. For cat qubits, varying the assumed overhead gives 1.21–1.70 days, a range that includes the 1.59-day reference.</p>
       <p class="shor-reference-links"><a href="https://quantum-journal.org/papers/q-2021-04-15-433/">Gidney &amp; Ekerå</a> · <a href="https://arxiv.org/abs/2505.15917">Gidney</a> · <a href="https://arxiv.org/abs/2603.28627">Cain et al.</a> · <a href="https://arxiv.org/abs/2602.11457">Pinnacle 1.0</a> · <a href="https://www.iceberg-quantum.com/blog/releases/pinnacle-1-2/">Pinnacle 1.2</a> · <a href="https://arxiv.org/abs/2610.37839">Pappalardo et al.</a></p>
     </figcaption>
   </figure>
