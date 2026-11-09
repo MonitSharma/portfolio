@@ -4,47 +4,71 @@
 <link rel="stylesheet" href="{{ '/assets/css/peaked.css' | relative_url }}">
 
 <div class="peaked-writeup">
-  <p class="peaked-intro">P11 and P12 are circuits built to favour a hidden 98-bit output. The challenge is to recover that string from the published circuit. Because the organiser knows the answer, submissions can be checked directly.</p>
+  <nav class="peaked-contents" aria-label="On this page">
+    <a href="#results">The quantum runs</a>
+    <a href="#classical-results">The classical solve</a>
+    <a href="#resources">Article and code</a>
+  </nav>
 
   <section id="results" aria-labelledby="peaked-hardware-title">
-    <h2 id="peaked-hardware-title">The quantum runs</h2>
-    <p>I ran both circuits on Quantinuum Helios-1. P11 returned 50 different strings. P12 returned 198 different strings from 200 shots. The accepted answer appeared once in P11 and three times in P12.</p>
+    <div class="peaked-heading">
+      <span aria-hidden="true">01</span>
+      <h2 id="peaked-hardware-title">Finding the peak on Helios-1</h2>
+    </div>
+    <div class="peaked-split">
+      <div class="peaked-copy">
+        <p>BlueQubit’s P11 and P12 circuits each favour a hidden 98-bit output. The organiser can check that output directly, which makes these circuits useful for testing whether a device can recover a known answer through noise.</p>
+        <p>I ran both circuits on Quantinuum Helios-1. All 50 P11 shots were different, so counting repeated strings gave a 50-way tie. In P12, the answer appeared three times in 200 shots.</p>
+        <p>I compared shots by how many bits differed. The <strong>medoid</strong>, the observed string closest to the rest in total, recovered both answers. So did voting bit by bit within the largest cluster of similar shots.</p>
+      </div>
+      <figure class="peaked-side">
+        <figcaption>Bits that differ from the accepted answer</figcaption>
+        <table class="peaked-table peaked-decoder">
+          <thead><tr><th scope="col">Decoder</th><th scope="col">P11</th><th scope="col">P12</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Vote across all shots</th><td>2</td><td>13</td></tr>
+            <tr><th scope="row">Observed medoid</th><td>0</td><td>0</td></tr>
+            <tr><th scope="row">Vote within the largest cluster</th><td>0</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </figure>
+    </div>
 
-    <div class="peaked-table-wrap" tabindex="0" role="region" aria-label="Hardware run results">
+    <div class="peaked-table-wrap" tabindex="0" role="region" aria-label="Helios-1 run results">
       <table class="peaked-table">
-        <caption>Corrected shots from the physical hardware runs</caption>
-        <thead><tr><th scope="col">Circuit</th><th scope="col">Qubits</th><th scope="col">Shots</th><th scope="col">Cost</th></tr></thead>
+        <caption>Corrected hardware shots and provider charges</caption>
+        <thead><tr><th scope="col">Circuit</th><th scope="col">Shots</th><th scope="col">Exact hits</th><th scope="col">Cost</th></tr></thead>
         <tbody>
           {% for row in project.table.rows %}
-          <tr><th scope="row">{{ row[0] }}</th><td>{{ row[1] }}</td><td>{{ row[2] }}</td><td>{{ row[3] }}</td></tr>
+          <tr><th scope="row">{{ row[0] }}</th><td>{{ row[2] }}</td><td>{% if row[0] == 'P11' %}1{% else %}3{% endif %}</td><td>{{ row[3] }}</td></tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
+    <p class="peaked-links" id="external-verification">
+      The Quantum Advantage Tracker verified both hardware submissions.
+      <a href="{{ project.verification.links[2].url }}">P11 record ↗</a>
+      <a href="{{ project.verification.links[3].url }}">P12 record ↗</a>
+    </p>
 
-    <p>Frequency alone could not pick out P11’s answer, since every string occurred once. I used the observed medoid, the sample with the smallest total Hamming distance to the other shots, and a consensus vote within the largest cluster of nearby strings. Both recovered all 98 bits. Voting across the entire dataset missed two bits on P11 and thirteen on P12.</p>
-
-    {% assign decoder = project.article_figures.decoder %}
-    <figure class="peaked-figure">
-      <a class="media-link" href="{{ decoder.src | relative_url }}" data-lightbox="Hardware decoding" aria-label="Enlarge hardware decoding figure">
-        <img src="{{ decoder.src | relative_url }}" width="{{ decoder.width }}" height="{{ decoder.height }}" alt="{{ decoder.alt | escape }}" loading="lazy" decoding="async">
-      </a>
-      <figcaption>Comparison with the accepted answers after decoding. Coral marks a differing bit. The medoid and cluster vote agree with all 98 bits in each instance.</figcaption>
-    </figure>
-
-    <p>Both answers were accepted by the BlueQubit portal. The hardware submissions are verified in the Quantum Advantage Tracker. <a href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/246">P11 verification</a> · <a href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/247">P12 verification</a></p>
-
-    <details id="provider-record">
-      <summary>Shot distributions and provider output</summary>
-      <div class="peaked-detail">
-        <p>The provider output needed framing repairs before analysis. P11’s initial reconstruction contained 51 records, including one repeated frame. P12 contained five overlap replicas, giving 205 diagnostic records before repair. The analyses use all 50 and 200 corrected shots. The original payloads and the repair records are retained in the evidence packages.</p>
-        <div class="peaked-distributions">
+    <details class="technical-record peaked-record" id="provider-record">
+      <summary>Shot distributions and decoding details <span aria-hidden="true">+</span></summary>
+      <div class="technical-content">
+        <p>Provider framing produced one duplicate P11 record and five overlap replicas for P12. I removed those structural duplicates and used all 50 and 200 remaining shots. Each largest cluster contained seven shots. I compared the decoded strings with the accepted answers after recovery.</p>
+        {% assign decoder = project.article_figures.decoder %}
+        <figure class="project-media">
+          <a class="media-link" href="{{ decoder.src | relative_url }}" data-lightbox="Hardware decoding">
+            <img src="{{ decoder.src | relative_url }}" width="{{ decoder.width }}" height="{{ decoder.height }}" alt="{{ decoder.alt | escape }}" loading="lazy" decoding="async">
+          </a>
+          <figcaption><p>Coral marks the positions where a decoder disagrees with the accepted string.</p></figcaption>
+        </figure>
+        <div class="media-grid">
           {% for figure in project.figures %}
-          <figure class="peaked-figure">
-            <a class="media-link" href="{{ figure.src | relative_url }}" data-lightbox="{{ figure.caption | escape }}" aria-label="Enlarge {{ figure.caption | escape }}">
+          <figure class="project-media">
+            <a class="media-link" href="{{ figure.src | relative_url }}" data-lightbox="{{ figure.caption | escape }}">
               <img src="{{ figure.src | relative_url }}" width="{{ figure.width }}" height="{{ figure.height }}" alt="{{ figure.alt | escape }}" loading="lazy" decoding="async">
             </a>
-            <figcaption>{{ figure.caption | escape }}</figcaption>
+            <figcaption><p>{{ figure.caption | escape }}</p></figcaption>
           </figure>
           {% endfor %}
         </div>
@@ -53,76 +77,106 @@
   </section>
 
   <section id="classical-results" aria-labelledby="peaked-classical-title">
-    <h2 id="peaked-classical-title">The classical solve</h2>
-    <p>Dylan Neve’s qsim-lab solver looks for rotations that reappear later as their inverses. These pairs reveal the circuit’s mirrored blocks and how the wires move through them. Replacing most of the middle with a wire map leaves a much smaller model to contract. The final cores contain 284 two-qubit units for P11 and 279 for P12.</p>
+    <div class="peaked-heading">
+      <span aria-hidden="true">02</span>
+      <h2 id="peaked-classical-title">What the circuit files give away</h2>
+    </div>
+    <div class="peaked-split">
+      <div class="peaked-copy">
+        <p>The qsim-lab solver looks for rotations that reappear later as their inverses. Those matches reveal the circuit’s mirrored blocks and how the qubit wires move between them. Approximating the middle block with a wire permutation leaves about <strong>one eighth of the original two-qubit units</strong> to simulate.</p>
+        <p>The solver contracts this smaller circuit to estimate each output bit’s most likely value, then scores the resulting string by its amplitude. It tests a few gates at the boundary of the reduced circuit and keeps a move when it improves the candidate’s probability.</p>
+        <p>A boundary move affects only the output bits that depend on the moved gate. The solver can reuse the other bits’ probabilities. On a MacBook M3 Pro, caching brought the same search down to about <strong>a third of its original runtime</strong>.</p>
+      </div>
 
-    {% assign reduction = project.article_figures.reduction %}
-    <figure class="peaked-figure">
-      <a class="media-link" href="{{ reduction.src | relative_url }}" data-lightbox="Classical circuit reduction" aria-label="Enlarge classical circuit reduction figure">
-        <img src="{{ reduction.src | relative_url }}" width="{{ reduction.width }}" height="{{ reduction.height }}" alt="{{ reduction.alt | escape }}" loading="lazy" decoding="async">
-      </a>
-      <figcaption>The published files contain 1,999 and 2,457 atomic two-qubit units. The retained cores include one boundary move for P11 and two for P12. The middle-block replacement is approximate.</figcaption>
-    </figure>
+      <figure class="peaked-side peaked-core">
+        <figcaption>How much of the circuit remained?</figcaption>
+        <p>Two-qubit units in each circuit model</p>
+        <dl>
+          <div style="--full: 81.36%; --core: 14.21%;">
+            <dt>P11</dt><dd>284 <span>of 1,999</span></dd>
+          </div>
+          <div style="--full: 100%; --core: 11.36%;">
+            <dt>P12</dt><dd>279 <span>of 2,457</span></dd>
+          </div>
+        </dl>
+        <p class="peaked-key"><i aria-hidden="true"></i> Retained core <i aria-hidden="true"></i> Published circuit</p>
+      </figure>
+    </div>
 
-    <p>The solver contracts the core to calculate the probability of zero or one at each output bit. It forms a candidate from those marginals, scores the candidate’s amplitude, and tests whether adding a frontier gate improves the result. A gate move often leaves most bits’ backward causal cones unchanged, so their exact marginals can be reused.</p>
-    <p>I reproduced the solver and added marginal and contraction-path caching, stable candidate ordering, and reuse of the accepted trial. On my MacBook M3 Pro, the same search ran about three times faster with caching. qsim-lab adopted the cached evaluator in its v2 solver.</p>
-
-    <div class="peaked-table-wrap" tabindex="0" role="region" aria-label="Classical solver results">
+    <div class="peaked-table-wrap" tabindex="0" role="region" aria-label="Classical solve time comparison">
       <table class="peaked-table">
-        <caption>One recorded run per mode, using the same deterministic search</caption>
-        <thead><tr><th scope="col">Circuit</th><th scope="col">Without caches</th><th scope="col">With caches</th><th scope="col">Speedup</th><th scope="col">Core probability</th></tr></thead>
+        <caption>One run per mode on a MacBook M3 Pro. Times cover the search. Peak probabilities apply to the reduced circuit.</caption>
+        <thead><tr><th scope="col">Circuit</th><th scope="col">Uncached</th><th scope="col">Cached</th><th scope="col">Peak probability</th></tr></thead>
         <tbody>
-          <tr><th scope="row">P11</th><td>50.3 s</td><td>17.1 s</td><td>2.94×</td><td>0.302893</td></tr>
-          <tr><th scope="row">P12</th><td>86.3 s</td><td>27.9 s</td><td>3.09×</td><td>0.236559</td></tr>
+          <tr><th scope="row">P11</th><td>50.3 s</td><td>17.1 s</td><td>0.302893</td></tr>
+          <tr><th scope="row">P12</th><td>86.3 s</td><td>27.9 s</td><td>0.236559</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="peaked-note">Solve times exclude imports, numerical certification, and the extra cache checks. The probabilities and mode certificates apply to the reduced cores.</p>
+    <p class="peaked-links">
+      <a href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/251">P11 classical submission ↗</a>
+      <a href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/252">P12 submission and solver discussion ↗</a>
+    </p>
 
-    <details id="classical-record">
-      <summary>Boundary repair, timing records and additional figures</summary>
-      <div class="peaked-detail">
-        <p>The original team added boundary repair after an early P12 attempt missed four bits. The recorded reproduction chooses the best trial that improves the current candidate probability by at least 30%. It selects gate 59 for P11 and gates 60 and 64 for P12. Published answers are compared after solving.</p>
-        <p>The cache reused 78.1% of requested marginals on P11 and 82.8% on P12. Every final cached marginal was checked against a fresh contraction. Numerical certification then checked one competing amplitude for P11 and 31 for P12, establishing each reduced core’s unique mode to a tolerance of 10⁻¹⁰.</p>
-        {% assign caching = project.article_figures.caching %}
-        <figure class="peaked-figure">
-          <a class="media-link" href="{{ caching.src | relative_url }}" data-lightbox="Caching benchmark" aria-label="Enlarge caching benchmark figure">
-            <img src="{{ caching.src | relative_url }}" width="{{ caching.width }}" height="{{ caching.height }}" alt="{{ caching.alt | escape }}" loading="lazy" decoding="async">
-          </a>
-          <figcaption>Measured solve times and the fraction of marginals reused in the local comparison.</figcaption>
-        </figure>
-        {% assign overview = project.article_figures.overview %}
-        <figure class="peaked-figure">
-          <a class="media-link" href="{{ overview.src | relative_url }}" data-lightbox="Project overview" aria-label="Enlarge project overview figure">
-            <img src="{{ overview.src | relative_url }}" width="{{ overview.width }}" height="{{ overview.height }}" alt="{{ overview.alt | escape }}" loading="lazy" decoding="async">
-          </a>
-          <figcaption>The hardware measurements and the classical core sizes. Each bottom strip encodes the corresponding accepted string.</figcaption>
-        </figure>
-        <p>The tracker verified the classical P11 submission. A reviewer reproduced both P12 solver versions in its open issue. <a href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/251">P11 classical submission</a> · <a href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io/issues/252">P12 submission and caching discussion</a></p>
+    <details class="technical-record peaked-record" id="classical-record">
+      <summary>Boundary search and benchmark notes <span aria-hidden="true">+</span></summary>
+      <div class="technical-content">
+        <p>Dylan Neve’s qsim-lab submission introduced the circuit reduction and boundary repair. I reproduced the search and cached the output marginals by their backward causal cones. I also reused contraction paths and kept the result of the accepted trial. qsim-lab adopted the cached evaluator in v2.</p>
+        <p>The cache reused 78.1% of requested marginals on P11 and 82.8% on P12. A fresh contraction confirmed each final marginal. The search times exclude imports, numerical certification, and those extra cache checks. Numerical certification established the unique mode of each reduced core to a tolerance of 10⁻¹⁰.</p>
+        <div class="media-grid">
+          {% assign classical_figures = 'reduction,caching' | split: ',' %}
+          {% for key in classical_figures %}
+          {% assign figure = project.article_figures[key] %}
+          <figure class="project-media">
+            <a class="media-link" href="{{ figure.src | relative_url }}" data-lightbox="{{ figure.caption | escape }}">
+              <img src="{{ figure.src | relative_url }}" width="{{ figure.width }}" height="{{ figure.height }}" alt="{{ figure.alt | escape }}" loading="lazy" decoding="async">
+            </a>
+            <figcaption><p>{{ figure.insight | escape }}</p></figcaption>
+          </figure>
+          {% endfor %}
+        </div>
       </div>
     </details>
   </section>
 
-  <section id="resources" aria-labelledby="peaked-records-title">
-    <h2 id="peaked-records-title">Code and records</h2>
-    <p>The repository contains the source circuits, hardware output, decoding code, classical solver and run logs. The <a href="{{ project.blog_url }}" target="_blank" rel="noopener">companion article</a> develops the mathematics and discusses why peaked circuits are useful for verification.</p>
+  <section id="resources" aria-labelledby="peaked-article-title">
+    <div class="peaked-heading">
+      <span aria-hidden="true">03</span>
+      <h2 id="peaked-article-title">Article and code</h2>
+    </div>
+    <div class="peaked-article">
+      <div class="peaked-copy">
+        <h3>Peaked-Circuit Recovery on 98 Qubits</h3>
+        <p>The article works through the mathematics of decoding the hardware shots and reducing the classical circuit. The figure compares the measured shot distances with the size of the inferred cores. The two strips encode the recovered strings.</p>
+        <p><a class="peaked-article-link" href="{{ project.blog_url }}" target="_blank" rel="noopener">Read the article on Medium ↗</a></p>
+      </div>
+      {% assign overview = project.article_figures.overview %}
+      <figure class="project-media">
+        <a class="media-link" href="{{ overview.src | relative_url }}" data-lightbox="Project overview">
+          <img src="{{ overview.src | relative_url }}" width="{{ overview.width }}" height="{{ overview.height }}" alt="{{ overview.alt | escape }}" loading="lazy" decoding="async">
+        </a>
+      </figure>
+    </div>
 
-    <details id="accepted-peaks">
-      <summary>Recovered bitstrings</summary>
-      <div class="peaked-detail">
-        <p>Both approaches recover the same 98-bit string for each circuit. Qubit 0 is on the left and qubit 97 is on the right.</p>
-        {% for peak in project.accepted_peaks %}
-        <h3>{{ peak.circuit | escape }}</h3>
-        <p class="peaked-bitstring"><code>{{ peak.bitstring | escape }}</code></p>
-        {% endfor %}
+    <details class="technical-record peaked-record" id="accepted-peaks">
+      <summary>The two recovered bitstrings <span aria-hidden="true">+</span></summary>
+      <div class="technical-content">
+        <p>Both methods recovered these answers. Qubit 0 is on the left and qubit 97 is on the right.</p>
+        <dl class="peaked-bitstrings">
+          {% for peak in project.accepted_peaks %}
+          <div><dt>{{ peak.circuit | escape }}</dt><dd><code>{{ peak.bitstring | escape }}</code></dd></div>
+          {% endfor %}
+        </dl>
       </div>
     </details>
 
-    <ul class="peaked-records">
-      <li><a href="https://github.com/MonitSharma/peaked_circuits/tree/main/results/tracker_submissions/p11">P11 hardware evidence</a> and <a href="https://github.com/MonitSharma/peaked_circuits/tree/main/results/tracker_submissions/p12">P12 hardware evidence</a></li>
-      <li><a href="https://github.com/MonitSharma/peaked_circuits/blob/main/REPRODUCIBILITY_QUANTUM.md">Offline hardware reproduction guide</a></li>
-      <li><a href="https://github.com/MonitSharma/peaked_circuits/tree/40ed7d33b45d91f95db9e3fbdd446247ba792006/classical_simulations/p11_p12">Classical solver, QASM inputs and benchmark records</a></li>
-      <li><a href="https://app.bluequbit.io/hackathons/oEOtLSSrPSVH60Ah?tab=leaderboard">Peaked Portal leaderboard</a></li>
+    <ul class="peaked-resources">
+      <li><a href="{{ project.code_url }}">Project repository ↗</a></li>
+      <li><a href="{{ project.resources[1].url }}">P11 hardware data ↗</a></li>
+      <li><a href="{{ project.resources[2].url }}">P12 hardware data ↗</a></li>
+      <li><a href="{{ project.resources[3].url }}">Hardware reproduction guide ↗</a></li>
+      <li><a href="https://github.com/MonitSharma/peaked_circuits/tree/40ed7d33b45d91f95db9e3fbdd446247ba792006/classical_simulations/p11_p12">Classical solver and inputs ↗</a></li>
+      <li><a href="{{ project.resources[4].url }}">Peaked Portal leaderboard ↗</a></li>
     </ul>
   </section>
 </div>

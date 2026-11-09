@@ -1,132 +1,163 @@
-/* Reading layout below the peaked-circuit banner. */
+/* The research write-up follows the portfolio's Shor page. The banner owns its colours and type. */
+.experience--peaked-circuits {
+  --paper: #fff;
+  --surface: #fff;
+  --ink: #22262d;
+  --muted: #626974;
+  --accent: #335ac6;
+  --line: #e1e5eb;
+  --line-strong: #b5becb;
+}
+[data-theme="dark"] .experience--peaked-circuits {
+  --paper: #191d24;
+  --surface: #191d24;
+  --ink: #e8ecf3;
+  --muted: #a5afbf;
+  --accent: #9ab4ff;
+  --line: #353d49;
+  --line-strong: #566273;
+}
 .peaked-writeup {
   --sans: 'DM Sans', system-ui, sans-serif;
-  padding-top: 40px;
-}
-.peaked-writeup .peaked-intro,
-.peaked-writeup section > p,
-.peaked-writeup .peaked-detail > p {
-  max-width: 790px;
-  font-size: 17px;
-  line-height: 1.85;
-}
-.peaked-writeup p + p {
-  margin-top: 18px;
-}
-.peaked-writeup > section {
-  margin-top: 44px;
-  padding-top: 30px;
-  border-top: 1px solid var(--line);
-}
-.peaked-writeup h2 {
-  margin-bottom: 20px;
-  font: 500 clamp(27px, 3vw, 35px)/1.2 var(--sans);
-  letter-spacing: -.025em;
-}
-.peaked-writeup h3 {
-  margin: 24px 0 10px;
-  font-size: 18px;
+  margin-bottom: 56px;
 }
 .peaked-writeup a:not(.media-link) {
   color: var(--accent);
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 4px;
 }
-.peaked-writeup .peaked-table-wrap {
-  overflow-x: auto;
-  margin: 28px 0;
+.peaked-writeup a:hover {text-decoration-color: currentColor}
+.peaked-writeup .peaked-contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font: 13px/1.5 var(--sans);
 }
+.peaked-writeup .peaked-contents a {color: var(--muted); text-decoration: none}
+.peaked-writeup .peaked-contents a:hover {color: var(--accent)}
+.experience .peaked-writeup > section {
+  margin-top: clamp(48px, 6.5vw, 88px);
+  padding-top: 0;
+  scroll-margin-top: 30px;
+}
+.peaked-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.peaked-heading > span {font: 12px/1.5 var(--mono); color: var(--accent)}
+.experience .peaked-heading h2 {
+  font: 500 clamp(27px, 3vw, 38px)/1.2 var(--sans);
+  letter-spacing: -.035em;
+}
+.peaked-split, .peaked-article {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(32px, 6vw, 80px);
+}
+.peaked-copy {max-width: 65ch; color: var(--muted); font: 17px/1.8 var(--serif)}
+.peaked-copy p + p {margin-top: 16px}
+.peaked-side {
+  margin: 5px 0 0;
+  padding-left: 22px;
+  border-left: 1px solid var(--line);
+}
+.peaked-side figcaption {font: 500 17px/1.5 var(--sans)}
+.peaked-side > p {color: var(--muted); font: 12px/1.6 var(--sans)}
+.peaked-table-wrap {overflow-x: auto; margin-top: 28px}
 .peaked-table {
   width: 100%;
-  max-width: 960px;
   border-collapse: collapse;
-  text-align: left;
-  font: 14px/1.7 var(--mono);
+  text-align: right;
+  font: 17px/1.5 var(--sans);
+  font-feature-settings: "tnum" 1;
 }
 .peaked-table caption {
-  padding-bottom: 10px;
+  caption-side: bottom;
+  padding-top: 10px;
   text-align: left;
-  font: 13px/1.6 var(--sans);
   color: var(--muted);
+  font: 12px/1.6 var(--sans);
 }
-.peaked-table th,
-.peaked-table td {
-  padding: 12px 24px 12px 0;
-  border-bottom: 1px solid var(--line);
-  white-space: nowrap;
-}
-.peaked-table thead th {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 400;
-}
-.peaked-table tbody th {
-  font-weight: 500;
-}
-.peaked-writeup .peaked-figure {
-  max-width: 960px;
-  margin: 30px 0;
-}
-.peaked-writeup .peaked-figure .media-link {
-  border: 0;
-  border-radius: 0;
-}
-.peaked-writeup .peaked-figure figcaption {
-  max-width: 850px;
-  padding-top: 12px;
-  color: var(--muted);
-  font: 13px/1.7 var(--sans);
-}
-.peaked-writeup .peaked-note {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-}
-.peaked-writeup details {
-  margin-top: 26px;
-  padding: 16px 0;
-  border-top: 1px solid var(--line);
-}
-.peaked-writeup summary {
-  width: fit-content;
-  cursor: pointer;
-  color: var(--accent);
-  font: 14px/1.6 var(--sans);
-}
-.peaked-writeup .peaked-detail {
-  padding-top: 16px;
-}
-.peaked-writeup .peaked-detail > p + p {
-  margin-top: 16px;
-}
-.peaked-writeup .peaked-distributions {
+.peaked-table th, .peaked-table td {padding: 13px 18px; border-bottom: 1px solid var(--line)}
+.peaked-table th:first-child {padding-left: 0; text-align: left}
+.peaked-table :is(th, td):last-child {padding-right: 0}
+.peaked-table thead th {color: var(--muted); font: 12px/1.5 var(--sans); border-top: 1px solid var(--line-strong)}
+.peaked-table tbody th {font-weight: 500}
+.peaked-table tbody td {white-space: nowrap}
+.peaked-table-wrap .peaked-table tbody td:nth-child(3) {color: var(--accent); font-weight: 500}
+.peaked-decoder {margin-top: 14px; font-size: 14px}
+.peaked-decoder th, .peaked-decoder td {padding: 9px 8px}
+.peaked-decoder tbody tr + tr td {color: var(--accent)}
+.peaked-core dl {margin: 15px 0}
+.peaked-core dl > div {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 7px 10px;
+  padding: 8px 0;
+  font: 13px/1.5 var(--sans);
 }
-.peaked-writeup .peaked-bitstring {
-  overflow-wrap: anywhere;
-  font: 14px/1.8 var(--mono);
+.peaked-core dl > div::after {
+  content: '';
+  grid-column: 1 / -1;
+  width: var(--full);
+  height: 5px;
+  background: linear-gradient(to right, var(--accent) var(--core), var(--line-strong) var(--core));
 }
-.peaked-writeup .peaked-records {
-  padding-left: 20px;
-  margin: 24px 0 36px;
-  font-size: 15px;
-  line-height: 1.8;
+.peaked-core dd {margin: 0; color: var(--accent); font-size: 19px; font-feature-settings: "tnum" 1}
+.peaked-core dd span {color: var(--muted); font-size: 13px}
+.peaked-core .peaked-key {display: flex; align-items: center; flex-wrap: wrap; gap: 5px}
+.peaked-key i {width: 12px; height: 4px; background: var(--accent)}
+.peaked-key i + i {margin-left: 10px; background: var(--line-strong)}
+.peaked-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 18px;
+  margin-top: 18px;
+  scroll-margin-top: 30px;
+  color: var(--muted);
+  font: 13px/1.6 var(--sans);
 }
-.peaked-writeup .peaked-records li + li {
-  margin-top: 9px;
+.experience .peaked-record {
+  margin-top: 14px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
 }
-@media (max-width: 680px) {
-  .peaked-writeup {
-    padding-top: 28px;
-  }
-  .peaked-writeup > section {
-    margin-top: 32px;
-    padding-top: 24px;
-  }
-  .peaked-writeup .peaked-distributions {
-    grid-template-columns: 1fr;
-  }
+.peaked-record > summary {padding: 16px 0; font: 14px/1.5 var(--sans)}
+.peaked-record > summary > span {font-size: 16px}
+.peaked-record .technical-content {padding-inline: 0}
+.peaked-record .technical-content > p {max-width: 75ch}
+.peaked-writeup .project-media .media-link {border: 0; border-radius: 0}
+.peaked-article {grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr)}
+.experience .peaked-article h3 {margin: 0 0 12px; color: var(--ink); font: 500 22px/1.3 var(--sans)}
+.peaked-article .project-media {margin: 0}
+.peaked-article-link {font: 500 14px/1.5 var(--sans)}
+.peaked-bitstrings > div {display: grid; grid-template-columns: 3em 1fr; gap: 10px; margin-top: 12px}
+.peaked-bitstrings dd {margin: 0; overflow-wrap: anywhere; font: 14px/1.6 var(--mono)}
+.peaked-resources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  padding: 0;
+  margin: 20px 0 0;
+  list-style: none;
+  font: 13px/1.5 var(--sans);
+}
+@media (max-width: 710px) {
+  .peaked-split, .peaked-article {grid-template-columns: 1fr; gap: 24px}
+  .peaked-side {max-width: 440px; padding: 18px 0 0; border-left: 0; border-top: 1px solid var(--line)}
+}
+@media (max-width: 540px) {
+  .peaked-heading {gap: 12px; margin-bottom: 18px}
+  .peaked-contents {column-gap: 18px}
+  .peaked-table {font-size: 14px}
+  .peaked-table th, .peaked-table td {padding: 10px 7px}
 }
