@@ -6,6 +6,13 @@
   selected: true
   venue: arXiv preprint · November 2026
   new: true
+  preview:
+    src: assets/imgs/publications/2611.08907.jpg
+    width: 637
+    height: 900
+    label: arXiv · first page
+    url: https://arxiv.org/abs/2611.08907
+    source: https://arxiv.org/pdf/2611.08907
   description:
     - We share table lookups and reuse intermediate residues to cut the estimated
       Toffoli count per RSA-2048 factoring by **46%** compared with the best
