@@ -1,8 +1,101 @@
-<header class="record-cover" id="overview"><div class="ledger-heading"><span>ECDSA.fail / Optimization challenge</span><span>Record dated 20 October 2026</span></div><p class="eyebrow">Reversible elliptic-curve arithmetic</p><h1>Fewer Toffoli gates for elliptic-curve arithmetic</h1><div class="official-record"><div><span>OFFICIAL TOFFOLI RECORD</span><strong>751,182</strong><p>executed gates / 1,464 logical qubits</p></div><a href="{{ project.source_url }}" target="_blank" rel="noopener">View service receipt ↗</a></div><div class="record-deltas"><span>−1,809 Toffolis</span><span>−399 qubits</span><span>vs. the preceding gate-count record</span></div></header>
-<section class="project-section" id="results"><div class="experience-heading"><div><p class="eyebrow">The resource frontier</p><h2>Two objectives, two separate circuits</h2></div></div><p class="body-copy">{{ project.detail | escape }}</p>{% include project-blocks/table.html %}{% assign selected_figure = project.figures[0] %}{% include project-blocks/media.html figure=selected_figure %}</section>
-<section class="record-analysis"><div><p class="eyebrow">The improvement</p><h2>Counting gates and qubits</h2><p>{{ project.findings[0] | escape }}</p><p>{{ project.findings[1] | escape }}</p></div>{% assign selected_figure = project.figures[1] %}{% include project-blocks/media.html figure=selected_figure %}</section>
-{% include project-blocks/verification.html %}
-<section class="project-section validation-ledger"><p class="eyebrow">Validation ledger</p><h2>Verification records</h2><p>{{ project.findings[2] | escape }}</p>{% include project-blocks/technical.html title='Arithmetic changes, fresh-input checks & nonce disclosures' %}</section>
-<details class="technical-record"><summary>Earlier milestone / Product champion on 17 October <span aria-hidden="true">+</span></summary><div class="technical-content">{% assign selected_figure = project.figures[2] %}{% include project-blocks/media.html figure=selected_figure %}</div></details>
-{% include project-blocks/notes.html title='Benchmark scope & attribution' %}
-{% include project-blocks/resources.html label='Trace every result' title='Receipts, source & validation data' %}
+<header class="ecdsa-cover" id="overview">
+  <div class="ecdsa-masthead">
+    <span>ECDSA.fail <span aria-hidden="true">/</span> Optimization challenge</span>
+    <a href="{{ project.leaderboard_url }}" target="_blank" rel="noopener">Live leaderboard ↗</a>
+  </div>
+  <div class="ecdsa-cover-grid">
+    <div class="ecdsa-cover-copy">
+      <h1>Compute once.<span>Reuse the product.</span></h1>
+      <p>In a reversible secp256k1 point addition, an idle qubit can hold a product for later use. That saves a Toffoli, provided the circuit returns the wire to zero.</p>
+    </div>
+    <figure class="ecdsa-circuit">
+      <svg viewBox="0 0 448 216" role="img" aria-labelledby="ecdsa-circuit-title ecdsa-circuit-desc">
+        <title id="ecdsa-circuit-title">Compute, reuse and clear a Boolean product</title>
+        <desc id="ecdsa-circuit-desc">An illustrative five-wire circuit. A Toffoli computes a AND b into an idle zero wire. Two CNOT gates copy the product into the first target and a later zero target. A third CNOT uses the later target to clear the idle wire.</desc>
+        <rect class="ecdsa-circuit-hold" x="106" y="108" width="244" height="28"/>
+        <g class="ecdsa-circuit-labels" text-anchor="middle">
+          <text x="106" y="19">Compute</text>
+          <text x="229" y="19">Copy and reuse</text>
+          <text x="350" y="19">Clear</text>
+        </g>
+        <path class="ecdsa-circuit-wires" d="M55 54H380 M55 88H380 M55 122H380 M55 156H380 M55 190H380"/>
+        <path class="ecdsa-circuit-controls" d="M106 54V122 M187 122V156 M270 122V190 M350 122V190"/>
+        <g class="ecdsa-circuit-dots">
+          <circle cx="106" cy="54" r="4"/><circle cx="106" cy="88" r="4"/>
+          <circle cx="187" cy="122" r="4"/><circle cx="270" cy="122" r="4"/><circle cx="350" cy="190" r="4"/>
+        </g>
+        <g class="ecdsa-circuit-targets">
+          <circle cx="106" cy="122" r="8"/><circle cx="187" cy="156" r="8"/>
+          <circle cx="270" cy="190" r="8"/><circle cx="350" cy="122" r="8"/>
+          <path d="M101 122h10 M106 117v10 M182 156h10 M187 151v10 M265 190h10 M270 185v10 M345 122h10 M350 117v10"/>
+        </g>
+        <g class="ecdsa-circuit-states">
+          <text x="3" y="58">a</text><text x="3" y="92">b</text>
+          <text x="3" y="126">idle 0</text><text x="3" y="160">t</text><text x="3" y="194">0</text>
+          <text x="391" y="58">a</text><text x="391" y="92">b</text>
+          <text x="391" y="126">0</text><text x="391" y="160">t ⊕ ab</text><text x="391" y="194">ab</text>
+        </g>
+      </svg>
+      <figcaption>One Toffoli computes <var>ab</var>. Three CNOTs copy it, reuse it, and clear the idle wire.</figcaption>
+    </figure>
+  </div>
+  <p class="ecdsa-cover-result"><strong>{{ project.metric }}</strong><span>mean executed Toffolis at {{ project.low_gate_qubits }} logical qubits</span><small>My lowest gate count</small></p>
+</header>
+
+<nav class="ecdsa-contents" aria-label="On this page">
+  <a href="#results">Circuit design</a>
+  <a href="#public-frontier">Score comparison</a>
+  <a href="#external-verification">Verification</a>
+</nav>
+
+<section class="ecdsa-section" id="results" aria-labelledby="ecdsa-results-title">
+  <div class="ecdsa-heading"><span aria-hidden="true">01</span><h2 id="ecdsa-results-title">Where the circuit saves work</h2></div>
+  <p class="ecdsa-lede">The challenge measures one elliptic-curve point addition. Toffolis can be expensive in a fault-tolerant circuit, so it pays to look for places where the same Boolean product is computed twice.</p>
+  <div class="ecdsa-methods">
+    <div>
+      <h3>Hold an intermediate result</h3>
+      <p>The final pass of my low-gate circuit found thirteen places where an idle wire could keep a product until it was needed again. The pass checks that the wire starts at zero and that the rest of the circuit leaves it alone while it holds the product. If the later target also starts at zero, CNOTs can transfer the value and restore the idle wire to zero.</p>
+    </div>
+    <div>
+      <h3>Simplify classical controls</h3>
+      <p>My separate low-product circuit simplifies the classical conditions that decide which quantum gates execute. The optimizer checks each Boolean identity over all assignments to the inputs it tracks. That saves gates while keeping the circuit at the same width.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ecdsa-section" id="public-frontier" aria-labelledby="ecdsa-frontier-title">
+  <div class="ecdsa-heading"><span aria-hidden="true">02</span><h2 id="ecdsa-frontier-title">How the scores compare</h2></div>
+  <p class="ecdsa-lede">ECDSA.fail ranks circuits by peak logical qubits multiplied by mean executed Toffolis. My best score comes from the narrower of my two circuits.</p>
+  <dl class="ecdsa-score-pair">
+    <div>
+      <dt>My best score</dt>
+      <dd><strong>{{ project.product_comparison.mine.score }}</strong><span>{{ project.product_comparison.mine.qubits }} qubits × {{ project.product_comparison.mine.toffolis }} Toffolis</span></dd>
+    </div>
+    <div>
+      <dt>Public best · {{ project.product_comparison.leader.solver }}</dt>
+      <dd><strong>{{ project.product_comparison.leader.score }}</strong><span>{{ project.product_comparison.leader.qubits }} qubits × {{ project.product_comparison.leader.toffolis }} Toffolis</span></dd>
+    </div>
+  </dl>
+  <p class="ecdsa-score-date">Official leaderboard snapshot, {{ project.product_comparison.date }}.</p>
+  <details class="technical-record ecdsa-details">
+    <summary>How the public frontier moved <span aria-hidden="true">+</span></summary>
+    <div class="technical-content">
+      {% assign selected_figure = project.figures[0] %}
+      {% include project-blocks/media.html figure=selected_figure %}
+    </div>
+  </details>
+</section>
+
+<section class="ecdsa-section" id="external-verification" aria-labelledby="ecdsa-checks-title">
+  <div class="ecdsa-heading"><span aria-hidden="true">03</span><h2 id="ecdsa-checks-title">What the benchmark checks</h2></div>
+  <p class="ecdsa-lede">Both submissions passed the 9,024-shot benchmark in classical simulation. It checks the output point, phase, and workspace cleanup. The inherited arithmetic is approximate, so I also compared the circuits with their references on fresh inputs.</p>
+  <details class="technical-record ecdsa-details" id="method">
+    <summary>Fresh-input checks <span aria-hidden="true">+</span></summary>
+    <div class="technical-content">
+      <p>The low-gate circuit and its reference each ran on the same 2,097,152 fresh inputs. Both produced 1,151 wrong-point shots and 629 phase-failing shots, with no dirty-workspace shots. The low-product circuit had a separate paired test with 16,777,216 shots per source.</p>
+      <p>The benchmark derives its inputs from the circuit. I froze the arithmetic before screening identity tails and selected the first passing tail in each documented search.</p>
+    </div>
+  </details>
+</section>
+
+<p class="ecdsa-code" id="resources"><a href="{{ project.code_url }}" target="_blank" rel="noopener">View the code on GitHub ↗</a></p>

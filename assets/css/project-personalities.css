@@ -254,23 +254,119 @@
 .experiment-label>h3{margin-top:16px;font:400 29px/1.2 var(--serif)}
 .experiment-label>p{font-size:14px;color:var(--muted);line-height:1.85;margin-top:18px}
 
-/* ECDSA: a resource record and a ledger of independently scored circuits. */
-.experience--ecdsa{--paper:#f4f0eb;--surface:#fffaf4;--ink:#332d29;--muted:#796c61;--accent:#97522c;--line:#ddcfc1;--line-strong:#bd9d84;--project-radius:0}
-.record-cover{padding:24px 36px 0;background:#2c2d2a;color:#f8f1e9;border-top:5px solid #dc9865}
-.ledger-heading{display:flex;justify-content:space-between;gap:24px;border-bottom:1px solid #59564e;padding-bottom:20px;font:9px var(--mono);color:#c4b6a5}
-.experience .record-cover>.eyebrow{color:#edac7b;margin-top:35px}
-.experience .record-cover h1{font:400 clamp(58px,6.7vw,88px)/1 var(--serif);letter-spacing:-.02em}
-.official-record{display:flex;align-items:end;justify-content:space-between;gap:24px;padding:30px 0;border-bottom:1px solid #59564e}
-.official-record>div>span{font:9px var(--mono);color:#edac7b;letter-spacing:.1em}
-.official-record strong{font:400 clamp(50px,7.3vw,96px)/1.3 var(--mono);letter-spacing:-.07em;display:block}
-.official-record p{font:12px var(--mono);color:#c4b6a5}
-.official-record>a{font:11px var(--mono);margin-bottom:5px;color:#edac7b}
-.record-deltas{display:flex;gap:30px;padding:20px 0;font:11px var(--mono);color:#edac7b}
-.record-deltas>span:last-child{color:#c4b6a5;font-size:10px}
-.record-analysis{display:grid;grid-template-columns:.8fr 1.2fr;gap:45px;padding-top:64px;align-items:start}
-.record-analysis>div>p:not(.eyebrow){font-size:14px;line-height:1.85;margin-top:25px;color:var(--muted)}
-.record-analysis .project-media{margin:0}
-.validation-ledger>p:not(.eyebrow){font-size:15px;margin-top:24px;max-width:850px}
+/* ECDSA.fail */
+.experience--ecdsa {
+  --paper:#fcfaf7; --surface:#fffaf4; --ink:#332d29; --muted:#6b5e53;
+  --accent:#97522c; --line:#e4dacf; --line-strong:#bdac9d; --project-radius:0;
+  --ecdsa-sans:'DM Sans',system-ui,sans-serif;
+}
+.ecdsa-cover {
+  --cover-ink:#f9f2e5; --cover-muted:#c9cebb; --cover-rule:#526353;
+  --cover-accent:#f2c389; --circuit-paper:#24332a; --circuit-ink:#a8cbac;
+  padding:0 clamp(20px,4vw,56px);
+  border-top:3px solid var(--cover-accent);
+  background:#202d25;
+  color:var(--cover-ink);
+}
+.ecdsa-masthead {
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 24px;
+  padding:16px 0; border-bottom:1px solid var(--cover-rule);
+  color:var(--cover-muted); font:13px/1.5 var(--ecdsa-sans);
+}
+.ecdsa-masthead span span {padding-inline:4px; color:var(--cover-accent)}
+.ecdsa-cover a {color:var(--cover-accent); text-decoration:underline; text-underline-offset:4px}
+.ecdsa-cover a:focus-visible {outline-color:var(--cover-accent)}
+.ecdsa-cover-grid {
+  display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  align-items:center; gap:clamp(25px,4.2vw,64px);
+  padding:clamp(34px,5.3vw,72px) 0;
+}
+.experience .ecdsa-cover h1 {
+  font:500 clamp(32px,4.7vw,68px)/1.02 var(--serif);
+  letter-spacing:-.055em;
+}
+.ecdsa-cover h1 span {display:block; color:var(--cover-accent)}
+.ecdsa-cover-copy p {
+  max-width:41ch; margin-top:23px;
+  color:var(--cover-muted); font:18px/1.65 var(--serif);
+}
+.ecdsa-circuit {
+  min-width:0; margin:0; padding:clamp(10px,2vw,22px);
+  border:1px solid var(--cover-rule);
+  background:radial-gradient(#68796b55 1px,transparent 1px) 0 0/14px 14px var(--circuit-paper);
+}
+.ecdsa-circuit svg {display:block; width:100%; height:auto}
+.ecdsa-circuit-hold {fill:#f2c38924}
+.ecdsa-circuit-wires {fill:none; stroke:#738473; stroke-width:1}
+.ecdsa-circuit-controls,.ecdsa-circuit-targets {stroke:var(--circuit-ink); stroke-width:1.6}
+.ecdsa-circuit-dots {fill:var(--circuit-ink)}
+.ecdsa-circuit-targets circle {fill:var(--circuit-paper)}
+.ecdsa-circuit-targets path {fill:none}
+.ecdsa-circuit-labels {fill:var(--cover-accent); font:13px var(--ecdsa-sans)}
+.ecdsa-circuit-states {fill:var(--cover-ink); font:14px var(--mono)}
+.ecdsa-circuit figcaption {
+  border-top:1px solid var(--cover-rule); padding-top:10px;
+  color:var(--cover-muted); font:12px/1.55 var(--ecdsa-sans);
+}
+.ecdsa-cover-result {
+  display:flex; align-items:baseline; flex-wrap:wrap; gap:5px 12px;
+  padding:14px 0; border-top:1px solid var(--cover-rule);
+  color:var(--cover-muted); font:13px/1.5 var(--ecdsa-sans);
+}
+.ecdsa-cover-result strong {color:var(--cover-accent); font:500 20px/1.4 var(--mono)}
+.ecdsa-cover-result small {margin-left:auto; font-size:12px}
+.ecdsa-contents {
+  display:flex; flex-wrap:wrap; gap:8px 28px; padding:14px 0;
+  border-bottom:1px solid var(--line); color:var(--muted); font:13px/1.5 var(--ecdsa-sans);
+}
+.ecdsa-contents a:hover {color:var(--accent)}
+.experience .ecdsa-section {margin-top:clamp(45px,6vw,80px); padding-top:0; scroll-margin-top:30px}
+.ecdsa-heading {display:flex; align-items:baseline; gap:16px; margin-bottom:20px}
+.ecdsa-heading > span {color:var(--accent); font:12px/1.5 var(--mono)}
+.experience .ecdsa-heading h2 {
+  font:500 clamp(27px,3vw,38px)/1.2 var(--ecdsa-sans); letter-spacing:-.035em;
+}
+.ecdsa-lede {max-width:68ch; color:var(--muted); font:17px/1.75 var(--serif)}
+.ecdsa-methods {
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:25px clamp(24px,5vw,64px);
+  margin-top:28px;
+}
+.ecdsa-methods > div {padding-top:16px; border-top:1px solid var(--line)}
+.experience .ecdsa-methods h3 {margin-bottom:10px; font:500 19px/1.3 var(--ecdsa-sans)}
+.ecdsa-methods p {max-width:55ch; color:var(--muted); font:16px/1.75 var(--serif)}
+.ecdsa-score-pair {
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px 28px;
+  margin:22px 0 0;
+}
+.ecdsa-score-pair > div {padding:15px 0; border-block:1px solid var(--line)}
+.ecdsa-score-pair dt,.ecdsa-score-pair span,.ecdsa-score-date {color:var(--muted); font:13px/1.55 var(--ecdsa-sans)}
+.ecdsa-score-pair dd {margin:0}
+.ecdsa-score-pair strong {
+  display:block; margin:7px 0 3px;
+  font:500 clamp(26px,4.1vw,46px)/1.15 var(--ecdsa-sans);
+  font-feature-settings:"lnum" 1,"tnum" 1;
+  letter-spacing:-.045em;
+}
+.ecdsa-score-pair > div:first-child strong {color:var(--accent)}
+.ecdsa-score-date {margin-top:10px; font-size:12px}
+.experience .ecdsa-details {margin-top:14px; border:0; border-bottom:1px solid var(--line); background:none}
+.ecdsa-details > summary {padding:14px 0; font:14px/1.5 var(--ecdsa-sans)}
+.ecdsa-details .technical-content {padding-inline:0}
+.ecdsa-details .project-media {max-width:960px; margin-top:0}
+.ecdsa-code {
+  margin:32px 0 0;
+  font:500 15px/1.5 var(--ecdsa-sans);
+}
+.ecdsa-code a {color:var(--accent); text-decoration:underline; text-underline-offset:4px}
+@media(max-width:700px) {
+  .ecdsa-cover-grid,.ecdsa-methods {grid-template-columns:1fr}
+  .ecdsa-circuit {max-width:460px}
+  .ecdsa-cover-result small {width:100%; margin-left:0}
+}
+@media(max-width:460px) {
+  .ecdsa-score-pair {grid-template-columns:1fr; gap:0}
+  .ecdsa-score-pair > div + div {border-top:0}
+}
 
 /* Kaggle compilation: an active compiler workbench, with no results implied. */
 .experience--kaggle-quantum-compilation{--paper:#f0f5f6;--surface:#fbfdfe;--ink:#183346;--muted:#536c7b;--accent:#176e91;--line:#cbdce2;--line-strong:#9dbdca;--project-radius:4px}
@@ -380,7 +476,7 @@
 [data-theme="dark"] .experience--qsvt-linear-solvers{--accent:#9bc6ee;--paper:#192532;--surface:#223346;--line:#3b5269;--muted:#a2bbd1}
 [data-theme="dark"] .experience--qsvt-linear-solvers .hardware-status.unresolved{color:#e6af88}
 [data-theme="dark"] .experience--quantum-hpc{--accent:#c7d692;--paper:#21251b;--surface:#292f21;--line:#48533a;--line-strong:#727e54;--muted:#b4bda0}
-[data-theme="dark"] .experience--ecdsa{--accent:#efb38b;--paper:#24211e;--surface:#302a24;--line:#4d4239;--muted:#c2af9c}
+[data-theme="dark"] .experience--ecdsa{--accent:#efb38b;--paper:#24211e;--surface:#302a24;--ink:#f3e9df;--muted:#c2af9c;--line:#4d4239;--line-strong:#8e7a6a}
 [data-theme="dark"] .experience--kaggle-quantum-compilation{--accent:#75d5ed;--paper:#15232d;--surface:#1b2e3b;--ink:#e1edf5;--muted:#a8c0ce;--line:#344f60;--line-strong:#57778b;--soft:#253f4e}
 [data-theme="dark"] .experience--duke-quantum{--accent:#a2c3ff;--paper:#141f32;--surface:#1c2b43;--ink:#e6efff;--muted:#acbbd3;--line:#354964;--line-strong:#5c779c;--soft:#253c5d}
 
@@ -402,7 +498,7 @@
   .experience .hack-title h1{font-size:clamp(70px,12vw,110px)}.hack-title>div>p{font-size:11px}.hack-intro{font-size:17px}
   .hack-scoreboard strong{font-size:28px}.hack-scoreboard>div>span{font-size:8px}.hack-scoreboard>div+div{padding-left:12px}
   .challenge-groups{grid-template-columns:1fr}.challenge-group>header{display:grid;grid-template-columns:1fr auto;padding:20px;gap:4px 16px}.challenge-group .eyebrow{grid-column:1/-1;margin:0}.experience .challenge-group h3{min-height:0;font-size:20px}.group-points{margin:0;font-size:22px}.challenge-group li{padding:13px 20px;font-size:13px;gap:12px}
-  .ranking-proof,.gpu-heading,.benchmark-details,.oracle-cover,.workbench-flow,.solver-path,.record-analysis{grid-template-columns:1fr;gap:30px}
+  .ranking-proof,.gpu-heading,.benchmark-details,.oracle-cover,.workbench-flow,.solver-path{grid-template-columns:1fr;gap:30px}
   .ranking-proof>div,.solver-path>div:first-child{position:static}.ranking-proof{padding-top:50px}.ranking-proof h2 br{display:none}.ranking-proof .project-media{max-width:500px}
   .gpu-hero{padding:30px}.gpu-heading{padding-top:8px}.gpu-chip{width:240px;margin:20px auto}.gpu-heading>div>p{max-width:none}
   .benchmark-strip{gap:16px}.benchmark-strip strong{font-size:40px}.benchmark-strip>p{font-size:11px;padding-left:15px}.benchmark-strip span{font-size:9px}
@@ -414,7 +510,6 @@
   .solver-blueprint{grid-template-columns:1fr;gap:32px}.solver-equation{max-width:500px;width:100%;margin:0 auto}.solver-equation>b{font-size:78px}
   .hardware-pair>article{padding:22px}.hardware-pair strong{font-size:52px}.hardware-pair article>p:not(.eyebrow){font-size:11px}
   .hpc-notebook{padding:22px 25px 0}.amdahl-result{flex-direction:column;align-items:start;gap:15px}.amdahl-result strong{font-size:42px}.experiment-entry{gap:25px;grid-template-columns:.8fr 1.2fr}.experiment-label>h3{font-size:24px}.experiment-label>p{font-size:12px}
-  .record-cover{padding:24px 26px 0}.official-record{align-items:start;flex-direction:column;gap:18px}.official-record strong{font-size:clamp(54px,10vw,78px)}
 }
 @media(max-width:500px){
   .experience h1{font-size:48px}.experience h2{font-size:34px}.experience .eyebrow{font-size:9px}.experience .topline>span{font-size:8px}
@@ -431,7 +526,7 @@
   .oracle-cover{padding-top:28px;gap:30px}.experience .oracle-cover h1{font-size:56px}.oracle-insight{gap:20px;padding:22px}.oracle-insight>b{font-size:55px}.oracle-insight>p{font-size:13px}
   .solver-blueprint{padding:26px 22px}.experience .solver-blueprint h1{font-size:41px}.solver-blueprint>div>p:not(.eyebrow){font-size:14px}.solver-equation{padding:24px 18px}.cfd-conclusion{padding:26px 22px}.hardware-pair{gap:18px}.hardware-pair article>p:not(.eyebrow){font-size:13px}
   .hpc-notebook{padding:20px 20px 0}.experience .hpc-notebook h1{font-size:58px}.notebook-intro{font-size:15px}.amdahl-result strong{font-size:32px}.notebook-label{font-size:9px}.notebook-machines{font-size:9px}.experiment-entry{gap:20px;padding:28px 0}.experiment-label>p{font-size:14px}
-  .record-cover{padding:20px 20px 0}.ledger-heading{font-size:8px;flex-direction:column;gap:8px}.experience .record-cover h1{font-size:58px}.official-record strong{font-size:54px}.official-record p{font-size:10px}.record-deltas{gap:12px;font-size:10px}.record-deltas>span:last-child{font-size:9px}.experience .record-verification{padding:22px}
+  .experience .record-verification{padding:22px}
 }
 @media(max-width:360px){
   .experience .hack-title h1{font-size:50px}.hack-title{gap:8px}.completion-seal{width:70px}.completion-seal strong{font-size:18px}.completion-seal span{font-size:6px;margin-top:4px}

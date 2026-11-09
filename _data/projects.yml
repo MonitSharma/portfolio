@@ -962,151 +962,37 @@
 
 - title: ECDSA Circuit Optimization
   slug: ecdsa
-  updated_at: "2026-10-20T14:58:32+08:00"
+  updated_at: "2026-11-09T17:50:08+08:00"
   page: /work/ecdsa/
   category: ECDSA.fail challenge
   type: challenge
-  summary: An official low-Toffoli record for reversible elliptic-curve arithmetic,
-    with a smaller workspace and an improved accepted product result.
-  metric: '751,182'
-  metric_label: official Toffoli record · 1,464 qubits · 20 Oct 2026
+  summary: Reversible secp256k1 point addition with a mean of 746,089 executed Toffolis
+    and 1,464 logical qubits, with a separate submission that held the product record.
+  metric: '746,089'
+  metric_label: my lowest scored Toffoli count · 1,464 logical qubits
   code_url: https://github.com/MonitSharma/elliptic_curve_dsa
-  source_url: https://api.ecdsa.fail/api/submissions/4045a75a-32a0-4d3c-b7ca-03b51dc12b25
-  source_label: View the official record
-  question: How can reversible elliptic-curve arithmetic execute fewer costly gates
-    while also reducing the workspace it needs?
-  detail: The latest circuit sets the public ECDSA.fail Toffoli record at 751,182
-    executed gates using 1,464 logical qubits. It improves both resources over
-    the previous gate-count record. A separate classical-control optimization
-    produces an accepted product result of 939,169,018 at 1,234 qubits. These
-    are independently scored circuits with different resource objectives.
-  verification:
-    label: Official Toffoli record · 20 Oct 2026
-    date: 20 October 2026
-    summary: The public API lists MonitSharma's 751,182-Toffoli circuit at 1,464
-      qubits as the minimum executed gate count. My latest accepted product
-      result is 939,169,018 (1,234 × 761,077). The current global product leader
-      is jackylee0424 at 939,138,168; my product result is a previous record.
-    note: The Toffoli entry is officially scored and Pareto-optimal, with a
-      score-only rejection because it does not lower the scalar product. The
-      product entry is accepted and promoted. The new Toffoli circuit's repository
-      note was written while it was queued; the service receipt now confirms its
-      official evaluation. Standings are a snapshot of 20 October 2026.
-    links:
-    - label: Official Toffoli receipt
-      url: https://api.ecdsa.fail/api/submissions/4045a75a-32a0-4d3c-b7ca-03b51dc12b25
-    - label: Accepted product receipt
-      url: https://api.ecdsa.fail/api/submissions/d9ae2845-b2d8-4535-8a54-6a9803fdfb19
-    - label: Live leaderboard
-      url: https://ecdsa.fail/
-  findings:
-  - The new official Toffoli record is 751,182 gates at 1,464 logical qubits.
-    Compared with the preceding 752,991-gate record at 1,863 qubits, it saves
-    1,809 gates (0.24024%) and 399 qubits. Its measured product is 1,099,730,448.
-  - The accepted product submission scores 939,169,018 at 1,234 qubits and
-    761,077 executed Toffolis. Exact classical-control simplifications improve
-    the public product record at upload by 23,446 without adding quantum wires.
-    A later participant has since lowered the global product further.
-  - Both circuits pass their complete unchanged 9,024-shot benchmark packets.
-    Separate fresh-input checks use 2,097,152 shots per source for the Toffoli
-    circuit and 16,777,216 per source for the product circuit. Their declarations,
-    failure counts, nonce searches, and source hashes are retained in the evidence.
-  method:
-  - Freeze the arithmetic, public schedule, and exact postpasses before collecting
-    evidence. Restrict changes to the editable circuit source and verify that
-    the scorer, simulator, and all protected files remain unchanged.
-  - Compare candidate and reference streams on identical fresh inputs under a
-    predeclared statistical test, including value, phase, and dirty-workspace checks.
-  - Screen identity-tail nonces in ascending order, retain the lowest passing one,
-    replay the full unchanged benchmark, and bind the submitted source to its
-    stream hashes and official service receipt.
-  boundary: These are benchmark resource measurements from classical simulation,
-    verified on 20 October 2026. The circuits retain disclosed approximate
-    arithmetic; passing a finite packet does not establish correctness on every
-    input. The fresh-input failure counts and identity-tail nonce searches are
-    disclosed separately. The Toffoli record optimizes gate count, while the
-    accepted product result has since been superseded. The work builds on
-    attributed public arithmetic and postpasses.
-  table:
-    caption: My latest officially scored circuits · 20 October 2026
-    columns: [Result, Logical qubits, Executed Toffolis, Q × T]
-    rows:
-    - [Current Toffoli record, '1,464', '751,182', '1,099,730,448']
-    - [Accepted product result, '1,234', '761,077', '939,169,018']
+  source_url: https://api.ecdsa.fail/api/submissions/8d704a6b-659c-4d67-9bd0-f6862de9f617
+  source_label: View the gate-count receipt
+  leaderboard_url: https://ecdsa.fail/
+  low_gate_qubits: '1,464'
+  product_comparison:
+    date: 9 November 2026
+    mine:
+      score: '939,169,018'
+      qubits: '1,234'
+      toffolis: '761,077'
+    leader:
+      solver: jackylee0424
+      score: '890,030,217'
+      qubits: '1,227'
+      toffolis: '725,371'
   figures:
-  - src: assets/imgs/ecdsa/public-frontier.png
-    caption: Public frontier · the new Toffoli record
-    alt: Public qubit–Toffoli Pareto frontier on 20 October 2026, highlighting
-      Monit Sharma's 751,182-Toffoli record at 1,464 qubits, the global product
-      leader, and the minimum-width circuit.
+  - src: assets/imgs/ecdsa/public-frontier-20261109.png
     width: 2052
     height: 1278
-    insight: Moving left saves quantum storage; moving down saves gates. The
-      dark brown step connects the 85 nondominated public resource pairs, and the
-      rust-coloured point is my current Toffoli record. This is my one remaining point
-      on the current frontier. The minimum-width and minimum-product circuits
-      belong to other participants. The gate axis is logarithmic.
-  - src: assets/imgs/ecdsa/record-tradeoffs.png
-    caption: Fewer gates, less workspace · before and after
-    alt: Two zero-based paired bar charts compare the previous 1,863-qubit,
-      752,991-Toffoli record with the new 1,464-qubit, 751,182-Toffoli record.
-    width: 2052
-    height: 1278
-    insight: Both panels start at zero and label the full counts. The reduction
-      in gate count is small, 0.24024%, while workspace falls by 399 logical
-      qubits. These are whole-circuit, officially scored measurements, compared
-      with the immediately preceding gate-count record.
-  - src: assets/imgs/ecdsa/leaderboard-product-20261017.jpg
-    caption: Historical Spacetime leaderboard · champion on 17 October 2026
-    alt: Historical screenshot of ECDSA.fail on 17 October 2026 showing
-      MonitSharma's champion crown and then-leading product of 939,223,314.
-    width: 2052
-    height: 1278
-    insight: This dated screenshot preserves the earlier product-champion
-      milestone and its crown. It predates the new 20 October results and
-      does not represent the current product standings. The current official
-      receipts and live leaderboard are linked above.
-  resources:
-  - label: Updated source code & research history
-    url: https://github.com/MonitSharma/elliptic_curve_dsa
-  - label: Official Toffoli record
-    url: https://api.ecdsa.fail/api/submissions/4045a75a-32a0-4d3c-b7ca-03b51dc12b25
-  - label: Accepted product result
-    url: https://api.ecdsa.fail/api/submissions/d9ae2845-b2d8-4535-8a54-6a9803fdfb19
-  - label: Toffoli source & validation disclosures
-    url: https://github.com/MonitSharma/elliptic_curve_dsa/blob/8826831da42bc6e83186a770a57a1781d624d7d0/experiments/breakthrough-public140-final-20261020/SUBMISSION-NOTE.md
-  - label: Product submission & source verification
-    url: https://github.com/MonitSharma/elliptic_curve_dsa/blob/8826831da42bc6e83186a770a57a1781d624d7d0/experiments/submission-classical12-20261020/STATUS.md
-  - label: Live ECDSA.fail leaderboard
-    url: https://ecdsa.fail/
-  - label: Dated public frontier data
-    url: /portfolio/assets/data/ecdsa/public-frontier.json
-  - label: Saved official results & disclosures
-    url: /portfolio/assets/data/ecdsa/official-records-20261020.json
-  - label: Fresh-input validation counts
-    url: /portfolio/assets/data/ecdsa/validation-evidence-20261020.json
-  explanation:
-  - title: Remove quantum work through exact classical identities
-    text: The accepted product circuit adds bounded Boolean-identity passes to
-      the inherited public design. They track immutable classical value atoms
-      and simplify controls only when an identity is valid across their full
-      bounded support. Unsupported expressions are discarded conservatively.
-      These classical simplifications add no quantum wires, keeping peak width
-      at 1,234 qubits while reducing executed gate count.
-  - title: Rework the schedule and clean workspace
-    text: The new Toffoli circuit uses the fixed public 140-row schedule,
-      uniform +2 comparison precision, a plain allocator with clean-pool
-      priming, and generic exact postpasses. It omits the older frozen late
-      cache and source-bound or census-derived cuts from this candidate.
-      Together these changes produce fewer gates with a smaller peak workspace.
-      The public arithmetic and prior postpasses remain attributed; the result
-      is a resource improvement built on that lineage.
-  - title: Keep complete benchmark and fresh-input evidence separate
-    text: The Toffoli circuit's declared census compares 2,097,152 fresh shots
-      per source. Value-failing shots fall from 1,212 to 1,190, phase-failing
-      shots from 816 to 663, and dirty-ancilla shots remain zero. The product
-      circuit has a separate 16,777,216-shot-per-source census. After those
-      checks, each frozen source is replayed on its complete stream-derived
-      benchmark packet and independently scored by the service. Exact
-      transformations preserve the underlying approximate circuit; they do not
-      prove that point addition is correct on every input.
+    caption: The public frontier from October to November
+    alt: Log-scale plot of mean executed Toffolis against peak logical qubits. The
+      November 9 frontier sits below the October 20 frontier at comparable widths.
+      Two rust markers identify my lowest-gate and lowest-product circuits.
+    insight: The narrowest designs save hundreds of logical qubits at the cost of
+      many more gates. The two marked results record my best score on each objective.

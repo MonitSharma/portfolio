@@ -1,0 +1,2806 @@
+{
+  "snapshot_date": "2026-11-09",
+  "retrieved_at": "2026-11-09T17:41:10+08:00",
+  "source": "https://api.ecdsa.fail/api/benchmarks/1ffb695a-309b-46b6-a728-2f97d8c7be74/submissions",
+  "source_sha256": "21454d8f7008341be779068e26319ab342c93d904dedbcb214788deb57fbd236",
+  "eligibility": "Accepted and score-only rejected submissions with positive official metrics and official score equal to qubits \u00d7 rounded mean executed Toffolis.",
+  "record_count": 3485,
+  "eligible_count": 3027,
+  "frontier_count": 273,
+  "leaders": {
+    "width": {
+      "id": "5d360e17-d99d-4947-9067-ce98a80285b1",
+      "solver": "odinfree",
+      "created_at": "2026-11-09T03:26:02.719Z",
+      "score_published_at": "2026-11-09T03:56:28.999Z",
+      "status": "rejected",
+      "qubits": 658,
+      "toffolis": 545848326,
+      "product": 359168198508
+    },
+    "gates": {
+      "id": "d4d0d7fb-1e29-46f8-a2f2-de01e3363fd2",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T19:39:40.957Z",
+      "score_published_at": "2026-11-05T19:45:07.433Z",
+      "status": "rejected",
+      "qubits": 1468,
+      "toffolis": 700479,
+      "product": 1028303172
+    },
+    "product": {
+      "id": "e5e30f4a-abc7-4cc0-92d0-7beb3f71026c",
+      "solver": "jackylee0424",
+      "created_at": "2026-11-09T02:59:44.321Z",
+      "score_published_at": "2026-11-09T03:04:05.365Z",
+      "status": "accepted",
+      "qubits": 1227,
+      "toffolis": 725371,
+      "product": 890030217
+    }
+  },
+  "owner_best": {
+    "width": {
+      "id": "d9ae2845-b2d8-4535-8a54-6a9803fdfb19",
+      "solver": "MonitSharma",
+      "created_at": "2026-10-19T20:55:49.772Z",
+      "score_published_at": "2026-10-19T21:01:10.929Z",
+      "status": "accepted",
+      "qubits": 1234,
+      "toffolis": 761077,
+      "product": 939169018
+    },
+    "gates": {
+      "id": "8d704a6b-659c-4d67-9bd0-f6862de9f617",
+      "solver": "MonitSharma",
+      "created_at": "2026-10-21T03:23:20.481Z",
+      "score_published_at": "2026-10-21T03:28:43.928Z",
+      "status": "rejected",
+      "qubits": 1464,
+      "toffolis": 746089,
+      "product": 1092274296
+    },
+    "product": {
+      "id": "d9ae2845-b2d8-4535-8a54-6a9803fdfb19",
+      "solver": "MonitSharma",
+      "created_at": "2026-10-19T20:55:49.772Z",
+      "score_published_at": "2026-10-19T21:01:10.929Z",
+      "status": "accepted",
+      "qubits": 1234,
+      "toffolis": 761077,
+      "product": 939169018
+    }
+  },
+  "frontier": [
+    {
+      "id": "5d360e17-d99d-4947-9067-ce98a80285b1",
+      "solver": "odinfree",
+      "created_at": "2026-11-09T03:26:02.719Z",
+      "score_published_at": "2026-11-09T03:56:28.999Z",
+      "status": "rejected",
+      "qubits": 658,
+      "toffolis": 545848326,
+      "product": 359168198508
+    },
+    {
+      "id": "a762cc2f-8600-4402-b80f-e8224df57b50",
+      "solver": "odinfree",
+      "created_at": "2026-11-09T00:50:01.265Z",
+      "score_published_at": "2026-11-09T01:25:26.372Z",
+      "status": "rejected",
+      "qubits": 659,
+      "toffolis": 456070950,
+      "product": 300550756050
+    },
+    {
+      "id": "6d279833-b43c-47c4-b2b6-b4c273d2a0fc",
+      "solver": "odinfree",
+      "created_at": "2026-11-09T01:29:13.182Z",
+      "score_published_at": "2026-11-09T02:04:25.588Z",
+      "status": "rejected",
+      "qubits": 665,
+      "toffolis": 419875500,
+      "product": 279217207500
+    },
+    {
+      "id": "b8e3aeb4-0061-4191-acf2-78750418951e",
+      "solver": "odinfree",
+      "created_at": "2026-11-09T02:05:28.230Z",
+      "score_published_at": "2026-11-09T02:44:39.008Z",
+      "status": "rejected",
+      "qubits": 666,
+      "toffolis": 399124419,
+      "product": 265816863054
+    },
+    {
+      "id": "39a91535-21c8-47ff-8bd0-e856817afd18",
+      "solver": "odinfree",
+      "created_at": "2026-10-25T10:45:37.094Z",
+      "score_published_at": "2026-10-25T11:24:03.076Z",
+      "status": "rejected",
+      "qubits": 675,
+      "toffolis": 389097332,
+      "product": 262640699100
+    },
+    {
+      "id": "69d3827e-df86-4968-93ba-b7bb2b20f215",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T22:42:27.023Z",
+      "score_published_at": "2026-11-04T23:00:13.446Z",
+      "status": "rejected",
+      "qubits": 679,
+      "toffolis": 375351485,
+      "product": 254863658315
+    },
+    {
+      "id": "70b64c73-f8dc-4aa7-8466-2c0ef1516b09",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T21:17:44.637Z",
+      "score_published_at": "2026-10-30T21:53:43.615Z",
+      "status": "rejected",
+      "qubits": 680,
+      "toffolis": 369477501,
+      "product": 251244700680
+    },
+    {
+      "id": "fb324070-bb2d-4dce-ba46-95a6a4b0fe4c",
+      "solver": "odinfree",
+      "created_at": "2026-10-27T08:15:39.775Z",
+      "score_published_at": "2026-10-27T08:50:56.122Z",
+      "status": "rejected",
+      "qubits": 681,
+      "toffolis": 366415781,
+      "product": 249529146861
+    },
+    {
+      "id": "934c03c3-9701-436d-96b5-d5b9bed49019",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T19:07:58.075Z",
+      "score_published_at": "2026-11-03T19:27:42.971Z",
+      "status": "rejected",
+      "qubits": 687,
+      "toffolis": 322914644,
+      "product": 221842360428
+    },
+    {
+      "id": "013d1363-b8b0-48f1-b6f5-203667386cfb",
+      "solver": "odinfree",
+      "created_at": "2026-11-01T14:03:50.137Z",
+      "score_published_at": "2026-11-01T14:18:47.117Z",
+      "status": "rejected",
+      "qubits": 688,
+      "toffolis": 321583797,
+      "product": 221249652336
+    },
+    {
+      "id": "6edd7094-289b-48b1-a35c-0da91d9a4f13",
+      "solver": "odinfree",
+      "created_at": "2026-10-31T22:34:50.930Z",
+      "score_published_at": "2026-10-31T23:06:00.616Z",
+      "status": "rejected",
+      "qubits": 689,
+      "toffolis": 303597239,
+      "product": 209178497671
+    },
+    {
+      "id": "ca1d34fb-b7a6-4deb-8033-cdc3823a3aaf",
+      "solver": "odinfree",
+      "created_at": "2026-10-27T22:59:09.784Z",
+      "score_published_at": "2026-10-27T23:37:29.484Z",
+      "status": "rejected",
+      "qubits": 690,
+      "toffolis": 302091286,
+      "product": 208442987340
+    },
+    {
+      "id": "2b5c39cd-3453-4f68-917f-7ed8b35307d7",
+      "solver": "odinfree",
+      "created_at": "2026-10-25T10:14:41.930Z",
+      "score_published_at": "2026-10-25T10:44:06.963Z",
+      "status": "rejected",
+      "qubits": 691,
+      "toffolis": 294100101,
+      "product": 203223169791
+    },
+    {
+      "id": "a8cb67ea-e312-4a02-a4d7-afb2882ba84a",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T23:02:00.922Z",
+      "score_published_at": "2026-11-04T23:33:40.348Z",
+      "status": "rejected",
+      "qubits": 696,
+      "toffolis": 282909186,
+      "product": 196904793456
+    },
+    {
+      "id": "ef73eb90-44b0-479c-a169-02f8ccdc1da1",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T17:55:28.396Z",
+      "score_published_at": "2026-11-04T18:33:49.780Z",
+      "status": "rejected",
+      "qubits": 697,
+      "toffolis": 282327633,
+      "product": 196782360201
+    },
+    {
+      "id": "c7d06a23-e9d8-417b-a7e9-1a322b04e933",
+      "solver": "odinfree",
+      "created_at": "2026-10-28T00:10:44.847Z",
+      "score_published_at": "2026-10-28T00:22:03.718Z",
+      "status": "rejected",
+      "qubits": 711,
+      "toffolis": 249302022,
+      "product": 177253737642
+    },
+    {
+      "id": "e4d93ee7-43b5-462c-b6c3-72e3f30af248",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T13:24:00.692Z",
+      "score_published_at": "2026-11-06T13:52:07.782Z",
+      "status": "rejected",
+      "qubits": 717,
+      "toffolis": 236821867,
+      "product": 169801278639
+    },
+    {
+      "id": "1ce1ab46-426e-4a8b-bcdf-713f1b22f77a",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T20:50:06.785Z",
+      "score_published_at": "2026-11-04T21:21:15.173Z",
+      "status": "rejected",
+      "qubits": 718,
+      "toffolis": 218624801,
+      "product": 156972607118
+    },
+    {
+      "id": "11546705-99c3-454e-baef-4788b67eed1b",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T22:07:12.045Z",
+      "score_published_at": "2026-11-04T22:36:07.779Z",
+      "status": "rejected",
+      "qubits": 719,
+      "toffolis": 210668515,
+      "product": 151470662285
+    },
+    {
+      "id": "d08d7476-bea0-47d6-9754-6d33452b2b8a",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T20:52:09.454Z",
+      "score_published_at": "2026-10-29T21:20:54.935Z",
+      "status": "rejected",
+      "qubits": 720,
+      "toffolis": 202354405,
+      "product": 145695171600
+    },
+    {
+      "id": "4262811a-be56-43be-a8b2-3e6e0ddc906b",
+      "solver": "odinfree",
+      "created_at": "2026-10-28T09:56:14.719Z",
+      "score_published_at": "2026-10-28T10:27:32.919Z",
+      "status": "rejected",
+      "qubits": 721,
+      "toffolis": 194824063,
+      "product": 140468149423
+    },
+    {
+      "id": "d09660d0-9a3c-4243-97ce-a88910528db9",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T21:43:10.550Z",
+      "score_published_at": "2026-11-06T22:10:09.371Z",
+      "status": "rejected",
+      "qubits": 722,
+      "toffolis": 192360098,
+      "product": 138883990756
+    },
+    {
+      "id": "52fa782f-d44c-4eb6-ad90-eaba0ae9a3c9",
+      "solver": "odinfree",
+      "created_at": "2026-10-28T09:30:19.404Z",
+      "score_published_at": "2026-10-28T09:55:24.671Z",
+      "status": "rejected",
+      "qubits": 723,
+      "toffolis": 185035893,
+      "product": 133780950639
+    },
+    {
+      "id": "4b222223-0173-447e-ad91-9014eaa765a8",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T05:24:01.229Z",
+      "score_published_at": "2026-11-07T05:49:35.310Z",
+      "status": "rejected",
+      "qubits": 724,
+      "toffolis": 183579780,
+      "product": 132911760720
+    },
+    {
+      "id": "fae523d8-4f8f-4eb3-bfb0-50180ef7f7ac",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T04:57:14.696Z",
+      "score_published_at": "2026-11-07T05:23:21.048Z",
+      "status": "rejected",
+      "qubits": 725,
+      "toffolis": 182430382,
+      "product": 132262026950
+    },
+    {
+      "id": "95516674-98db-4c5f-94df-fc76d48df651",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T23:58:21.030Z",
+      "score_published_at": "2026-11-05T00:25:02.879Z",
+      "status": "rejected",
+      "qubits": 727,
+      "toffolis": 181370166,
+      "product": 131856110682
+    },
+    {
+      "id": "061c24f5-cd88-472f-8873-4d676281ddb8",
+      "solver": "odinfree",
+      "created_at": "2026-10-27T14:35:28.401Z",
+      "score_published_at": "2026-10-27T15:07:05.840Z",
+      "status": "rejected",
+      "qubits": 728,
+      "toffolis": 173558273,
+      "product": 126350422744
+    },
+    {
+      "id": "bdf31a51-a2f0-4ea5-ba0b-bfbd407bc2cf",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T06:07:12.866Z",
+      "score_published_at": "2026-11-07T06:32:31.410Z",
+      "status": "rejected",
+      "qubits": 731,
+      "toffolis": 172699524,
+      "product": 126243352044
+    },
+    {
+      "id": "733662a6-235e-4fe0-9d8d-214fe834c7bd",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T08:35:51.873Z",
+      "score_published_at": "2026-11-05T09:05:41.244Z",
+      "status": "rejected",
+      "qubits": 732,
+      "toffolis": 172291628,
+      "product": 126117471696
+    },
+    {
+      "id": "a9963801-5fce-4903-967c-cff49917a1cc",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T08:03:32.481Z",
+      "score_published_at": "2026-11-05T08:29:13.761Z",
+      "status": "rejected",
+      "qubits": 734,
+      "toffolis": 171863250,
+      "product": 126147625500
+    },
+    {
+      "id": "0332a7ff-f4e1-4aa1-8714-ff2de1caf733",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T07:35:31.168Z",
+      "score_published_at": "2026-11-05T08:00:53.427Z",
+      "status": "rejected",
+      "qubits": 735,
+      "toffolis": 171691280,
+      "product": 126193090800
+    },
+    {
+      "id": "214771bc-543e-4f31-9dc3-d3039d392aaa",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T03:44:11.695Z",
+      "score_published_at": "2026-11-05T04:08:55.792Z",
+      "status": "rejected",
+      "qubits": 736,
+      "toffolis": 171501426,
+      "product": 126225049536
+    },
+    {
+      "id": "199d95be-d6f6-4ee1-bab9-5edb61ea92e9",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T18:43:14.172Z",
+      "score_published_at": "2026-11-04T19:19:56.067Z",
+      "status": "rejected",
+      "qubits": 737,
+      "toffolis": 171334656,
+      "product": 126273641472
+    },
+    {
+      "id": "da9e3989-8e1b-4c2d-a094-e99d6b507ff7",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T12:35:35.760Z",
+      "score_published_at": "2026-11-04T13:01:18.229Z",
+      "status": "rejected",
+      "qubits": 738,
+      "toffolis": 171150667,
+      "product": 126309192246
+    },
+    {
+      "id": "f1c03cbf-1218-4dbb-ae36-fc99b481ac65",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T06:54:43.006Z",
+      "score_published_at": "2026-11-04T07:19:31.581Z",
+      "status": "rejected",
+      "qubits": 739,
+      "toffolis": 170978441,
+      "product": 126353067899
+    },
+    {
+      "id": "f6ab57a4-c199-4b5e-896d-d14c494608b0",
+      "solver": "zuiris",
+      "created_at": "2026-11-05T21:45:39.945Z",
+      "score_published_at": "2026-11-05T22:12:03.919Z",
+      "status": "rejected",
+      "qubits": 740,
+      "toffolis": 144096993,
+      "product": 106631774820
+    },
+    {
+      "id": "153caeee-c7ef-42fa-8874-944e8f1c38e7",
+      "solver": "odinfree",
+      "created_at": "2026-10-27T02:17:30.238Z",
+      "score_published_at": "2026-10-27T02:40:09.377Z",
+      "status": "rejected",
+      "qubits": 765,
+      "toffolis": 134067659,
+      "product": 102561759135
+    },
+    {
+      "id": "99525b1a-9b73-455b-bdb7-38ce0aed5b7d",
+      "solver": "odinfree",
+      "created_at": "2026-10-26T23:41:14.726Z",
+      "score_published_at": "2026-10-27T00:04:00.420Z",
+      "status": "rejected",
+      "qubits": 766,
+      "toffolis": 130561323,
+      "product": 100009973418
+    },
+    {
+      "id": "211562d8-56ae-4d3c-b41e-e46113671181",
+      "solver": "odinfree",
+      "created_at": "2026-10-26T22:47:29.042Z",
+      "score_published_at": "2026-10-26T23:15:00.926Z",
+      "status": "rejected",
+      "qubits": 767,
+      "toffolis": 122902011,
+      "product": 94265842437
+    },
+    {
+      "id": "5e6b9059-f477-4a55-93bc-073624500584",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T19:29:29.091Z",
+      "score_published_at": "2026-11-05T19:32:29.561Z",
+      "status": "rejected",
+      "qubits": 768,
+      "toffolis": 74524780,
+      "product": 57235031040
+    },
+    {
+      "id": "fed67950-e55b-422e-a044-0059e7edddf6",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T16:17:26.776Z",
+      "score_published_at": "2026-11-06T16:20:03.338Z",
+      "status": "rejected",
+      "qubits": 769,
+      "toffolis": 53042140,
+      "product": 40789405660
+    },
+    {
+      "id": "8e57dc86-2c0c-4ca3-a34a-d3ac7f19f681",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T16:11:14.902Z",
+      "score_published_at": "2026-11-06T16:13:36.496Z",
+      "status": "rejected",
+      "qubits": 770,
+      "toffolis": 41112656,
+      "product": 31656745120
+    },
+    {
+      "id": "d4b88b19-6014-4239-899a-e24f0df6cc7b",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T16:05:57.770Z",
+      "score_published_at": "2026-11-06T16:08:04.106Z",
+      "status": "rejected",
+      "qubits": 771,
+      "toffolis": 35473416,
+      "product": 27350003736
+    },
+    {
+      "id": "89d9e636-5fa5-471b-8715-1a20914305c3",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T16:00:41.922Z",
+      "score_published_at": "2026-11-06T16:02:59.919Z",
+      "status": "rejected",
+      "qubits": 772,
+      "toffolis": 30885490,
+      "product": 23843598280
+    },
+    {
+      "id": "ef1a7030-3795-447c-b134-c69684214501",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T09:43:23.824Z",
+      "score_published_at": "2026-11-06T09:45:16.388Z",
+      "status": "rejected",
+      "qubits": 773,
+      "toffolis": 28637064,
+      "product": 22136450472
+    },
+    {
+      "id": "b554bbe8-1320-4491-a9b7-ed594810a82a",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T21:22:07.696Z",
+      "score_published_at": "2026-11-07T21:24:17.362Z",
+      "status": "rejected",
+      "qubits": 774,
+      "toffolis": 23721822,
+      "product": 18360690228
+    },
+    {
+      "id": "902057f0-2329-4e59-a6f6-9ffaa22a83a0",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T21:15:38.354Z",
+      "score_published_at": "2026-11-07T21:17:32.769Z",
+      "status": "rejected",
+      "qubits": 775,
+      "toffolis": 20728068,
+      "product": 16064252700
+    },
+    {
+      "id": "7d8fcae6-193c-4403-9bcb-389febf5ed83",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T21:12:07.321Z",
+      "score_published_at": "2026-11-07T21:14:18.331Z",
+      "status": "rejected",
+      "qubits": 776,
+      "toffolis": 19431608,
+      "product": 15078927808
+    },
+    {
+      "id": "c0bcef05-3966-4a9a-bbd2-28e518e8a2c8",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T21:08:23.951Z",
+      "score_published_at": "2026-11-07T21:10:24.364Z",
+      "status": "rejected",
+      "qubits": 777,
+      "toffolis": 18766376,
+      "product": 14581474152
+    },
+    {
+      "id": "23195093-f7b0-4d70-8296-84ed21b85e69",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T21:04:47.846Z",
+      "score_published_at": "2026-11-07T21:06:40.970Z",
+      "status": "rejected",
+      "qubits": 779,
+      "toffolis": 18429943,
+      "product": 14356925597
+    },
+    {
+      "id": "d4d04526-0224-4e1a-bd47-398ccd0cf705",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T20:58:13.625Z",
+      "score_published_at": "2026-11-07T21:00:06.969Z",
+      "status": "rejected",
+      "qubits": 780,
+      "toffolis": 17284688,
+      "product": 13482056640
+    },
+    {
+      "id": "5e1da6e1-6b67-4caf-a44e-9ca98fa45c60",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T20:31:47.738Z",
+      "score_published_at": "2026-11-07T20:33:43.782Z",
+      "status": "rejected",
+      "qubits": 781,
+      "toffolis": 16837186,
+      "product": 13149842266
+    },
+    {
+      "id": "a5e565e8-8e75-400d-8528-5870b6f42040",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T20:28:09.793Z",
+      "score_published_at": "2026-11-07T20:30:10.934Z",
+      "status": "rejected",
+      "qubits": 782,
+      "toffolis": 16367771,
+      "product": 12799596922
+    },
+    {
+      "id": "29bfdfbc-7872-4829-a988-b95a4aa7669e",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T20:54:53.791Z",
+      "score_published_at": "2026-11-07T20:56:52.061Z",
+      "status": "rejected",
+      "qubits": 783,
+      "toffolis": 15907868,
+      "product": 12455860644
+    },
+    {
+      "id": "9980e518-f072-4df9-b33d-53f22e072008",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T20:51:10.664Z",
+      "score_published_at": "2026-11-07T20:53:29.004Z",
+      "status": "rejected",
+      "qubits": 784,
+      "toffolis": 15705104,
+      "product": 12312801536
+    },
+    {
+      "id": "960366a7-e611-4b3a-8783-722e0e0e0dec",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T20:47:59.893Z",
+      "score_published_at": "2026-11-07T20:49:59.138Z",
+      "status": "rejected",
+      "qubits": 785,
+      "toffolis": 15569604,
+      "product": 12222139140
+    },
+    {
+      "id": "3ebc1a25-c388-499c-9d30-3fda47624706",
+      "solver": "odinfree",
+      "created_at": "2026-11-02T22:28:09.625Z",
+      "score_published_at": "2026-11-02T22:37:32.602Z",
+      "status": "rejected",
+      "qubits": 793,
+      "toffolis": 11927771,
+      "product": 9458722403
+    },
+    {
+      "id": "470eb61e-e640-42c2-92c8-7728873a5268",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T11:01:53.781Z",
+      "score_published_at": "2026-10-30T11:09:52.718Z",
+      "status": "rejected",
+      "qubits": 794,
+      "toffolis": 10773074,
+      "product": 8553820756
+    },
+    {
+      "id": "26249f53-bcf4-4405-8f82-a0cd2b546346",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T10:30:14.896Z",
+      "score_published_at": "2026-10-30T10:36:17.778Z",
+      "status": "rejected",
+      "qubits": 795,
+      "toffolis": 9425554,
+      "product": 7493315430
+    },
+    {
+      "id": "81d542ad-3fb3-4f2f-a501-0f9956184766",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T21:45:18.434Z",
+      "score_published_at": "2026-11-04T22:06:02.450Z",
+      "status": "rejected",
+      "qubits": 796,
+      "toffolis": 5290149,
+      "product": 4210958604
+    },
+    {
+      "id": "df9d7d5c-5334-41a2-b4c8-4b3b66b7974e",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T15:06:20.062Z",
+      "score_published_at": "2026-11-03T15:20:48.763Z",
+      "status": "rejected",
+      "qubits": 797,
+      "toffolis": 4383134,
+      "product": 3493357798
+    },
+    {
+      "id": "1e759830-cf55-42b4-8b8d-00312759771c",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T16:34:42.460Z",
+      "score_published_at": "2026-11-04T16:53:50.225Z",
+      "status": "rejected",
+      "qubits": 798,
+      "toffolis": 4068294,
+      "product": 3246498612
+    },
+    {
+      "id": "50c3bf41-2489-4905-b944-5b0fc443a42b",
+      "solver": "jieyilong",
+      "created_at": "2026-11-02T00:30:37.667Z",
+      "score_published_at": "2026-11-02T00:45:34.388Z",
+      "status": "rejected",
+      "qubits": 799,
+      "toffolis": 3907773,
+      "product": 3122310627
+    },
+    {
+      "id": "b5197f9f-fb21-463d-920f-2c6e4143697d",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T16:58:33.219Z",
+      "score_published_at": "2026-11-04T17:21:01.824Z",
+      "status": "rejected",
+      "qubits": 800,
+      "toffolis": 3879893,
+      "product": 3103914400
+    },
+    {
+      "id": "7702b8d3-48b9-4176-b980-8a3d552e3809",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T19:46:33.760Z",
+      "score_published_at": "2026-11-03T20:02:46.889Z",
+      "status": "rejected",
+      "qubits": 801,
+      "toffolis": 3841849,
+      "product": 3077321049
+    },
+    {
+      "id": "75b73229-8994-4ddb-a597-d524c9f26d3f",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T17:23:16.995Z",
+      "score_published_at": "2026-11-04T17:49:14.601Z",
+      "status": "rejected",
+      "qubits": 802,
+      "toffolis": 3825594,
+      "product": 3068126388
+    },
+    {
+      "id": "5a5c38a9-40a5-45d1-a13b-1b40e8443872",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T16:01:47.077Z",
+      "score_published_at": "2026-11-04T16:25:39.985Z",
+      "status": "rejected",
+      "qubits": 803,
+      "toffolis": 3773357,
+      "product": 3030005671
+    },
+    {
+      "id": "6db3fc0e-65fc-4a39-81e9-ee81ab2d0a79",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T17:40:20.471Z",
+      "score_published_at": "2026-11-03T17:56:53.896Z",
+      "status": "rejected",
+      "qubits": 806,
+      "toffolis": 3713313,
+      "product": 2992930278
+    },
+    {
+      "id": "1e3830cd-b2d7-4b67-9d04-7d8cdfe6d651",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T17:25:40.014Z",
+      "score_published_at": "2026-11-03T17:38:50.422Z",
+      "status": "rejected",
+      "qubits": 807,
+      "toffolis": 3646140,
+      "product": 2942434980
+    },
+    {
+      "id": "217a47d3-3b80-4cf3-8ed1-737cce02accd",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T16:27:55.431Z",
+      "score_published_at": "2026-11-03T16:42:49.025Z",
+      "status": "rejected",
+      "qubits": 808,
+      "toffolis": 3607150,
+      "product": 2914577200
+    },
+    {
+      "id": "b01f381f-3f45-41f0-89a3-3b9cfc7f45c2",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T16:56:18.821Z",
+      "score_published_at": "2026-11-03T17:12:04.994Z",
+      "status": "rejected",
+      "qubits": 809,
+      "toffolis": 3564424,
+      "product": 2883619016
+    },
+    {
+      "id": "47fae17c-0d73-4346-8d65-a7fb922269be",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T02:56:39.226Z",
+      "score_published_at": "2026-11-03T03:08:27.215Z",
+      "status": "rejected",
+      "qubits": 810,
+      "toffolis": 3503296,
+      "product": 2837669760
+    },
+    {
+      "id": "db10dea8-8ac8-45f4-a45f-8b2e91c6aa8d",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T02:22:05.773Z",
+      "score_published_at": "2026-11-03T02:33:53.112Z",
+      "status": "rejected",
+      "qubits": 811,
+      "toffolis": 3459188,
+      "product": 2805401468
+    },
+    {
+      "id": "e1029a09-daa6-497d-acbc-a71f550f0aa1",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T02:08:48.206Z",
+      "score_published_at": "2026-11-03T02:20:37.341Z",
+      "status": "rejected",
+      "qubits": 812,
+      "toffolis": 3399758,
+      "product": 2760603496
+    },
+    {
+      "id": "a64ddb8b-cb30-4cb8-ab5d-4f3032ebf0ee",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T14:25:28.878Z",
+      "score_published_at": "2026-11-03T14:52:29.699Z",
+      "status": "rejected",
+      "qubits": 813,
+      "toffolis": 3266138,
+      "product": 2655370194
+    },
+    {
+      "id": "f4626b76-d6bf-456d-8e7a-2f00df5b9775",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T11:58:04.746Z",
+      "score_published_at": "2026-11-03T12:25:02.290Z",
+      "status": "rejected",
+      "qubits": 814,
+      "toffolis": 3236840,
+      "product": 2634787760
+    },
+    {
+      "id": "3ff0619e-3bd0-4afa-bbe9-1b69b769917c",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T20:31:13.850Z",
+      "score_published_at": "2026-11-03T21:07:53.078Z",
+      "status": "rejected",
+      "qubits": 816,
+      "toffolis": 3181515,
+      "product": 2596116240
+    },
+    {
+      "id": "3b0bcaf9-0e11-4c3c-b375-17e0d1b9a559",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T07:28:49.424Z",
+      "score_published_at": "2026-11-07T07:45:50.361Z",
+      "status": "rejected",
+      "qubits": 817,
+      "toffolis": 3002765,
+      "product": 2453259005
+    },
+    {
+      "id": "e6526343-4ca9-40f7-8422-7f08513fd4ca",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T06:34:16.618Z",
+      "score_published_at": "2026-11-07T06:50:08.232Z",
+      "status": "rejected",
+      "qubits": 818,
+      "toffolis": 2981117,
+      "product": 2438553706
+    },
+    {
+      "id": "0f7b29b7-3dc6-4bf8-95b0-13f199ec6ee7",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T01:37:28.117Z",
+      "score_published_at": "2026-11-07T01:53:45.996Z",
+      "status": "rejected",
+      "qubits": 819,
+      "toffolis": 2956962,
+      "product": 2421751878
+    },
+    {
+      "id": "0d3c2ba0-486e-4d42-bd14-0b9170d09153",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T23:05:09.308Z",
+      "score_published_at": "2026-11-06T23:21:10.452Z",
+      "status": "rejected",
+      "qubits": 820,
+      "toffolis": 2939164,
+      "product": 2410114480
+    },
+    {
+      "id": "5a890448-e2e0-4c8c-b0fd-64d2a8a32091",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T13:03:11.539Z",
+      "score_published_at": "2026-11-06T13:21:10.078Z",
+      "status": "rejected",
+      "qubits": 821,
+      "toffolis": 2835956,
+      "product": 2328319876
+    },
+    {
+      "id": "2e0721c3-9948-4e9e-a359-4936af6efe1c",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T06:51:36.536Z",
+      "score_published_at": "2026-11-07T07:05:08.767Z",
+      "status": "rejected",
+      "qubits": 822,
+      "toffolis": 2712241,
+      "product": 2229462102
+    },
+    {
+      "id": "546a9bbc-7d8a-4d9a-9a88-e20557197eff",
+      "solver": "odinfree",
+      "created_at": "2026-11-08T08:58:13.013Z",
+      "score_published_at": "2026-11-08T09:13:05.366Z",
+      "status": "rejected",
+      "qubits": 823,
+      "toffolis": 2698414,
+      "product": 2220794722
+    },
+    {
+      "id": "7390d57e-81ed-47a1-ac3f-5a24cb4f72c5",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T14:51:33.211Z",
+      "score_published_at": "2026-11-06T15:05:06.771Z",
+      "status": "rejected",
+      "qubits": 824,
+      "toffolis": 2696758,
+      "product": 2222128592
+    },
+    {
+      "id": "085e35e5-331e-4e99-a154-d14665f2dd08",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T09:03:55.210Z",
+      "score_published_at": "2026-11-03T09:17:29.708Z",
+      "status": "rejected",
+      "qubits": 825,
+      "toffolis": 2694703,
+      "product": 2223129975
+    },
+    {
+      "id": "c26de084-cdfc-40d9-8e35-bce24c904fad",
+      "solver": "odinfree",
+      "created_at": "2026-10-31T02:14:17.441Z",
+      "score_published_at": "2026-10-31T02:25:17.661Z",
+      "status": "rejected",
+      "qubits": 842,
+      "toffolis": 2693115,
+      "product": 2267602830
+    },
+    {
+      "id": "56ca9fac-e9d9-42ed-954c-830395901493",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T12:56:33.693Z",
+      "score_published_at": "2026-10-30T13:03:44.942Z",
+      "status": "rejected",
+      "qubits": 844,
+      "toffolis": 2673479,
+      "product": 2256416276
+    },
+    {
+      "id": "4bc7ed9c-588b-4fc5-9e01-93873fefbe2b",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T04:44:43.553Z",
+      "score_published_at": "2026-10-30T04:53:10.835Z",
+      "status": "rejected",
+      "qubits": 846,
+      "toffolis": 2628468,
+      "product": 2223683928
+    },
+    {
+      "id": "6d6cbfd2-7c22-4657-9ef2-bde7501d93c7",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T15:14:20.521Z",
+      "score_published_at": "2026-10-29T15:23:10.877Z",
+      "status": "rejected",
+      "qubits": 847,
+      "toffolis": 2588960,
+      "product": 2192849120
+    },
+    {
+      "id": "ef53bd0b-5158-4931-99c4-f97b7225cc46",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T10:49:07.677Z",
+      "score_published_at": "2026-10-29T10:56:46.682Z",
+      "status": "rejected",
+      "qubits": 848,
+      "toffolis": 2559404,
+      "product": 2170374592
+    },
+    {
+      "id": "e35d2d19-f0d3-4016-aea1-8e4d6c9c7b42",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T17:08:40.894Z",
+      "score_published_at": "2026-10-29T17:16:24.594Z",
+      "status": "rejected",
+      "qubits": 849,
+      "toffolis": 2548235,
+      "product": 2163451515
+    },
+    {
+      "id": "dbe5711b-3a26-4d94-a785-054b3bb1b36d",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T12:42:15.548Z",
+      "score_published_at": "2026-10-29T12:51:09.713Z",
+      "status": "rejected",
+      "qubits": 850,
+      "toffolis": 2521515,
+      "product": 2143287750
+    },
+    {
+      "id": "2f3d86b0-11e5-402d-9a95-199a71f56cf0",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T11:38:09.584Z",
+      "score_published_at": "2026-10-29T11:48:21.049Z",
+      "status": "rejected",
+      "qubits": 851,
+      "toffolis": 2508371,
+      "product": 2134623721
+    },
+    {
+      "id": "f6d624db-90d5-42af-a4a8-934bd2c7535a",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T09:02:51.489Z",
+      "score_published_at": "2026-10-30T09:11:03.040Z",
+      "status": "rejected",
+      "qubits": 852,
+      "toffolis": 2465628,
+      "product": 2100715056
+    },
+    {
+      "id": "a297d9cc-2313-4aa5-8d24-6d14dbb274de",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T08:44:42.771Z",
+      "score_published_at": "2026-10-30T08:52:58.055Z",
+      "status": "rejected",
+      "qubits": 853,
+      "toffolis": 2434863,
+      "product": 2076938139
+    },
+    {
+      "id": "eee469bd-a427-41f9-8968-c7133019dd4c",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T08:53:49.725Z",
+      "score_published_at": "2026-10-30T09:01:35.110Z",
+      "status": "rejected",
+      "qubits": 854,
+      "toffolis": 2412831,
+      "product": 2060557674
+    },
+    {
+      "id": "1a4a219e-8ad0-4665-993a-327542dcef8e",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T19:52:42.718Z",
+      "score_published_at": "2026-10-29T20:01:00.108Z",
+      "status": "rejected",
+      "qubits": 856,
+      "toffolis": 2389400,
+      "product": 2045326400
+    },
+    {
+      "id": "072b7deb-d48b-4182-973b-9dc2a9ee4466",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T21:22:19.681Z",
+      "score_published_at": "2026-10-29T21:31:49.236Z",
+      "status": "rejected",
+      "qubits": 857,
+      "toffolis": 2332214,
+      "product": 1998707398
+    },
+    {
+      "id": "81df226c-9441-4fb1-aee5-6d1ce62771a9",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T20:13:56.029Z",
+      "score_published_at": "2026-10-29T20:22:28.312Z",
+      "status": "rejected",
+      "qubits": 858,
+      "toffolis": 2315220,
+      "product": 1986458760
+    },
+    {
+      "id": "0c32fc3a-34dc-49f7-97f3-775be6f79011",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T20:23:57.508Z",
+      "score_published_at": "2026-10-29T20:32:03.890Z",
+      "status": "rejected",
+      "qubits": 859,
+      "toffolis": 2302782,
+      "product": 1978089738
+    },
+    {
+      "id": "9f8db3c1-92f8-492c-81ac-31524e937457",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T07:06:51.853Z",
+      "score_published_at": "2026-10-30T07:13:54.976Z",
+      "status": "rejected",
+      "qubits": 860,
+      "toffolis": 2288237,
+      "product": 1967883820
+    },
+    {
+      "id": "9887eeea-408d-4f18-8c67-bedec13b0a13",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T21:51:02.060Z",
+      "score_published_at": "2026-10-29T21:58:29.318Z",
+      "status": "rejected",
+      "qubits": 861,
+      "toffolis": 2276048,
+      "product": 1959677328
+    },
+    {
+      "id": "d218035d-4e78-4ff4-8e83-c0f5881e70bf",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-05T23:29:59.210Z",
+      "score_published_at": "2026-11-05T23:36:52.469Z",
+      "status": "rejected",
+      "qubits": 862,
+      "toffolis": 2266468,
+      "product": 1953695416
+    },
+    {
+      "id": "e46a776d-7fa5-463e-93f1-b3a645bc2ca0",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-05T19:56:00.992Z",
+      "score_published_at": "2026-11-05T20:04:21.577Z",
+      "status": "rejected",
+      "qubits": 863,
+      "toffolis": 2257066,
+      "product": 1947847958
+    },
+    {
+      "id": "58c8d4c8-5810-46f8-9c8e-8af15d1b3753",
+      "solver": "odinfree",
+      "created_at": "2026-10-29T20:33:03.967Z",
+      "score_published_at": "2026-10-29T20:41:33.207Z",
+      "status": "rejected",
+      "qubits": 864,
+      "toffolis": 2249467,
+      "product": 1943539488
+    },
+    {
+      "id": "ece28489-1210-4869-b79f-64eb8d3d577e",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-05T13:57:32.890Z",
+      "score_published_at": "2026-11-05T14:05:08.226Z",
+      "status": "rejected",
+      "qubits": 865,
+      "toffolis": 2242404,
+      "product": 1939679460
+    },
+    {
+      "id": "40d634c8-6d8f-4362-8705-50fd081d91da",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-04T23:52:09.526Z",
+      "score_published_at": "2026-11-04T23:58:54.307Z",
+      "status": "rejected",
+      "qubits": 867,
+      "toffolis": 2229348,
+      "product": 1932844716
+    },
+    {
+      "id": "7723cc14-2937-4bf1-9934-8fcbe07c8603",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-04T21:50:58.337Z",
+      "score_published_at": "2026-11-04T21:57:21.268Z",
+      "status": "rejected",
+      "qubits": 868,
+      "toffolis": 2223618,
+      "product": 1930100424
+    },
+    {
+      "id": "2a53e2ca-b6d8-4bc0-abd7-2e74e21fb6c8",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-04T04:16:12.804Z",
+      "score_published_at": "2026-11-04T04:23:10.877Z",
+      "status": "rejected",
+      "qubits": 870,
+      "toffolis": 2213398,
+      "product": 1925656260
+    },
+    {
+      "id": "f0751309-f1a4-43b4-9a8b-35f8b8ffaf81",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T12:01:40.515Z",
+      "score_published_at": "2026-11-06T12:09:24.680Z",
+      "status": "rejected",
+      "qubits": 871,
+      "toffolis": 2192807,
+      "product": 1909934897
+    },
+    {
+      "id": "5346922d-3423-496d-866c-e9f91a5986df",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T11:40:25.740Z",
+      "score_published_at": "2026-11-06T11:47:35.657Z",
+      "status": "rejected",
+      "qubits": 872,
+      "toffolis": 2183060,
+      "product": 1903628320
+    },
+    {
+      "id": "f31bcccc-8aef-4852-9d3b-ab9f6fff330e",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T11:32:32.274Z",
+      "score_published_at": "2026-11-06T11:39:05.607Z",
+      "status": "rejected",
+      "qubits": 873,
+      "toffolis": 2174732,
+      "product": 1898541036
+    },
+    {
+      "id": "fa14a7d3-326a-4fb8-bfe3-2eda8ebf0aa2",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T10:12:35.673Z",
+      "score_published_at": "2026-11-06T10:19:22.829Z",
+      "status": "rejected",
+      "qubits": 874,
+      "toffolis": 2167567,
+      "product": 1894453558
+    },
+    {
+      "id": "cd2b7beb-3884-4765-8900-81c3ce917d0e",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T09:13:51.332Z",
+      "score_published_at": "2026-11-06T09:20:23.090Z",
+      "status": "rejected",
+      "qubits": 875,
+      "toffolis": 2128419,
+      "product": 1862366625
+    },
+    {
+      "id": "695fbdad-0936-4e4b-8f25-9509a686cad0",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T09:22:01.138Z",
+      "score_published_at": "2026-11-06T09:28:37.148Z",
+      "status": "rejected",
+      "qubits": 876,
+      "toffolis": 2123566,
+      "product": 1860243816
+    },
+    {
+      "id": "9bd44eb7-43d8-4d8d-8314-7801d193569e",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T12:26:48.853Z",
+      "score_published_at": "2026-11-06T12:33:14.952Z",
+      "status": "rejected",
+      "qubits": 877,
+      "toffolis": 2078670,
+      "product": 1822993590
+    },
+    {
+      "id": "af69e61e-25df-4cf1-bb98-47b6936866c8",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T04:49:37.890Z",
+      "score_published_at": "2026-11-04T04:55:20.250Z",
+      "status": "rejected",
+      "qubits": 878,
+      "toffolis": 2058206,
+      "product": 1807104868
+    },
+    {
+      "id": "9a403fa1-aa77-46fc-a4cf-f642b251413e",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T09:48:34.592Z",
+      "score_published_at": "2026-11-03T09:54:11.759Z",
+      "status": "rejected",
+      "qubits": 879,
+      "toffolis": 2052544,
+      "product": 1804186176
+    },
+    {
+      "id": "c23cb4eb-5e1e-423c-a7dd-87efcda63707",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T10:16:12.572Z",
+      "score_published_at": "2026-11-03T10:21:53.444Z",
+      "status": "rejected",
+      "qubits": 882,
+      "toffolis": 2037510,
+      "product": 1797083820
+    },
+    {
+      "id": "8fcb103e-18ac-43af-94e9-c8aca8114f8e",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T10:06:40.775Z",
+      "score_published_at": "2026-11-03T10:13:31.656Z",
+      "status": "rejected",
+      "qubits": 883,
+      "toffolis": 2032574,
+      "product": 1794762842
+    },
+    {
+      "id": "24b3e864-44e8-437d-9e4b-305f5746c54f",
+      "solver": "odinfree",
+      "created_at": "2026-11-03T01:51:41.372Z",
+      "score_published_at": "2026-11-03T01:57:10.644Z",
+      "status": "rejected",
+      "qubits": 884,
+      "toffolis": 2029276,
+      "product": 1793879984
+    },
+    {
+      "id": "c2f29a2c-5766-41bb-a29e-523b0c156388",
+      "solver": "odinfree",
+      "created_at": "2026-11-02T23:50:14.205Z",
+      "score_published_at": "2026-11-02T23:55:38.582Z",
+      "status": "rejected",
+      "qubits": 885,
+      "toffolis": 2025596,
+      "product": 1792652460
+    },
+    {
+      "id": "d4fa76bb-8c4b-48d3-b745-133a685b3828",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T16:37:01.872Z",
+      "score_published_at": "2026-11-02T16:42:51.603Z",
+      "status": "rejected",
+      "qubits": 886,
+      "toffolis": 2021206,
+      "product": 1790788516
+    },
+    {
+      "id": "dbe8db8b-daaf-42e6-b7c1-1a1fb2a84cf1",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T16:06:43.708Z",
+      "score_published_at": "2026-11-02T16:11:50.932Z",
+      "status": "rejected",
+      "qubits": 887,
+      "toffolis": 2017910,
+      "product": 1789886170
+    },
+    {
+      "id": "7dbb0002-1b10-4e0b-987f-aaaf9698f5be",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T17:07:20.438Z",
+      "score_published_at": "2026-11-02T17:12:58.579Z",
+      "status": "rejected",
+      "qubits": 888,
+      "toffolis": 2014614,
+      "product": 1788977232
+    },
+    {
+      "id": "7a1d0633-1e51-41ee-86d7-d1236c7f7886",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T15:36:26.224Z",
+      "score_published_at": "2026-11-02T15:41:55.517Z",
+      "status": "rejected",
+      "qubits": 889,
+      "toffolis": 2011270,
+      "product": 1788019030
+    },
+    {
+      "id": "8b0e408b-60af-42d1-a242-f79ca9abcdc0",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T17:37:38.066Z",
+      "score_published_at": "2026-11-02T17:43:49.285Z",
+      "status": "rejected",
+      "qubits": 890,
+      "toffolis": 2008260,
+      "product": 1787351400
+    },
+    {
+      "id": "070607e6-aa99-4ad2-b8e8-fbf97e6bedd2",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T15:06:07.569Z",
+      "score_published_at": "2026-11-02T15:12:12.440Z",
+      "status": "rejected",
+      "qubits": 891,
+      "toffolis": 2005208,
+      "product": 1786640328
+    },
+    {
+      "id": "49b13ff5-5536-4c3f-aa09-04e9f5d0f60b",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T13:51:32.150Z",
+      "score_published_at": "2026-11-02T13:56:47.110Z",
+      "status": "rejected",
+      "qubits": 892,
+      "toffolis": 2002497,
+      "product": 1786227324
+    },
+    {
+      "id": "b7ab9c57-fa86-47bd-b383-1ce873900bf0",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T14:21:50.652Z",
+      "score_published_at": "2026-11-02T14:27:34.722Z",
+      "status": "rejected",
+      "qubits": 893,
+      "toffolis": 1999641,
+      "product": 1785679413
+    },
+    {
+      "id": "3678ba97-aed5-447f-9209-fcbd5b85d55b",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T13:21:13.964Z",
+      "score_published_at": "2026-11-02T13:27:13.053Z",
+      "status": "rejected",
+      "qubits": 894,
+      "toffolis": 1996909,
+      "product": 1785236646
+    },
+    {
+      "id": "92457810-b106-4f9d-a6bd-c0a5e6c187b9",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T12:50:57.326Z",
+      "score_published_at": "2026-11-02T12:57:50.215Z",
+      "status": "rejected",
+      "qubits": 895,
+      "toffolis": 1994421,
+      "product": 1785006795
+    },
+    {
+      "id": "e7242ceb-b1f2-4c91-85c6-4e46637e66eb",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T12:20:17.043Z",
+      "score_published_at": "2026-11-02T12:26:24.430Z",
+      "status": "rejected",
+      "qubits": 896,
+      "toffolis": 1992437,
+      "product": 1785223552
+    },
+    {
+      "id": "cdf96e0d-dc05-42e0-a1f4-4caa31a391f1",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-02T11:49:59.033Z",
+      "score_published_at": "2026-11-02T11:55:09.954Z",
+      "status": "rejected",
+      "qubits": 897,
+      "toffolis": 1990316,
+      "product": 1785313452
+    },
+    {
+      "id": "9532e5a0-f9da-43ea-bc78-ad21857ba154",
+      "solver": "odinfree",
+      "created_at": "2026-10-31T16:08:03.578Z",
+      "score_published_at": "2026-10-31T16:13:47.046Z",
+      "status": "rejected",
+      "qubits": 898,
+      "toffolis": 1988305,
+      "product": 1785497890
+    },
+    {
+      "id": "8adb9845-c2da-4cbd-ac6d-840ccdc3c59b",
+      "solver": "jieyilong",
+      "created_at": "2026-10-30T06:40:15.170Z",
+      "score_published_at": "2026-10-30T06:45:14.729Z",
+      "status": "rejected",
+      "qubits": 899,
+      "toffolis": 1987015,
+      "product": 1786326485
+    },
+    {
+      "id": "a9641456-6699-42b2-ac29-fb35388c9167",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T22:20:27.232Z",
+      "score_published_at": "2026-11-05T22:26:25.132Z",
+      "status": "rejected",
+      "qubits": 910,
+      "toffolis": 1967496,
+      "product": 1790421360
+    },
+    {
+      "id": "023cce8b-64cf-4ee5-8c24-11fbd91a3966",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T21:50:33.877Z",
+      "score_published_at": "2026-11-05T21:55:47.359Z",
+      "status": "rejected",
+      "qubits": 920,
+      "toffolis": 1956438,
+      "product": 1799922960
+    },
+    {
+      "id": "add470cc-2795-4888-a94d-d2388bbdba75",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T21:57:16.573Z",
+      "score_published_at": "2026-11-05T22:03:18.066Z",
+      "status": "rejected",
+      "qubits": 950,
+      "toffolis": 1936620,
+      "product": 1839789000
+    },
+    {
+      "id": "0998fdd7-cd9d-46c1-8663-5bb00258af0f",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T22:27:48.903Z",
+      "score_published_at": "2026-11-05T22:33:23.923Z",
+      "status": "rejected",
+      "qubits": 1021,
+      "toffolis": 1919532,
+      "product": 1959842172
+    },
+    {
+      "id": "412f4275-a103-4b30-9686-36990a94a3da",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T04:38:23.447Z",
+      "score_published_at": "2026-11-08T04:45:18.234Z",
+      "status": "rejected",
+      "qubits": 1022,
+      "toffolis": 1851482,
+      "product": 1892214604
+    },
+    {
+      "id": "bac52be9-a5ed-4e52-9d89-c03db8589f07",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T05:08:43.895Z",
+      "score_published_at": "2026-11-08T05:15:54.873Z",
+      "status": "rejected",
+      "qubits": 1023,
+      "toffolis": 1845123,
+      "product": 1887560829
+    },
+    {
+      "id": "7f3e2033-d38f-4e1a-a35d-0f6dc0c37408",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T05:39:01.572Z",
+      "score_published_at": "2026-11-08T05:45:55.207Z",
+      "status": "rejected",
+      "qubits": 1024,
+      "toffolis": 1839326,
+      "product": 1883469824
+    },
+    {
+      "id": "5df2632e-ba89-491f-87ed-d0a277da21c8",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T06:09:19.646Z",
+      "score_published_at": "2026-11-08T06:16:35.608Z",
+      "status": "rejected",
+      "qubits": 1025,
+      "toffolis": 1833462,
+      "product": 1879298550
+    },
+    {
+      "id": "194320ee-7b9f-4df2-98e6-3b73a9dc27e7",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T06:39:37.023Z",
+      "score_published_at": "2026-11-08T06:46:50.324Z",
+      "status": "rejected",
+      "qubits": 1026,
+      "toffolis": 1828725,
+      "product": 1876271850
+    },
+    {
+      "id": "27962ffa-d90b-4879-a8a0-6ee6bd320ffd",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T07:09:54.754Z",
+      "score_published_at": "2026-11-08T07:17:25.824Z",
+      "status": "rejected",
+      "qubits": 1027,
+      "toffolis": 1824780,
+      "product": 1874049060
+    },
+    {
+      "id": "0efb1887-fb65-4853-b81b-ff186f27cdf1",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T04:08:04.652Z",
+      "score_published_at": "2026-11-08T04:15:28.798Z",
+      "status": "rejected",
+      "qubits": 1028,
+      "toffolis": 1821408,
+      "product": 1872407424
+    },
+    {
+      "id": "f1a5de67-668a-4a92-817a-4e1074fad1e2",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T03:37:44.559Z",
+      "score_published_at": "2026-11-08T03:45:39.583Z",
+      "status": "rejected",
+      "qubits": 1029,
+      "toffolis": 1818147,
+      "product": 1870873263
+    },
+    {
+      "id": "cd013de7-e188-4e0a-ba42-b86991b499d9",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T03:07:24.397Z",
+      "score_published_at": "2026-11-08T03:15:24.831Z",
+      "status": "rejected",
+      "qubits": 1030,
+      "toffolis": 1814895,
+      "product": 1869341850
+    },
+    {
+      "id": "2f539119-33bb-47eb-8548-b7c8670bb169",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T07:40:14.988Z",
+      "score_published_at": "2026-11-08T07:47:53.768Z",
+      "status": "rejected",
+      "qubits": 1031,
+      "toffolis": 1811670,
+      "product": 1867831770
+    },
+    {
+      "id": "bce06523-010e-4109-b235-4d582d8eba2f",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T02:37:05.654Z",
+      "score_published_at": "2026-11-08T02:45:01.742Z",
+      "status": "rejected",
+      "qubits": 1032,
+      "toffolis": 1808475,
+      "product": 1866346200
+    },
+    {
+      "id": "08d0eac8-1d64-44fb-ae73-710732907d18",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T02:06:47.714Z",
+      "score_published_at": "2026-11-08T02:15:13.481Z",
+      "status": "rejected",
+      "qubits": 1033,
+      "toffolis": 1805363,
+      "product": 1864939979
+    },
+    {
+      "id": "c556b99d-1c77-4741-8299-9914967dc74e",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T01:36:28.041Z",
+      "score_published_at": "2026-11-08T01:44:31.153Z",
+      "status": "rejected",
+      "qubits": 1034,
+      "toffolis": 1802223,
+      "product": 1863498582
+    },
+    {
+      "id": "4db09e2d-8f62-4f00-ab88-72c06efe08a3",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T08:10:33.332Z",
+      "score_published_at": "2026-11-08T08:18:28.803Z",
+      "status": "rejected",
+      "qubits": 1035,
+      "toffolis": 1799472,
+      "product": 1862453520
+    },
+    {
+      "id": "fa3bdba0-d8e0-4a48-ae64-545d609d8192",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T01:06:06.972Z",
+      "score_published_at": "2026-11-08T01:14:29.419Z",
+      "status": "rejected",
+      "qubits": 1036,
+      "toffolis": 1796599,
+      "product": 1861276564
+    },
+    {
+      "id": "43f8f67c-f4ab-4bcf-9247-336dc27086c1",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T00:35:48.240Z",
+      "score_published_at": "2026-11-08T00:43:56.353Z",
+      "status": "rejected",
+      "qubits": 1037,
+      "toffolis": 1793815,
+      "product": 1860186155
+    },
+    {
+      "id": "451caebe-3837-4f10-9531-5a3de1dfe826",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T00:05:26.446Z",
+      "score_published_at": "2026-11-08T00:13:59.772Z",
+      "status": "rejected",
+      "qubits": 1038,
+      "toffolis": 1791046,
+      "product": 1859105748
+    },
+    {
+      "id": "b0e7fcee-eb01-434a-b57c-02439d57089d",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-07T23:35:07.389Z",
+      "score_published_at": "2026-11-07T23:43:33.862Z",
+      "status": "rejected",
+      "qubits": 1039,
+      "toffolis": 1788239,
+      "product": 1857980321
+    },
+    {
+      "id": "eb3f42a7-5d60-41a8-935a-d31f08f414a0",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T08:40:54.339Z",
+      "score_published_at": "2026-11-08T08:49:32.853Z",
+      "status": "rejected",
+      "qubits": 1040,
+      "toffolis": 1785514,
+      "product": 1856934560
+    },
+    {
+      "id": "0d15cc51-6b2f-4a76-80f6-7fc725e47254",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-07T23:04:48.892Z",
+      "score_published_at": "2026-11-07T23:14:03.607Z",
+      "status": "rejected",
+      "qubits": 1041,
+      "toffolis": 1782772,
+      "product": 1855865652
+    },
+    {
+      "id": "448e75af-ee66-4bf1-94ad-3cd39332a9c6",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-07T22:34:29.054Z",
+      "score_published_at": "2026-11-07T22:40:22.771Z",
+      "status": "rejected",
+      "qubits": 1042,
+      "toffolis": 1642322,
+      "product": 1711299524
+    },
+    {
+      "id": "ee3cc274-0d3a-4014-a356-46976c98277d",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T09:11:14.851Z",
+      "score_published_at": "2026-11-08T09:17:06.039Z",
+      "status": "rejected",
+      "qubits": 1043,
+      "toffolis": 1640833,
+      "product": 1711388819
+    },
+    {
+      "id": "f3e90288-4027-4136-ac45-a23cd7befbf9",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T09:41:34.814Z",
+      "score_published_at": "2026-11-08T09:47:23.993Z",
+      "status": "rejected",
+      "qubits": 1044,
+      "toffolis": 1638959,
+      "product": 1711073196
+    },
+    {
+      "id": "593e64d8-ca50-4536-a9fa-73f812b7c75e",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T10:11:53.066Z",
+      "score_published_at": "2026-11-08T10:17:41.030Z",
+      "status": "rejected",
+      "qubits": 1045,
+      "toffolis": 1637634,
+      "product": 1711327530
+    },
+    {
+      "id": "e9ebf364-dad0-45dd-8153-ed5f43e657a6",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T10:42:12.996Z",
+      "score_published_at": "2026-11-08T10:48:17.464Z",
+      "status": "rejected",
+      "qubits": 1046,
+      "toffolis": 1636130,
+      "product": 1711391980
+    },
+    {
+      "id": "0bc8e99b-7ddb-4ea4-9cad-a8ac60926d1e",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T11:12:34.852Z",
+      "score_published_at": "2026-11-08T11:18:25.661Z",
+      "status": "rejected",
+      "qubits": 1047,
+      "toffolis": 1634529,
+      "product": 1711351863
+    },
+    {
+      "id": "161415bb-97aa-436e-9b43-032e15353d68",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T11:42:56.187Z",
+      "score_published_at": "2026-11-08T11:49:20.989Z",
+      "status": "rejected",
+      "qubits": 1048,
+      "toffolis": 1632707,
+      "product": 1711076936
+    },
+    {
+      "id": "a18a430e-4386-4467-81c8-782046688883",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T12:13:18.184Z",
+      "score_published_at": "2026-11-08T12:19:58.877Z",
+      "status": "rejected",
+      "qubits": 1049,
+      "toffolis": 1631799,
+      "product": 1711757151
+    },
+    {
+      "id": "ade5c320-d518-44db-b70a-3693634d27f5",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T12:43:38.157Z",
+      "score_published_at": "2026-11-08T12:49:48.985Z",
+      "status": "rejected",
+      "qubits": 1050,
+      "toffolis": 1630718,
+      "product": 1712253900
+    },
+    {
+      "id": "3b2bac07-a834-4439-8054-269b31024632",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T13:13:58.961Z",
+      "score_published_at": "2026-11-08T13:20:02.946Z",
+      "status": "rejected",
+      "qubits": 1051,
+      "toffolis": 1629302,
+      "product": 1712396402
+    },
+    {
+      "id": "afa9bae3-b410-403f-bbcd-406d8eb0bf81",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T13:44:19.694Z",
+      "score_published_at": "2026-11-08T13:50:26.408Z",
+      "status": "rejected",
+      "qubits": 1052,
+      "toffolis": 1628529,
+      "product": 1713212508
+    },
+    {
+      "id": "20603211-f0c4-4904-93ac-1be3a2a153d6",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T14:14:41.800Z",
+      "score_published_at": "2026-11-08T14:21:23.996Z",
+      "status": "rejected",
+      "qubits": 1053,
+      "toffolis": 1627312,
+      "product": 1713559536
+    },
+    {
+      "id": "97474feb-15ff-48bc-8fcc-39d04c2e7ec5",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T14:45:00.598Z",
+      "score_published_at": "2026-11-08T14:51:09.764Z",
+      "status": "rejected",
+      "qubits": 1054,
+      "toffolis": 1626529,
+      "product": 1714361566
+    },
+    {
+      "id": "8e704e2d-bcdf-4145-b80a-9ae3e490cbc4",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T15:15:19.486Z",
+      "score_published_at": "2026-11-08T15:21:27.479Z",
+      "status": "rejected",
+      "qubits": 1055,
+      "toffolis": 1625730,
+      "product": 1715145150
+    },
+    {
+      "id": "ffce1a86-b99e-48c5-ac05-10da9cb0563c",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T15:45:39.445Z",
+      "score_published_at": "2026-11-08T15:51:47.408Z",
+      "status": "rejected",
+      "qubits": 1056,
+      "toffolis": 1624295,
+      "product": 1715255520
+    },
+    {
+      "id": "48d8b688-4f17-4fa6-8775-1ac8091ccc2d",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T16:15:57.901Z",
+      "score_published_at": "2026-11-08T16:22:04.517Z",
+      "status": "rejected",
+      "qubits": 1057,
+      "toffolis": 1623467,
+      "product": 1716004619
+    },
+    {
+      "id": "103522f8-68c3-4717-95bc-5009fe46f96b",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T16:46:22.256Z",
+      "score_published_at": "2026-11-08T16:52:00.606Z",
+      "status": "rejected",
+      "qubits": 1058,
+      "toffolis": 1546386,
+      "product": 1636076388
+    },
+    {
+      "id": "25ac7f4b-e1b4-4ae6-9e97-e3a6a938a803",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T17:16:45.190Z",
+      "score_published_at": "2026-11-08T17:22:56.308Z",
+      "status": "rejected",
+      "qubits": 1059,
+      "toffolis": 1545250,
+      "product": 1636419750
+    },
+    {
+      "id": "6fc7e254-308f-45e8-a5f5-352bd4889e0b",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T17:47:05.667Z",
+      "score_published_at": "2026-11-08T17:53:06.859Z",
+      "status": "rejected",
+      "qubits": 1060,
+      "toffolis": 1544183,
+      "product": 1636833980
+    },
+    {
+      "id": "95d97a5c-2f5f-414d-893b-5cf6f84e87dd",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T18:17:25.251Z",
+      "score_published_at": "2026-11-08T18:23:30.573Z",
+      "status": "rejected",
+      "qubits": 1061,
+      "toffolis": 1543129,
+      "product": 1637259869
+    },
+    {
+      "id": "c0e384ec-1469-4c19-a60c-e3734dc25205",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T18:47:44.051Z",
+      "score_published_at": "2026-11-08T18:53:36.854Z",
+      "status": "rejected",
+      "qubits": 1062,
+      "toffolis": 1542101,
+      "product": 1637711262
+    },
+    {
+      "id": "32ae3d1f-b419-4d83-9fc0-e7064160c313",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T19:18:26.823Z",
+      "score_published_at": "2026-11-08T19:24:13.952Z",
+      "status": "rejected",
+      "qubits": 1063,
+      "toffolis": 1541061,
+      "product": 1638147843
+    },
+    {
+      "id": "866edc25-5bb3-4521-9d5b-932e80a107c7",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T19:49:38.635Z",
+      "score_published_at": "2026-11-08T19:55:29.105Z",
+      "status": "rejected",
+      "qubits": 1064,
+      "toffolis": 1540058,
+      "product": 1638621712
+    },
+    {
+      "id": "039694fc-7f44-4d15-aac6-0343ad71c330",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T20:19:59.734Z",
+      "score_published_at": "2026-11-08T20:26:12.311Z",
+      "status": "rejected",
+      "qubits": 1065,
+      "toffolis": 1539102,
+      "product": 1639143630
+    },
+    {
+      "id": "59715b06-fad1-4e08-b984-ae59c64a5842",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T20:50:19.964Z",
+      "score_published_at": "2026-11-08T20:56:33.819Z",
+      "status": "rejected",
+      "qubits": 1066,
+      "toffolis": 1538137,
+      "product": 1639654042
+    },
+    {
+      "id": "e0bd0e1a-6ce4-4e51-be19-c9ab7fe7d524",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T21:20:40.484Z",
+      "score_published_at": "2026-11-08T21:26:36.900Z",
+      "status": "rejected",
+      "qubits": 1067,
+      "toffolis": 1537185,
+      "product": 1640176395
+    },
+    {
+      "id": "df86c541-7353-4cea-ac26-c5a77e13f63c",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T21:51:04.911Z",
+      "score_published_at": "2026-11-08T21:57:00.463Z",
+      "status": "rejected",
+      "qubits": 1068,
+      "toffolis": 1536256,
+      "product": 1640721408
+    },
+    {
+      "id": "6e890def-0c8c-439f-af3c-d2e566f6872c",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-06T17:16:12.874Z",
+      "score_published_at": "2026-11-06T17:23:10.911Z",
+      "status": "rejected",
+      "qubits": 1069,
+      "toffolis": 1530484,
+      "product": 1636087396
+    },
+    {
+      "id": "31d83cf2-d43d-45a7-ae6e-78b7d60874b9",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T22:21:23.732Z",
+      "score_published_at": "2026-11-08T22:26:48.221Z",
+      "status": "rejected",
+      "qubits": 1070,
+      "toffolis": 1518830,
+      "product": 1625148100
+    },
+    {
+      "id": "e488b13b-49e1-4935-8830-b973eca85326",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T22:51:42.393Z",
+      "score_published_at": "2026-11-08T22:57:01.092Z",
+      "status": "rejected",
+      "qubits": 1071,
+      "toffolis": 1517944,
+      "product": 1625718024
+    },
+    {
+      "id": "bc3ae494-2720-4b3c-853e-90a91a5ec714",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T23:22:00.672Z",
+      "score_published_at": "2026-11-08T23:28:13.123Z",
+      "status": "rejected",
+      "qubits": 1072,
+      "toffolis": 1517096,
+      "product": 1626326912
+    },
+    {
+      "id": "cddf5ea8-e954-4acf-b8fa-a634dcf7ef27",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-08T23:52:20.478Z",
+      "score_published_at": "2026-11-08T23:57:42.834Z",
+      "status": "rejected",
+      "qubits": 1073,
+      "toffolis": 1516284,
+      "product": 1626972732
+    },
+    {
+      "id": "6469b184-2082-4ca7-b4e7-6a4751467b0d",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T00:22:52.728Z",
+      "score_published_at": "2026-11-09T00:28:33.847Z",
+      "status": "rejected",
+      "qubits": 1074,
+      "toffolis": 1515464,
+      "product": 1627608336
+    },
+    {
+      "id": "505fdc99-3b0f-4c28-b3af-e74d2b7e3ed9",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T00:53:10.680Z",
+      "score_published_at": "2026-11-09T00:58:36.609Z",
+      "status": "rejected",
+      "qubits": 1075,
+      "toffolis": 1514696,
+      "product": 1628298200
+    },
+    {
+      "id": "305724c0-884b-441d-a6a9-dc735c43ef20",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T01:23:43.467Z",
+      "score_published_at": "2026-11-09T01:29:12.291Z",
+      "status": "rejected",
+      "qubits": 1076,
+      "toffolis": 1513942,
+      "product": 1629001592
+    },
+    {
+      "id": "c506d616-b6ca-4ec7-a3f4-ed21cc4549da",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T01:54:05.466Z",
+      "score_published_at": "2026-11-09T01:59:26.026Z",
+      "status": "rejected",
+      "qubits": 1077,
+      "toffolis": 1513212,
+      "product": 1629729324
+    },
+    {
+      "id": "e0654489-02e6-4ff0-8042-30b357527dae",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T02:24:26.867Z",
+      "score_published_at": "2026-11-09T02:29:49.557Z",
+      "status": "rejected",
+      "qubits": 1078,
+      "toffolis": 1512463,
+      "product": 1630435114
+    },
+    {
+      "id": "419dc393-b6f4-47db-8f25-01cbe7585be9",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T02:54:46.174Z",
+      "score_published_at": "2026-11-09T03:00:16.750Z",
+      "status": "rejected",
+      "qubits": 1079,
+      "toffolis": 1511774,
+      "product": 1631204146
+    },
+    {
+      "id": "8d064813-a1aa-47b4-866e-caab74e41904",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T03:25:06.310Z",
+      "score_published_at": "2026-11-09T03:30:28.183Z",
+      "status": "rejected",
+      "qubits": 1080,
+      "toffolis": 1511065,
+      "product": 1631950200
+    },
+    {
+      "id": "6983c19a-169c-4681-8207-3d205ffa9288",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T03:55:27.403Z",
+      "score_published_at": "2026-11-09T04:00:51.350Z",
+      "status": "rejected",
+      "qubits": 1081,
+      "toffolis": 1510386,
+      "product": 1632727266
+    },
+    {
+      "id": "03db53e9-22d6-4f1f-8479-4c4299473d42",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T04:25:51.254Z",
+      "score_published_at": "2026-11-09T04:31:32.594Z",
+      "status": "rejected",
+      "qubits": 1082,
+      "toffolis": 1509726,
+      "product": 1633523532
+    },
+    {
+      "id": "90b2faf2-1f93-476b-9e7e-de55d246010e",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T04:56:14.758Z",
+      "score_published_at": "2026-11-09T05:02:23.875Z",
+      "status": "rejected",
+      "qubits": 1083,
+      "toffolis": 1509028,
+      "product": 1634277324
+    },
+    {
+      "id": "9c35e148-ed1e-4103-a4d0-23f3f87094d1",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T05:26:34.924Z",
+      "score_published_at": "2026-11-09T05:31:56.015Z",
+      "status": "rejected",
+      "qubits": 1084,
+      "toffolis": 1508427,
+      "product": 1635134868
+    },
+    {
+      "id": "e8a32150-3fc9-4ae8-bd2d-3ed3289e88ca",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T05:56:56.318Z",
+      "score_published_at": "2026-11-09T06:02:24.254Z",
+      "status": "rejected",
+      "qubits": 1085,
+      "toffolis": 1507814,
+      "product": 1635978190
+    },
+    {
+      "id": "3448f60a-0cae-45bf-b0c4-b077cf3cb66f",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T06:27:16.978Z",
+      "score_published_at": "2026-11-09T06:32:52.259Z",
+      "status": "rejected",
+      "qubits": 1086,
+      "toffolis": 1507162,
+      "product": 1636777932
+    },
+    {
+      "id": "49e37478-8494-4004-921b-eb2a0c7a43dd",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T06:57:43.996Z",
+      "score_published_at": "2026-11-09T07:03:34.645Z",
+      "status": "rejected",
+      "qubits": 1087,
+      "toffolis": 1506552,
+      "product": 1637622024
+    },
+    {
+      "id": "5be28551-9470-456a-bad4-1fc569a87344",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T07:28:05.073Z",
+      "score_published_at": "2026-11-09T07:33:29.729Z",
+      "status": "rejected",
+      "qubits": 1088,
+      "toffolis": 1505981,
+      "product": 1638507328
+    },
+    {
+      "id": "9f44e693-f8d3-4e75-bd67-ccc6ce426e5a",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T07:58:23.505Z",
+      "score_published_at": "2026-11-09T08:03:48.355Z",
+      "status": "rejected",
+      "qubits": 1089,
+      "toffolis": 1505419,
+      "product": 1639401291
+    },
+    {
+      "id": "dc07e48a-78f8-4479-ab6d-c439106c83d5",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T08:28:44.557Z",
+      "score_published_at": "2026-11-09T08:34:17.781Z",
+      "status": "rejected",
+      "qubits": 1090,
+      "toffolis": 1504838,
+      "product": 1640273420
+    },
+    {
+      "id": "4cdefab8-d446-4586-a96d-b6d21655b1c4",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T08:59:08.284Z",
+      "score_published_at": "2026-11-09T09:04:40.163Z",
+      "status": "rejected",
+      "qubits": 1091,
+      "toffolis": 1504299,
+      "product": 1641190209
+    },
+    {
+      "id": "6eb60e82-c4c5-4c9c-918c-582cffe98842",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-07T22:04:10.672Z",
+      "score_published_at": "2026-11-07T22:09:32.144Z",
+      "status": "rejected",
+      "qubits": 1092,
+      "toffolis": 1503809,
+      "product": 1642159428
+    },
+    {
+      "id": "347a4be7-f222-4400-895c-a3745246dc67",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-07T21:33:49.986Z",
+      "score_published_at": "2026-11-07T21:39:39.480Z",
+      "status": "rejected",
+      "qubits": 1093,
+      "toffolis": 1503262,
+      "product": 1643065366
+    },
+    {
+      "id": "dd3135e1-6fd4-4ad2-8f0a-7d70d471a9b8",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T21:16:00.926Z",
+      "score_published_at": "2026-11-06T21:21:42.182Z",
+      "status": "rejected",
+      "qubits": 1094,
+      "toffolis": 1502833,
+      "product": 1644099302
+    },
+    {
+      "id": "5b2b7856-f8fc-4d01-9f1a-39979894b116",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-09T09:29:28.950Z",
+      "score_published_at": "2026-11-09T09:35:00.194Z",
+      "status": "rejected",
+      "qubits": 1095,
+      "toffolis": 1502318,
+      "product": 1645038210
+    },
+    {
+      "id": "12dcf93c-9915-480e-bd02-64a3bf6f236c",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T08:28:44.259Z",
+      "score_published_at": "2026-11-07T08:34:33.024Z",
+      "status": "rejected",
+      "qubits": 1099,
+      "toffolis": 1500728,
+      "product": 1649300072
+    },
+    {
+      "id": "5a3543b6-efcb-4f6d-8b9e-f26b43afd9e7",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T08:14:26.855Z",
+      "score_published_at": "2026-11-07T08:19:59.367Z",
+      "status": "rejected",
+      "qubits": 1100,
+      "toffolis": 1500344,
+      "product": 1650378400
+    },
+    {
+      "id": "4920ba41-8ae9-435d-8680-9a03f8884236",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T08:00:59.525Z",
+      "score_published_at": "2026-11-07T08:06:31.795Z",
+      "status": "rejected",
+      "qubits": 1101,
+      "toffolis": 1499968,
+      "product": 1651464768
+    },
+    {
+      "id": "0869da40-bd62-4468-8b7b-954bc71911de",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T03:19:54.520Z",
+      "score_published_at": "2026-11-07T03:25:25.720Z",
+      "status": "rejected",
+      "qubits": 1102,
+      "toffolis": 1499622,
+      "product": 1652583444
+    },
+    {
+      "id": "4ed6a1c2-1baa-43ae-9c93-15896b872e62",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T07:47:36.888Z",
+      "score_published_at": "2026-11-07T07:53:25.584Z",
+      "status": "rejected",
+      "qubits": 1103,
+      "toffolis": 1499256,
+      "product": 1653679368
+    },
+    {
+      "id": "afc980c8-a9e1-4bb9-a41a-cedf0ac5d52c",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T00:46:51.598Z",
+      "score_published_at": "2026-11-07T00:52:36.177Z",
+      "status": "rejected",
+      "qubits": 1105,
+      "toffolis": 1498559,
+      "product": 1655907695
+    },
+    {
+      "id": "f231dfc9-16a7-44a3-8b78-afdfa377edd6",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T21:03:28.299Z",
+      "score_published_at": "2026-11-06T21:09:06.530Z",
+      "status": "rejected",
+      "qubits": 1132,
+      "toffolis": 1490175,
+      "product": 1686878100
+    },
+    {
+      "id": "1c0e0e91-de6a-4348-bd4a-3b6351fdc70b",
+      "solver": "jieyilong",
+      "created_at": "2026-06-27T23:20:43.204Z",
+      "score_published_at": "2026-06-27T23:22:24.299Z",
+      "status": "rejected",
+      "qubits": 1133,
+      "toffolis": 1460511,
+      "product": 1654758963
+    },
+    {
+      "id": "a21ec672-90db-4ecf-ade0-892e526bc680",
+      "solver": "gnuchev",
+      "created_at": "2026-08-05T21:55:39.562Z",
+      "score_published_at": "2026-08-05T21:57:45.173Z",
+      "status": "rejected",
+      "qubits": 1134,
+      "toffolis": 1460084,
+      "product": 1655735256
+    },
+    {
+      "id": "9bc559c6-77e1-4a43-828c-e60354a3448d",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T19:34:07.598Z",
+      "score_published_at": "2026-11-06T19:37:15.628Z",
+      "status": "rejected",
+      "qubits": 1135,
+      "toffolis": 1382701,
+      "product": 1569365635
+    },
+    {
+      "id": "11aea2fe-5a4d-4364-b994-477dc8d272b9",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T19:54:29.231Z",
+      "score_published_at": "2026-11-06T19:57:27.245Z",
+      "status": "rejected",
+      "qubits": 1136,
+      "toffolis": 1330205,
+      "product": 1511112880
+    },
+    {
+      "id": "ea9ed00a-6a02-4751-baa9-d954f3943e25",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-03T05:58:27.675Z",
+      "score_published_at": "2026-11-03T06:00:32.776Z",
+      "status": "rejected",
+      "qubits": 1137,
+      "toffolis": 1290481,
+      "product": 1467276897
+    },
+    {
+      "id": "074fd7f7-e772-4eb4-bd69-c15bf2776f23",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T09:09:35.900Z",
+      "score_published_at": "2026-11-06T09:12:05.825Z",
+      "status": "rejected",
+      "qubits": 1138,
+      "toffolis": 1196938,
+      "product": 1362115444
+    },
+    {
+      "id": "db7399b5-3f84-4b98-848b-8efce4de547e",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T22:25:26.156Z",
+      "score_published_at": "2026-10-30T22:27:50.690Z",
+      "status": "rejected",
+      "qubits": 1139,
+      "toffolis": 1159417,
+      "product": 1320575963
+    },
+    {
+      "id": "594eaea0-ad51-4813-89b4-1d3f6a18b8e3",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T20:35:44.690Z",
+      "score_published_at": "2026-11-05T20:39:01.612Z",
+      "status": "rejected",
+      "qubits": 1140,
+      "toffolis": 1138462,
+      "product": 1297846680
+    },
+    {
+      "id": "84d09eaf-0bb6-4d5a-93fd-9cd8a85a4b3c",
+      "solver": "odinfree",
+      "created_at": "2026-10-30T15:15:53.290Z",
+      "score_published_at": "2026-10-30T15:18:00.920Z",
+      "status": "rejected",
+      "qubits": 1141,
+      "toffolis": 1124698,
+      "product": 1283280418
+    },
+    {
+      "id": "ae67d4e9-e5b5-4138-969f-e2378c57d876",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T22:33:55.098Z",
+      "score_published_at": "2026-11-05T22:36:06.766Z",
+      "status": "rejected",
+      "qubits": 1142,
+      "toffolis": 1114457,
+      "product": 1272709894
+    },
+    {
+      "id": "ae585f32-ce74-40c0-a067-66515a5f23e1",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T18:58:48.839Z",
+      "score_published_at": "2026-11-06T19:01:07.636Z",
+      "status": "rejected",
+      "qubits": 1143,
+      "toffolis": 1090234,
+      "product": 1246137462
+    },
+    {
+      "id": "96adadd6-dbcb-4ca9-8489-9d4de9fc1487",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-04T21:20:39.669Z",
+      "score_published_at": "2026-11-04T21:22:47.342Z",
+      "status": "rejected",
+      "qubits": 1144,
+      "toffolis": 1085856,
+      "product": 1242219264
+    },
+    {
+      "id": "f0e90dfb-f149-44dc-86d6-56c8e4c7cfe9",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-04T22:51:32.120Z",
+      "score_published_at": "2026-11-04T22:53:39.882Z",
+      "status": "rejected",
+      "qubits": 1145,
+      "toffolis": 1076425,
+      "product": 1232506625
+    },
+    {
+      "id": "12508bd3-796c-4ff9-abc9-d3766de0c7e7",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T19:18:49.298Z",
+      "score_published_at": "2026-11-06T19:21:08.792Z",
+      "status": "rejected",
+      "qubits": 1146,
+      "toffolis": 1062755,
+      "product": 1217917230
+    },
+    {
+      "id": "ff9a502e-af4a-4a2a-9e8a-d1af8efeb19e",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T17:34:00.096Z",
+      "score_published_at": "2026-11-06T17:36:21.614Z",
+      "status": "rejected",
+      "qubits": 1147,
+      "toffolis": 1054154,
+      "product": 1209114638
+    },
+    {
+      "id": "eee8ff6b-b12c-49e1-bfb7-1fbd710a133b",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T17:29:16.179Z",
+      "score_published_at": "2026-11-06T17:31:38.780Z",
+      "status": "rejected",
+      "qubits": 1148,
+      "toffolis": 1042813,
+      "product": 1197149324
+    },
+    {
+      "id": "b358f68c-dd95-4b93-af25-c7d7b1bbbd96",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T16:36:19.926Z",
+      "score_published_at": "2026-11-06T16:38:37.888Z",
+      "status": "rejected",
+      "qubits": 1149,
+      "toffolis": 1033725,
+      "product": 1187750025
+    },
+    {
+      "id": "847f586b-31cc-4daf-a6a7-749a230a8b5f",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-05T01:53:21.605Z",
+      "score_published_at": "2026-11-05T01:55:30.066Z",
+      "status": "rejected",
+      "qubits": 1150,
+      "toffolis": 1032676,
+      "product": 1187577400
+    },
+    {
+      "id": "4379a4eb-89b8-46f6-9ef3-b7e3953ffae0",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-05T02:23:39.326Z",
+      "score_published_at": "2026-11-05T02:25:43.992Z",
+      "status": "rejected",
+      "qubits": 1151,
+      "toffolis": 1028039,
+      "product": 1183272889
+    },
+    {
+      "id": "ba70286a-e661-4e8c-91cc-fcaa6175bf4d",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T17:19:32.551Z",
+      "score_published_at": "2026-11-06T17:21:58.546Z",
+      "status": "rejected",
+      "qubits": 1152,
+      "toffolis": 1017844,
+      "product": 1172556288
+    },
+    {
+      "id": "57c163ce-3dc5-468f-b129-1f5cdb0569d4",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-05T03:35:50.790Z",
+      "score_published_at": "2026-11-05T03:37:59.999Z",
+      "status": "rejected",
+      "qubits": 1153,
+      "toffolis": 1017636,
+      "product": 1173334308
+    },
+    {
+      "id": "40b2ba39-7213-4156-9d07-aed53e148ffc",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T15:25:31.189Z",
+      "score_published_at": "2026-11-06T15:27:49.434Z",
+      "status": "rejected",
+      "qubits": 1154,
+      "toffolis": 1009223,
+      "product": 1164643342
+    },
+    {
+      "id": "a0ea4e6e-7841-4edb-af8a-0a4112084c88",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T14:18:10.809Z",
+      "score_published_at": "2026-11-06T14:21:27.737Z",
+      "status": "rejected",
+      "qubits": 1156,
+      "toffolis": 1002435,
+      "product": 1158814860
+    },
+    {
+      "id": "9281a8ea-2d1d-40d8-9ce7-a5485654a9dc",
+      "solver": "jackylee0424",
+      "created_at": "2026-11-04T06:39:10.721Z",
+      "score_published_at": "2026-11-04T06:51:22.296Z",
+      "status": "rejected",
+      "qubits": 1157,
+      "toffolis": 999541,
+      "product": 1156468937
+    },
+    {
+      "id": "23e4fad5-3ca4-4eab-ab75-10282455c0ae",
+      "solver": "gopikannappan",
+      "created_at": "2026-11-05T05:42:54.847Z",
+      "score_published_at": "2026-11-05T05:45:06.176Z",
+      "status": "rejected",
+      "qubits": 1158,
+      "toffolis": 997945,
+      "product": 1155620310
+    },
+    {
+      "id": "ab8d8a14-4b76-4030-b02b-735300177f17",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T14:06:51.965Z",
+      "score_published_at": "2026-11-06T14:09:12.843Z",
+      "status": "rejected",
+      "qubits": 1159,
+      "toffolis": 989177,
+      "product": 1146456143
+    },
+    {
+      "id": "358c0513-afde-47c4-87c1-bbf485b712d6",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T14:03:37.768Z",
+      "score_published_at": "2026-11-06T14:06:00.345Z",
+      "status": "rejected",
+      "qubits": 1160,
+      "toffolis": 986454,
+      "product": 1144286640
+    },
+    {
+      "id": "dfd01e5f-8e3f-472b-b07f-1a749a9e4c3a",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T10:09:14.990Z",
+      "score_published_at": "2026-11-06T10:11:38.754Z",
+      "status": "rejected",
+      "qubits": 1162,
+      "toffolis": 981714,
+      "product": 1140751668
+    },
+    {
+      "id": "1f614096-66e7-410d-908a-e51cbe8af06e",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T08:23:00.781Z",
+      "score_published_at": "2026-11-06T08:25:13.747Z",
+      "status": "rejected",
+      "qubits": 1163,
+      "toffolis": 979221,
+      "product": 1138834023
+    },
+    {
+      "id": "17250b2e-ac81-4cb5-a4b3-a0029a8d5da4",
+      "solver": "gnuchev",
+      "created_at": "2026-09-30T05:06:39.170Z",
+      "score_published_at": "2026-09-30T05:08:37.525Z",
+      "status": "rejected",
+      "qubits": 1164,
+      "toffolis": 970983,
+      "product": 1130224212
+    },
+    {
+      "id": "b72ce1ae-c5e0-46b8-a562-b5f1ac4d074a",
+      "solver": "dysnasia",
+      "created_at": "2026-10-06T18:32:22.560Z",
+      "score_published_at": "2026-10-06T18:34:20.496Z",
+      "status": "accepted",
+      "qubits": 1170,
+      "toffolis": 946553,
+      "product": 1107467010
+    },
+    {
+      "id": "a158447c-9c4d-4bcd-8cfa-fa2667508690",
+      "solver": "dysnasia",
+      "created_at": "2026-10-06T10:54:34.906Z",
+      "score_published_at": "2026-10-06T10:56:45.564Z",
+      "status": "accepted",
+      "qubits": 1171,
+      "toffolis": 945839,
+      "product": 1107577469
+    },
+    {
+      "id": "73c5e2a8-f15c-4b01-a3ac-8d0ac1807391",
+      "solver": "jackylee0424",
+      "created_at": "2026-10-05T15:49:07.393Z",
+      "score_published_at": "2026-10-05T15:51:04.477Z",
+      "status": "accepted",
+      "qubits": 1172,
+      "toffolis": 945335,
+      "product": 1107932620
+    },
+    {
+      "id": "1d602397-0e14-4314-8834-3e80db97b02c",
+      "solver": "dysnasia",
+      "created_at": "2026-10-04T23:41:44.722Z",
+      "score_published_at": "2026-10-04T23:43:38.370Z",
+      "status": "accepted",
+      "qubits": 1173,
+      "toffolis": 944566,
+      "product": 1107975918
+    },
+    {
+      "id": "ee410040-42fd-4a53-bcea-1150b7e2c5bf",
+      "solver": "dysnasia",
+      "created_at": "2026-10-03T13:27:51.226Z",
+      "score_published_at": "2026-10-03T13:29:47.386Z",
+      "status": "accepted",
+      "qubits": 1174,
+      "toffolis": 943826,
+      "product": 1108051724
+    },
+    {
+      "id": "8fd729b3-2474-4231-afe5-fa093e80535b",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T20:31:34.675Z",
+      "score_published_at": "2026-11-05T20:34:08.501Z",
+      "status": "rejected",
+      "qubits": 1204,
+      "toffolis": 939357,
+      "product": 1130985828
+    },
+    {
+      "id": "b8228bf9-b93e-4895-8421-d642d336e1c1",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T20:23:36.054Z",
+      "score_published_at": "2026-11-05T20:29:43.983Z",
+      "status": "rejected",
+      "qubits": 1212,
+      "toffolis": 805928,
+      "product": 976784736
+    },
+    {
+      "id": "0967e527-bfe5-4b71-b394-67da0f646d4c",
+      "solver": "odinfree",
+      "created_at": "2026-11-04T19:20:41.524Z",
+      "score_published_at": "2026-11-04T19:25:27.185Z",
+      "status": "rejected",
+      "qubits": 1213,
+      "toffolis": 800715,
+      "product": 971267295
+    },
+    {
+      "id": "8f05b7c8-1bec-4fa7-a0fa-ec1ccdf2dda4",
+      "solver": "odinfree",
+      "created_at": "2026-10-31T16:18:11.060Z",
+      "score_published_at": "2026-10-31T16:22:37.597Z",
+      "status": "rejected",
+      "qubits": 1214,
+      "toffolis": 797770,
+      "product": 968492780
+    },
+    {
+      "id": "33451228-8c7c-4147-ab23-5e7e54d15618",
+      "solver": "odinfree",
+      "created_at": "2026-10-31T13:43:55.317Z",
+      "score_published_at": "2026-10-31T13:48:04.578Z",
+      "status": "rejected",
+      "qubits": 1217,
+      "toffolis": 786291,
+      "product": 956916147
+    },
+    {
+      "id": "944192e2-aaae-4684-bea7-fc6368dd0f3e",
+      "solver": "odinfree",
+      "created_at": "2026-10-31T13:35:49.274Z",
+      "score_published_at": "2026-10-31T13:39:53.685Z",
+      "status": "rejected",
+      "qubits": 1218,
+      "toffolis": 784004,
+      "product": 954916872
+    },
+    {
+      "id": "d5a8700a-a0fb-4e4f-a931-8d1c16623913",
+      "solver": "odinfree",
+      "created_at": "2026-10-31T13:18:16.450Z",
+      "score_published_at": "2026-10-31T13:22:19.568Z",
+      "status": "rejected",
+      "qubits": 1219,
+      "toffolis": 782056,
+      "product": 953326264
+    },
+    {
+      "id": "e5e30f4a-abc7-4cc0-92d0-7beb3f71026c",
+      "solver": "jackylee0424",
+      "created_at": "2026-11-09T02:59:44.321Z",
+      "score_published_at": "2026-11-09T03:04:05.365Z",
+      "status": "accepted",
+      "qubits": 1227,
+      "toffolis": 725371,
+      "product": 890030217
+    },
+    {
+      "id": "36642aa8-ebfc-4160-9b48-8b3d53b7dc07",
+      "solver": "odinfree",
+      "created_at": "2026-11-08T19:22:30.265Z",
+      "score_published_at": "2026-11-08T19:27:09.643Z",
+      "status": "accepted",
+      "qubits": 1228,
+      "toffolis": 724857,
+      "product": 890124396
+    },
+    {
+      "id": "5f446d65-df60-437e-99a7-46cd524fbf16",
+      "solver": "odinfree",
+      "created_at": "2026-11-08T18:37:29.648Z",
+      "score_published_at": "2026-11-08T18:42:04.408Z",
+      "status": "accepted",
+      "qubits": 1229,
+      "toffolis": 724310,
+      "product": 890176990
+    },
+    {
+      "id": "c46ae72f-e156-45d0-abad-56b5723f5beb",
+      "solver": "spacexyl",
+      "created_at": "2026-11-06T11:30:39.873Z",
+      "score_published_at": "2026-11-06T11:37:57.761Z",
+      "status": "accepted",
+      "qubits": 1230,
+      "toffolis": 723824,
+      "product": 890303520
+    },
+    {
+      "id": "db050300-870a-476c-88a6-84f9cf0faf76",
+      "solver": "zuiris",
+      "created_at": "2026-11-05T20:56:59.333Z",
+      "score_published_at": "2026-11-05T21:02:53.758Z",
+      "status": "accepted",
+      "qubits": 1234,
+      "toffolis": 721975,
+      "product": 890917150
+    },
+    {
+      "id": "6bd9c95e-1172-4c12-9dd9-dc5c2efedfaf",
+      "solver": "odinfree",
+      "created_at": "2026-11-07T07:23:10.918Z",
+      "score_published_at": "2026-11-07T07:27:56.154Z",
+      "status": "rejected",
+      "qubits": 1242,
+      "toffolis": 719580,
+      "product": 893718360
+    },
+    {
+      "id": "7dc851aa-1787-479b-8d7e-90fc3edafff0",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T07:27:27.232Z",
+      "score_published_at": "2026-11-06T07:32:04.871Z",
+      "status": "rejected",
+      "qubits": 1243,
+      "toffolis": 719268,
+      "product": 894050124
+    },
+    {
+      "id": "b9a7dcc4-7efc-4dfd-8cc3-c691c1c130ac",
+      "solver": "odinfree",
+      "created_at": "2026-11-06T10:20:03.242Z",
+      "score_published_at": "2026-11-06T10:24:15.128Z",
+      "status": "rejected",
+      "qubits": 1452,
+      "toffolis": 702024,
+      "product": 1019338848
+    },
+    {
+      "id": "d4d0d7fb-1e29-46f8-a2f2-de01e3363fd2",
+      "solver": "odinfree",
+      "created_at": "2026-11-05T19:39:40.957Z",
+      "score_published_at": "2026-11-05T19:45:07.433Z",
+      "status": "rejected",
+      "qubits": 1468,
+      "toffolis": 700479,
+      "product": 1028303172
+    }
+  ]
+}

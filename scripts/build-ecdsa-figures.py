@@ -112,3 +112,37 @@ fig.text(.62,.77,f'−{saved_t:,} Toffolis  /  −{100*saved_t/prev["toffolis"]:
 save(fig,'record-tradeoffs',
     'Both axes start at zero. Labels show whole-circuit official metrics; the small gate reduction is not magnified.\nSource: ECDSA.fail API. Previous record: 18 Oct 2026; new record: 20 Oct 2026. Gate counts are rounded means.')
 print('Generated two updated figures, each exported as PNG and SVG.')
+
+
+# Draw the current frontier against the earlier snapshot, keeping the historical figures intact.
+current = json.loads((ROOT / 'assets/data/ecdsa/public-frontier-20261109.json').read_text())
+assert len(current['frontier']) == current['frontier_count']
+assert all(row['qubits'] * row['toffolis'] == row['product'] for row in current['frontier'])
+fig, ax = frame('The frontier moved down and left',
+    'Official resource pairs for one secp256k1 point addition',
+    position=(.16, .24, .785, .54))
+for snapshot, color, style in [(public, MUTED, '--'), (current, '#285c4c', '-')]:
+    points = snapshot['frontier']
+    label = date.fromisoformat(snapshot['snapshot_date']).strftime('%d %b %Y')
+    qubits = [row['qubits'] for row in points] + [1660]
+    toffolis = [row['toffolis'] for row in points] + [points[-1]['toffolis']]
+    ax.step(qubits, toffolis,
+            where='post', color=color, lw=2, ls=style, label=label)
+for key, marker, label in [('gates', 'D', 'My lowest gate count'), ('product', 'o', 'My lowest product')]:
+    result = current['owner_best'][key]
+    ax.scatter(result['qubits'], result['toffolis'], marker=marker, s=65,
+               color=MINE, edgecolor=PAPER, lw=1, zorder=5, label=label)
+ax.set_yscale('log')
+ax.set_xlim(620, 1660)
+ax.set_ylim(5.7e5, 9e8)
+ax.set_xticks([700, 900, 1100, 1300, 1500])
+ax.xaxis.set_major_formatter(FuncFormatter(lambda value, _: f'{value:,.0f}'))
+ax.set_yticks([1e6, 1e7, 1e8], labels=['1M', '10M', '100M'])
+ax.yaxis.set_minor_locator(NullLocator())
+ax.grid(axis='y', color=LINE, lw=.8)
+ax.set_xlabel('Peak logical qubits', labelpad=14)
+ax.set_ylabel('Mean executed Toffolis · log scale', labelpad=14, fontsize=12)
+ax.legend(loc='upper right', frameon=False, fontsize=11, ncol=2)
+save(fig, 'public-frontier-20261109',
+     'Each step shows the best recorded gate count at or below a given qubit budget.\nSource: ECDSA.fail public submissions API. Accepted and score-only rejected entries.')
+print('Generated the dated frontier comparison as PNG and SVG.')
