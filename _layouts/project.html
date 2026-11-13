@@ -32,8 +32,8 @@
 {% include {{ project_view }} %}
 
 <nav class="pager" aria-label="More projects">
-  <a class="pager-card" href="{{ prev_p.page | relative_url }}"><span class="pager-dir">← Previous</span><span class="pager-title">{{ prev_p.title | escape }}</span><span class="pager-metric">{{ prev_p.metric | escape }}</span></a>
-  <a class="pager-card next" href="{{ next_p.page | relative_url }}"><span class="pager-dir">Next →</span><span class="pager-title">{{ next_p.title | escape }}</span><span class="pager-metric">{{ next_p.metric | escape }}</span></a>
+  <a class="pager-card" href="{{ prev_p.page | default: prev_p.url | relative_url | escape }}"><span class="pager-dir">← Previous</span><span class="pager-title">{{ prev_p.title | escape }}</span>{% if prev_p.metric %}<span class="pager-metric">{{ prev_p.metric | escape }}</span>{% endif %}</a>
+  <a class="pager-card next" href="{{ next_p.page | default: next_p.url | relative_url | escape }}"><span class="pager-dir">Next →</span><span class="pager-title">{{ next_p.title | escape }}</span>{% if next_p.metric %}<span class="pager-metric">{{ next_p.metric | escape }}</span>{% endif %}</a>
 </nav>
 </div></main>
 {% include editorial-footer.html %}

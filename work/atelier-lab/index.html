@@ -1,5 +1,17 @@
 ---
-layout: project
-project: atelier-lab
 permalink: /work/atelier-lab/
 ---
+{% assign project = site.data.projects | where: 'slug', 'atelier-lab' | first %}
+{% assign destination = project.url | relative_url | escape %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ project.title | escape }}</title>
+  <link rel="canonical" href="{{ destination }}">
+  <meta http-equiv="refresh" content="0; url={{ destination }}">
+</head>
+<body>
+  <p><a href="{{ destination }}">Continue to {{ project.title | escape }}</a></p>
+</body>
+</html>

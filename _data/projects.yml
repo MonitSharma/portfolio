@@ -339,8 +339,6 @@
   type: software
   summary: A local research workbench for reading papers, grounded questions, scientific
     tools, and verified code changes.
-  metric: 17/18 · 13/13
-  metric_label: knowledge answers / code tasks · small frozen suites
   url: https://monitsharma.github.io/The-Atelier-Lab/
   code: https://github.com/MonitSharma/The-Atelier-Lab
   detail: Atelier gives a single interface to a local document library, hybrid retrieval,
@@ -373,7 +371,6 @@
       treating every task as a single large-model call.
   slug: atelier-lab
   updated_at: "2026-10-03T08:19:38+08:00"
-  page: "/work/atelier-lab/"
   source_url: https://github.com/MonitSharma/The-Atelier-Lab/blob/main/docs/CURRENT_RESULTS.md
   source_label: Read the current results
   code_url: https://github.com/MonitSharma/The-Atelier-Lab

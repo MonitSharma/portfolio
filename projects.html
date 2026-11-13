@@ -18,14 +18,14 @@ interactive: true
     <span class="toolbar-status" id="filter-status" role="status" aria-live="polite">Showing all {{ site.data.projects.size }} projects</span>
   </div>
   <div class="project-grid">{% for project in ordered_projects %}{% assign guide = site.data.project_guides | where: 'slug', project.slug | first %}
-    <a class="project reveal" style="--d:{{ forloop.index0 | modulo: 3 }}" data-type="{{ project.type }}" href="{{ project.page | relative_url }}" aria-labelledby="project-title-{{ project.slug }}">
+    <a class="project reveal" style="--d:{{ forloop.index0 | modulo: 3 }}" data-type="{{ project.type }}" href="{{ project.page | default: project.url | relative_url | escape }}" aria-labelledby="project-title-{{ project.slug }}">
       <div class="project-top"><span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span class="type-chip">{{ project.type }}</span></div>
       <p class="project-cat">{{ project.category | escape }}</p>
       <h3 id="project-title-{{ project.slug }}">{{ project.title | escape }}</h3>
       <p class="project-summary">{% if guide.tldr %}{{ guide.tldr | escape }}{% else %}{{ project.summary | escape }}{% endif %}</p>
       <div class="project-foot">
-        <div class="metric"><b>{{ project.metric | escape }}</b><span>{{ project.metric_label | escape }}</span></div>
-        <span class="project-cta">Read the project <span class="arrow-dot" aria-hidden="true">→</span></span>
+        {% if project.metric %}<div class="metric"><b>{{ project.metric | escape }}</b><span>{{ project.metric_label | escape }}</span></div>{% endif %}
+        <span class="project-cta">{% if project.page %}Read the project{% else %}Visit the website{% endif %} <span class="arrow-dot" aria-hidden="true">→</span></span>
       </div>
     </a>{% endfor %}
   </div>
