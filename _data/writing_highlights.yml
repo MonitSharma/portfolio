@@ -1,0 +1,9 @@
+- article: "2e4d87e8d10e"
+  project: peaked-circuits
+  figure_keys: [decoder, overview, reduction]
+  figure_labels: [Bit recovery, Hardware and classical, Classical reduction]
+- article: "8eca041d1408"
+  project: shor-quantum-factoring
+- article: "73c50fdcbeb9"
+  project: classiq
+  figure_labels: [Circuit structure, Optimization history, Scheduling]

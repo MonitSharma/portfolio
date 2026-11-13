@@ -7,7 +7,7 @@
     {% endfor %}
     {% if essay_topic %}{% break %}{% endif %}
   {% endfor %}
-  <li class="writing-cover"{% if essay_topic %} data-topic="{{ essay_topic.id }}"{% endif %}>
+  <li class="writing-cover"{% if essay_topic %} data-topic="{{ essay_topic.id }}"{% endif %}{% if essay.url == include.featured_url %} hidden{% endif %}>
     <a href="{{ essay.url | escape }}" target="_blank" rel="noopener">
       <div class="cover-face">
         <span class="cover-source">{% if essay_topic %}{{ essay_topic.title }}{% else %}{{ essay.source | default: 'Medium' | remove: 'the ' | capitalize }}{% endif %}</span>

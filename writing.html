@@ -5,16 +5,38 @@ nav: writing
 permalink: /writing/
 description: Essays by Monit Sharma on quantum computing, optimization, and scientific software.
 ---
-{% assign project = site.data.projects | where: 'slug', 'peaked-circuits' | first %}
 {% assign essays = site.data.essays | concat: site.data.blogs %}
-{% assign lead = essays | where: 'url', project.blog_url | first %}
-{% assign other_essays = essays | where_exp: 'essay', 'essay.url != lead.url' %}
+{% assign highlights = site.data.writing_highlights %}
+{% assign first_highlight = highlights | first %}
+{% assign first_essay = essays | where_exp: 'essay', 'essay.url contains first_highlight.article' | first %}
 {% assign topics = site.data.writing_topics %}
 <script defer src="{{ '/assets/js/writing-magazine.js' | relative_url }}"></script>
 
 <div class="writing-magazine-gallery">
   {% include writing/masthead.html %}
-  {% include writing/lead.html essay=lead figures=project.article_figures %}
+  <div class="writing-highlights">
+    <div class="highlight-bar">
+      <span>Featured essay</span>
+      <div class="highlight-controls" role="group" aria-label="Browse featured essays" hidden>
+        <button type="button" data-step="-1" aria-label="Previous featured essay">←</button>
+        <button type="button" data-step="1" aria-label="Next featured essay">→</button>
+      </div>
+    </div>
+    <p class="sr-only" role="status" data-highlight-status></p>
+    {% for highlight in highlights %}
+      {% assign essay = essays | where_exp: 'entry', 'entry.url contains highlight.article' | first %}
+      {% assign project = site.data.projects | where: 'slug', highlight.project | first %}
+      {% assign figures = project.figures | slice: 0, 3 %}
+      {% if highlight.figure_keys %}
+        {% assign figures = '' | split: ',' %}
+        {% for key in highlight.figure_keys %}
+          {% assign figure = project.article_figures[key] %}
+          {% assign figures = figures | push: figure %}
+        {% endfor %}
+      {% endif %}
+      {% include writing/lead.html essay=essay figures=figures labels=highlight.figure_labels id=highlight.article active=forloop.first %}
+    {% endfor %}
+  </div>
   <section class="issue-gallery" aria-labelledby="issue-gallery-heading">
     <div class="issue-gallery-heading">
       <h2 id="issue-gallery-heading">More essays</h2>
@@ -26,20 +48,6 @@ description: Essays by Monit Sharma on quantum computing, optimization, and scie
       </div>
     </div>
     <p class="gallery-status" role="status"></p>
-    {% include writing/covers.html essays=other_essays topics=topics %}
+    {% include writing/covers.html essays=essays topics=topics featured_url=first_essay.url %}
   </section>
 </div>
-
-<dialog class="essay-preview" aria-labelledby="essay-preview-title" aria-describedby="essay-preview-summary">
-  <div class="essay-preview-cover cover-face">
-    <div class="essay-preview-top">
-      <p class="cover-source"></p>
-      <form method="dialog"><button type="submit" aria-label="Close essay preview" autofocus>×</button></form>
-    </div>
-    <h2 id="essay-preview-title"></h2>
-  </div>
-  <div class="essay-preview-body">
-    <p id="essay-preview-summary"></p>
-    <a class="essay-preview-read" target="_blank" rel="noopener"></a>
-  </div>
-</dialog>

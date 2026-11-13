@@ -1,37 +1,34 @@
 {% assign lead = include.essay %}
-{% assign figure_keys = 'decoder,overview,reduction' | split: ',' %}
-{% assign figure_labels = 'Bit recovery,Hardware and classical,Classical reduction' | split: ',' %}
-
-<article class="issue-lead">
+<article class="issue-lead"{% unless include.active %} hidden{% endunless %}>
   <div class="interactive-lead">
     <div class="issue-lead-text">
-      <h2>{{ lead.title | escape }}</h2>
+      <h2><a href="{{ lead.url | escape }}" target="_blank" rel="noopener">{{ lead.title | escape }}</a></h2>
       <p>{{ lead.summary | escape }}</p>
-      <a class="concept-source lead-read" href="{{ lead.url | escape }}" target="_blank" rel="noopener">Read on Medium <span aria-hidden="true">↗</span></a>
+      <a class="concept-source lead-read" href="{{ lead.url | escape }}" target="_blank" rel="noopener">{% if lead.source == 'Medium' %}Read on Medium{% else %}Read the essay{% endif %} <span aria-hidden="true">↗</span></a>
     </div>
     <div class="lead-figures">
       <div class="lead-figure-panels">
-        {% for key in figure_keys %}
-        {% assign figure = include.figures[key] %}
+        {% for figure in include.figures %}
         {% assign image = figure.src | prepend: '/' | relative_url %}
-        <figure id="lead-figure-{{ key }}"{% unless forloop.first %} hidden{% endunless %}>
+        <figure id="lead-figure-{{ include.id }}-{{ forloop.index }}"{% unless forloop.first %} hidden{% endunless %}>
           <a href="{{ image }}" data-lightbox="{{ figure.caption | escape }}" aria-label="Enlarge figure: {{ figure.caption | escape }}">
-            <img src="{{ image }}" alt="{{ figure.alt | escape }}" width="{{ figure.width }}" height="{{ figure.height }}">
+            <img src="{{ image }}" alt="{{ figure.alt | escape }}" width="{{ figure.width }}" height="{{ figure.height }}"{% unless include.active and forloop.first %} loading="lazy"{% endunless %}>
             <span aria-hidden="true">Enlarge ↗</span>
           </a>
           <figcaption>{{ figure.caption | escape }}</figcaption>
         </figure>
         {% endfor %}
       </div>
+      {% if include.figures.size > 1 %}
       <div class="lead-figure-controls" role="group" aria-label="Choose a research figure" hidden>
-        {% for key in figure_keys %}
-        {% assign figure = include.figures[key] %}
-        <button type="button" aria-controls="lead-figure-{{ key }}" aria-pressed="{{ forloop.first }}">
-          <img src="{{ figure.src | prepend: '/' | relative_url }}" alt="" width="{{ figure.width }}" height="{{ figure.height }}">
-          <span>{{ figure_labels[forloop.index0] }}</span>
+        {% for figure in include.figures %}
+        <button type="button" aria-controls="lead-figure-{{ include.id }}-{{ forloop.index }}" aria-pressed="{{ forloop.first }}">
+          <img src="{{ figure.src | prepend: '/' | relative_url }}" alt="" width="{{ figure.width }}" height="{{ figure.height }}" loading="lazy">
+          <span>{{ include.labels[forloop.index0] | default: figure.caption | escape }}</span>
         </button>
         {% endfor %}
       </div>
+      {% endif %}
     </div>
   </div>
 </article>
