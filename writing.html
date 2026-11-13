@@ -5,12 +5,41 @@ nav: writing
 permalink: /writing/
 description: Essays by Monit Sharma on quantum computing, optimization, and scientific software.
 ---
-<section class="page-section" id="writing">
-  <div class="section-head page-heading"><div><p class="section-index">03</p><h1>Writing</h1></div><a class="head-link" href="https://monitsharma.github.io/writing/" target="_blank" rel="noopener">Writing archive ↗</a></div>
-  <p class="section-lede">Notes and essays on quantum computing, optimization, and the systems around them.</p>
-  <div class="essay-list">
-  {% assign essays = site.data.essays | concat: site.data.blogs %}{% for essay in essays %}
-    <a class="essay reveal" href="{{ essay.url | escape }}" target="_blank" rel="noopener"><span class="essay-num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><div><h3>{{ essay.title | escape }}</h3><p>{{ essay.summary | escape }}</p></div><span class="essay-side"><span class="source">{% if essay.source %}{{ essay.source | remove: 'the ' | capitalize }}{% else %}Medium{% endif %}</span><span class="arrow-dot" aria-hidden="true">↗</span></span></a>
-  {% endfor %}
+{% assign project = site.data.projects | where: 'slug', 'peaked-circuits' | first %}
+{% assign essays = site.data.essays | concat: site.data.blogs %}
+{% assign lead = essays | where: 'url', project.blog_url | first %}
+{% assign other_essays = essays | where_exp: 'essay', 'essay.url != lead.url' %}
+{% assign topics = site.data.writing_topics %}
+<script defer src="{{ '/assets/js/writing-magazine.js' | relative_url }}"></script>
+
+<div class="writing-magazine-gallery">
+  {% include writing/masthead.html %}
+  {% include writing/lead.html essay=lead figures=project.article_figures %}
+  <section class="issue-gallery" aria-labelledby="issue-gallery-heading">
+    <div class="issue-gallery-heading">
+      <h2 id="issue-gallery-heading">More essays</h2>
+      <div class="gallery-filters" role="group" aria-label="Filter essays by topic" hidden>
+        <button type="button" data-filter="all" aria-pressed="true">All essays</button>
+        {% for topic in topics %}
+        <button type="button" data-filter="{{ topic.id }}" aria-pressed="false">{{ topic.title }}</button>
+        {% endfor %}
+      </div>
+    </div>
+    <p class="gallery-status" role="status"></p>
+    {% include writing/covers.html essays=other_essays topics=topics %}
+  </section>
+</div>
+
+<dialog class="essay-preview" aria-labelledby="essay-preview-title" aria-describedby="essay-preview-summary">
+  <div class="essay-preview-cover cover-face">
+    <div class="essay-preview-top">
+      <p class="cover-source"></p>
+      <form method="dialog"><button type="submit" aria-label="Close essay preview" autofocus>×</button></form>
+    </div>
+    <h2 id="essay-preview-title"></h2>
   </div>
-</section>
+  <div class="essay-preview-body">
+    <p id="essay-preview-summary"></p>
+    <a class="essay-preview-read" target="_blank" rel="noopener"></a>
+  </div>
+</dialog>

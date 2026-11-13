@@ -1,0 +1,9 @@
+- id: circuits
+  title: Quantum circuits
+  articles: ["8eca041d1408", "2e4d87e8d10e", "73c50fdcbeb9"]
+- id: optimization
+  title: Optimization and applications
+  articles: ["dcd6f4c5aa47", "quantum-optimization-on-real-hardware", "2610e955d114", "5d8e9c267052", "f6dcd7e91a87"]
+- id: policy
+  title: Technology and policy
+  articles: ["c47babcea911", "ab6277f0f98e"]

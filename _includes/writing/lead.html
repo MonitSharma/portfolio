@@ -1,0 +1,37 @@
+{% assign lead = include.essay %}
+{% assign figure_keys = 'decoder,overview,reduction' | split: ',' %}
+{% assign figure_labels = 'Bit recovery,Hardware and classical,Classical reduction' | split: ',' %}
+
+<article class="issue-lead">
+  <div class="interactive-lead">
+    <div class="issue-lead-text">
+      <h2>{{ lead.title | escape }}</h2>
+      <p>{{ lead.summary | escape }}</p>
+      <a class="concept-source lead-read" href="{{ lead.url | escape }}" target="_blank" rel="noopener">Read on Medium <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="lead-figures">
+      <div class="lead-figure-panels">
+        {% for key in figure_keys %}
+        {% assign figure = include.figures[key] %}
+        {% assign image = figure.src | prepend: '/' | relative_url %}
+        <figure id="lead-figure-{{ key }}"{% unless forloop.first %} hidden{% endunless %}>
+          <a href="{{ image }}" data-lightbox="{{ figure.caption | escape }}" aria-label="Enlarge figure: {{ figure.caption | escape }}">
+            <img src="{{ image }}" alt="{{ figure.alt | escape }}" width="{{ figure.width }}" height="{{ figure.height }}">
+            <span aria-hidden="true">Enlarge ↗</span>
+          </a>
+          <figcaption>{{ figure.caption | escape }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+      <div class="lead-figure-controls" role="group" aria-label="Choose a research figure" hidden>
+        {% for key in figure_keys %}
+        {% assign figure = include.figures[key] %}
+        <button type="button" aria-controls="lead-figure-{{ key }}" aria-pressed="{{ forloop.first }}">
+          <img src="{{ figure.src | prepend: '/' | relative_url }}" alt="" width="{{ figure.width }}" height="{{ figure.height }}">
+          <span>{{ figure_labels[forloop.index0] }}</span>
+        </button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</article>

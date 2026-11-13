@@ -1,0 +1,21 @@
+<ul class="writing-covers">
+  {% for essay in include.essays %}
+  {% assign essay_topic = nil %}
+  {% for topic in include.topics %}
+    {% for id in topic.articles %}
+      {% if essay.url contains id %}{% assign essay_topic = topic %}{% break %}{% endif %}
+    {% endfor %}
+    {% if essay_topic %}{% break %}{% endif %}
+  {% endfor %}
+  <li class="writing-cover"{% if essay_topic %} data-topic="{{ essay_topic.id }}"{% endif %}>
+    <a href="{{ essay.url | escape }}" target="_blank" rel="noopener">
+      <div class="cover-face">
+        <span class="cover-source">{% if essay_topic %}{{ essay_topic.title }}{% else %}{{ essay.source | default: 'Medium' | remove: 'the ' | capitalize }}{% endif %}</span>
+        <h3>{{ essay.title | escape }}</h3>
+        <span class="cover-arrow" aria-hidden="true">↗</span>
+      </div>
+      <p class="cover-summary">{{ essay.summary | escape }}</p>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
