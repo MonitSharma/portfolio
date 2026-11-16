@@ -40,6 +40,12 @@ Serve the Jekyll output, since the source home page now contains Liquid template
 Projects are listed from `_data/projects.yml` and link to their individual pages
 under `work/`. Writing draws from `_data/essays.yml` and `_data/blogs.yml`.
 
+Essays are read at `/writing/<slug>/`. The pages in `essays/` are generated from the
+Markdown in the MonitSharma.github.io repository (`content/writing/posts/`): run
+`npm run build:writing` there with this repo checked out beside it (or set
+`PORTFOLIO_DIR`), then commit the regenerated `essays/` here. Do not edit them by hand.
+The old `monitsharma.github.io/writing/<slug>/` pages redirect here.
+
 Each project has its own composition in `_includes/project-pages/<slug>.html`.
 The `project` layout supplies only metadata, site navigation, and Previous/Next
 links. Add a matching include when creating a project. Choose the structure,

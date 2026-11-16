@@ -1,0 +1,13 @@
+{% if essay_index != nil %}
+  {% assign prev_index = essay_index | minus: 1 %}
+  {% assign next_index = essay_index | plus: 1 %}
+  <nav class="essay-nav" aria-label="More essays">
+    {% if prev_index >= 0 %}{% assign prev_essay = essay_list[prev_index] %}{% assign prev_topic = site.data.writing_topics | where: 'id', prev_essay.topic | first %}
+    <a href="{{ prev_essay.url | relative_url }}" style="--cover: {{ prev_topic.color }}"><small>← Newer</small><span>{{ prev_essay.cover_title | default: prev_essay.title | escape }}</span></a>
+    {% endif %}
+    {% if next_index < essay_list.size %}{% assign next_essay = essay_list[next_index] %}{% assign next_topic = site.data.writing_topics | where: 'id', next_essay.topic | first %}
+    <a class="next" href="{{ next_essay.url | relative_url }}" style="--cover: {{ next_topic.color }}"><small>Older →</small><span>{{ next_essay.cover_title | default: next_essay.title | escape }}</span></a>
+    {% endif %}
+  </nav>
+{% endif %}
+</article>

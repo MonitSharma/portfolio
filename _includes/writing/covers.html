@@ -2,7 +2,7 @@
   {% for essay in include.essays %}
   {% assign topic = include.topics | where: 'id', essay.topic | first %}
   <li class="writing-cover{% if forloop.first %} writing-cover-featured{% endif %}" data-topic="{{ topic.id }}" style="--cover: {{ topic.color }}; --i: {{ forloop.index0 }}">
-    <a class="writing-cover-card" href="{{ essay.url | escape }}">
+    <a class="writing-cover-card" href="{% if essay.url contains '://' %}{{ essay.url | escape }}{% else %}{{ essay.url | relative_url }}{% endif %}">
       <span class="shelf-mark" aria-hidden="true"></span>
       {% if forloop.first %}<span class="shelf-kicker">Latest essay</span>{% endif %}
       <h2>

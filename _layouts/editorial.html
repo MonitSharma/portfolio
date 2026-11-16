@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 {% capture page_title %}{{ page.title }} — Monit Sharma{% endcapture %}
-{% include rd-head.html title=page_title description=page.description %}
+{% include rd-head.html title=page_title description=page.description type=page.og_type image=page.image %}
 <link rel="stylesheet" href="{{ '/assets/css/editorial.css' | relative_url }}">
 {% if page.nav == 'research' %}<link rel="stylesheet" href="{{ '/assets/css/research-publications.css' | relative_url }}?v=20261022-2">{% endif %}
 {% if page.interactive %}<script defer src="{{ '/assets/js/rd-home.js' | relative_url }}"></script>{% endif %}
 <link rel="preload" href="{{ '/assets/fonts/SourceSerif4-Variable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/human.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 {% if page.nav == 'writing' %}<link rel="stylesheet" href="{{ '/assets/css/writing.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
+{% if page.essay %}<link rel="stylesheet" href="{{ '/assets/css/essay.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% if page.math %}<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">{% endif %}<script defer src="{{ '/assets/js/essay.js' | relative_url }}"></script>{% endif %}
 </head>
 <body class="editorial {{ page.body_class }}">
 <a class="skip" href="#main">Skip to content</a>
