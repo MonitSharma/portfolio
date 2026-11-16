@@ -17,7 +17,7 @@
     let count = 0;
     for (const cover of covers) {
       cover.hidden = topic !== 'all' && cover.dataset.topic !== topic;
-      if (!cover.hidden && !cover.classList.contains('shelf-draft')) count += 1;
+      if (!cover.hidden) count += 1;
     }
 
     status.textContent = count === 1 ? '1 essay' : `${count} essays`;

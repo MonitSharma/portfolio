@@ -1,9 +1,10 @@
 <ul class="shelf-books">
   {% for essay in include.essays %}
   {% assign topic = include.topics | where: 'id', essay.topic | first %}
-  <li class="writing-cover" data-topic="{{ topic.id }}" style="--cover: {{ topic.color }}">
+  <li class="writing-cover{% if forloop.first %} writing-cover-featured{% endif %}" data-topic="{{ topic.id }}" style="--cover: {{ topic.color }}; --i: {{ forloop.index0 }}">
     <a class="writing-cover-card" href="{{ essay.url | escape }}">
       <span class="shelf-mark" aria-hidden="true"></span>
+      {% if forloop.first %}<span class="shelf-kicker">Latest essay</span>{% endif %}
       <h2>
         {% if essay.cover_title %}
         {{ essay.cover_title | escape }}<span class="sr-only">{{ essay.title | remove_first: essay.cover_title | escape }}</span>
@@ -22,16 +23,5 @@
       </div>
     </a>
   </li>
-  {% endfor %}
-  {% for topic in include.topics %}
-    {% for title in topic.upcoming %}
-    <li class="writing-cover shelf-draft" data-topic="{{ topic.id }}">
-      <div class="writing-cover-card">
-        <p>On the desk</p>
-        <h2>{{ title | escape }}</h2>
-        <div class="shelf-foot"><span>{{ topic.title | escape }}</span><span>In progress</span></div>
-      </div>
-    </li>
-    {% endfor %}
   {% endfor %}
 </ul>

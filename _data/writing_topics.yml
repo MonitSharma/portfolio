@@ -13,8 +13,6 @@
 - id: quantum-hardware
   title: Quantum Hardware
   color: "#9b2226"
-  upcoming:
-    - Reproducible benchmarks for noisy optimization
 - id: quantum-in-public
   title: Quantum in Public
   color: "#3d5a3a"
