@@ -6,48 +6,36 @@ permalink: /writing/
 description: Essays by Monit Sharma on quantum computing, optimization, and scientific software.
 ---
 {% assign essays = site.data.essays | concat: site.data.blogs %}
-{% assign highlights = site.data.writing_highlights %}
-{% assign first_highlight = highlights | first %}
-{% assign first_essay = essays | where_exp: 'essay', 'essay.url contains first_highlight.article' | first %}
 {% assign topics = site.data.writing_topics %}
-<script defer src="{{ '/assets/js/writing-magazine.js' | relative_url }}"></script>
+{% assign archive_url = 'https://monitsharma.github.io/writing/' %}
+<div class="writing-shelf">
+  <header class="shelf-hero">
+    <div>
+      <p>Writing · {{ essays.size }} essays</p>
+      <h1>The <em>shelf</em></h1>
+    </div>
+    <p>Essays on quantum computing, optimization, and the systems around them.</p>
+  </header>
 
-<div class="writing-magazine-gallery">
-  {% include writing/masthead.html %}
-  <div class="writing-highlights">
-    <div class="highlight-bar">
-      <span>Featured essay</span>
-      <div class="highlight-controls" role="group" aria-label="Browse featured essays" hidden>
-        <button type="button" data-step="-1" aria-label="Previous featured essay">←</button>
-        <button type="button" data-step="1" aria-label="Next featured essay">→</button>
-      </div>
+  <div class="shelf-toolbar">
+    <div class="shelf-filters" role="group" aria-label="Filter essays by topic" hidden>
+      <button type="button" data-filter="all" aria-pressed="true">All essays</button>
+      {% for topic in topics %}
+      <button type="button" data-filter="{{ topic.id }}" aria-pressed="false" style="--cover: {{ topic.color }}">
+        {{ topic.title | escape }}
+      </button>
+      {% endfor %}
     </div>
-    <p class="sr-only" role="status" data-highlight-status></p>
-    {% for highlight in highlights %}
-      {% assign essay = essays | where_exp: 'entry', 'entry.url contains highlight.article' | first %}
-      {% assign project = site.data.projects | where: 'slug', highlight.project | first %}
-      {% assign figures = project.figures | slice: 0, 3 %}
-      {% if highlight.figure_keys %}
-        {% assign figures = '' | split: ',' %}
-        {% for key in highlight.figure_keys %}
-          {% assign figure = project.article_figures[key] %}
-          {% assign figures = figures | push: figure %}
-        {% endfor %}
-      {% endif %}
-      {% include writing/lead.html essay=essay figures=figures labels=highlight.figure_labels id=highlight.article active=forloop.first %}
-    {% endfor %}
+    <a href="{{ archive_url }}search/">Search the archive <span aria-hidden="true">↗</span></a>
   </div>
-  <section class="issue-gallery" aria-labelledby="issue-gallery-heading">
-    <div class="issue-gallery-heading">
-      <h2 id="issue-gallery-heading">More essays</h2>
-      <div class="gallery-filters" role="group" aria-label="Filter essays by topic" hidden>
-        <button type="button" data-filter="all" aria-pressed="true">All essays</button>
-        {% for topic in topics %}
-        <button type="button" data-filter="{{ topic.id }}" aria-pressed="false">{{ topic.title }}</button>
-        {% endfor %}
-      </div>
-    </div>
-    <p class="gallery-status" role="status"></p>
-    {% include writing/covers.html essays=essays topics=topics featured_url=first_essay.url %}
-  </section>
+  <p class="shelf-status" role="status"></p>
+
+  {% include writing/covers.html essays=essays topics=topics %}
+
+  <div class="shelf-links">
+    <a href="{{ archive_url }}">Writing archive</a>
+    <a href="{{ archive_url }}feed.xml">RSS feed</a>
+    <a href="{{ site.social_links | where: 'platform', 'medium' | map: 'user_url' | first }}">Medium <span aria-hidden="true">↗</span></a>
+  </div>
 </div>
+<script defer src="{{ '/assets/js/writing-shelf.js' | relative_url }}"></script>

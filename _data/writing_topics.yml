@@ -1,9 +1,23 @@
-- id: circuits
-  title: Quantum circuits
-  articles: ["8eca041d1408", "2e4d87e8d10e", "73c50fdcbeb9"]
-- id: optimization
-  title: Optimization and applications
-  articles: ["dcd6f4c5aa47", "quantum-optimization-on-real-hardware", "2610e955d114", "5d8e9c267052", "f6dcd7e91a87"]
-- id: policy
-  title: Technology and policy
-  articles: ["c47babcea911", "ab6277f0f98e"]
+- id: circuit-design
+  title: Circuit Design
+  color: "#4a3a5c"
+- id: optimization-benchmarks
+  title: Optimization Benchmarks
+  color: "#663f38"
+- id: optimization-in-the-world
+  title: Optimization in the World
+  color: "#2f4f4f"
+- id: quantum-factoring
+  title: Quantum Factoring
+  color: "#6b4e16"
+- id: quantum-hardware
+  title: Quantum Hardware
+  color: "#9b2226"
+  upcoming:
+    - Reproducible benchmarks for noisy optimization
+- id: quantum-in-public
+  title: Quantum in Public
+  color: "#3d5a3a"
+- id: systems-performance
+  title: Systems & Performance
+  color: "#1f3a4d"

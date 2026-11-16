@@ -1,21 +1,37 @@
-<ul class="writing-covers">
+<ul class="shelf-books">
   {% for essay in include.essays %}
-  {% assign essay_topic = nil %}
-  {% for topic in include.topics %}
-    {% for id in topic.articles %}
-      {% if essay.url contains id %}{% assign essay_topic = topic %}{% break %}{% endif %}
-    {% endfor %}
-    {% if essay_topic %}{% break %}{% endif %}
-  {% endfor %}
-  <li class="writing-cover"{% if essay_topic %} data-topic="{{ essay_topic.id }}"{% endif %}{% if essay.url == include.featured_url %} hidden{% endif %}>
-    <a href="{{ essay.url | escape }}" target="_blank" rel="noopener">
-      <div class="cover-face">
-        <span class="cover-source">{% if essay_topic %}{{ essay_topic.title }}{% else %}{{ essay.source | default: 'Medium' | remove: 'the ' | capitalize }}{% endif %}</span>
-        <h3>{{ essay.title | escape }}</h3>
-        <span class="cover-arrow" aria-hidden="true">↗</span>
+  {% assign topic = include.topics | where: 'id', essay.topic | first %}
+  <li class="writing-cover" data-topic="{{ topic.id }}" style="--cover: {{ topic.color }}">
+    <a class="writing-cover-link" href="{{ essay.url | escape }}">
+      <span class="shelf-mark" aria-hidden="true"></span>
+      <h2>
+        {% if essay.cover_title %}
+        {{ essay.cover_title | escape }}<span class="sr-only">{{ essay.title | remove_first: essay.cover_title | escape }}</span>
+        {% else %}
+        {{ essay.title | escape }}
+        {% endif %}
+      </h2>
+      <p>{{ essay.summary | escape }}</p>
+      <div class="shelf-foot">
+        <span>{{ topic.title | escape }}</span>
+        {% if essay.minutes %}
+        <span>{{ essay.minutes }} min</span>
+        {% else %}
+        <span>{{ essay.source | escape }} <span aria-hidden="true">↗</span></span>
+        {% endif %}
       </div>
-      <p class="cover-summary">{{ essay.summary | escape }}</p>
     </a>
   </li>
+  {% endfor %}
+  {% for topic in include.topics %}
+    {% for title in topic.upcoming %}
+    <li class="writing-cover shelf-draft" data-topic="{{ topic.id }}">
+      <div class="writing-cover-link">
+        <p>On the desk</p>
+        <h2>{{ title | escape }}</h2>
+        <div class="shelf-foot"><span>{{ topic.title | escape }}</span><span>In progress</span></div>
+      </div>
+    </li>
+    {% endfor %}
   {% endfor %}
 </ul>
