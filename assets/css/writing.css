@@ -156,6 +156,19 @@ a.writing-cover-card:is(:hover, :focus-visible) .shelf-foot { font-weight: 500; 
   .writing-cover-card :is(h2, p) { transition: font-weight .16s ease; }
 }
 
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  a.writing-cover-card {
+    transform-origin: left center;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+
+  .writing-cover:hover > a.writing-cover-card,
+  a.writing-cover-card:focus-visible {
+    transform: perspective(880px) rotateY(-10deg) translateY(-3px);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / .14), 0 3px 4px rgb(0 0 0 / .18), 9px 13px 22px rgb(0 0 0 / .20);
+  }
+}
+
 .shelf-foot {
   --cover-rule: rgb(255 255 255 / .30);
   display: flex;
