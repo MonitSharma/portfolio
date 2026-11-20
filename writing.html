@@ -17,18 +17,14 @@ description: Essays by Monit Sharma on quantum computing, optimization, and scie
     <p>Essays on quantum computing, optimization, and the systems around them.</p>
   </header>
 
-  <div class="shelf-toolbar">
-    <div class="shelf-filters" role="group" aria-label="Filter essays by topic" hidden>
-      <button type="button" data-filter="all" aria-pressed="true">All essays</button>
-      {% for topic in topics %}
-      <button type="button" data-filter="{{ topic.id }}" aria-pressed="false" style="--cover: {{ topic.color }}">
-        {{ topic.title | escape }}
-      </button>
-      {% endfor %}
+  <nav class="shelf-toolbar" aria-label="Shelves">
+    <div class="shelf-filters">
+      {% for topic in topics %}{% assign count = essays | where: 'topic', topic.id | size %}{% if count > 0 %}
+      <a href="#shelf-{{ topic.id }}" style="--cover: {{ topic.color }}">{{ topic.title | escape }} <small>{{ count }}</small></a>
+      {% endif %}{% endfor %}
     </div>
-    <a href="{{ archive_url }}search/">Search the archive <span aria-hidden="true">↗</span></a>
-  </div>
-  <p class="shelf-status" role="status"></p>
+    <a class="shelf-search" href="{{ archive_url }}search/">Search the archive <span aria-hidden="true">↗</span></a>
+  </nav>
 
   {% include writing/covers.html essays=essays topics=topics %}
 
@@ -38,4 +34,3 @@ description: Essays by Monit Sharma on quantum computing, optimization, and scie
     <a href="{{ site.social_links | where: 'platform', 'medium' | map: 'user_url' | first }}">Medium <span aria-hidden="true">↗</span></a>
   </div>
 </div>
-<script defer src="{{ '/assets/js/writing-shelf.js' | relative_url }}"></script>

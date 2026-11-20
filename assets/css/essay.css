@@ -2,10 +2,37 @@
    sources by MonitSharma.github.io/scripts/writing-build.js. */
 
 .essay-page {
+  position: relative;
   --measure: 690px;
   max-width: 1080px;
   margin: 0 auto;
   padding: clamp(24px, 4.5vw, 52px) 0 clamp(48px, 7vw, 88px);
+}
+
+/* The essay's cover, the same one it has on the shelf. */
+.essay-book {
+  max-width: var(--measure);
+  margin: 0 auto 22px;
+}
+
+.essay-book .book-cover {
+  width: 92px;
+  height: 136px;
+}
+
+@media (min-width: 1100px) {
+  .essay-book {
+    position: absolute;
+    top: 96px;
+    right: 8px;
+    margin: 0;
+  }
+
+  .essay-book .book-cover {
+    width: 150px;
+    height: 222px;
+    rotate: 3deg;
+  }
 }
 
 .essay-top {
@@ -85,8 +112,9 @@
 
 @media (min-width: 1100px) {
   .essay-layout {
-    grid-template-columns: 200px minmax(0, var(--measure)) 200px;
-    gap: 0 44px;
+    /* Equal side columns keep the text centred under the header. */
+    grid-template-columns: minmax(0, 1fr) minmax(0, var(--measure)) minmax(0, 1fr);
+    gap: 0 36px;
   }
 
   .essay-toc {
@@ -94,6 +122,7 @@
     top: 28px;
     display: block;
     align-self: start;
+    max-width: 190px;
     max-height: calc(100vh - 56px);
     overflow: auto;
     font: 13px/1.45 var(--serif);

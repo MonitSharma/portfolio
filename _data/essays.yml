@@ -2,53 +2,63 @@
   summary: One quantum table lookup can serve several primes. At 1,806 logical qubits, that idea helped us cut the estimated Toffoli count by 46%.
   url: /writing/shor-arithmetic-rsa-2048/
   topic: quantum-factoring
+  art: 2  # cover motif 0–5, see assets/css/writing.css
   minutes: 9
 - title: Peaked-Circuit Recovery on 98 Qubits
   summary: Quantum hardware results, classical structural reduction, and verification of P11 and P12.
   url: /writing/peaked-circuit-recovery-on-98-qubits/
   topic: quantum-hardware
+  art: 0  # cover motif 0–5, see assets/css/writing.css
   minutes: 16
 - title: The Hidden Arithmetic Behind Quantum Finance
   summary: How compact state and language-model-assisted design reduced the arithmetic behind two complex financial contracts.
   url: /writing/the-hidden-arithmetic-behind-quantum-finance/
   topic: circuit-design
+  art: 0  # cover motif 0–5, see assets/css/writing.css
   minutes: 13
 - title: "From 5,329 Layers to 111: How I Optimized a Quantum Phase Oracle"
   cover_title: From 5,329 Layers to 111
   summary: Class codes, quantum interference, and the scheduling problem hidden between compute and uncompute.
   url: /writing/quantum-phase-oracle-5329-to-111/
   topic: circuit-design
+  art: 1  # cover motif 0–5, see assets/css/writing.css
   minutes: 14
 - title: "Quantum Optimization on Real Hardware: What 247 Experiments on IBM Heron Revealed"
   cover_title: Quantum Optimization on Real Hardware
   summary: What 247 experiments on IBM Heron revealed about quantum optimization workflows.
   url: /writing/quantum-optimization-on-real-hardware/
   topic: quantum-hardware
+  art: 2  # cover motif 0–5, see assets/css/writing.css
   minutes: 11
 - title: Can a MacBook Simulate Quantum Circuits Fast? Writing Custom Metal Kernels for Apple Silicon
   cover_title: Can a MacBook Simulate Quantum Circuits Fast?
   summary: How I built MettleQ, a GPU-accelerated quantum simulator for Apple Silicon.
   url: /writing/mettleq-on-apple-silicon/
   topic: systems-performance
+  art: 4  # cover motif 0–5, see assets/css/writing.css
   minutes: 9
 - title: When Cooking Gas Becomes a National Security Problem
   summary: How to design energy supply networks for a world where maritime chokepoints close on you.
   url: /writing/when-cooking-gas-becomes-a-national-security-problem/
   topic: optimization-in-the-world
+  art: 5  # cover motif 0–5, see assets/css/writing.css
   minutes: 11
 - title: "The Key to the Quantum Garden: India’s 1,000 km Leap Into Un-hackable Communication"
   cover_title: The Key to the Quantum Garden
   summary: Can you eavesdrop on a conversation that rewrites itself the moment you listen?
   url: /writing/quantum-garden-quantum-communication/
   topic: quantum-in-public
+  art: 3  # cover motif 0–5, see assets/css/writing.css
   minutes: 14
 - title: To You, 10,000 Qubits From Now
   summary: Inside the most ambitious resource estimate for quantum factoring ever published.
   url: /writing/to-you-10000-qubits-from-now/
   topic: quantum-factoring
+  art: 1  # cover motif 0–5, see assets/css/writing.css
   minutes: 21
 - title: The Fault in our Qubits
   summary: What it would actually take to break RSA with a quantum computer.
   url: /writing/the-fault-in-our-qubits/
   topic: quantum-factoring
+  art: 5  # cover motif 0–5, see assets/css/writing.css
   minutes: 20

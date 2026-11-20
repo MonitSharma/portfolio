@@ -9,3 +9,4 @@ permalink matches its entry's url.{% endcomment %}
     <a href="{{ '/writing/' | relative_url }}">← All writing</a>
     {% if essay_index != nil %}<span>Essay {{ essay_index | plus: 1 }} of {{ essay_list.size }}</span>{% endif %}
   </div>
+  {% if entry %}<div class="essay-book" aria-hidden="true">{% include writing/book-cover.html essay=entry %}</div>{% endif %}

@@ -1,27 +1,32 @@
-<ul class="shelf-books">
-  {% for essay in include.essays %}
-  {% assign topic = include.topics | where: 'id', essay.topic | first %}
-  <li class="writing-cover{% if forloop.first %} writing-cover-featured{% endif %}" data-topic="{{ topic.id }}" style="--cover: {{ topic.color }}; --i: {{ forloop.index0 }}">
-    <a class="writing-cover-card" href="{% if essay.url contains '://' %}{{ essay.url | escape }}{% else %}{{ essay.url | relative_url }}{% endif %}">
-      <span class="shelf-mark" aria-hidden="true"></span>
-      {% if forloop.first %}<span class="shelf-kicker">Latest essay</span>{% endif %}
-      <h2>
-        {% if essay.cover_title %}
-        {{ essay.cover_title | escape }}<span class="sr-only">{{ essay.title | remove_first: essay.cover_title | escape }}</span>
-        {% else %}
-        {{ essay.title | escape }}
-        {% endif %}
-      </h2>
-      <p>{{ essay.summary | escape }}</p>
-      <div class="shelf-foot">
-        <span>{{ topic.title | escape }}</span>
-        {% if essay.minutes %}
-        <span>{{ essay.minutes }} min</span>
-        {% else %}
-        <span>{{ essay.source | escape }} <span aria-hidden="true">↗</span></span>
-        {% endif %}
-      </div>
-    </a>
-  </li>
+{% comment %}The bookcase on /writing/. Topics are ordered by their newest essay, and
+each topic is a section of shelf. Essays published here are hardcovers;
+Medium-only posts are paperbacks.{% endcomment %}
+{% assign topic_order = '' | split: '' %}
+{% for essay in include.essays %}{% unless topic_order contains essay.topic %}{% assign topic_order = topic_order | push: essay.topic %}{% endunless %}{% endfor %}
+{% assign newest = include.essays | first %}
+{% assign book_index = 0 %}
+<div class="bookcase">
+  {% for topic_id in topic_order %}
+  {% assign topic = include.topics | where: 'id', topic_id | first %}
+  {% assign books = include.essays | where: 'topic', topic_id %}
+  <section class="shelf-section" id="shelf-{{ topic.id }}" style="--cover: {{ topic.color }}" aria-labelledby="shelf-{{ topic.id }}-title">
+    <h2 class="shelf-label" id="shelf-{{ topic.id }}-title">{{ topic.title | escape }} <span aria-hidden="true">›</span> <small>{{ books.size }}</small></h2>
+    <ul class="shelf-row">
+      {% for essay in books %}
+      {% assign external = false %}{% if essay.url contains '://' %}{% assign external = true %}{% endif %}
+      <li class="book {% if external %}book--paperback{% else %}book--hardcover{% endif %}" style="--i: {{ book_index }}">
+        <a class="book-link" href="{% if external %}{{ essay.url | escape }}{% else %}{{ essay.url | relative_url }}{% endif %}"{% if external %} rel="noopener"{% endif %}>
+          <span class="book-stand">
+            {% include writing/book-cover.html essay=essay %}
+            {% if essay.url == newest.url %}<span class="book-ribbon">New</span>{% endif %}
+          </span>
+          <span class="book-title">{{ essay.cover_title | default: essay.title | escape }}{% if essay.cover_title %}<span class="sr-only">{{ essay.title | remove_first: essay.cover_title | escape }}</span>{% endif %}</span>
+          <span class="book-meta">{% if essay.minutes %}{{ essay.minutes }} min read{% else %}{{ essay.source | escape }} <span aria-hidden="true">↗</span>{% endif %}</span>
+        </a>
+      </li>
+      {% assign book_index = book_index | plus: 1 %}
+      {% endfor %}
+    </ul>
+  </section>
   {% endfor %}
-</ul>
+</div>

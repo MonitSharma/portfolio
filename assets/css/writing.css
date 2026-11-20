@@ -1,5 +1,8 @@
+/* The Writing bookcase (/writing/) and the shared book cover, which also
+   appears at the top of each essay page. */
+
 .writing-shelf {
-  max-width: 1040px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: clamp(24px, 4.5vw, 56px) 0 clamp(44px, 7vw, 80px);
 }
@@ -32,271 +35,410 @@
 
 .shelf-hero em { color: var(--accent); }
 
-.shelf-toolbar, .shelf-filters, .shelf-links {
+/* Topic links: jump to that section of the bookcase. */
+.shelf-toolbar {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 16px;
+  justify-content: space-between;
+  align-items: start;
+  gap: 8px 20px;
+  margin-bottom: clamp(26px, 4vw, 40px);
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
   font: 15px/1.4 var(--serif);
   color: var(--muted);
 }
 
-.shelf-toolbar {
-  justify-content: space-between;
-  align-items: start;
-  gap: 8px 20px;
-  margin-bottom: 26px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
+.shelf-filters {
+  display: flex;
+  flex: 1 1 560px;
+  flex-wrap: wrap;
+  gap: 6px 18px;
 }
 
-.shelf-filters { flex: 1 1 560px; }
-.shelf-toolbar > a { white-space: nowrap; padding: 5px 0; }
-
-.shelf-filters[hidden], .writing-cover[hidden] { display: none; }
-
-.shelf-filters button {
+.shelf-filters a {
   display: inline-flex;
-  gap: 6px;
   align-items: center;
-  padding: 5px 0;
-  border: 0;
+  gap: 7px;
+  padding: 4px 0;
   border-bottom: 1px solid transparent;
-  background: transparent;
-  cursor: pointer;
+  text-decoration: none;
 }
 
-.shelf-filters button:not([data-filter="all"])::before {
-  content: "";
+.shelf-filters a::before {
   width: 9px;
   height: 9px;
   border: 1px solid rgb(255 255 255 / .25);
   border-radius: 2px;
   background: var(--cover);
+  content: "";
 }
 
-.shelf-filters button:hover, .shelf-filters [aria-pressed="true"] {
-  color: var(--ink);
-  border-bottom-color: var(--accent);
-}
+.shelf-filters small { font: 11px/1 var(--mono); opacity: .75; }
+.shelf-filters a:hover { color: var(--ink); border-bottom-color: var(--cover); }
 
-.shelf-toolbar a, .shelf-links a {
+.shelf-toolbar a.shelf-search, .shelf-links a {
+  padding: 4px 0;
+  white-space: nowrap;
   text-decoration: underline;
   text-decoration-color: var(--line-strong);
   text-underline-offset: 4px;
 }
 
-.shelf-status {
+.shelf-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 30px;
   color: var(--muted);
-  font: italic 14px/1.4 var(--serif);
+  font: 15px/1.4 var(--serif);
 }
 
-.shelf-status:not(:empty) { margin: -5px 0 12px; }
+/* ---------- Bookcase ---------- */
 
-.shelf-books {
-  --shelf-gap: clamp(16px, 2.4vw, 26px);
-  --ledge: 12px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: calc(var(--ledge) + clamp(34px, 5vw, 56px)) var(--shelf-gap);
-  padding: 8px 0 calc(var(--ledge) + 14px);
+.bookcase {
+  --book-w: 138px;
+  --book-h: 204px;
+  --book-gap: 22px;
+  --section-gap: 46px;
+  --ledge: 11px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 26px var(--section-gap);
   overflow-x: clip;
+}
+
+.shelf-section { scroll-margin-top: 24px; }
+
+.shelf-label {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin: 0 0 16px;
+  color: var(--ink);
+  font: 400 17px/1.3 var(--serif);
+  white-space: nowrap;
+}
+
+.shelf-label span { color: var(--muted); }
+.shelf-label small { color: var(--muted); font: 12px/1 var(--mono); }
+
+.shelf-section:target .shelf-label {
+  text-decoration: underline;
+  text-decoration-color: var(--cover);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+.shelf-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px var(--book-gap);
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-/* A wooden ledge under each row: every book draws its own slice, and the
-   slices meet across the gaps so each row reads as one continuous shelf. */
-.writing-cover {
-  position: relative;
+.book { width: var(--book-w); }
+
+.book-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
-.writing-cover::after {
+/* The stand is a fixed-height slot the cover sits in, so every ledge in a row
+   lines up whatever the cover's format. */
+.book-stand {
+  position: relative;
+  display: flex;
+  align-items: end;
+  height: var(--book-h);
+}
+
+/* Each book draws its slice of the ledge, running on to the right so the
+   slices join into one shelf (the bookcase clips the overhang). */
+.book-stand::after {
   position: absolute;
   top: 100%;
-  left: calc(var(--shelf-gap) / -2 - 1px);
-  right: calc(var(--shelf-gap) / -2 - 1px);
+  left: calc(var(--section-gap) * -1);
+  right: -100vw;
+  z-index: 2;
   height: var(--ledge);
   border-bottom: 3px solid color-mix(in srgb, #5a4128 70%, var(--paper));
   background:
     linear-gradient(rgb(255 255 255 / .30), transparent 3px),
-    linear-gradient(color-mix(in srgb, #9a7650 42%, var(--paper)), color-mix(in srgb, #7d5c3b 58%, var(--paper)));
+    linear-gradient(color-mix(in srgb, #9a7650 58%, var(--paper)), color-mix(in srgb, #7d5c3b 74%, var(--paper)));
   box-shadow: 0 12px 16px -9px rgb(0 0 0 / .40);
   content: "";
   pointer-events: none;
-  z-index: 2; /* in front of an opening cover, so it tucks behind the lip */
 }
 
-/* Run the last, partly filled row's ledge out to the shelf edge. */
-.writing-cover:last-child::after { right: -100vw; }
-
-.writing-cover-featured {
-  grid-column: span 2;
-}
-
-.writing-cover-featured .writing-cover-card {
-  padding-right: clamp(21px, 12%, 120px);
-}
-
-.writing-cover-featured h2 {
-  max-width: 18ch;
-  font-size: clamp(2rem, 3.6vw, 2.75rem);
-}
-
-.writing-cover-featured p {
-  max-width: 46ch;
-  font-size: 16.5px;
-}
-
-.shelf-kicker {
-  position: absolute;
-  top: 22px;
-  left: clamp(21px, 3vw, 32px);
-  padding: 3px 8px;
-  border: 1px solid rgb(255 255 255 / .45);
-  border-radius: 999px;
-  font: 500 10.5px/1.3 var(--mono);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.writing-cover-card {
-  position: relative;
-  display: flex;
-  min-height: clamp(310px, 36vw, 365px);
-  height: 100%;
-  flex-direction: column;
-  padding: clamp(62px, 7.5vw, 92px) clamp(21px, 3vw, 32px) 20px;
-  border-radius: 4px 9px 9px 4px;
-  background: linear-gradient(135deg, rgb(255 255 255 / .09), transparent 48%, rgb(0 0 0 / .14)), var(--cover, #343330);
-  color: #fff;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .14), 0 2px 4px rgb(0 0 0 / .12), 3px 8px 20px rgb(0 0 0 / .10);
-}
-
-a.writing-cover-card::before {
-  position: absolute;
-  inset: 1px auto 1px 1px;
-  width: 10px;
-  border-right: 1px solid rgb(255 255 255 / .22);
-  border-radius: 3px 0 0 3px;
-  background: linear-gradient(90deg, rgb(0 0 0 / .21), rgb(255 255 255 / .06));
-  content: "";
-}
-
-.shelf-mark {
-  position: absolute;
-  top: 18px;
-  right: clamp(21px, 3vw, 32px);
-  width: 25px;
-  height: 25px;
-  border: 1px solid rgb(255 255 255 / .50);
-  border-radius: 50%;
-}
-
-.shelf-mark::after {
-  position: absolute;
-  inset: 4px;
-  border: 1px solid rgb(255 255 255 / .50);
-  border-radius: 50%;
-  content: "";
-}
-
-.writing-cover h2 {
-  font: 450 clamp(1.55rem, 2.5vw, 1.9rem)/1.1 var(--serif);
-  letter-spacing: -.02em;
+.book-title {
+  display: -webkit-box;
+  margin-top: calc(var(--ledge) + 14px);
+  overflow: hidden;
+  color: var(--ink);
+  font: 450 15px/1.3 var(--serif);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   text-wrap: balance;
 }
 
-.writing-cover p {
-  margin-top: 12px;
-  font: 400 15px/1.45 var(--serif);
+.book-meta {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font: italic 13.5px/1.3 var(--serif);
 }
 
-a.writing-cover-card:is(:hover, :focus-visible) h2 { font-weight: 550; }
-a.writing-cover-card:is(:hover, :focus-visible) p { font-weight: 470; }
-a.writing-cover-card:is(:hover, :focus-visible) .shelf-foot { font-weight: 500; }
+.book-link:hover .book-title { color: var(--accent); }
+.book-link:focus-visible { outline: none; }
+.book-link:focus-visible .book-cover { outline: 2px solid var(--accent); outline-offset: 4px; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .writing-cover-card :is(h2, p) { transition: font-weight .16s ease; }
+.book-ribbon {
+  position: absolute;
+  top: -4px;
+  right: 14px;
+  z-index: 1;
+  padding: 7px 5px 12px;
+  background: var(--accent);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  color: #fff;
+  font: 600 9px/1 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
 }
 
-/* Opening animation: the cover hinges on its spine and swings toward the
-   reader, revealing a block of pages underneath. The vanishing point sits
-   past the fore-edge so the opening cover narrows instead of growing over
-   the pages. */
+/* ---------- Covers ---------- */
+
+.book-cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.book-cover-title {
+  position: absolute;
+  inset: auto 10% 9% 16%;
+  display: -webkit-box;
+  overflow: hidden;
+  font: 450 clamp(10px, 9.6cqi, 15px)/1.18 var(--serif);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  text-wrap: balance;
+}
+
+/* Hardcover: cloth over board, with a spine down the left edge. */
+.book--hardcover .book-cover,
+.essay-book .book-cover {
+  --a: rgb(255 255 255 / .58);
+  --a2: rgb(255 255 255 / .26);
+  border-radius: 3px 7px 7px 3px;
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / .26), rgb(0 0 0 / .05) 6%, rgb(255 255 255 / .10) 7.5%, transparent 10%),
+    repeating-linear-gradient(45deg, rgb(255 255 255 / .03) 0 1px, transparent 1px 3px),
+    linear-gradient(160deg, rgb(255 255 255 / .10), transparent 45%, rgb(0 0 0 / .18)),
+    var(--cover, #343330);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .12), 0 2px 3px rgb(0 0 0 / .14), 4px 8px 16px rgb(0 0 0 / .14);
+  color: #fff;
+}
+
+/* Paperback (Medium-only posts): a stapled sheet with a folded corner. */
+.book--paperback .book-cover {
+  --a: var(--cover);
+  --a2: color-mix(in srgb, var(--cover) 40%, transparent);
+  height: 90%;
+  border-radius: 2px;
+  background:
+    linear-gradient(var(--cover), var(--cover)) 0 0 / 100% 5px no-repeat,
+    linear-gradient(90deg, rgb(0 0 0 / .06), transparent 8%),
+    #f5f0e6;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / .08), 0 2px 3px rgb(0 0 0 / .12), 3px 7px 14px rgb(0 0 0 / .12);
+  color: #2a2722;
+}
+
+.book--paperback .book-cover::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(225deg, var(--paper) 50%, #dcd4c4 50%);
+  box-shadow: -1px 1px 2px rgb(0 0 0 / .12);
+  content: "";
+}
+
+.book--paperback .book-cover-title {
+  inset: 13% 12% auto 12%;
+  font: 500 clamp(9px, 7.6cqi, 12px)/1.3 var(--mono);
+  -webkit-line-clamp: 5;
+}
+
+.book--paperback .book-art {
+  inset: auto 12% 10% auto;
+  width: 46%;
+}
+
+/* ---------- Generated cover art ----------
+   Six motifs drawn with gradients in the cover's ink colours (--a, --a2). */
+
+.book-art {
+  position: absolute;
+  top: 12%;
+  left: 20%;
+  width: 66%;
+  aspect-ratio: 1;
+}
+
+/* 0 · a sphere of dots */
+.art-0 {
+  background: radial-gradient(circle, var(--a) 1.3px, transparent 1.8px) 50% 50% / 7px 7px;
+  -webkit-mask: radial-gradient(circle closest-side, #000 35%, rgb(0 0 0 / .5) 70%, transparent 100%);
+  mask: radial-gradient(circle closest-side, #000 35%, rgb(0 0 0 / .5) 70%, transparent 100%);
+}
+
+/* 1 · concentric rings */
+.art-1 {
+  background: repeating-radial-gradient(circle, var(--a) 0 1px, transparent 1.6px 7px);
+  -webkit-mask: radial-gradient(circle closest-side, #000 97%, transparent 100%);
+  mask: radial-gradient(circle closest-side, #000 97%, transparent 100%);
+}
+
+/* 2 · a rising bar chart */
+.art-2 {
+  background:
+    linear-gradient(var(--a), var(--a)) 0 100% / 100% 1px no-repeat,
+    linear-gradient(var(--a2), var(--a2)) 4% 100% / 13% 30% no-repeat,
+    linear-gradient(var(--a2), var(--a2)) 27% 100% / 13% 52% no-repeat,
+    linear-gradient(var(--a2), var(--a2)) 50% 100% / 13% 40% no-repeat,
+    linear-gradient(var(--a), var(--a)) 73% 100% / 13% 70% no-repeat,
+    linear-gradient(var(--a), var(--a)) 96% 100% / 13% 92% no-repeat;
+}
+
+/* 3 · sun over hills */
+.art-3 {
+  background:
+    radial-gradient(circle at 62% 30%, var(--a) 0 15%, transparent 15.5%),
+    radial-gradient(ellipse 70% 32% at 28% 100%, var(--a) 0 98%, transparent 100%),
+    radial-gradient(ellipse 80% 44% at 82% 100%, var(--a2) 0 98%, transparent 100%);
+}
+
+/* 4 · tiles */
+.art-4 {
+  background: conic-gradient(from 90deg at 3px 3px, transparent 25%, var(--a2) 0) -3px -3px / 15.5px 15.5px;
+}
+
+.art-4::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(var(--a), var(--a)) 0 0 / 12.5px 12.5px no-repeat,
+    linear-gradient(var(--a), var(--a)) 31px 15.5px / 12.5px 12.5px no-repeat,
+    linear-gradient(var(--a), var(--a)) 15.5px 46.5px / 12.5px 12.5px no-repeat;
+  content: "";
+}
+
+/* 5 · quarter circles */
+.art-5 {
+  background:
+    radial-gradient(circle at 100% 100%, var(--a) 0 70%, transparent 71%) 0 0 / 50% 50% no-repeat,
+    radial-gradient(circle, var(--a2) 0 68%, transparent 69%) 100% 0 / 50% 50% no-repeat,
+    linear-gradient(var(--a2), var(--a2)) 0 100% / 50% 50% no-repeat,
+    radial-gradient(circle at 0 0, var(--a) 0 70%, transparent 71%) 100% 100% / 50% 50% no-repeat;
+}
+
+/* ---------- Motion ---------- */
+
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .writing-cover {
-    position: relative;
-    perspective: 1200px;
+  /* Hardcovers open on their spine to show the pages; the vanishing point
+     sits past the fore-edge so the opening cover narrows over the pages. */
+  .book--hardcover .book-stand {
+    perspective: 900px;
     perspective-origin: 150% 50%;
   }
 
-  .writing-cover::before {
+  .book--hardcover .book-stand::before {
     position: absolute;
-    inset: 4px 3px 4px 8px;
-    border-radius: 2px 7px 7px 2px;
+    inset: 3px 2px 3px 6px;
+    border-radius: 2px 6px 6px 2px;
     background:
-      linear-gradient(90deg, rgb(0 0 0 / .18), transparent 12%),
-      repeating-linear-gradient(90deg, #f6f1e6 0 2px, #e2dacb 2px 3px) right / 14px 100% no-repeat,
+      linear-gradient(90deg, rgb(0 0 0 / .18), transparent 14%),
+      repeating-linear-gradient(90deg, #f6f1e6 0 2px, #e2dacb 2px 3px) right / 10px 100% no-repeat,
       #f8f4ec;
-    box-shadow: 0 2px 4px rgb(0 0 0 / .12), 3px 8px 20px rgb(0 0 0 / .10);
+    box-shadow: 0 2px 3px rgb(0 0 0 / .12);
     content: "";
   }
 
-  a.writing-cover-card {
+  .book--hardcover .book-cover {
     transform-origin: left center;
     transform: rotateY(0deg);
     transition: transform .5s cubic-bezier(.2, .7, .2, 1), box-shadow .5s ease;
   }
 
-  .writing-cover:hover > a.writing-cover-card,
-  a.writing-cover-card:focus-visible {
-    transform: rotateY(-26deg);
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / .14), 0 3px 4px rgb(0 0 0 / .18), 14px 12px 26px rgb(0 0 0 / .24);
+  .book--hardcover .book-link:is(:hover, :focus-visible) .book-cover {
+    transform: rotateY(-30deg);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / .12), 0 3px 4px rgb(0 0 0 / .18), 12px 10px 22px rgb(0 0 0 / .26);
   }
 
-  /* The wide featured cover swings less, or it would sweep across the row. */
-  .writing-cover-featured:hover > a.writing-cover-card,
-  .writing-cover-featured a.writing-cover-card:focus-visible {
-    transform: rotateY(-14deg);
+  /* Paperbacks just lift off the shelf. */
+  .book--paperback .book-cover { transition: translate .3s ease, rotate .3s ease, box-shadow .3s ease; }
+
+  .book--paperback .book-link:is(:hover, :focus-visible) .book-cover {
+    translate: 0 -8px;
+    rotate: -2deg;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / .08), 0 4px 6px rgb(0 0 0 / .14), 6px 14px 22px rgb(0 0 0 / .18);
   }
 }
 
-/* Books slide onto the shelf one after another when the page loads. */
 @media (prefers-reduced-motion: no-preference) {
-  .writing-cover {
+  /* Books slide onto the shelf one after another. */
+  .book {
     animation: shelve .6s cubic-bezier(.2, .7, .2, 1) both;
-    animation-delay: calc(min(var(--i, 0), 8) * 55ms);
+    animation-delay: calc(min(var(--i, 0), 12) * 40ms);
   }
 
   @keyframes shelve {
-    from { opacity: 0; translate: 0 18px; }
+    from { opacity: 0; translate: 0 16px; }
+  }
+
+  /* Opening an essay grows its cover into the cover on the essay page
+     (and shrinks it back on Back), where the browser supports it. */
+  @view-transition { navigation: auto; }
+
+  ::view-transition-group(*) {
+    animation-duration: .45s;
+    animation-timing-function: cubic-bezier(.2, .7, .2, 1);
   }
 }
 
-.shelf-foot {
-  --cover-rule: rgb(255 255 255 / .30);
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: auto;
-  padding-top: 28px;
-  background: linear-gradient(var(--cover-rule), var(--cover-rule)) 0 18px / 100% 1px no-repeat;
-  font: 11px/1.4 var(--mono);
-}
-
-.shelf-foot > :last-child { white-space: nowrap; }
-
-.shelf-links { margin-top: 18px; }
+/* ---------- Small screens ---------- */
 
 @media (max-width: 760px) {
-  .shelf-books { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bookcase { --book-w: 118px; --book-h: 176px; --book-gap: 16px; --section-gap: 30px; }
 }
 
 @media (max-width: 560px) {
-  .shelf-hero { gap: 12px; }
-  .shelf-filters { gap: 2px 12px; font-size: 14px; }
-  .shelf-books { grid-template-columns: minmax(0, 1fr); }
-  .writing-cover-card { min-height: 245px; padding: 58px 24px 18px; }
-  .writing-cover-featured { grid-column: auto; }
-  .writing-cover-featured h2 { font-size: 1.9rem; }
+  /* One swipeable row of topics instead of a tall list. */
+  .shelf-filters {
+    flex-wrap: nowrap;
+    margin-right: -16px;
+    padding-right: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    font-size: 14px;
+  }
+
+  .shelf-filters a { flex: none; }
+}
+
+@media (max-width: 420px) {
+  .bookcase { --book-w: 98px; --book-h: 148px; --book-gap: 14px; --section-gap: 24px; }
+  .book-title { font-size: 14px; }
+  .book-meta { font-size: 12.5px; }
 }
