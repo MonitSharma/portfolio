@@ -74,20 +74,20 @@
 - name: This work, two primes
   label: Two primes
   qubits: 1461
-  toffoli: 558000000
+  toffoli: 495000000
   ours: true
-  note: "Trimmed registers, two-prime sharing, lookup window 7. Expected per factoring is 5.08B Toffolis."
+  note: "Trimmed registers, two-prime sharing, lookup window 7. Expected per factoring is 4.51B Toffolis."
 
 - name: This work, six primes
   label: Six primes
-  qubits: 1699
-  toffoli: 306000000
+  qubits: 1690
+  toffoli: 286000000
   ours: true
-  note: "Lazy residues, six-prime sharing, lookup window 8. Expected per factoring is 2.78B Toffolis."
+  note: "Lazy residues, six-prime sharing, lookup window 8. Expected per factoring is 2.60B Toffolis."
 
 - name: This work, eight primes
   label: Eight primes
   qubits: 1806
-  toffoli: 280000000
+  toffoli: 261000000
   ours: true
-  note: "Lazy residues, eight-prime sharing, lookup window 8. Expected per factoring is 2.55B Toffolis."
+  note: "Lazy residues, eight-prime sharing, lookup window 8. Expected per factoring is 2.37B Toffolis."

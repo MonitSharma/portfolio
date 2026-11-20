@@ -42,13 +42,13 @@
     url: /portfolio/assets/data/duke-quantum/score-snapshot-20261025.json
 - title: Shor’s Algorithm & Quantum Factoring
   slug: shor-quantum-factoring
-  updated_at: "2026-11-08T09:21:20+08:00"
+  updated_at: "2026-11-20T12:00:00+08:00"
   page: /work/shor-quantum-factoring/
   category: Quantum factoring · Fault-tolerant circuits
   type: research
   summary: Shared lookups and lazy residues cut the estimated Toffoli count for
-    RSA-2048 factoring by 46% against the best reference setting at 1,806 logical qubits.
-  metric: 46% fewer Toffolis
+    RSA-2048 factoring by 45% against the best reference setting at 1,806 logical qubits.
+  metric: 45% fewer Toffolis
   metric_label: Estimated per factoring · matched logical qubit budget
   source_url: https://zenodo.org/records/23991044
   source_label: Benchmark archive
@@ -57,7 +57,7 @@
     caption: RSA-2048 runtime versus physical qubits
     alt: A comparison of RSA-2048 resource estimates across four quantum hardware architectures.
     width: 1600
-    height: 1234
+    height: 1240
 - title: Verifiable Quantum Circuit Compilation
   slug: kaggle-quantum-compilation
   updated_at: "2026-10-27T10:18:29+08:00"

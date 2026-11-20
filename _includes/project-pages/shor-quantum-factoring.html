@@ -12,7 +12,7 @@
     <div class="shor-cover-copy">
       <h1>Fewer gates for <span>Shor’s algorithm.</span></h1>
       <p class="shor-intro">Most of Shor’s algorithm is arithmetic. We make that arithmetic cheaper by sharing table lookups and keeping useful intermediate results.</p>
-      <p class="shor-cover-finding">For RSA-2048, this cuts the estimated Toffoli count per factoring by <strong>46%</strong> within a budget of 1,806 logical qubits.</p>
+      <p class="shor-cover-finding">For RSA-2048, this cuts the estimated Toffoli count per factoring by <strong>45%</strong> within a budget of 1,806 logical qubits, and by 16% at 1,461.</p>
       <a class="shor-read-link" href="#logical-resources">Explore the resource estimates <span aria-hidden="true">↘</span></a>
     </div>
     <figure class="shor-cover-diagram">
@@ -52,30 +52,31 @@
   <div class="shor-section-heading"><span class="shor-section-index">01</span><h2 id="shor-arithmetic-title">The arithmetic inside Shor</h2></div>
   <div class="shor-arithmetic-layout">
   <div class="shor-method-copy">
-    <p>Shor finds factors by looking for a repeating pattern in powers taken modulo the RSA number. Computing those powers takes most of the work. In <a class="shor-link" href="https://arxiv.org/abs/2505.15917">Gidney’s low-qubit circuit</a>, lookups and a residue-cleanup stage account for about <strong>85% of the Toffoli gates</strong>.</p>
-    <p>The same input bits select a row in several tables, one for each small prime. We pack their answers into a wider row, so a single lookup returns them together. In a controlled comparison across three primes, sharing alone reduced the estimated Toffoli count by <strong>28.8%</strong>.</p>
+    <p>Shor finds factors by looking for a repeating pattern in powers taken modulo the RSA number. Computing those powers takes most of the work. In <a class="shor-link" href="https://arxiv.org/abs/2505.15917">Gidney’s low-qubit circuit</a>, lookups and a residue-cleanup stage account for about <strong>84% of the Toffoli gates</strong>.</p>
+    <p>The same input bits select a row in several tables, one for each small prime. We pack their answers into a wider row, so a single lookup returns them together. In a controlled comparison across three primes, sharing alone reduced the estimated Toffoli count by <strong>30.7%</strong>.</p>
     <p>We also retain intermediate values to avoid recomputing them during cleanup, and let residues grow before reducing them once at the end. The paper proves that, with sufficiently wide registers, the output and relative quantum phases are preserved.</p>
+    <p>A reader’s suggestion led to one more simplification. Several steps of the residue multiplication act on a register that still holds zero, so their result is fixed by the lookup address alone. Replacing each with a single table write lowers <em>every</em> circuit by 5–14%, the reference included. We apply it to both sides of every comparison, so the savings above are measured against a reference that is cheaper too.</p>
   </div>
   <figure class="shor-gate-share">
     <figcaption><span class="shor-figure-number">Reference circuit</span>Where the Toffolis go</figcaption>
     <dl>
-      <div style="--share:100%"><dt>Initial lookups</dt><dd>55<span>%</span></dd></div>
-      <div style="--share:54.55%"><dt>Residue cleanup</dt><dd>30<span>%</span></dd></div>
-      <div style="--share:27.27%"><dt>Other operations</dt><dd>15<span>%</span></dd></div>
+      <div style="--share:100%"><dt>Initial lookups</dt><dd>61<span>%</span></dd></div>
+      <div style="--share:37.7%"><dt>Residue cleanup</dt><dd>23<span>%</span></dd></div>
+      <div style="--share:26.23%"><dt>Other operations</dt><dd>16<span>%</span></dd></div>
     </dl>
-    <p>Published RSA-2048 parameters. The first two stages are the target of this work.</p>
+    <p>Published RSA-2048 parameters, with the address-determined simplifications. The first two stages are the target of this work.</p>
   </figure>
   </div>
 </section>
 
 <section class="shor-section" id="logical-resources" aria-labelledby="shor-resources-title">
   <div class="shor-section-heading"><span class="shor-section-index">02</span><h2 id="shor-resources-title">What changes at the same qubit budget?</h2></div>
-  <p class="shor-section-lede">We searched 534,240 settings of Gidney’s cost model and used the cheapest reference circuit that fit each budget. The savings below count the expected repeat runs needed to factor one key.</p>
+  <p class="shor-section-lede">We searched 534,240 settings of Gidney’s cost model, with the same simplifications applied, and used the cheapest reference circuit that fit each budget. The savings below count the expected repeat runs needed to factor one key.</p>
   <div class="shor-comparison-wrap">
     <table class="shor-comparison">
       <caption>Expected Toffoli gates per factoring, including repeat runs</caption>
       <thead><tr><th scope="col">Logical qubit budget</th><th scope="col">Best reference</th><th scope="col">This work</th><th scope="col">Reduction</th></tr></thead>
-      <tbody><tr><th scope="row">1,461</th><td>5.98B</td><td>5.08B</td><td>15%</td></tr><tr><th scope="row">1,806</th><td>4.74B</td><td>2.55B</td><td>46%</td></tr></tbody>
+      <tbody><tr><th scope="row">1,461</th><td>5.39B</td><td>4.51B</td><td>16%</td></tr><tr><th scope="row">1,806</th><td>4.31B</td><td>2.37B</td><td>45%</td></tr></tbody>
     </table>
   </div>
   <div class="shor-figure-heading"><h3>The resource landscape</h3><p>Explore qubits, gate counts and projected runtime.</p></div>
@@ -176,7 +177,7 @@
       {% assign logical_overview = shor_assets | append: 'logical-resources.svg' | relative_url %}
       {% assign logical_detail = shor_assets | append: 'logical-resources-detail.svg' | relative_url %}
       <a href="{{ logical_overview }}" target="_blank" rel="noopener"><img src="{{ logical_overview }}" width="612" height="432" alt="Log-scale scatter plot of logical qubits and T equivalents per execution, from early Shor circuits through the new candidates."></a>
-      <a href="{{ logical_detail }}" target="_blank" rel="noopener"><img src="{{ logical_detail }}" width="432" height="432" alt="Detail of recent residue circuits. The eight-prime candidate uses 1,806 logical qubits and 1.12 billion T equivalents per execution."></a>
+      <a href="{{ logical_detail }}" target="_blank" rel="noopener"><img src="{{ logical_detail }}" width="432" height="432" alt="Detail of recent residue circuits. The eight-prime candidate uses 1,806 logical qubits and 1.04 billion T equivalents per execution."></a>
     </div>
     <figcaption>
       <p data-logical-caption>Gate counts are per circuit execution, before error correction and repeat runs. T equivalents use four T gates per Toffoli.</p>
@@ -212,18 +213,18 @@
   <div class="shor-section-heading"><span class="shor-section-index">03</span><h2 id="shor-hardware-title">Fewer gates, but how much faster?</h2></div>
   <p class="shor-section-lede">A quantum computer also has to move data, correct errors, and supply resources for gates. Sharing a lookup reduces the gate count but makes its output wider. How much time that saves depends on what the machine can handle efficiently.</p>
   <div class="shor-runtime-summary">
-    <div><h3>Surface code · Faster with more qubits</h3><p>In our model, the six-prime circuit takes <strong>1.46 days</strong> at 1.33 million physical qubits. The reference takes <strong>3.48 days</strong> at 980,000 qubits.</p></div>
-    <div><h3>Neutral atoms · Faster within the same footprint</h3><p>In the balanced model, the two-prime circuit takes <strong>22.9 years</strong> versus <strong>28.3 years</strong> at 13,255 atoms. The modeled runtime is still measured in decades.</p></div>
+    <div><h3>Surface code · Faster with more qubits</h3><p>In our model, the six-prime circuit takes <strong>1.36 days</strong> at 1.32 million physical qubits. The reference takes <strong>3.10 days</strong> at 980,000 qubits.</p></div>
+    <div><h3>Neutral atoms · Faster within the same footprint</h3><p>In the balanced model, the two-prime circuit takes <strong>19.9 years</strong> versus <strong>25.4 years</strong> at 13,255 atoms. The modeled runtime is still measured in decades.</p></div>
   </div>
   <p class="shor-chart-intro">These are hardware projections. <a class="shor-link" href="?view=runtime#logical-resources">Compare the runtime estimates ↑</a></p>
   <figure class="project-media shor-hardware">
     <a class="media-link" href="{{ hardware_figure }}" target="_blank" rel="noopener">
-      <img src="{{ hardware_figure }}" width="1600" height="1234" loading="lazy" decoding="async" alt="RSA-2048 runtime versus physical qubits. Four blue stars show our surface-code, neutral-atom, Pinnacle 1.0 and cat-qubit estimates. The table pairs each with its reference.">
+      <img src="{{ hardware_figure }}" width="1600" height="1240" loading="lazy" decoding="async" alt="RSA-2048 runtime versus physical qubits. Four blue stars show our surface-code (1.36 days), neutral-atom (19.9 years), Pinnacle 1.0 (4.72 days) and cat-qubit (1.29 days) estimates. The table pairs each with its reference.">
       <span class="media-zoom" aria-hidden="true">Open figure ↗</span>
     </a>
     <figcaption>
       <h3>What would it take to factor RSA-2048?</h3>
-      <p>The first figure from <a class="shor-link" href="{{ shor_blog.url | escape }}" target="_blank" rel="noopener">our companion article</a>. Stars show conditional hardware projections, and the table compares each scenario with its own reference. For cat qubits, varying the assumed overhead gives 1.21–1.70 days, a range that includes the 1.59-day reference.</p>
+      <p>Updated from the first figure of <a class="shor-link" href="{{ shor_blog.url | escape }}" target="_blank" rel="noopener">our companion article</a>. Stars show conditional hardware projections, and the table compares each scenario with its own reference. For cat qubits, varying the assumed overhead gives 1.13–1.62 days, a range that includes the 1.59-day reference.</p>
       <p class="shor-reference-links"><a href="https://quantum-journal.org/papers/q-2021-04-15-433/">Gidney &amp; Ekerå</a> · <a href="https://arxiv.org/abs/2505.15917">Gidney</a> · <a href="https://arxiv.org/abs/2603.28627">Cain et al.</a> · <a href="https://arxiv.org/abs/2602.11457">Pinnacle 1.0</a> · <a href="https://www.iceberg-quantum.com/blog/releases/pinnacle-1-2/">Pinnacle 1.2</a> · <a href="https://arxiv.org/abs/2610.37839">Pappalardo et al.</a></p>
     </figcaption>
   </figure>

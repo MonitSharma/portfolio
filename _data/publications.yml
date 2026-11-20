@@ -15,7 +15,7 @@
     source: https://arxiv.org/pdf/2611.08907
   description:
     - We share table lookups and reuse intermediate residues to cut the estimated
-      Toffoli count per RSA-2048 factoring by **46%** compared with the best
+      Toffoli count per RSA-2048 factoring by **45%** compared with the best
       reference circuit within the same budget of **1,806 logical qubits**.
   links:
     - text: arXiv
