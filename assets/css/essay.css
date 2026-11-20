@@ -20,7 +20,7 @@
   height: 136px;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1200px) {
   .essay-book {
     position: absolute;
     top: 96px;
@@ -110,43 +110,92 @@
 
 .essay-toc { display: none; }
 
-@media (min-width: 1100px) {
+/* The contents list needs real room, so it only appears once the page can
+   widen enough to give it a ~230px column. */
+@media (min-width: 1200px) {
+  .essay-page { max-width: 1200px; }
+
   .essay-layout {
     /* Equal side columns keep the text centred under the header. */
     grid-template-columns: minmax(0, 1fr) minmax(0, var(--measure)) minmax(0, 1fr);
-    gap: 0 36px;
+    gap: 0 48px;
   }
 
   .essay-toc {
     position: sticky;
-    top: 28px;
+    top: 32px;
     display: block;
     align-self: start;
-    max-width: 190px;
-    max-height: calc(100vh - 56px);
-    overflow: auto;
-    font: 13px/1.45 var(--serif);
+    max-width: 230px;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    padding: 2px 0 2px 16px;
+    border-left: 1px solid var(--line);
+    scrollbar-width: thin;
   }
 
   .essay-toc p {
-    margin-bottom: 10px;
+    margin: 0 0 16px;
     color: var(--muted);
     font: 11px/1.4 var(--mono);
-    letter-spacing: .06em;
+    letter-spacing: .08em;
     text-transform: uppercase;
   }
 
-  .essay-toc ol { list-style: none; }
-  .essay-toc li { margin: 0 0 8px; }
-  .essay-toc .toc-3 { padding-left: 12px; font-size: 12.5px; }
+  .essay-toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
+  }
+
+  .essay-toc li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    margin: 0 0 14px;
+    counter-increment: toc;
+  }
+
+  .essay-toc li::before {
+    padding-top: 2px;
+    color: var(--muted);
+    content: counter(toc, decimal-leading-zero);
+    font: 10.5px/1.5 var(--mono);
+    opacity: .7;
+  }
+
+  /* Sub-sections are indented only when the essay also has main sections;
+     Medium imports use one level throughout. */
+  .essay-toc ol:has(.toc-2) .toc-3 { margin-left: 14px; }
+  .essay-toc ol:has(.toc-2) .toc-3::before { content: "–"; }
+  .essay-toc ol:has(.toc-2) .toc-3 { counter-increment: none; }
 
   .essay-toc a {
+    display: -webkit-box;
+    overflow: hidden;
     color: var(--muted);
+    font: 14px/1.42 var(--serif);
     text-decoration: none;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    transition: color .15s ease;
   }
 
   .essay-toc a:hover, .essay-toc a[aria-current="true"] { color: var(--ink); }
-  .essay-toc a[aria-current="true"] { box-shadow: -10px 0 0 -8px var(--accent); }
+  .essay-toc a:is(:hover, :focus-visible, [aria-current="true"]) { -webkit-line-clamp: unset; }
+
+  /* An accent bar on the rule beside the section being read. */
+  .essay-toc li:has(a[aria-current="true"])::after {
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    left: -17.5px;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--cover, var(--accent));
+    content: "";
+  }
 }
 
 .essay-body {
