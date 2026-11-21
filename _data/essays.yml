@@ -62,3 +62,15 @@
   topic: quantum-factoring
   art: 1  # cover motif 0–5, see _includes/writing/cover-motif.html
   minutes: 20
+- title: The Emperor Has No Factors
+  summary: What happens when you apply honest metrics to every published Shor’s result.
+  url: /writing/the-emperor-has-no-factors/
+  topic: quantum-factoring
+  art: 5  # cover motif 0–5, see _includes/writing/cover-motif.html
+  minutes: 33
+- title: Sometimes It’s Too Slow… for Shor!!
+  summary: Factoring numbers on a 133/156-qubit quantum computer, and the honest limits of what Shor’s algorithm can do on today’s hardware.
+  url: /writing/sometimes-its-too-slow-for-shor/
+  topic: quantum-factoring
+  art: 4  # cover motif 0–5, see _includes/writing/cover-motif.html
+  minutes: 32
