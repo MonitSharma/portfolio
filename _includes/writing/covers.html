@@ -10,7 +10,7 @@ Medium-only posts are paperbacks.{% endcomment %}
   {% assign topic = include.topics | where: 'id', topic_id | first %}
   {% assign books = include.essays | where: 'topic', topic_id %}
   <section class="shelf-section" id="shelf-{{ topic.id }}" style="--cover: {{ topic.color }}" aria-labelledby="shelf-{{ topic.id }}-title">
-    <h2 class="shelf-label" id="shelf-{{ topic.id }}-title">{{ topic.title | escape }} <span aria-hidden="true">›</span> <small>{{ books.size }}</small></h2>
+    <h2 class="shelf-label" id="shelf-{{ topic.id }}-title">{{ topic.title | escape }} <span aria-hidden="true">›</span> <small>{{ books.size }}</small>{% if topic.url %} <a class="shelf-label-link" href="{{ topic.url | escape }}" rel="noopener">Medium list <span aria-hidden="true">↗</span></a>{% endif %}</h2>
     <ul class="shelf-row">
       {% for essay in books %}
       {% assign external = false %}{% if essay.url contains '://' %}{% assign external = true %}{% endif %}

@@ -1,8 +1,10 @@
 - id: circuit-design
   title: Circuit Design
   color: "#4a3a5c"
-- id: optimization-benchmarks
-  title: Optimization Benchmarks
+- id: papers-explained
+  title: Quantum Papers Explained with Codes
+  short: Papers Explained  # printed at the foot of each cover
+  url: https://medium.com/@_monitsharma/list/quantum-papers-explained-with-codes-0d2169569685
   color: "#663f38"
 - id: optimization-in-the-world
   title: Optimization in the World
@@ -13,9 +15,6 @@
 - id: quantum-hardware
   title: Quantum Hardware
   color: "#9b2226"
-- id: quantum-in-public
-  title: Quantum in Public
-  color: "#3d5a3a"
 - id: systems-performance
   title: Systems & Performance
   color: "#1f3a4d"

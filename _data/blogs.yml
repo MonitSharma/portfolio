@@ -1,29 +1,84 @@
-- title: "Solving the Multi-Dimensional Knapsack Problem: A Classically Hard Benchmark for Quantum Computing"
-  cover_title: Solving the Multi-Dimensional Knapsack Problem
-  topic: optimization-benchmarks
-  art: 5  # cover motif 0–5, see _includes/writing/cover-motif.html
-  source: Medium
-  date: "2025"
-  summary: "Exploring the complexity of the Multi-Dimensional Knapsack Problem and examining how quantum algorithms attempt to tackle this constrained optimization challenge."
-  url: "https://medium.com/@_monitsharma/solving-the-multi-dimensional-knapsack-problem-a-classically-hard-benchmark-for-quantum-2610e955d114"
-  tags: ["Quantum Computing", "Knapsack Problem", "Optimization"]
-
-- title: "Solving the Maximum Independent Set Problem: A Classically Hard Benchmark for Quantum Optimization"
-  cover_title: Solving the Maximum Independent Set Problem
-  topic: optimization-benchmarks
-  art: 2  # cover motif 0–5, see _includes/writing/cover-motif.html
-  source: Medium
-  date: "2025"
-  summary: "A deep dive into the Maximum Independent Set (MIS) problem, its importance in network analysis, and the potential of quantum approaches."
-  url: "https://medium.com/@_monitsharma/solving-the-maximum-independent-set-problem-a-classically-hard-benchmark-for-quantum-optimization-5d8e9c267052"
-  tags: ["Quantum Computing", "Graph Theory", "Optimization"]
+# Medium-only posts, shown as paperbacks on the Writing shelf. Newest first.
+# "Quantum Papers Explained with Codes" mirrors the Medium list of that name:
+# https://medium.com/@_monitsharma/list/quantum-papers-explained-with-codes-0d2169569685
 
 - title: "Solving the Quadratic Assignment Problem: A Classically Hard Benchmark for Quantum Optimization"
   cover_title: Solving the Quadratic Assignment Problem
-  topic: optimization-benchmarks
+  topic: papers-explained
   art: 4  # cover motif 0–5, see _includes/writing/cover-motif.html
   source: Medium
-  date: "2025"
-  summary: "Analyzing the Quadratic Assignment Problem (QAP), known for its extreme computational difficulty, and benchmarking quantum solvers against it."
+  date: "2025-07-21"
+  summary: "How quantum algorithms like VQE and CVaR-VQE handle constrained optimization problems too tough for classical solvers."
   url: "https://medium.com/@_monitsharma/solving-the-quadratic-assignment-problem-a-classically-hard-benchmark-for-quantum-optimization-f6dcd7e91a87"
-  tags: ["Quantum Computing", "QAP", "Optimization"]
+
+- title: "Solving the Maximum Independent Set Problem: A Classically Hard Benchmark for Quantum Optimization"
+  cover_title: Solving the Maximum Independent Set Problem
+  topic: papers-explained
+  art: 2
+  source: Medium
+  date: "2025-06-22"
+  summary: "How quantum algorithms like VQE, CVaR-VQE and QAOA handle constrained optimization problems too tough for classical solvers."
+  url: "https://medium.com/@_monitsharma/solving-the-maximum-independent-set-problem-a-classically-hard-benchmark-for-quantum-optimization-5d8e9c267052"
+
+- title: "Solving the Multi-Dimensional Knapsack Problem: A Classically Hard Benchmark for Quantum Computing"
+  cover_title: Solving the Multi-Dimensional Knapsack Problem
+  topic: papers-explained
+  art: 5
+  source: Medium
+  date: "2025-04-25"
+  summary: "How quantum algorithms like VQE, CVaR-VQE and QAOA handle constrained optimization problems too tough for classical solvers."
+  url: "https://medium.com/@_monitsharma/solving-the-multi-dimensional-knapsack-problem-a-classically-hard-benchmark-for-quantum-2610e955d114"
+
+- title: "Approximate Solutions of Combinatorial Problems via Quantum Relaxations"
+  cover_title: Approximate Solutions of Combinatorial Problems
+  topic: papers-explained
+  art: 0
+  source: Medium
+  date: "2023-08-12"
+  summary: "New methods for generating approximate solutions to combinatorial optimization problems such as maximum cut, using quantum relaxations."
+  url: "https://medium.com/@_monitsharma/approximate-solutions-of-combinatorial-problems-via-quantum-relaxations-7c3c05a50641"
+
+- title: "Evidence for the utility of quantum computing before fault tolerance or maybe not!"
+  cover_title: Evidence for the utility of quantum computing
+  topic: papers-explained
+  art: 1
+  source: Medium
+  date: "2023-06-29"
+  summary: "A useful application for 127-qubit processors with error mitigation: IBM and UC Berkeley's path toward useful quantum computing."
+  url: "https://medium.com/@_monitsharma/evidence-for-the-utility-of-quantum-computing-before-fault-tolerance-or-maybe-not-b31a3b6d98ee"
+
+- title: "Digital zero noise extrapolation for quantum error mitigation"
+  cover_title: Digital zero noise extrapolation
+  topic: papers-explained
+  art: 3
+  source: Medium
+  date: "2023-06-21"
+  summary: "How zero-noise extrapolation (ZNE) mitigates errors in noisy quantum computations, and how to improve it."
+  url: "https://medium.com/@_monitsharma/digital-zero-noise-extrapolation-for-quantum-error-mitigation-220f4284054b"
+
+- title: "Quanvolutional Neural Networks: Powering Image Recognition with Quantum Circuits"
+  cover_title: Quanvolutional Neural Networks
+  topic: papers-explained
+  art: 2
+  source: Medium
+  date: "2023-06-19"
+  summary: "What quantum neural networks are, and how to build a quanvolutional neural network."
+  url: "https://medium.com/@_monitsharma/quanvolutional-neural-networks-powering-image-recognition-with-quantum-circuits-388e2567fe9"
+
+- title: "Validating quantum computers using randomized model circuits — Quantum Volume"
+  cover_title: Validating quantum computers
+  topic: papers-explained
+  art: 5
+  source: Medium
+  date: "2023-06-16"
+  summary: "Measuring the quantum volume of quantum devices, and running the circuits in Qiskit to find it."
+  url: "https://medium.com/@_monitsharma/validating-quantum-computers-using-randomized-model-circuits-quantum-volume-fba055da3c71"
+
+- title: "Grover Mixers for QAOA: Shifting Complexity from Mixer Design to State Preparation"
+  cover_title: Grover Mixers for QAOA
+  topic: papers-explained
+  art: 0
+  source: Medium
+  date: "2023-06-15"
+  summary: "A variation of the Quantum Alternating Operator Ansatz that uses Grover-like selective phase-shift mixing operators."
+  url: "https://medium.com/@_monitsharma/grover-mixers-for-qaoa-shifting-complexity-from-mixer-design-to-state-preparation-6b06ab61723a"

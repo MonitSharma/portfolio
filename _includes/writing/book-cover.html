@@ -9,5 +9,5 @@ shelf and on its own page.{% endcomment %}
 <span class="book-cover"{% unless cover_essay.url contains '://' %} style="view-transition-name: book-{{ cover_slug }}"{% endunless %}>
   <span class="book-cover-head" aria-hidden="true"><span class="book-cover-title">{{ cover_essay.cover_title | default: cover_essay.title | escape }}</span></span>
   <span class="book-art">{% include writing/cover-motif.html art=cover_art %}</span>
-  <span class="book-imprint" aria-hidden="true">{{ cover_topic.title | escape }}</span>
+  <span class="book-imprint" aria-hidden="true">{{ cover_topic.short | default: cover_topic.title | escape }}</span>
 </span>
