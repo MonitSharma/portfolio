@@ -1,10 +1,13 @@
 {% comment %}The front of a book. Params: essay (an entry from _data/essays.yml or
-blogs.yml). The cover motif is the entry's `art` (0–5), or one picked from its title
-and summary, so an essay has the same cover on the shelf and on its own page.{% endcomment %}
+blogs.yml). The cover motif is the entry's `art` (0–5, see cover-motif.html), or
+one picked from its title and summary, so an essay has the same cover on the
+shelf and on its own page.{% endcomment %}
 {% assign cover_essay = include.essay %}
 {% if cover_essay.art != nil %}{% assign cover_art = cover_essay.art %}{% else %}{% assign cover_art = cover_essay.title.size | times: 7 | plus: cover_essay.summary.size | modulo: 6 %}{% endif %}
 {% assign cover_slug = cover_essay.url | split: '/' | last %}
+{% assign cover_topic = site.data.writing_topics | where: 'id', cover_essay.topic | first %}
 <span class="book-cover"{% unless cover_essay.url contains '://' %} style="view-transition-name: book-{{ cover_slug }}"{% endunless %}>
-  <span class="book-art art-{{ cover_art }}" aria-hidden="true"></span>
-  <span class="book-cover-title" aria-hidden="true">{{ cover_essay.cover_title | default: cover_essay.title | escape }}</span>
+  <span class="book-cover-head" aria-hidden="true"><span class="book-cover-title">{{ cover_essay.cover_title | default: cover_essay.title | escape }}</span></span>
+  <span class="book-art">{% include writing/cover-motif.html art=cover_art %}</span>
+  <span class="book-imprint" aria-hidden="true">{{ cover_topic.title | escape }}</span>
 </span>

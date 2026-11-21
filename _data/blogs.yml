@@ -1,7 +1,7 @@
 - title: "Solving the Multi-Dimensional Knapsack Problem: A Classically Hard Benchmark for Quantum Computing"
   cover_title: Solving the Multi-Dimensional Knapsack Problem
   topic: optimization-benchmarks
-  art: 4  # cover motif 0–5, see assets/css/writing.css
+  art: 5  # cover motif 0–5, see _includes/writing/cover-motif.html
   source: Medium
   date: "2025"
   summary: "Exploring the complexity of the Multi-Dimensional Knapsack Problem and examining how quantum algorithms attempt to tackle this constrained optimization challenge."
@@ -11,7 +11,7 @@
 - title: "Solving the Maximum Independent Set Problem: A Classically Hard Benchmark for Quantum Optimization"
   cover_title: Solving the Maximum Independent Set Problem
   topic: optimization-benchmarks
-  art: 0  # cover motif 0–5, see assets/css/writing.css
+  art: 2  # cover motif 0–5, see _includes/writing/cover-motif.html
   source: Medium
   date: "2025"
   summary: "A deep dive into the Maximum Independent Set (MIS) problem, its importance in network analysis, and the potential of quantum approaches."
@@ -21,7 +21,7 @@
 - title: "Solving the Quadratic Assignment Problem: A Classically Hard Benchmark for Quantum Optimization"
   cover_title: Solving the Quadratic Assignment Problem
   topic: optimization-benchmarks
-  art: 5  # cover motif 0–5, see assets/css/writing.css
+  art: 4  # cover motif 0–5, see _includes/writing/cover-motif.html
   source: Medium
   date: "2025"
   summary: "Analyzing the Quadratic Assignment Problem (QAP), known for its extreme computational difficulty, and benchmarking quantum solvers against it."

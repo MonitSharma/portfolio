@@ -18,10 +18,10 @@ Medium-only posts are paperbacks.{% endcomment %}
         <a class="book-link" href="{% if external %}{{ essay.url | escape }}{% else %}{{ essay.url | relative_url }}{% endif %}"{% if external %} rel="noopener"{% endif %}>
           <span class="book-stand">
             {% include writing/book-cover.html essay=essay %}
-            {% if essay.url == newest.url %}<span class="book-ribbon">New</span>{% endif %}
+            {% if essay.url == newest.url %}<span class="book-ribbon" aria-hidden="true"></span>{% endif %}
           </span>
           <span class="book-title">{{ essay.cover_title | default: essay.title | escape }}{% if essay.cover_title %}<span class="sr-only">{{ essay.title | remove_first: essay.cover_title | escape }}</span>{% endif %}</span>
-          <span class="book-meta">{% if essay.minutes %}{{ essay.minutes }} min read{% else %}{{ essay.source | escape }} <span aria-hidden="true">↗</span>{% endif %}</span>
+          <span class="book-meta">{% if essay.url == newest.url %}New · {% endif %}{% if essay.minutes %}{{ essay.minutes }} min read{% else %}{{ essay.source | escape }} <span aria-hidden="true">↗</span>{% endif %}</span>
         </a>
       </li>
       {% assign book_index = book_index | plus: 1 %}
