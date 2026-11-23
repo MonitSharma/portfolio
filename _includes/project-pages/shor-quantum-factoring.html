@@ -62,15 +62,28 @@
     <p>The updated paper adds a set of <strong>further arithmetic refinements</strong>: narrower shared lookup words, nine primes per lookup, measurement-based cleanup of partial sums, non-restoring division, half-period discrete logarithms with a half-modulus quotient, banked table lookups and a shorter final Chinese-remainder step. Each is checked by exhaustive and randomized tests. Those that would also help the reference circuit are given to it, so they make the comparison harder for us, not easier.</p>
     <p>A reader’s suggestion led to one more simplification. Several steps of the residue multiplication act on a register that still holds zero, so their result is fixed by the lookup address alone. Replacing each with a single table write lowers <em>every</em> circuit by 5–14%, the reference included. We apply it to both sides of every comparison, so the savings above are measured against a reference that is cheaper too.</p>
   </div>
+  <aside class="shor-arithmetic-aside" aria-label="Reference circuit at a glance">
   <figure class="shor-gate-share">
-    <figcaption><span class="shor-figure-number">Reference circuit</span>Where the Toffolis go</figcaption>
-    <dl>
-      <div style="--share:100%"><dt>Initial lookups</dt><dd>61<span>%</span></dd></div>
-      <div style="--share:37.7%"><dt>Residue cleanup</dt><dd>23<span>%</span></dd></div>
-      <div style="--share:26.23%"><dt>Other operations</dt><dd>16<span>%</span></dd></div>
-    </dl>
-    <p>Published RSA-2048 parameters, with the address-determined simplifications. The first two stages are the target of this work.</p>
-  </figure>
+      <figcaption><span class="shor-figure-number">Reference circuit</span>Where the Toffolis go</figcaption>
+      <dl>
+        <div style="--share:100%"><dt>Initial lookups</dt><dd>61<span>%</span></dd></div>
+        <div style="--share:37.7%"><dt>Residue cleanup</dt><dd>23<span>%</span></dd></div>
+        <div style="--share:26.23%"><dt>Other operations</dt><dd>16<span>%</span></dd></div>
+      </dl>
+      <p>Published RSA-2048 parameters, with the address-determined simplifications. The first two stages are the target of this work.</p>
+    </figure>
+    <figure class="shor-pipeline">
+      <figcaption><span class="shor-figure-number">Paper, Fig. 1</span>Where each change acts</figcaption>
+      <ol>
+        <li class="is-target"><div><b>Loop 1</b><span>61%</span></div><p>Discrete log of the residue: one table lookup per exponent window.</p><em>Shared lookups · larger window · trimmed register</em></li>
+        <li><div><b>Loop 2</b><span>small</span></div><p>Reduce the log modulo p − 1.</p><em class="is-refine">Half-modulus quotient · non-restoring division</em></li>
+        <li class="is-target"><div><b>Loop 3</b><span>10%</span></div><p>Rebuild the residue by windowed multiplication.</p><em>Checkpoints · lazy residues</em></li>
+        <li><div><b>Loop 4</b><span>small</span></div><p>Add the residue’s CRT term to the accumulator.</p><em class="is-refine">CRT shortcut · shorter final digit</em></li>
+        <li class="is-target"><div><b>Cleanup</b><span>23%</span></div><p>Undo loops 4 to 1; loop 3 rebuilds residues.</p><em>Checkpoints remove the recomputation</em></li>
+      </ol>
+      <p class="shor-pipeline-key"><i></i>Core change <i class="is-refine"></i>Further refinement</p>
+    </figure>
+  </aside>
   </div>
 </section>
 

@@ -475,3 +475,31 @@ i.fam-hybrid,.ls-mark.fam-hybrid .ls-dot {background:var(--fam-hybrid); fill:var
   .shor-landscape .shor-viz-detail {grid-template-columns:1fr}
   .shor-landscape .shor-viz-detail>dl {grid-column:1; grid-row:auto}
 }
+/* Section 01: tighter columns, a pinned aside with the per-loop map */
+@media(min-width:711px) {
+  .shor-arithmetic-layout {grid-template-columns:minmax(0,640px) minmax(280px,1fr); gap:clamp(28px,4vw,52px)}
+  .shor-method-copy {max-width:none}
+}
+.shor-arithmetic-aside {position:sticky; top:24px; display:grid; gap:30px; padding-left:22px; border-left:1px solid var(--line)}
+.shor-arithmetic-aside .shor-gate-share {margin:0; padding:0; border:0}
+.shor-pipeline {margin:0}
+.shor-pipeline figcaption {font:500 17px/1.5 var(--sans)}
+.shor-pipeline ol {list-style:none; margin:14px 0 0; padding:0; counter-reset:none}
+.shor-pipeline li {position:relative; padding:0 0 12px 18px; border-left:2px solid var(--line)}
+.shor-pipeline li:last-child {padding-bottom:0}
+.shor-pipeline li::before {content:''; position:absolute; left:-6px; top:4px; width:10px; height:10px; border-radius:50%; background:var(--paper); border:2px solid var(--line-strong)}
+.shor-pipeline li.is-target::before {background:var(--accent); border-color:var(--accent)}
+.shor-pipeline li div {display:flex; justify-content:space-between; gap:10px; font:12.5px/1.4 var(--sans)}
+.shor-pipeline li b {font-weight:600; color:var(--ink)}
+.shor-pipeline li div span {color:var(--muted); font-variant-numeric:tabular-nums}
+.shor-pipeline li.is-target div span {color:var(--accent); font-weight:600}
+.shor-pipeline li p {margin:2px 0 4px; font:12.5px/1.5 var(--sans); color:var(--muted)}
+.shor-pipeline li em {display:inline-block; padding:2px 7px; border-radius:3px; background:var(--soft); color:var(--accent); font:500 11.5px/1.45 var(--sans); font-style:normal}
+.shor-pipeline li em.is-refine {background:transparent; box-shadow:inset 0 0 0 1px var(--line-strong); color:var(--muted)}
+.shor-pipeline-key {display:flex; align-items:center; gap:6px 8px; margin-top:12px; font:11.5px/1.4 var(--sans); color:var(--muted)}
+.shor-pipeline-key i {width:12px; height:9px; border-radius:2px; background:var(--soft); box-shadow:inset 0 0 0 1px var(--accent)}
+.shor-pipeline-key i.is-refine {margin-left:8px; background:transparent; box-shadow:inset 0 0 0 1px var(--line-strong)}
+@media(max-width:710px) {
+  .shor-arithmetic-layout {grid-template-columns:1fr}
+  .shor-arithmetic-aside {position:static; padding:18px 0 0; border-left:0; border-top:1px solid var(--line); grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+}
