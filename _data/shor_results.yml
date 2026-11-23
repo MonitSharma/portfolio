@@ -1,4 +1,4 @@
-# Numbers transcribed from "Shared Lookups and Lazy Residues" (updated preprint, code base v2.5).
+# Numbers transcribed from "Shared Lookups and Lazy Residues" (code base v2.5).
 # Toffoli counts are expected Toffolis per RSA-2048 factoring (t_fact) unless noted.
 # Do not round further: the page prints these values as given.
 
@@ -27,7 +27,7 @@ construction_paths:
       - {name: "+ k = 6, all checkpoints", qubits: 1729, tshot: 3.15e+8, tfact: 2.87e+9, change: -51.2, kind: core, why: "Keep every intermediate residue of loop 3, so cleanup subtracts the same table values instead of recomputing them."}
       - {name: "+ trimmed register", qubits: 1690, tshot: 3.03e+8, tfact: 2.76e+9, change: -53.2, kind: core, why: "The discrete-log sum fits in 29 qubits instead of 32, saving 3k qubits and three division steps."}
       - {name: "+ lazy residues (k = 6)", qubits: 1690, tshot: 2.86e+8, tfact: 2.60e+9, change: -55.7, kind: core, why: "With checkpoints, residues no longer need to be canonical: add plain integers and reduce once at the end."}
-      - {name: "Lazy residues, k = 8", qubits: 1806, tshot: 2.61e+8, tfact: 2.37e+9, change: -59.7, kind: core, why: "Eight primes per lookup. This was the headline circuit of the first version of the paper."}
+      - {name: "Lazy residues, k = 8", qubits: 1806, tshot: 2.61e+8, tfact: 2.37e+9, change: -59.7, kind: core, why: "Eight primes per lookup, the widest sharing before the further refinements."}
       - {name: "+ packed differences, CRT shortcut", qubits: 1757, tshot: 2.57e+8, tfact: 2.34e+9, change: -60.3, kind: refine, why: "Store signed differences in 22 bits instead of 29 (word 232 → 176 bits), and build loop-4 tables directly for the lazy representative."}
       - {name: "+ partial-sum cleanup", qubits: 1757, tshot: 2.46e+8, tfact: 2.23e+9, change: -62.0, kind: refine, why: "Erase what remains of a residue by X-basis measurement and a 512-entry phase lookup."}
       - {name: "+ k = 9, overlapping words", qubits: 1806, tshot: 2.35e+8, tfact: 2.14e+9, change: -63.6, kind: refine, why: "Nine primes per 203-bit word. The first word is measured and released early to stay within 1,806 qubits."}
