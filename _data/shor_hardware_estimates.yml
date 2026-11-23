@@ -1,0 +1,67 @@
+# Physical qubits and expected wall-clock time to factor one RSA-2048 integer.
+# Checked against the primary papers in November 2026. `bound: true` marks an
+# "at most this long" budget point, not a point estimate. `days` is the plotting value.
+# Families: surface, atoms, qldpc, cat, hybrid. Ours: see `ours` below.
+
+estimates:
+  # Surface code, as tabulated in Gidney & Ekerå (2021), Table 1 at n = 2048.
+  - {id: vanmeter09, name: "Van Meter et al.", year: 2009, family: surface, qubits: 6500000000, days: 410, time: "410 days", assumptions: "0.2% gate error, 49 µs cycle, carry-lookahead", source: "Gidney & Ekerå 2021, Table 1", url: "https://quantum-journal.org/papers/q-2021-04-15-433/", label: true}
+  - {id: jones10, name: "Jones et al.", year: 2010, family: surface, qubits: 620000000, days: 10, time: "10 days", assumptions: "0.1% gate error, 0.25 µs cycle", source: "Gidney & Ekerå 2021, Table 1", url: "https://quantum-journal.org/papers/q-2021-04-15-433/", label: true}
+  - {id: fowler12, name: "Fowler et al.", year: 2012, family: surface, qubits: 1000000000, days: 1.1, time: "1.1 days", assumptions: "0.1% gate error, 1 µs cycle, 0.1 µs reaction", source: "Gidney & Ekerå 2021, Table 1", url: "https://arxiv.org/abs/1208.0928", label: true}
+  - {id: ogorman17, name: "O’Gorman & Campbell", year: 2017, family: surface, qubits: 230000000, days: 3.7, time: "3.7 days", assumptions: "0.1% gate error, 10 µs cycle, arbitrary connectivity", source: "Gidney & Ekerå 2021, Table 1", url: "https://arxiv.org/abs/1605.07330", label: true}
+  - {id: gheorghiu19, name: "Gheorghiu & Mosca", year: 2019, family: surface, qubits: 170000000, days: 1, time: "1 day", assumptions: "0.1% gate error, 0.2 µs cycle", source: "Gidney & Ekerå 2021, Table 1", url: "https://arxiv.org/abs/1902.02332", label: true}
+  - {id: ge21, name: "Gidney & Ekerå", year: 2021, family: surface, qubits: 20000000, days: 0.31, time: "≈8 hours", assumptions: "0.1% gate error, 1 µs cycle, 10 µs reaction", source: "Quantum 5, 433 (2021), title and Table 1", url: "https://quantum-journal.org/papers/q-2021-04-15-433/", label: true}
+  - {id: gidney25, name: "Gidney", year: 2025, family: surface, qubits: 897864, days: 4.96, time: "4.96 days", assumptions: "0.1% gate error, 1 µs cycle, 10 µs reaction; yoked surface codes and magic-state cultivation", source: "arXiv:2505.15917, Sec. 3.2 (headline: <1M qubits, <1 week)", url: "https://arxiv.org/abs/2505.15917", label: true, reference_for: [surface]}
+
+  # Superconducting qLDPC (Pinnacle family). Pinnacle 1.0 values are table budgets.
+  - {id: pin10-month, series: pin10, name: "Pinnacle 1.0 · ≤ 1 month", year: 2026, family: qldpc, qubits: 94000, days: 30, bound: true, time: "≤ 1 month", assumptions: "10⁻³ error, 1 µs cycle, 10 µs reaction", source: "arXiv:2602.11457 v2, Table 6", url: "https://arxiv.org/abs/2602.11457", label: true}
+  - {id: pin10-week, series: pin10, name: "Pinnacle 1.0 · ≤ 1 week", year: 2026, family: qldpc, qubits: 135000, days: 7, bound: true, time: "≤ 1 week", assumptions: "10⁻³ error, 1 µs cycle, 10 µs reaction", source: "arXiv:2602.11457 v2, Table 6", url: "https://arxiv.org/abs/2602.11457"}
+  - {id: pin10-day, series: pin10, name: "Pinnacle 1.0 · ≤ 1 day", year: 2026, family: qldpc, qubits: 381000, days: 1, bound: true, time: "≤ 1 day", assumptions: "10⁻³ error, 1 µs cycle, 10 µs reaction", source: "arXiv:2602.11457 v2, Table 6", url: "https://arxiv.org/abs/2602.11457"}
+  - {id: pin12-std, name: "Pinnacle 1.2", year: 2026, family: qldpc, qubits: 72000, days: 3.7, time: "3.7 days", assumptions: "10⁻³ error, 1 µs cycle", source: "Pinnacle 1.2 release, Table 1", url: "https://www.iceberg-quantum.com/blog/releases/pinnacle-1-2/", label: true}
+  - {id: pin12-low, variant: true, name: "Pinnacle 1.2 · lower error", year: 2026, family: qldpc, qubits: 48000, days: 0.98, time: "0.98 days", assumptions: "10⁻⁴ error, 1 µs cycle", source: "Pinnacle 1.2 release, Table 1", url: "https://www.iceberg-quantum.com/blog/releases/pinnacle-1-2/", label: true}
+  - {id: pin12-slow-low, variant: true, name: "Pinnacle 1.2 · 1 ms cycle, 10⁻⁴", year: 2026, family: qldpc, qubits: 714000, days: 29, time: "29 days", assumptions: "10⁻⁴ error, 1 ms cycle", source: "Pinnacle 1.2 release, Table 1", url: "https://www.iceberg-quantum.com/blog/releases/pinnacle-1-2/"}
+  - {id: pin12-slow, variant: true, name: "Pinnacle 1.2 · 1 ms cycle, 10⁻³", year: 2026, family: qldpc, qubits: 2100000, days: 32, time: "32 days", assumptions: "10⁻³ error, 1 ms cycle", source: "Pinnacle 1.2 release, Table 1", url: "https://www.iceberg-quantum.com/blog/releases/pinnacle-1-2/"}
+  - {id: frozen, variant: true, name: "Frozen Pinnacle", year: 2026, family: qldpc, qubits: 120000, days: 30, bound: true, time: "≤ 1 month", assumptions: "Fixed degree-8 connectivity; 10⁻³ error, 1 µs cycle, 10 µs reaction", source: "arXiv:2609.21249, abstract", url: "https://arxiv.org/abs/2609.21249"}
+
+  # Neutral atoms, Cain et al., Fig. 3b (one significant figure), 1 ms cycle.
+  - {id: cain-compact, series: cain, name: "Cain et al. · space-efficient", year: 2026, family: atoms, qubits: 11033, days: 43000, time: "4.3 × 10⁴ days (~118 years)", assumptions: "Reconfigurable atoms, 1 ms cycle, qLDPC memory", source: "arXiv:2603.28627, Fig. 3b", url: "https://arxiv.org/abs/2603.28627", label: true, reference_for: [compact]}
+  - {id: cain-balanced, series: cain, name: "Cain et al. · balanced", year: 2026, family: atoms, qubits: 13255, days: 10000, time: "1.0 × 10⁴ days (~27 years)", assumptions: "Reconfigurable atoms, 1 ms cycle, qLDPC memory", source: "arXiv:2603.28627, Fig. 3b", url: "https://arxiv.org/abs/2603.28627", label: true}
+  - {id: cain-68k, series: cain, name: "Cain et al. · parallel, 68k", year: 2026, family: atoms, qubits: 68000, days: 870, time: "8.7 × 10² days", assumptions: "Parallel time-efficient construction on the circuit of Gidney & Ekerå", source: "arXiv:2603.28627, Fig. 3b", url: "https://arxiv.org/abs/2603.28627"}
+  - {id: cain-102k, series: cain, name: "Cain et al. · parallel", year: 2026, family: atoms, qubits: 102000, days: 97, time: "97 days", assumptions: "P = 1,160 parallel operations, 1 ms cycle", source: "arXiv:2603.28627, main text and Fig. 3b", url: "https://arxiv.org/abs/2603.28627", label: true}
+
+  # Cat qubits, Pappalardo et al. (Alice & Bob), v2 Table 2. p_Z = 5×10⁻⁴, 1 µs cycle.
+  - {id: cat-serial, series: cat, name: "Cat qubits · balanced", year: 2026, family: cat, qubits: 22593, days: 3.14, time: "3.14 days", assumptions: "LDPC-cat code, p_Z = 5×10⁻⁴, 1 µs cycle, 10 µs reaction, no bit flips", source: "arXiv:2610.37839, Table 2", url: "https://arxiv.org/abs/2610.37839", label: true}
+  - {id: cat-space, series: cat, name: "Cat qubits · space-efficient", year: 2026, family: cat, qubits: 21188, days: 8.08, time: "8.08 days", assumptions: "LDPC-cat code, p_Z = 5×10⁻⁴, 1 µs cycle", source: "arXiv:2610.37839, Table 2", url: "https://arxiv.org/abs/2610.37839"}
+  - {id: cat-fast, series: cat, name: "Cat qubits · time-efficient", year: 2026, family: cat, qubits: 610530, days: 0.052, time: "1.25 hours", assumptions: "Parallel layout across many chips, p_Z = 5×10⁻⁴, 1 µs cycle", source: "arXiv:2610.37839, Table 2", url: "https://arxiv.org/abs/2610.37839", label: true}
+  - {id: cat-rep, variant: true, name: "Cat qubits · repetition code", year: 2026, family: cat, qubits: 49649, days: 2.67, time: "2.67 days", assumptions: "Repetition-cat code without LDPC, p_Z = 5×10⁻⁴", source: "arXiv:2610.37839, Sec. 5", url: "https://arxiv.org/abs/2610.37839"}
+
+  # Hybrid and heterogeneous architectures.
+  - {id: gouzien21, name: "Gouzien & Sangouard", year: 2021, family: hybrid, qubits: 13436, days: 177, time: "177 days", assumptions: "Processor plus a multimode memory of 28 million spatial modes (not counted as qubits); 10⁻³ error, 1 µs cycle", source: "PRL 127, 140503 (2021), abstract", url: "https://arxiv.org/abs/2103.06159", label: true}
+  - {id: mundada-grid, name: "Mundada et al. · grid coupling", year: 2026, family: hybrid, qubits: 381000, days: 9.2, time: "9.2 days", assumptions: "Heterogeneous architecture on an experimentally demonstrated grid-coupling topology", source: "arXiv:2604.06319, abstract", url: "https://arxiv.org/abs/2604.06319", label: true}
+  - {id: mundada-adder, variant: true, name: "Mundada et al. · adder accelerator", year: 2026, family: hybrid, qubits: 439000, days: 4.9, time: "4.9 days", assumptions: "Adds an algorithm-specific accelerator for the adder", source: "arXiv:2604.06319, abstract", url: "https://arxiv.org/abs/2604.06319"}
+  - {id: mundada-qldpc, variant: true, name: "Mundada et al. · qLDPC memory", year: 2026, family: hybrid, qubits: 190000, days: 10, bound: true, time: "< 10 days", assumptions: "Hypothetical long-range coupling, qLDPC memory", source: "arXiv:2604.06319, abstract", url: "https://arxiv.org/abs/2604.06319"}
+
+# Our conditional scenarios (the paper's Secs. 6–7). Each pairs with the reference
+# tuned for the same model. These are projections, not compiled layouts.
+ours:
+  - {id: our-surface, change: -56.0, name: "Our surface-code scenario", circuit: "Lazy residues, six primes (k = 6, w₁ = 8)", family: surface, qubits: 1320000, days: 1.36, time: "1.36 days", ref_qubits: 980000, ref_days: 3.10, ref_label: "Published configuration: 980,000 qubits, 3.10 days", note: "Simplified layout model: one hot surface-code patch per added logical qubit, exponent in cold storage.", headline: true}
+  - {id: our-balanced, change: -21.4, name: "Our Cain balanced scenario", circuit: "Trimmed, two primes (k = 2, w₁ = 7)", family: atoms, qubits: 13255, days: 7268.0, time: "19.9 years", ref_qubits: 13255, ref_days: 9277.0, ref_label: "Reference retuned to w₁ = 7: 25.4 years", note: "Fits the 1,480-logical-qubit memory of the balanced processor. Our reconstruction of the Cain et al. timing model, 1 ms cycle.", headline: true}
+  - {id: our-pinnacle, change: -21.5, name: "Our Pinnacle 1.0 scenario", circuit: "Lazy residues, eight primes (k = 8)", family: qldpc, qubits: 142260, days: 4.72, time: "4.72 days", ref_qubits: 142080, ref_days: 6.01, ref_label: "Pinnacle reference retuned in the same budget: 6.01 days", note: "One processing unit; assumes Pinnacle’s timing and error model still apply to the wider unit.", headline: true}
+  - {id: our-cat, change: -18.5, name: "Our cat-qubit scenario", circuit: "Lazy residues, eight primes (k = 8)", family: cat, qubits: 30153, days: 1.29, time: "1.29 days", range: [1.13, 1.62], ref_qubits: 29003, ref_days: 1.59, ref_label: "Fastest listed single-chip point in budget: 1.59 days", note: "Varying the uncompiled movement and measurement overhead from 0.5× to 2× gives 1.13–1.62 days.", headline: true}
+  - {id: our-cat-k2, change: -32.8, name: "Cat qubits · trimmed, two primes", circuit: "Trimmed, two primes (k = 2)", family: cat, qubits: 24133, days: 2.11, time: "2.11 days", ref_qubits: 22593, ref_days: 3.14, ref_label: "Serial reference: 3.14 days", note: "Conditional transfer at fixed code distances (Table 8)."}
+  - {id: our-cat-k6, change: -56.4, name: "Cat qubits · lazy, six primes", circuit: "Lazy residues, six primes (k = 6)", family: cat, qubits: 28123, days: 1.37, time: "1.37 days", ref_qubits: 22593, ref_days: 3.14, ref_label: "Serial reference: 3.14 days", note: "Conditional transfer at fixed code distances (Table 8)."}
+  - {id: our-pin-k2, change: -41.4, name: "Pinnacle · trimmed, two primes", circuit: "Trimmed, two primes (k = 2)", family: qldpc, qubits: 108240, days: 9.11, time: "9.11 days", ref_qubits: 108240, ref_days: 15.54, ref_label: "Pinnacle reference retuned in budget: 15.54 days", note: "Conditional transfer at fixed code distances (Table 8)."}
+  - {id: our-pin-k6, change: -34.2, name: "Pinnacle · lazy, six primes", circuit: "Lazy residues, six primes (k = 6)", family: qldpc, qubits: 130920, days: 5.19, time: "5.19 days", ref_qubits: 130920, ref_days: 7.89, ref_label: "Pinnacle reference retuned in budget: 7.89 days", note: "Conditional transfer at fixed code distances (Table 8)."}
+
+# Operating points of one paper under the same assumptions, drawn as one trade-off line.
+series:
+  - {id: cain, name: "Cain et al. 2026", note: "Neutral atoms, 1 ms cycle: space-efficient → balanced → parallel"}
+  - {id: pin10, name: "Pinnacle 1.0", note: "10⁻³ error, 1 µs cycle: qubits needed for ≤ 1 month, ≤ 1 week, ≤ 1 day"}
+  - {id: cat, name: "Pappalardo et al. 2026", note: "Cat qubits: space-efficient → balanced → time-efficient"}
+
+families:
+  - {id: surface, name: "Surface code"}
+  - {id: qldpc, name: "Superconducting qLDPC"}
+  - {id: atoms, name: "Neutral atoms"}
+  - {id: cat, name: "Cat qubits"}
+  - {id: hybrid, name: "Hybrid & heterogeneous"}

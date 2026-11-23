@@ -154,13 +154,29 @@
           const worse = change > 0;
           g.append(el('line', { x1: x, x2: x, y1: py(ref), y2: py(row.tfact), class: `viz-gap ${worse ? 'is-worse' : 'is-better'}` }));
           g.append(el('circle', { cx: x, cy: py(ref), r: 5.5, class: 'viz-ref' }));
-          const labelY = (py(ref) + py(row.tfact)) / 2 + 4;
-          const leftSide = row.id === 'D';
-          if (!(narrow && !row.pareto)) g.append(el('text', { x: leftSide ? x - 9 : x + 9, y: labelY, 'text-anchor': leftSide ? 'end' : 'start', class: `viz-change ${worse ? 'is-worse' : 'is-better'}` }, pct(change)));
+          if (row.pareto) {
+            const labelY = (py(ref) + py(row.tfact)) / 2 + 4;
+            g.append(el('text', { x: x + 9, y: labelY, class: `viz-change ${worse ? 'is-worse' : 'is-better'}` }, pct(change)));
+          }
         }
         g.append(el('path', { d: `M${x} ${py(row.tfact) - 8}L${x + 8} ${py(row.tfact)}L${x} ${py(row.tfact) + 8}L${x - 8} ${py(row.tfact)}Z`, class: `viz-ours${row.pareto ? '' : ' is-ablation'}` }));
-        const idRight = row.id === 'E';
-        g.append(el('text', { x: idRight ? x + 11 : x - 11, y: py(row.tfact) + 4, 'text-anchor': idRight ? 'start' : 'end', class: 'viz-id' }, row.id));
+        if (row.pareto) {
+          g.append(el('text', { x: x - 11, y: py(row.tfact) + 4, 'text-anchor': 'end', class: 'viz-id' }, row.id));
+        } else {
+          // D and E sit 10 qubits apart: give each a callout on opposite sides so marks and text never overlap.
+          const top = Math.min(py(row.tfact), ref ? py(ref) : Infinity) - 8;
+          const bottom = Math.max(py(row.tfact), ref ? py(ref) : -Infinity) + 8;
+          const up = row.id === 'D';
+          const reach = narrow ? 30 : 48;
+          const [ax, ay] = up ? [x - 4, top] : [x + 4, bottom];
+          const [lx, ly] = up ? [x - reach, top - 26] : [x + reach, bottom + 26];
+          g.append(el('path', { d: `M${ax} ${ay}L${lx} ${ly + (up ? 6 : -12)}`, class: 'viz-leader' }));
+          const label = el('text', { x: up ? lx - 2 : lx + 2, y: ly, 'text-anchor': up ? 'end' : 'start', class: 'viz-callout' });
+          label.append(el('tspan', { class: 'viz-callout-id' }, `${row.id} `));
+          label.append(el('tspan', {}, narrow ? '' : 'no sharing '));
+          if (ref) label.append(el('tspan', { class: `viz-callout-change ${change > 0 ? 'is-worse' : 'is-better'}` }, pct(change)));
+          g.append(label);
+        }
         g.append(el('circle', { cx: x, cy: (py(row.tfact) + py(ref ?? row.tfact)) / 2, r: Math.max(16, Math.abs(py(row.tfact) - py(ref ?? row.tfact)) / 2 + 10), class: 'viz-hit' }));
         const select = () => { selected = row.id; describe(row); svg.querySelectorAll('.viz-row').forEach(n => n.classList.toggle('is-selected', n === g)); };
         g.addEventListener('click', select);
