@@ -2,6 +2,7 @@
 # Ruby's YAML (1.1) reads `3.89e9` as the string "3.89e9", so Liquid maths on it
 # silently returns 0. Write `3.89e+9` (or a plain number) instead.
 require "yaml"
+require "date"
 
 NUMERIC_STRING = /\A[-+]?\d+(\.\d+)?[eE]\d+\z/
 problems = []
