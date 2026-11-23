@@ -1,14 +1,6 @@
 # Newest first. `new: true` adds a “New” tag on the home page.
 - date: "2026-11"
   new: true
-  content: "Scored **2,560 / 3,000** in the **[BlueQubit Midwest Quantum Hackathon](/portfolio/work/bluequbit-midwest-otoc/)**, estimating quantum-chaos signals (OTOCs) on up to 38 qubits with classical simulators only. Read the **[write-up](/portfolio/writing/simulating-quantum-chaos-without-a-quantum-computer/)**."
-
-- date: "2026-11"
-  new: true
-  content: "Updated results for **[Shared Lookups and Lazy Residues](/portfolio/work/shor-quantum-factoring/)**: 9%, 37% and 45% fewer Toffoli gates than the best reference circuit at 1,459, 1,685 and 1,801 logical qubits, now with interactive figures."
-
-- date: "2026-11"
-  new: true
   content: "We posted **[Shared Lookups and Lazy Residues: Fewer Toffoli Gates for Factoring RSA-2048](https://arxiv.org/abs/2611.08907)** on arXiv. We estimate 45% fewer Toffoli gates for factoring within the same budget of 1,806 logical qubits."
 
 - date: "2026-11"
