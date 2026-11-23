@@ -1,3 +1,10 @@
+- title: "Simulating Quantum Chaos Without a Quantum Computer: 2560/3000 in the BlueQubit Midwest Quantum Hackathon"
+  cover_title: Simulating Quantum Chaos Without a Quantum Computer
+  summary: Estimating out-of-time-order correlators on 30–38 qubit circuits with classical simulators, $57.80 of cloud credit, and a lot of calibration.
+  url: /writing/simulating-quantum-chaos-without-a-quantum-computer/
+  topic: systems-performance
+  art: 3  # cover motif 0–5, see _includes/writing/cover-motif.html
+  minutes: 12
 - title: How we cut the cost of Shor’s arithmetic for RSA-2048
   summary: One quantum table lookup can serve several primes. At 1,806 logical qubits, that idea helped us cut the estimated Toffoli count by 46%.
   url: /writing/shor-arithmetic-rsa-2048/

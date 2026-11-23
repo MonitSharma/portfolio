@@ -1,5 +1,50 @@
 # Update updated_at when adding or materially updating a project; listings show the newest first.
 ---
+- title: BlueQubit Midwest Quantum Hackathon
+  slug: bluequbit-midwest-otoc
+  updated_at: "2026-11-23T12:00:00+08:00"
+  page: /work/bluequbit-midwest-otoc/
+  category: BlueQubit · Midwest Quantum Hackathon
+  type: challenge
+  summary: Estimated quantum-chaos signals (OTOCs) on 4–38 qubit echo circuits with
+    classical simulators only, scoring 2,560 of 3,000 by calibrating every setting on
+    look-alike circuits with known answers.
+  metric: 2,560 / 3,000
+  metric_label: points · no quantum hardware · $56.60 of GPU credit
+  source_url: https://medium.com/@_monitsharma/simulating-quantum-chaos-without-a-quantum-computer-2560-3000-in-the-bluequbit-midwest-quantum-608d2e5913cc
+  source_label: Read the write-up
+  code_url: https://github.com/MonitSharma/bluequbit-otoc-hackathon
+  essay_url: /writing/simulating-quantum-chaos-without-a-quantum-computer/
+  problems:
+  - {problem: S1, qubits: 4, family: Open sample, score: 100, maximum: 100, method: Exact statevector (Qiskit Aer)}
+  - {problem: S2, qubits: 16, family: Open sample, score: 100, maximum: 100, method: Exact statevector (Qiskit Aer)}
+  - {problem: S3, qubits: 25, family: Open sample, score: 100, maximum: 100, method: Exact statevector (Qiskit Aer)}
+  - {problem: G1, qubits: 30, family: 1D Haar chain, score: 300, maximum: 300, method: "Exact, BlueQubit cpu"}
+  - {problem: G2, qubits: 36, family: Haar chain with secret weak bonds, score: 540, maximum: 600, method: "MPS, bond dimension 128"}
+  - {problem: G3, qubits: 36, family: "6×6 grid, Clifford + rotations", score: 720, maximum: 800, method: "Pauli-path GPU, level 3, tightest threshold"}
+  - {problem: G4, qubits: 38, family: "Google-style fSim grid", score: 700, maximum: 1000, method: "Pauli-path GPU, level 3, δ = 5e-5"}
+  figures:
+  - src: assets/imgs/bluequbit-midwest/00_cover.png
+    width: 1600
+    height: 840
+    caption: G3 estimates on the 6×6 grid
+    alt: Cover of the write-up. G3 estimates of the Z expectation on its 6×6 qubit grid, with the butterfly qubit circled, beside the score of 2560 out of 3000.
+  - src: assets/imgs/bluequbit-midwest/01_circuit.png
+    width: 1600
+    height: 590
+    caption: The echo circuit U · X_b · U† · Z_q · U · X_b · U†
+    alt: Diagram of the double-echo circuit. The scrambling block U and its inverse wrap a butterfly flip X on qubit b and a probe Z on qubit q; the expectation of Z on q is measured at the end.
+  resources:
+  - label: Write-up on Medium
+    url: https://medium.com/@_monitsharma/simulating-quantum-chaos-without-a-quantum-computer-2560-3000-in-the-bluequbit-midwest-quantum-608d2e5913cc
+  - label: Code and raw results on GitHub
+    url: https://github.com/MonitSharma/bluequbit-otoc-hackathon
+  - label: BlueQubit platform
+    url: https://app.bluequbit.io
+  - label: BlueQubit OTOC tutorial
+    url: https://app.bluequbit.io/tutorial/otoc-tutorial
+  - label: Results data behind these charts (JSON)
+    url: /portfolio/assets/data/bluequbit-midwest/otoc-results.json
 - title: Duke Quantum Hackathon
   slug: duke-quantum
   updated_at: "2026-10-27T09:20:21+08:00"
@@ -42,16 +87,17 @@
     url: /portfolio/assets/data/duke-quantum/score-snapshot-20261025.json
 - title: Shor’s Algorithm & Quantum Factoring
   slug: shor-quantum-factoring
-  updated_at: "2026-11-20T12:00:00+08:00"
+  updated_at: "2026-11-23T10:00:00+08:00"
   page: /work/shor-quantum-factoring/
   category: Quantum factoring · Fault-tolerant circuits
   type: research
-  summary: Shared lookups and lazy residues cut the estimated Toffoli count for
-    RSA-2048 factoring by 45% against the best reference setting at 1,806 logical qubits.
+  summary: Shared lookups, lazy residues and banked arithmetic cut the Toffoli count
+    for RSA-2048 factoring by 9%, 37% and 45% against the best reference circuit at
+    1,459, 1,685 and 1,801 logical qubits.
   metric: 45% fewer Toffolis
-  metric_label: Estimated per factoring · matched logical qubit budget
-  source_url: https://zenodo.org/records/23991044
-  source_label: Benchmark archive
+  metric_label: 1.81B per factoring · 1,801 logical qubits · matched budget
+  source_url: https://doi.org/10.5281/zenodo.24460155
+  source_label: Benchmark archive (v2.5)
   figures:
   - src: assets/imgs/shor/hardware-landscape.png
     caption: RSA-2048 runtime versus physical qubits

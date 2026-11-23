@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="{{ '/assets/css/otoc.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+{% assign otoc_data = '/assets/data/bluequbit-midwest/otoc-results.json' | relative_url %}
+<header class="otoc-hero" id="overview">
+  <div class="otoc-hero-line"><span>BlueQubit · Midwest Quantum Hackathon</span><span>November 2026 · classical simulation only</span></div>
+  <div class="otoc-hero-grid">
+    <div class="otoc-hero-copy">
+      <p class="otoc-kicker">Out-of-time-order correlators on 4–38 qubits</p>
+      <h1>Simulating quantum chaos <em>without a quantum computer.</em></h1>
+      <p class="otoc-lead">The hackathon asked for one number per circuit: how much of a disturbance on one qubit has scrambled into another. I estimated all 183 of them with classical simulators, and checked every setting on circuits whose answers I could compute exactly.</p>
+      <div class="otoc-score" aria-label="Final score 2,560 of 3,000">
+        <b>2,560</b><span>/ 3,000 points</span>
+      </div>
+      <div class="otoc-actions">
+        <a class="otoc-button" href="{{ project.source_url }}" target="_blank" rel="noopener">Read the write-up ↗</a>
+        <a class="otoc-link" href="{{ project.essay_url | relative_url }}">Read it here</a>
+        <a class="otoc-link" href="{{ project.code_url }}" target="_blank" rel="noopener">Code &amp; raw results ↗</a>
+      </div>
+    </div>
+    <figure class="otoc-scope" data-otoc-grid>
+      <div class="otoc-scope-head">
+        <span>G3 · 6×6 grid · ⟨Z<sub>q</sub>⟩ per circuit</span>
+        <div class="otoc-toggle" role="group" aria-label="Simulator pre-processing">
+          <button type="button" data-level="l2" aria-pressed="false">Level 2</button>
+          <button type="button" data-level="l3" aria-pressed="true">Level 3</button>
+        </div>
+      </div>
+      <svg viewBox="0 0 360 360" role="img" aria-label="G3 estimates of the Z expectation for each of the 36 circuits, drawn on the 6 by 6 qubit grid. Blue is positive, orange negative, circle size shows magnitude. The butterfly qubit 15 is circled."></svg>
+      <figcaption data-grid-caption>Hover a qubit. Switch levels to see the transpilation finding.</figcaption>
+    </figure>
+  </div>
+  <dl class="otoc-stats">
+    <div><dt>Final score</dt><dd>85%</dd><dd class="otoc-stat-note">2,560 of 3,000 points</dd></div>
+    <div><dt>Quantum hardware used</dt><dd>0</dd><dd class="otoc-stat-note">exact, MPS and Pauli-path simulators</dd></div>
+    <div><dt>GPU vs. CPU, same answer</dt><dd>233×</dd><dd class="otoc-stat-note">41 minutes → 11 seconds</dd></div>
+    <div><dt>Cloud credit spent</dt><dd>$56.60</dd><dd class="otoc-stat-note">of $57.80 in coupons · 283 GPU jobs</dd></div>
+  </dl>
+</header>
+
+<script type="application/json" data-otoc-problems>{{ project.problems | jsonify }}</script>
+<div class="otoc-body" data-otoc-src="{{ otoc_data }}">
+
+<section class="otoc-section" id="challenge" aria-labelledby="otoc-challenge-title">
+  <div class="otoc-heading"><span>01</span><h2 id="otoc-challenge-title">One question in seven sizes</h2></div>
+  <div class="otoc-split">
+    <div class="otoc-prose">
+      <p>Every circuit runs a scrambling block <b>U</b>, flips a “butterfly” qubit <i>b</i>, runs <b>U</b> backwards, probes qubit <i>q</i>, and repeats. The final ⟨Z<sub>q</sub>⟩ is a fourth-order out-of-time-order correlator. It stays near 1 if the disturbance at <i>b</i> has not reached <i>q</i>, and decays toward 0 once chaotic dynamics have spread it. It is the same workload as Google’s <em>Quantum Echoes</em> experiment.</p>
+      <p>Because <b>U</b> runs four times, a 10-layer block becomes a 40-layer circuit, and an exact 36-qubit statevector would need about 1 TB of memory. The hidden circuits lived on BlueQubit’s servers: I never saw their gates, only what the API returned.</p>
+      <p>Scoring was the squared correlation (corr²) with the true values. <strong>A method that shrinks every value by the same factor still scores perfectly</strong>; what costs points is getting the ranking and shape wrong. That fact shaped the whole strategy.</p>
+    </div>
+    {% assign circuit = project.figures[1] %}
+    <figure class="otoc-circuit">
+      <a href="{{ circuit.src | relative_url }}" target="_blank" rel="noopener"><img src="{{ circuit.src | relative_url }}" width="{{ circuit.width }}" height="{{ circuit.height }}" alt="{{ circuit.alt | escape }}" loading="lazy" decoding="async"></a>
+      <figcaption>⟨Z<sub>q</sub>⟩ = ⟨0|(Z<sub>q</sub>B)⁴|0⟩ with B = U† X<sub>b</sub> U</figcaption>
+    </figure>
+  </div>
+  <div class="otoc-board" data-otoc-board role="table" aria-label="Score by problem"></div>
+</section>
+
+<section class="otoc-section" id="journey" aria-labelledby="otoc-journey-title">
+  <div class="otoc-heading"><span>02</span><h2 id="otoc-journey-title">From 0 to 2,560, submission by submission</h2></div>
+  <p class="otoc-lede">Each problem keeps its best of up to ten submissions. Hover or tap a step to see what changed.</p>
+  <figure class="otoc-chart" data-otoc-journey>
+    <svg role="img" aria-label="Step chart of the total score after each of 13 submissions, rising from 100 to 2,560 out of 3,000."></svg>
+    <figcaption data-journey-note>The two biggest jumps came from a simulator flag, not a new algorithm.</figcaption>
+  </figure>
+</section>
+
+<section class="otoc-section" id="calibration" aria-labelledby="otoc-cal-title">
+  <div class="otoc-heading"><span>03</span><h2 id="otoc-cal-title">Calibrate on circuits with known answers</h2></div>
+  <p class="otoc-lede">You cannot see the hidden answers, so a setting can only be trusted after it works on a <em>look-alike</em> small enough to solve exactly. I built four: the S3 sample, Y4 (25-qubit fSim grid), P3 (30-qubit Clifford + Rz grid with S3’s gate statistics) and P4 (30-qubit fSim grid, solved on BlueQubit’s free exact device).</p>
+  <div class="otoc-cal" data-otoc-cal>
+    <div class="otoc-cal-list" role="listbox" aria-label="Method and look-alike" data-cal-list></div>
+    <figure class="otoc-parity">
+      <svg role="img" aria-label="Estimate versus exact value, one point per circuit, for the selected method and look-alike. The dashed diagonal marks perfect agreement." data-parity></svg>
+      <figcaption data-parity-note></figcaption>
+    </figure>
+  </div>
+  <ul class="otoc-lessons">
+    <li><b>Threshold matters for fSim circuits.</b> On Y4, Pauli-path at δ = 1e-4 scored corr² 0.70; at the tightest threshold the server accepted, 0.99. Truncation mostly shrinks values toward zero, unevenly.</li>
+    <li><b>MPS is the wrong tool on grids.</b> On P3 it reported −0.009 for a circuit whose true value is −0.47. Its corr² looks fine on six points only because it preserves the ranking.</li>
+    <li><b>G4-like circuits stay hard.</b> Even the tightest settings shrink P4 values by 2–5×, with a few outright errors.</li>
+  </ul>
+</section>
+
+<section class="otoc-section" id="findings" aria-labelledby="otoc-findings-title">
+  <div class="otoc-heading"><span>04</span><h2 id="otoc-findings-title">The two findings that moved the score</h2></div>
+  <div class="otoc-findings">
+    <article class="otoc-finding">
+      <p class="otoc-finding-index">Finding 1</p>
+      <h3>The GPU was 233× faster for the identical answer</h3>
+      <div class="otoc-race" data-otoc-race aria-label="Server run time for one G3 circuit at threshold 3e-5: CPU 2,475 seconds, GPU 10.6 seconds"></div>
+      <p>One G3 circuit at δ = 3e-5 took 41 minutes on the CPU Pauli-path device and 11 seconds on <code>pauli-path.gpu</code>, both returning ⟨Z⟩ = −0.1085. A full 36-circuit sweep became minutes and about $7, instead of roughly 22 hours. Every later experiment depended on it.</p>
+    </article>
+    <article class="otoc-finding">
+      <p class="otoc-finding-index">Finding 2</p>
+      <h3>Transpilation level 3: +320 points on G3, +200 on G4</h3>
+      <p>The hidden circuits contain long runs of redundant single-qubit gates. Each one is another place the Pauli sum is rotated and truncated. Merging them with the simulator’s heaviest pre-processing pass means fewer truncation steps and less lost weight. My look-alike had been built with Qiskit’s optimiser, which had already merged those gates, so it hid the effect: <strong>a proxy must match the data’s quirks, including how its gates are written down.</strong></p>
+    </article>
+  </div>
+  <figure class="otoc-chart otoc-levels" data-otoc-levels>
+    <div class="otoc-chart-bar">
+      <div class="otoc-toggle" role="group" aria-label="Problem" data-levels-problem>
+        <button type="button" data-problem="G3" aria-pressed="true">G3 · 36 qubits</button>
+        <button type="button" data-problem="G4" aria-pressed="false">G4 · 38 qubits</button>
+      </div>
+      <p class="otoc-legend"><span><i class="lg-l2"></i>Level 2 (default)</span><span><i class="lg-l3"></i>Level 3</span></p>
+    </div>
+    <svg role="img" aria-label="Per-circuit estimates of the Z expectation with transpilation level 2 and level 3, joined by a line for each circuit." data-levels-svg></svg>
+    <figcaption data-levels-note></figcaption>
+  </figure>
+</section>
+
+<section class="otoc-section" id="profiles" aria-labelledby="otoc-profiles-title">
+  <div class="otoc-heading"><span>05</span><h2 id="otoc-profiles-title">Seeing the scrambling front on a chain</h2></div>
+  <div class="otoc-split otoc-split-wide">
+    <figure class="otoc-chart" data-otoc-profiles>
+      <div class="otoc-chart-bar">
+        <div class="otoc-toggle" role="group" aria-label="Problem" data-profile-problem>
+          <button type="button" data-problem="G1" aria-pressed="false">G1 · exact</button>
+          <button type="button" data-problem="G2" aria-pressed="true">G2 · MPS χ = 128</button>
+        </div>
+      </div>
+      <svg role="img" aria-label="Z expectation for each measured qubit along the chain, with butterfly positions marked." data-profile-svg></svg>
+    </figure>
+    <div class="otoc-prose">
+      <p>On a 1D chain, entanglement grows slowly, which is home turf for matrix product states. G1 (30 qubits) fit BlueQubit’s free exact device and scored full marks. For G2, MPS at bond dimension 128 ran in about seven minutes per circuit and scored 540 of 600.</p>
+      <p>The G2 profile shows the challenge’s “secret weak bonds” directly: qubits 12–21 keep high values because weak couplings shield them from both butterflies, at qubits 2 and 31, so the scrambling front never fully reaches them.</p>
+      <p>A χ = 256 run might have closed the last 10%, but the server estimated 13.5 hours per job and its cost reservation would have frozen the GPU queue.</p>
+    </div>
+  </div>
+</section>
+
+<section class="otoc-section" id="dead-ends" aria-labelledby="otoc-dead-title">
+  <div class="otoc-heading"><span>06</span><h2 id="otoc-dead-title">What didn’t work</h2></div>
+  <div class="otoc-dead">
+    <div><h3>Extrapolating δ → 0</h3><p>Richardson-style extrapolation from two thresholds made P4 worse (corr² 0.78 → 0.59).</p></div>
+    <div><h3>A Pauli-weight cutoff</h3><p>Capping string length to fit δ = 1e-5 in memory: the same circuits were still rejected.</p></div>
+    <div><h3>Blending thresholds</h3><p>Gains on P4 came from a single outlier circuit, which is noise.</p></div>
+    <div><h3>Tighter δ on G4’s strongest circuits</h3><p>Values grew 15–45% in magnitude with the last $1.40 of credit; the score stayed at 700.</p></div>
+  </div>
+  <p class="otoc-takeaway">Calibrate before you trust. Know what the metric rewards. Check the boring knobs. And treat the budget as part of the algorithm: a one-GPU-job queue, cost reservations and a $25 minimum balance shaped the plan as much as the physics did.</p>
+</section>
+
+</div>
+<script src="{{ '/assets/js/otoc.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+
+{% include project-blocks/resources.html label='Article, code & data' title='Explore and reproduce' %}

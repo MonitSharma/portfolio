@@ -1,0 +1,90 @@
+# Numbers transcribed from "Shared Lookups and Lazy Residues" (updated preprint, code base v2.5).
+# Toffoli counts are expected Toffolis per RSA-2048 factoring (t_fact) unless noted.
+# Do not round further: the page prints these values as given.
+
+published:
+  model: {qubits: 1399, tfact: 5.84e9, note: "Published cost model, Ref. Table 5, with the address-determined simplifications (6.50e9 without them)."}
+  benchmark: {qubits: 1435, tshot: 6.46e8, tfact: 5.88e9, note: "Same circuit counted by our benchmark; loop 4 adds 33 carry and 3 bookkeeping qubits."}
+
+# Table 1. change_best: vs. best improved reference setting at that budget.
+# change_plain: vs. best reference setting without banking and the half-modulus quotient.
+# change_model: vs. best setting of the published cost model alone.
+equal_budget:
+  - {id: A, name: "Trimmed, two primes", detail: "k = 2, w₁ = 7, refined", qubits: 1459, tfact: 3.89e9, ref: 4.27e9, change_best: -9.0, change_plain: -23.4, change_model: -27.8, change_published: -33.9, pareto: true}
+  - {id: B, name: "Lazy, six primes", detail: "k = 6, w₁ = 8, refined", qubits: 1685, tfact: 2.19e9, ref: 3.47e9, change_best: -36.8, change_plain: -46.3, change_model: -49.1, change_published: -62.7, pareto: true}
+  - {id: C, name: "Lazy, nine primes", detail: "k = 9, w₁ = 8, refined", qubits: 1801, tfact: 1.81e9, ref: 3.28e9, change_best: -44.8, change_plain: -55.0, change_model: -58.1, change_published: -69.3, pareto: true}
+  - {id: D, name: "Trimmed, all checkpoints", detail: "k = 1, no sharing", qubits: 1520, tfact: 5.06e9, ref: 3.93e9, change_best: 28.7, change_model: 1.2, change_published: -14.1, pareto: false}
+  - {id: E, name: "Lazy residues", detail: "k = 1, no sharing", qubits: 1530, tfact: 4.86e9, ref: 3.91e9, change_best: 24.1, change_model: -2.7, change_published: -17.5, pareto: false}
+
+# Table 6. Cumulative construction path vs. the benchmark-counted published configuration.
+construction_paths:
+  - id: C
+    label: "To row C · nine primes, 1,801 qubits"
+    steps:
+      - {name: "Published configuration (benchmark)", qubits: 1435, tshot: 6.46e8, tfact: 5.88e9, kind: base, why: "Gidney’s low-qubit circuit at its published parameters, counted by our benchmark."}
+      - {name: "+ shared lookups, k = 2", qubits: 1473, tshot: 5.16e8, tfact: 4.70e9, change: -20.1, kind: core, why: "Primes with the same exponent window share one table read. Two primes per lookup halve the loop-1 lookups."}
+      - {name: "+ k = 4, larger window (8 bits)", qubits: 1601, tshot: 4.20e8, tfact: 3.82e9, change: -35.0, kind: core, why: "Sharing divides the lookup cost by k, so a wider window becomes worthwhile: fewer windows and fewer primes."}
+      - {name: "+ k = 6, all checkpoints", qubits: 1729, tshot: 3.15e8, tfact: 2.87e9, change: -51.2, kind: core, why: "Keep every intermediate residue of loop 3, so cleanup subtracts the same table values instead of recomputing them."}
+      - {name: "+ trimmed register", qubits: 1690, tshot: 3.03e8, tfact: 2.76e9, change: -53.2, kind: core, why: "The discrete-log sum fits in 29 qubits instead of 32, saving 3k qubits and three division steps."}
+      - {name: "+ lazy residues (k = 6)", qubits: 1690, tshot: 2.86e8, tfact: 2.60e9, change: -55.7, kind: core, why: "With checkpoints, residues no longer need to be canonical: add plain integers and reduce once at the end."}
+      - {name: "Lazy residues, k = 8", qubits: 1806, tshot: 2.61e8, tfact: 2.37e9, change: -59.7, kind: core, why: "Eight primes per lookup. This was the headline circuit of the first version of the paper."}
+      - {name: "+ packed differences, CRT shortcut", qubits: 1757, tshot: 2.57e8, tfact: 2.34e9, change: -60.3, kind: refine, why: "Store signed differences in 22 bits instead of 29 (word 232 → 176 bits), and build loop-4 tables directly for the lazy representative."}
+      - {name: "+ partial-sum cleanup", qubits: 1757, tshot: 2.46e8, tfact: 2.23e9, change: -62.0, kind: refine, why: "Erase what remains of a residue by X-basis measurement and a 512-entry phase lookup."}
+      - {name: "+ k = 9, overlapping words", qubits: 1806, tshot: 2.35e8, tfact: 2.14e9, change: -63.6, kind: refine, why: "Nine primes per 203-bit word. The first word is measured and released early to stay within 1,806 qubits."}
+      - {name: "+ non-restoring division", qubits: 1806, tshot: 2.29e8, tfact: 2.08e9, change: -64.6, kind: refine, why: "Fold each pending add-back into the next subtraction; restore only the final remainder."}
+      - {name: "+ half-period logarithms", qubits: 1803, tshot: 2.25e8, tfact: 2.05e9, change: -65.2, kind: refine, why: "Adding (p − 1)/2 to a logarithm negates the residue, so keep the low part and carry a sign bit."}
+      - {name: "+ half-modulus quotient", qubits: 1803, tshot: 2.19e8, tfact: 1.99e9, change: -66.1, kind: refine, why: "Divide by (p − 1)/2: the residue exponent shrinks from 21 to 20 bits and the last tables halve."}
+      - {name: "+ banked direct lookup", qubits: 1801, tshot: 2.02e8, tfact: 1.84e9, change: -68.7, kind: refine, why: "Split a 12-bit lookup into banks: 653 Toffolis instead of about 4,080, so it can replace a whole multiplication."}
+      - {name: "+ banked multiplication lookups (row C)", qubits: 1801, tshot: 1.99e8, tfact: 1.81e9, change: -69.3, kind: refine, why: "Bank the 64-entry multiplication-table loads too: 26 + 21 instead of 57 Toffolis per load."}
+  - id: A
+    label: "To row A · two primes, 1,459 qubits"
+    steps:
+      - {name: "Published configuration (benchmark)", qubits: 1435, tshot: 6.46e8, tfact: 5.88e9, kind: base, why: "Gidney’s low-qubit circuit at its published parameters, counted by our benchmark."}
+      - {name: "Trimmed, k = 2, w₁ = 7", qubits: 1461, tshot: 4.95e8, tfact: 4.51e9, change: -23.3, kind: core, why: "Two primes per lookup, a 7-bit window and a 29-qubit discrete-log register."}
+      - {name: "+ measured cleanup", qubits: 1461, tshot: 4.74e8, tfact: 4.32e9, change: -26.6, kind: refine, why: "Erase partial sums by measurement and a phase lookup instead of arithmetic."}
+      - {name: "+ non-restoring division, CRT fold", qubits: 1461, tshot: 4.67e8, tfact: 4.25e9, change: -27.8, kind: refine, why: "Cheaper long division, and fold the one-bit top CRT digit into the previous one: four accumulator updates instead of five."}
+      - {name: "+ final checkpoint, compact CRT", qubits: 1459, tshot: 4.56e8, tfact: 4.15e9, change: -29.4, kind: refine, why: "Keep the input of the final multiplication and use a ripple adder that stores carries in the looked-up offset."}
+      - {name: "+ banked tables, half period, blocked carries (row A)", qubits: 1459, tshot: 4.27e8, tfact: 3.89e9, change: -33.9, kind: refine, why: "Bank the multiplication-table loads, use half-period logarithms and put CRT carries in freed wires."}
+  - id: B
+    label: "To row B · six primes, 1,685 qubits"
+    steps:
+      - {name: "Published configuration (benchmark)", qubits: 1435, tshot: 6.46e8, tfact: 5.88e9, kind: base, why: "Gidney’s low-qubit circuit at its published parameters, counted by our benchmark."}
+      - {name: "Lazy residues, k = 6, w₁ = 8", qubits: 1690, tshot: 2.86e8, tfact: 2.60e9, change: -55.7, kind: core, why: "The three changes together: six-prime sharing, all checkpoints and lazy residues."}
+      - {name: "+ refinements and banking (row B)", qubits: 1685, tshot: 2.41e8, tfact: 2.19e9, change: -62.7, kind: refine, why: "Half-period logarithms, a banked four-window direct lookup and one retained partial sum, within 1,685 qubits."}
+
+# Table 5. Matched ablations. All rows: trimmed registers, s = 8, ℓ = 21, w3 = 3, w4 = 5, f = 33.
+ablations:
+  - {w1: 6, k: 1, checkpoints: 0, lazy: false, qubits: 1432, tfact: 5.688e9}
+  - {w1: 6, k: 1, checkpoints: 4, lazy: false, qubits: 1520, tfact: 5.055e9}
+  - {w1: 6, k: 1, checkpoints: 4, lazy: true, qubits: 1530, tfact: 4.856e9}
+  - {w1: 6, k: 3, checkpoints: 4, lazy: false, qubits: 1578, tfact: 3.502e9}
+  - {w1: 8, k: 6, checkpoints: 4, lazy: false, qubits: 1690, tfact: 2.756e9}
+  - {w1: 8, k: 6, checkpoints: 4, lazy: true, qubits: 1690, tfact: 2.605e9}
+
+# Table 7. Runtime per factoring; change vs. the reference tuned for each architecture.
+# fits: needs at most the 1,480 logical qubits of the Cain et al. memory.
+architectures:
+  - {id: surface, name: "Surface code", source: "Gidney, 1 μs cycle", unit: d, reference: 3.10, reference_label: "3.10 days (w₁ = 6)"}
+  - {id: balanced, name: "Neutral atoms · balanced", source: "Cain et al., 1 ms cycle", unit: y, reference: 25.4, reference_label: "25.4 years (w₁ = 7)"}
+  - {id: compact, name: "Neutral atoms · space-efficient", source: "Cain et al., 1 ms cycle", unit: y, reference: 109.5, reference_label: "109.5 years (w₁ = 5)"}
+runtimes:
+  - {name: "Lazy, k = 9, refined (row C)", fits: false, surface: [1.22, -60.8], balanced: [13.0, -48.7], compact: [129.4, 18.2]}
+  - {name: "Lazy, k = 9, banked direct only", fits: false, surface: [1.16, -62.6], balanced: [12.0, -52.6], compact: [129.7, 18.4]}
+  - {name: "Lazy, k = 9, fast phase", fits: false, surface: [1.06, -65.7], balanced: [10.9, -57.0], compact: [130.1, 18.8]}
+  - {name: "Lazy, k = 6, refined (row B)", fits: false, surface: [1.18, -61.9], balanced: [10.6, -58.3], compact: [130.6, 19.3]}
+  - {name: "Trimmed, k = 2, refined (row A)", fits: true, surface: [2.79, -10.0], balanced: [27.3, 7.7], compact: [101.1, -7.7]}
+  - {name: "Trimmed, k = 2, banked direct", fits: true, surface: [2.61, -15.7], balanced: [24.1, -4.9], compact: [101.3, -7.5]}
+  - {name: "Lazy, k = 8, w₁ = 8", fits: false, surface: [1.28, -58.8], balanced: [12.5, -50.7], compact: [161.9, 47.8]}
+  - {name: "Lazy, k = 6, w₁ = 8", fits: false, surface: [1.36, -56.0], balanced: [13.7, -45.9], compact: [161.9, 47.8]}
+  - {name: "Lazy, k = 1, w₁ = 5", fits: false, surface: [2.73, -12.0], balanced: [25.4, 0.3], compact: [88.7, -19.0]}
+  - {name: "Trimmed, k = 1, 2 checkpoints, w₁ = 5", fits: true, surface: [3.11, 0.2], balanced: [28.7, 13.0], compact: [96.8, -11.6]}
+  - {name: "Trimmed, k = 2, w₁ = 7", fits: true, surface: [2.32, -25.2], balanced: [19.9, -21.4], compact: [128.3, 17.2]}
+
+# Table 8. Conditional transfers at fixed code distances (unrefined circuits).
+transfers:
+  - {model: "LDPC cat qubits", circuit: "Trimmed, k = 2", qubits: 24133, days: 2.11, ref_days: 3.14, d_time: -32.8, d_spacetime: -28.2}
+  - {model: "LDPC cat qubits", circuit: "Lazy, k = 6", qubits: 28123, days: 1.37, ref_days: 3.14, d_time: -56.4, d_spacetime: -45.8}
+  - {model: "LDPC cat qubits", circuit: "Lazy, k = 8", qubits: 30153, days: 1.29, ref_days: 1.59, d_time: -18.5, d_spacetime: -15.2}
+  - {model: "Pinnacle 1.0", circuit: "Trimmed, k = 2", qubits: 108240, days: 9.11, ref_days: 15.54, d_time: -41.4, d_spacetime: -41.3}
+  - {model: "Pinnacle 1.0", circuit: "Lazy, k = 6", qubits: 130920, days: 5.19, ref_days: 7.89, d_time: -34.2, d_spacetime: -32.8}
+  - {model: "Pinnacle 1.0", circuit: "Lazy, k = 8", qubits: 142260, days: 4.72, ref_days: 6.01, d_time: -21.5, d_spacetime: -21.4}

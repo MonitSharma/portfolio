@@ -12,8 +12,13 @@
     <div class="shor-cover-copy">
       <h1>Fewer gates for <span>Shor’s algorithm.</span></h1>
       <p class="shor-intro">Most of Shor’s algorithm is arithmetic. We make that arithmetic cheaper by sharing table lookups and keeping useful intermediate results.</p>
-      <p class="shor-cover-finding">For RSA-2048, this cuts the estimated Toffoli count per factoring by <strong>45%</strong> within a budget of 1,806 logical qubits, and by 16% at 1,461.</p>
-      <a class="shor-read-link" href="#logical-resources">Explore the resource estimates <span aria-hidden="true">↘</span></a>
+      <p class="shor-cover-finding">Against the strongest reference circuit we could build at each logical-qubit budget, our RSA-2048 circuits need fewer Toffoli gates per factoring:</p>
+      <dl class="shor-cover-stats">
+        <div><dt>1,459 qubits</dt><dd>9%</dd><dd class="shor-stat-note">3.89B Toffolis · row A</dd></div>
+        <div><dt>1,685 qubits</dt><dd>37%</dd><dd class="shor-stat-note">2.19B Toffolis · row B</dd></div>
+        <div><dt>1,801 qubits</dt><dd>45%</dd><dd class="shor-stat-note">1.81B Toffolis · row C</dd></div>
+      </dl>
+      <a class="shor-read-link" href="#equal-budget">Compare at the same qubit budget <span aria-hidden="true">↘</span></a>
     </div>
     <figure class="shor-cover-diagram">
       <svg viewBox="0 0 320 322" role="img" aria-labelledby="shor-schematic-title shor-schematic-desc">
@@ -45,7 +50,7 @@
       <a class="shor-link" href="{{ shor_blog.url | escape }}" target="_blank" rel="noopener">Read the blog ↗</a>
     </div>
   </div>
-  <nav class="shor-contents" aria-label="On this page"><a href="#arithmetic">The circuit</a><a href="#logical-resources">The estimates</a><a href="#hardware-estimates">The hardware implications</a></nav>
+  <nav class="shor-contents" aria-label="On this page"><a href="#arithmetic">The circuit</a><a href="#equal-budget">Same budget</a><a href="#construction-path">Step by step</a><a href="#logical-resources">The landscape</a><a href="#hardware-estimates">Hardware</a></nav>
 </header>
 
 <section class="shor-section" id="arithmetic" aria-labelledby="shor-arithmetic-title">
@@ -55,6 +60,7 @@
     <p>Shor finds factors by looking for a repeating pattern in powers taken modulo the RSA number. Computing those powers takes most of the work. In <a class="shor-link" href="https://arxiv.org/abs/2505.15917">Gidney’s low-qubit circuit</a>, lookups and a residue-cleanup stage account for about <strong>84% of the Toffoli gates</strong>.</p>
     <p>The same input bits select a row in several tables, one for each small prime. We pack their answers into a wider row, so a single lookup returns them together. In a controlled comparison across three primes, sharing alone reduced the estimated Toffoli count by <strong>30.7%</strong>.</p>
     <p>We also retain intermediate values to avoid recomputing them during cleanup, and let residues grow before reducing them once at the end. The paper proves that, with sufficiently wide registers, the output and relative quantum phases are preserved.</p>
+    <p>The updated paper adds a set of <strong>further arithmetic refinements</strong>: narrower shared lookup words, nine primes per lookup, measurement-based cleanup of partial sums, non-restoring division, half-period discrete logarithms with a half-modulus quotient, banked table lookups and a shorter final Chinese-remainder step. Each is checked by exhaustive and randomized tests. Those that would also help the reference circuit are given to it, so they make the comparison harder for us, not easier.</p>
     <p>A reader’s suggestion led to one more simplification. Several steps of the residue multiplication act on a register that still holds zero, so their result is fixed by the lookup address alone. Replacing each with a single table write lowers <em>every</em> circuit by 5–14%, the reference included. We apply it to both sides of every comparison, so the savings above are measured against a reference that is cheaper too.</p>
   </div>
   <figure class="shor-gate-share">
@@ -69,17 +75,89 @@
   </div>
 </section>
 
-<section class="shor-section" id="logical-resources" aria-labelledby="shor-resources-title">
-  <div class="shor-section-heading"><span class="shor-section-index">02</span><h2 id="shor-resources-title">What changes at the same qubit budget?</h2></div>
-  <p class="shor-section-lede">We searched 534,240 settings of Gidney’s cost model, with the same simplifications applied, and used the cheapest reference circuit that fit each budget. The savings below count the expected repeat runs needed to factor one key.</p>
+<script type="application/json" data-shor-results>{{ site.data.shor_results | jsonify }}</script>
+
+<section class="shor-section" id="equal-budget" aria-labelledby="shor-budget-title">
+  <div class="shor-section-heading"><span class="shor-section-index">02</span><h2 id="shor-budget-title">What changes at the same qubit budget?</h2></div>
+  <p class="shor-section-lede">A circuit with more qubits can usually use fewer gates, so one fixed reference point is not a fair comparison. For each budget we searched <strong>534,240 settings</strong> of Gidney’s cost model, gave the reference every refinement of ours that applies to it, and kept its cheapest setting. Counts are expected Toffolis per factoring, including the ≈9.1 repeat executions.</p>
+
+  <figure class="shor-viz" data-budget-chart>
+    <div class="shor-viz-toolbar">
+      <div class="shor-segmented" role="group" aria-label="Compare against" data-comparator></div>
+      <label class="shor-viz-check"><input type="checkbox" data-show-path> Show every scored circuit</label>
+    </div>
+    <div class="shor-viz-body">
+      <div class="shor-viz-stage">
+        <svg role="img" aria-label="Toffoli gates per factoring versus logical-qubit budget. Each of our circuits A to E is joined to the best reference circuit within the same budget."></svg>
+        <div class="shor-viz-legend" aria-hidden="true">
+          <span><i class="lg-ours"></i>This work (benchmark counts)</span>
+          <span><i class="lg-ablation"></i>Without sharing (ablation)</span>
+          <span><i class="lg-ref"></i>Reference at the same budget</span>
+          <span><i class="lg-published"></i>Published configuration</span>
+        </div>
+      </div>
+      <div class="shor-viz-detail" data-budget-detail aria-live="polite"></div>
+    </div>
+    <figcaption>Click a circuit for details. Rows D and E keep checkpoints and lazy residues but drop sharing: they land <em>above</em> the improved reference, because a smaller Ekerå–Håstad parameter already buys gates with qubits more cheaply. Shared lookups are what move the curve.</figcaption>
+  </figure>
+
   <div class="shor-comparison-wrap">
     <table class="shor-comparison">
-      <caption>Expected Toffoli gates per factoring, including repeat runs</caption>
-      <thead><tr><th scope="col">Logical qubit budget</th><th scope="col">Best reference</th><th scope="col">This work</th><th scope="col">Reduction</th></tr></thead>
-      <tbody><tr><th scope="row">1,461</th><td>5.39B</td><td>4.51B</td><td>16%</td></tr><tr><th scope="row">1,806</th><td>4.31B</td><td>2.37B</td><td>45%</td></tr></tbody>
+      <caption>Table 1 of the paper. Expected Toffolis per factoring. “Best reference” is the cheapest improved reference setting within the same qubit budget. Negative changes are reductions.</caption>
+      <thead><tr><th scope="col">Circuit</th><th scope="col">Logical qubits</th><th scope="col">This work</th><th scope="col">Best reference</th><th scope="col">vs. best</th><th scope="col">vs. published config.</th></tr></thead>
+      <tbody>{% for row in site.data.shor_results.equal_budget %}
+        <tr class="{% unless row.pareto %}is-ablation{% endunless %}"><th scope="row">{{ row.id }} · {{ row.name }} <span>{{ row.detail }}</span></th><td>{{ row.qubits | slice: 0, 1 }},{{ row.qubits | slice: 1, 3 }}</td><td>{{ row.tfact | divided_by: 1000000000.0 | round: 2 }}B</td><td>{{ row.ref | divided_by: 1000000000.0 | round: 2 }}B</td><td class="{% if row.change_best > 0 %}is-worse{% endif %}">{% if row.change_best > 0 %}+{% endif %}{{ row.change_best }}%</td><td>{{ row.change_published }}%</td></tr>
+      {% endfor %}</tbody>
     </table>
   </div>
-  <div class="shor-figure-heading"><h3>The resource landscape</h3><p>Explore qubits, gate counts and projected runtime.</p></div>
+
+  <div class="shor-ablation">
+    <div class="shor-figure-heading"><h3>What each idea buys on its own</h3><p>Matched pairs from the scored search (Table 5). Only one thing changes per row.</p></div>
+    <div class="shor-ablation-chart" data-ablation-chart role="list" aria-label="Matched ablations"></div>
+    <p class="shor-ablation-note">Toffolis per factoring; the hollow dot is before, the filled dot after. Sharing across only three primes saves <strong>30.7%</strong>, more than checkpoints and lazy residues together. These are conditional contrasts, not an additive decomposition of the frontier gains.</p>
+  </div>
+
+  <details class="technical-record shor-sources">
+    <summary>The full frontier curves from the paper <span aria-hidden="true">+</span></summary>
+    <div class="technical-content">
+      {% assign frontier_png = shor_assets | append: 'equal-budget-frontier.png' | relative_url %}
+      <figure class="project-media shor-paper-figure">
+        <a class="media-link" href="{{ frontier_png }}" target="_blank" rel="noopener"><img src="{{ frontier_png }}" width="1256" height="804" loading="lazy" decoding="async" alt="Figure 2 of the paper. Fewest Toffoli gates per RSA-2048 factoring for each logical-qubit budget. The blue curve of this work lies below the solid grey improved-reference curve from 1,459 qubits on, except between 1,535 and 1,577 qubits; the dashed published-model curve lies above both."></a>
+        <figcaption><p>Figure 2 of the paper. Solid grey: the reference at its best setting for each qubit count, with the generic refinements and banking. Dashed grey: the published cost model alone. Blue: our measured circuits; the shaded area is the saving. 32 of our 64 transformed circuits lie below the solid curve.</p></figcaption>
+      </figure>
+      <p>Banking and the half-modulus quotient lower the reference most. Without them, the same circuits would show −23.4%, −46.3% and −55.0% at 1,459, 1,685 and 1,801 qubits; against the published model alone, −27.8%, −49.1% and −58.1%. The published model counts 36 fewer qubits and 0.8% fewer Toffolis than our benchmark for the same circuit, which favours the reference.</p>
+      <p><strong>Uncertainty.</strong> For 27 circuits we repeated the RSA-2048 projection with 8 independent replicates. The 95% confidence half-width of the mean Toffoli count is at most 0.14%, far smaller than the reductions. These intervals cover sampling only, not operation prices, hardware timing or layouts.</p>
+    </div>
+  </details>
+</section>
+
+<section class="shor-section" id="construction-path" aria-labelledby="shor-path-title">
+  <div class="shor-section-heading"><span class="shor-section-index">03</span><h2 id="shor-path-title">How the savings build up, one change at a time</h2></div>
+  <p class="shor-section-lede">Starting from Gidney’s published configuration, each row adds one change. Blue rows are the paper’s three core ideas; light rows are the further arithmetic refinements. Press play, drag the slider or click a row.</p>
+  <figure class="shor-viz shor-path" data-path-chart>
+    <div class="shor-viz-toolbar">
+      <div class="shor-segmented" role="group" aria-label="Construction path" data-path-choice></div>
+      <div class="shor-path-controls">
+        <button type="button" class="shor-play" data-path-play aria-pressed="false">Play ▸</button>
+        <label class="shor-visually-hidden" for="shor-path-step">Step</label>
+        <input id="shor-path-step" type="range" min="0" max="14" value="14" data-path-step>
+      </div>
+    </div>
+    <div class="shor-path-body">
+      <div class="shor-path-table">
+        <div class="path-head" aria-hidden="true"><span>Change</span><span>Toffolis per factoring (billions)</span><span>Logical qubits (axis from 1,200)</span></div>
+        <div class="path-rows" data-path-rows></div>
+        <div class="path-key" aria-hidden="true"><span><i class="is-core"></i>Shared lookups, checkpoints, lazy residues</span><span><i class="is-refine"></i>Further refinements (Sec. 3.5)</span></div>
+      </div>
+      <div class="shor-viz-detail" data-path-detail aria-live="polite"></div>
+    </div>
+    <figcaption>Table 6 of the paper. Changes are cumulative and relative to the benchmark-counted published configuration (1,435 qubits, 5.88B Toffolis), not to the best reference at each budget.</figcaption>
+  </figure>
+</section>
+
+<section class="shor-section" id="logical-resources" aria-labelledby="shor-resources-title">
+  <div class="shor-section-heading"><span class="shor-section-index">04</span><h2 id="shor-resources-title">Where these circuits sit in thirty years of estimates</h2></div>
+  <p class="shor-section-lede">Every published RSA-2048 construction we could put on a common footing, per circuit execution. Switch to <em>Hardware runtime</em> for the physical projections.</p>
   <figure class="shor-plot" data-shor-chart>
     <script type="application/json" data-estimates>{{ site.data.shor_resource_estimates | jsonify }}</script>
     <script type="application/json" data-runtime-estimates>{{ site.data.shor_runtime_estimates | jsonify }}</script>
@@ -177,7 +255,7 @@
       {% assign logical_overview = shor_assets | append: 'logical-resources.svg' | relative_url %}
       {% assign logical_detail = shor_assets | append: 'logical-resources-detail.svg' | relative_url %}
       <a href="{{ logical_overview }}" target="_blank" rel="noopener"><img src="{{ logical_overview }}" width="612" height="432" alt="Log-scale scatter plot of logical qubits and T equivalents per execution, from early Shor circuits through the new candidates."></a>
-      <a href="{{ logical_detail }}" target="_blank" rel="noopener"><img src="{{ logical_detail }}" width="432" height="432" alt="Detail of recent residue circuits. The eight-prime candidate uses 1,806 logical qubits and 1.04 billion T equivalents per execution."></a>
+      <a href="{{ logical_detail }}" target="_blank" rel="noopener"><img src="{{ logical_detail }}" width="432" height="432" alt="Detail of recent residue circuits, as estimated in the first version of the paper."></a>
     </div>
     <figcaption>
       <p data-logical-caption>Gate counts are per circuit execution, before error correction and repeat runs. T equivalents use four T gates per Toffoli.</p>
@@ -185,6 +263,7 @@
     </figcaption>
   </figure>
   <script src="{{ '/assets/js/shor-frontier.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <script src="{{ '/assets/js/shor-results.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <details class="technical-record shor-sources">
     <summary>Chart data and source notes <span aria-hidden="true">+</span></summary>
     <div class="technical-content">
@@ -210,12 +289,39 @@
 </section>
 
 <section class="shor-section" id="hardware-estimates" aria-labelledby="shor-hardware-title">
-  <div class="shor-section-heading"><span class="shor-section-index">03</span><h2 id="shor-hardware-title">Fewer gates, but how much faster?</h2></div>
+  <div class="shor-section-heading"><span class="shor-section-index">05</span><h2 id="shor-hardware-title">Fewer gates, but how much faster?</h2></div>
   <p class="shor-section-lede">A quantum computer also has to move data, correct errors, and supply resources for gates. Sharing a lookup reduces the gate count but makes its output wider. How much time that saves depends on what the machine can handle efficiently.</p>
+  <figure class="shor-viz shor-arch" data-arch-chart>
+    <div class="shor-viz-toolbar">
+      <div class="shor-segmented" role="group" aria-label="Architecture" data-arch-choice></div>
+      <label class="shor-viz-check"><input type="checkbox" data-arch-sort> Fastest first</label>
+    </div>
+    <p class="shor-arch-summary" data-arch-summary aria-live="polite"></p>
+    <div class="shor-arch-head" aria-hidden="true"><span>Circuit</span><span>Runtime ÷ tuned reference (line = 1×)</span><span>Per factoring</span></div>
+    <div class="shor-arch-rows" data-arch-rows></div>
+    <div class="shor-viz-legend" aria-hidden="true">
+      <span><i class="lg-faster"></i>Faster than the tuned reference</span>
+      <span><i class="lg-slower"></i>Slower</span>
+      <span><i class="lg-hatch"></i>† Needs more than the 1,480-qubit memory (not costed)</span>
+    </div>
+    <figcaption>Table 7 of the paper. Each architecture is compared with the reference circuit at its own fastest lookup window. Hover a row to see it on all three machines. The wide shared words that win on the surface code are streamed slowly by the space-efficient neutral-atom processor, so the ranking nearly reverses.</figcaption>
+  </figure>
+
   <div class="shor-runtime-summary">
-    <div><h3>Surface code · Faster with more qubits</h3><p>In our model, the six-prime circuit takes <strong>1.36 days</strong> at 1.32 million physical qubits. The reference takes <strong>3.10 days</strong> at 980,000 qubits.</p></div>
-    <div><h3>Neutral atoms · Faster within the same footprint</h3><p>In the balanced model, the two-prime circuit takes <strong>19.9 years</strong> versus <strong>25.4 years</strong> at 13,255 atoms. The modeled runtime is still measured in decades.</p></div>
+    <div><h3>Surface code · up to 2.9× faster</h3><p>The nine-prime circuit (row C) takes <strong>1.22 days</strong> against <strong>3.10 days</strong> for the tuned reference; a fast-phase variant reaches 1.06 days. In a simple layout model, the six-prime circuit needs 1.32 million physical qubits for 1.36 days (reference: 980,000 for 3.10 days).</p></div>
+    <div><h3>Neutral atoms · it depends on the processor</h3><p>On the balanced processor, the two-prime circuit takes <strong>19.9 years</strong> against <strong>25.4</strong> within the published 1,480-qubit memory. On the space-efficient processor the wide-word circuits are slower than the reference; only the narrow ones win.</p></div>
   </div>
+
+  <div class="shor-comparison-wrap shor-transfers">
+    <table class="shor-comparison">
+      <caption>Table 8 of the paper. Conditional transfers to two newer architecture models at fixed code distances. Physical counts are allocation scenarios, not compiled layouts; these circuits do not yet include the refinements of Sec. 3.5.</caption>
+      <thead><tr><th scope="col">Model · circuit</th><th scope="col">Physical qubits</th><th scope="col">Days</th><th scope="col">Reference</th><th scope="col">Δ time</th><th scope="col">Δ spacetime</th></tr></thead>
+      <tbody>{% for t in site.data.shor_results.transfers %}
+        <tr><th scope="row">{{ t.model }} <span>{{ t.circuit }}</span></th><td>{{ t.qubits | divided_by: 1000 }},{% assign rem = t.qubits | modulo: 1000 %}{% if rem < 100 %}0{% endif %}{% if rem < 10 %}0{% endif %}{{ rem }}</td><td>{{ t.days }}</td><td>{{ t.ref_days }} d</td><td>{{ t.d_time }}%</td><td>{{ t.d_spacetime }}%</td></tr>
+      {% endfor %}</tbody>
+    </table>
+  </div>
+
   <p class="shor-chart-intro">These are hardware projections. <a class="shor-link" href="?view=runtime#logical-resources">Compare the runtime estimates ↑</a></p>
   <figure class="project-media shor-hardware">
     <a class="media-link" href="{{ hardware_figure }}" target="_blank" rel="noopener">
@@ -230,7 +336,7 @@
   </figure>
   <div class="shor-implication">
     <h3>What the work adds to Shor</h3>
-    <p>It gives hardware designers a cheaper implementation of Shor’s modular arithmetic and a way to choose how much workspace to trade for fewer gates. The next step is to compile the circuits for a specific architecture and check whether the projected savings hold once data movement and scheduling are included.</p>
+    <p>It gives hardware designers a cheaper implementation of Shor’s modular arithmetic that keeps the reference interface, so it composes with architecture-level advances such as Pinnacle and Cain et al. It also shows that there is no single best circuit: the right amount of sharing depends on the machine. The next step is to compile these circuits for a specific architecture and check whether the projected savings hold once data movement and scheduling are included. All numbers come from version 2.5 of the open benchmark, which lets others check and improve them.</p>
     <a class="shor-link" href="{{ project.source_url }}" target="_blank" rel="noopener">See the benchmark, circuits and results ↗</a>
   </div>
 </section>

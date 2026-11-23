@@ -24,7 +24,7 @@
   const log = Math.log10;
   const logicalFull = [1150, 20500, 1.9e8, 1.1e13].map(log);
   const runtimeFull = [9000, 30000000, 0.033, 70000].map(log);
-  const recent = [1340, 1940, 2.2e8, 9.2e8].map(log);
+  const recent = [1340, 1940, 1.6e8, 9.2e8].map(log);
   const units = {
     t: { label: 'T equivalents', factor: 4 },
     toffoli: { label: 'Toffoli gates', factor: 1 },
@@ -79,9 +79,9 @@
   const recentLabels = {
     'Gidney ’25': [10, 17],
     'Pappalardo et al. ’26': [10, -11],
-    'Two primes': [10, -9],
-    'Six primes': [-10, -10],
-    'Eight primes': [-10, 19],
+    'A · two primes': [10, -9],
+    'B · six primes': [-10, -10],
+    'C · nine primes': [-10, 19],
   };
 
   function svg(tag, attributes = {}, text) {
