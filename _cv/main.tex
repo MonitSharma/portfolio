@@ -3,7 +3,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage{charter}
-\usepackage[margin=0.55in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage[margin=0.55in,top=0.45in,bottom=0.4in]{geometry}
 \usepackage{microtype}
 \usepackage{titlesec}
 \usepackage{xcolor}
@@ -33,7 +33,7 @@
 \renewcommand{\footrulewidth}{0pt}
 
 \titleformat{\section}{\large\bfseries\raggedright}{}{0pt}{}[\color{rulegray}\titlerule]
-\titlespacing*{\section}{0pt}{8pt}{4pt}
+\titlespacing*{\section}{0pt}{7pt}{3pt}
 \newcommand{\cvsection}[1]{\needspace{4\baselineskip}\section{#1}}
 
 \newcommand{\resumeItem}[1]{\item {\small #1}}
@@ -61,7 +61,7 @@
   \end{minipage}
 }
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0pt,label={},itemsep=3pt,topsep=0pt,parsep=0pt]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0pt,label={},itemsep=2.5pt,topsep=0pt,parsep=0pt]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=1.2em,label=\textbullet,itemsep=1pt,topsep=3pt,parsep=0pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}}
@@ -174,6 +174,16 @@
   \pubgroup{Preprints}
 
   \paperheading
+    {Shared Lookups and Lazy Residues: Fewer Toffoli Gates for Factoring RSA-2048}
+    {With H.\ C.\ Lau \textbullet{} \href{https://arxiv.org/abs/2611.08907}{arXiv:2611.08907}}
+    {2026}
+
+  \paperheading
+    {Reducing the Arithmetic Cost of Quantum Derivative Pricing with Language-Model Circuit Design}
+    {With H.\ C.\ Lau \textbullet{} \href{https://arxiv.org/abs/2611.04431}{arXiv:2611.04431}}
+    {2026}
+
+  \paperheading
     {Diagnosing Simulation and Hardware Barriers to Cross-Size Transfer in Equivariant Quantum Reinforcement Learning}
     {With H.\ C.\ Lau \textbullet{} \href{https://arxiv.org/abs/2510.14533}{arXiv:2510.14533}}
     {2026}
@@ -205,6 +215,7 @@
 \cvsection{Selected Projects}
 \begin{itemize}[leftmargin=0pt,label={},itemsep=3pt,topsep=0pt,parsep=0pt]
   \resumeItem{\textbf{\href{https://github.com/MonitSharma/peaked_circuits}{Peaked Circuit Recovery}} -- Ranked first (score: 2570/2570) on the BlueQubit Peaked Portal leaderboard; recovered 98-bit answers from Quantinuum Helios-1 samples with an auditable, target-blind decoding pipeline.}
+  \resumeItem{\textbf{\href{https://monitsharma.github.io/portfolio/projects/}{Quantum Competitions}} -- 2,560/3,000 in the BlueQubit Midwest Quantum Hackathon (OTOCs on up to 38 qubits, classical simulation only); 31st of 199 in the Duke Quantum Hackathon; 79th of 1,662 teams in QHACK 2026.}
   \resumeItem{\textbf{\href{https://github.com/MonitSharma/MettleQ}{MettleQ}} -- Developed a quantum-circuit simulator for Apple Silicon GPUs (Metal, MLX), with Qiskit and PennyLane integrations; benchmarked speedups of 1.16$\times$ over Aer and 8.37$\times$ over Lightning CPU at 20 qubits, with accuracy checks.}
   \resumeItem{\textbf{\href{https://github.com/MonitSharma/qsvt-linear-solvers}{Quantum CFD}} -- Built a quantum linear-system solver from primitives; validated on IBM Kingston and Quantinuum Helios-1 and estimated resources for computational fluid dynamics (CFD) matrices.}
   \resumeItem{\textbf{\href{https://github.com/MonitSharma/The-Atelier-Lab}{The Atelier Lab}} -- Developed a local AI-assisted research workbench integrating hybrid retrieval, model routing, and code-change validation to support scientific research and software development.}

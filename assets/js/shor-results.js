@@ -186,6 +186,7 @@
       }
       describe(rows.find(r => r.id === selected));
     }
+    draw();
     new ResizeObserver(draw).observe(svg);
   }
 

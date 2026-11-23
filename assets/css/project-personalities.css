@@ -532,3 +532,20 @@
   .experience .hack-title h1{font-size:50px}.hack-title{gap:8px}.completion-seal{width:70px}.completion-seal strong{font-size:18px}.completion-seal span{font-size:6px;margin-top:4px}
 }
 @media(prefers-reduced-motion:reduce){.experience *{transition:none!important;scroll-behavior:auto!important}}
+.duke-event-stats b small{font-size:.5em;font-weight:400;opacity:.75;margin-left:2px}
+.duke-rank{font:15px/1.5 var(--sans);color:var(--ink);margin-top:6px}
+.duke-rank b{font-size:22px;color:var(--accent)}
+.duke-rank a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+/* Shared block: Duke vs Midwest OTOC hackathons */
+.otoc-attempts{margin-top:clamp(48px,6vw,80px);padding-top:22px;border-top:1px solid var(--line-strong)}
+.otoc-attempts-head{max-width:72ch}
+.experience .otoc-attempts h2{font:500 clamp(24px,2.8vw,32px)/1.2 var(--sans);letter-spacing:-.03em;margin:6px 0 12px;color:var(--ink)}
+.otoc-attempts-head>p:not(.eyebrow){font:16px/1.7 var(--serif);color:var(--muted)}
+.otoc-attempts .record-table{margin-top:18px}
+.otoc-attempts td{font-variant-numeric:tabular-nums}
+.otoc-attempts td.is-up{color:var(--accent);font-weight:600}
+.otoc-attempts td.is-down{color:#b4532a;font-weight:600}
+.otoc-attempts tr.is-total th,.otoc-attempts tr.is-total td{font-weight:600;border-top:1px solid var(--line-strong)}
+.otoc-attempts-note{margin-top:12px;max-width:72ch;font:14px/1.65 var(--serif);color:var(--muted)}
+.otoc-attempts-link{display:inline-block;margin-top:12px;font:500 14px/1.5 var(--sans);color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.compiler-rank-note{max-width:70ch;margin:0 0 18px;font:15px/1.65 var(--serif);color:var(--muted)}

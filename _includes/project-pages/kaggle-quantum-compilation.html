@@ -4,7 +4,7 @@
     <div>
       <p class="eyebrow">Competition workbench · 2026</p>
       <h1>Verifiable Quantum Circuit Compilation</h1>
-      <p class="compiler-deck">Currently ranked 45th on the public leaderboard in Google Quantum AI's quantum circuit compilation competition on Kaggle.</p>
+      <p class="compiler-deck">Ranked #{{ project.current_rank }} of {{ project.teams }} on the public leaderboard of Google Quantum AI's quantum circuit compilation competition on Kaggle ({{ project.ranking_date }}), after reaching {{ project.peak_rank }}th on {{ project.peak_date }}.</p>
       <a class="action-link" href="{{ project.source_url }}" target="_blank" rel="noopener">View the competition ↗</a>
     </div>
     <aside class="compiler-panel" aria-labelledby="compiler-panel-title">
@@ -27,7 +27,8 @@
 </section>
 
 <section class="project-section" id="leaderboard" aria-labelledby="compiler-ranking-title">
-  <div class="experience-heading"><div><p class="eyebrow">Public leaderboard</p><h2 id="compiler-ranking-title">Ranked 45th</h2></div><a href="{{ project.leaderboard_url }}" target="_blank" rel="noopener">View the leaderboard ↗</a></div>
+  <div class="experience-heading"><div><p class="eyebrow">Public leaderboard</p><h2 id="compiler-ranking-title">#{{ project.current_rank }} of {{ project.teams }} today · peaked at #{{ project.peak_rank }}</h2></div><a href="{{ project.leaderboard_url }}" target="_blank" rel="noopener">View the leaderboard ↗</a></div>
+  <p class="compiler-rank-note">Public score {{ project.current_score }} on {{ project.ranking_date }}. The public leaderboard uses about half of the test data; final standings use the other half and may differ. The screenshot below is from {{ project.peak_date }}, the highest position so far.</p>
   {% assign selected_figure = project.figures[0] %}{% include project-blocks/media.html figure=selected_figure %}
 </section>
 

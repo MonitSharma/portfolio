@@ -47,19 +47,24 @@
     url: /portfolio/assets/data/bluequbit-midwest/otoc-results.json
 - title: Duke Quantum Hackathon
   slug: duke-quantum
-  updated_at: "2026-10-27T09:20:21+08:00"
+  updated_at: "2026-11-23T14:00:00+08:00"
   page: /work/duke-quantum/
   category: BlueQubit × DuQuantum 2026
   type: challenge
-  summary: A 24-hour quantum simulation hackathon estimating information-scrambling
-    signals with exact, matrix-product-state, and Pauli-path methods.
-  metric: 24 hours
-  metric_label: 7 circuit problems · participation certificate
+  summary: Ranked 31st of 199 with 1,426 of 3,000 points in a 24-hour quantum simulation
+    hackathon, estimating information-scrambling signals with exact, matrix-product-state,
+    and Pauli-path methods.
+  metric: 1,426 / 3,000
+  metric_label: points · rank 31 of 199 · final leaderboard
   source_url: https://app.bluequbit.io/hackathons/2GMaAenu3iSsIC6Z
   source_label: View the Duke Quantum Hackathon
   event_dates: 24–25 October 2026
   score_snapshot: 25 October 2026, 11:54 SGT
   recorded_total: '1,426'
+  final_rank: 31
+  participants: 199
+  leaderboard_url: https://app.bluequbit.io/hackathons/2GMaAenu3iSsIC6Z?tab=leaderboard
+  leaderboard_checked: 23 November 2026
   problem_scores:
   - {problem: S1, score: 100, maximum: 100, method: Exact statevector}
   - {problem: S2, score: 100, maximum: 100, method: Exact statevector}
@@ -79,6 +84,8 @@
   resources:
   - label: Official Duke Quantum Hackathon
     url: https://app.bluequbit.io/hackathons/2GMaAenu3iSsIC6Z
+  - label: Final leaderboard · rank 31 of 199
+    url: https://app.bluequbit.io/hackathons/2GMaAenu3iSsIC6Z?tab=leaderboard
   - label: BlueQubit OTOC tutorial
     url: https://app.bluequbit.io/tutorial/otoc-tutorial
   - label: Participation certificate (PDF)
@@ -106,26 +113,31 @@
     height: 1240
 - title: Verifiable Quantum Circuit Compilation
   slug: kaggle-quantum-compilation
-  updated_at: "2026-10-27T10:18:29+08:00"
+  updated_at: "2026-11-23T09:00:00+08:00"
   page: /work/kaggle-quantum-compilation/
   category: Google Quantum AI · Kaggle competition
   type: challenge
-  summary: Ranked 45th on the public leaderboard in Google Quantum AI's Verifiable
-    Quantum Circuit Compilation competition on Kaggle, as of 27 October 2026.
-    The competition is ongoing.
-  metric: '#45'
-  metric_label: public leaderboard · competition ongoing
+  summary: Competing in Google Quantum AI's Verifiable Quantum Circuit Compilation
+    challenge on Kaggle. Ranked 1,569th of 3,630 on the public leaderboard on
+    23 November 2026, after reaching 45th on 27 October. The competition is ongoing.
+  metric: '#1,569 / 3,630'
+  metric_label: public leaderboard · 23 Nov · peaked at #45
   source_url: https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation
   source_label: View the competition
   leaderboard_url: https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation/leaderboard
-  ranking_date: 27 October 2026
+  ranking_date: 23 November 2026
+  current_rank: '1,569'
+  teams: '3,630'
+  current_score: '27.880'
+  peak_rank: 45
+  peak_date: 27 October 2026
   figures:
   - src: assets/imgs/kaggle-quantum-compilation/leaderboard-20261027.png
     width: 1280
     height: 720
     alt: Kaggle public leaderboard showing Monit Sharma at rank 45 in Google Quantum AI's Verifiable Quantum Circuit Compilation competition.
-    caption: Public leaderboard · 27 October 2026
-    insight: Monit Sharma at rank 45. The competition is ongoing; standings may change.
+    caption: Public leaderboard · 27 October 2026 (highest position so far)
+    insight: Monit Sharma at rank 45 on 27 October. By 23 November the public rank was 1,569 of 3,630; the competition is ongoing.
   resources:
   - label: Google Quantum AI – Verifiable Quantum Circuit Compilation
     url: https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation

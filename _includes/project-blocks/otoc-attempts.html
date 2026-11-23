@@ -1,0 +1,28 @@
+{% comment %}
+  Compares the two BlueQubit OTOC hackathons (same seven-problem format, different events).
+  Include from either page: {% include project-blocks/otoc-attempts.html current='duke-quantum' %}
+{% endcomment %}
+{% assign duke = site.data.projects | where: 'slug', 'duke-quantum' | first %}
+{% assign midwest = site.data.projects | where: 'slug', 'bluequbit-midwest-otoc' | first %}
+{% if include.current == 'duke-quantum' %}{% assign other = midwest %}{% else %}{% assign other = duke %}{% endif %}
+<section class="otoc-attempts" id="two-attempts" aria-labelledby="otoc-attempts-title">
+  <div class="otoc-attempts-head">
+    <p class="eyebrow">Two attempts, one format</p>
+    <h2 id="otoc-attempts-title">{% if include.current == 'duke-quantum' %}A month later: 1,426 → 2,560{% else %}A month earlier: 1,426 at Duke{% endif %}</h2>
+    <p>The Duke Quantum Hackathon (October) and the Midwest Quantum Hackathon (November) used the same BlueQubit OTOC challenge format: three open samples and four hidden circuit families, scored out of 3,000. The circuits are each event’s own. Between them, I moved Pauli-path runs to the GPU, turned on the simulator’s heaviest pre-processing (transpilation level 3), and checked every setting on look-alike circuits with known answers first.</p>
+  </div>
+  <div class="record-table" tabindex="0" role="region" aria-label="Scores by problem at both hackathons">
+    <table>
+      <caption>Points by problem. Duke: final leaderboard total, per-problem ledger snapshot. Midwest: final submissions.</caption>
+      <thead><tr><th scope="col">Problem</th><th scope="col">Max</th><th scope="col">Duke · Oct</th><th scope="col">Midwest · Nov</th><th scope="col">Change</th></tr></thead>
+      <tbody>
+        {% for m in midwest.problems %}{% assign d = duke.problem_scores | where: 'problem', m.problem | first %}{% assign delta = m.score | minus: d.score %}
+        <tr><th scope="row">{{ m.problem }}</th><td>{{ m.maximum }}</td><td>{{ d.score }}</td><td>{{ m.score }}</td><td class="{% if delta > 0 %}is-up{% elsif delta < 0 %}is-down{% endif %}">{% if delta > 0 %}+{% endif %}{% if delta == 0 %}—{% else %}{{ delta }}{% endif %}</td></tr>
+        {% endfor %}
+        <tr class="is-total"><th scope="row">Total</th><td>3,000</td><td>1,426</td><td>2,560</td><td class="is-up">+1,134</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="otoc-attempts-note">The gains are almost all in the two grid problems: G3 (216 → 720) and G4 (19 → 700). G2 went down slightly (591 → 540): Duke used adaptive MPS estimates, November a fixed bond dimension of 128.</p>
+  <a class="otoc-attempts-link" href="{{ other.page | relative_url }}">{% if include.current == 'duke-quantum' %}See how the Midwest attempt reached 2,560 →{% else %}See the Duke Quantum Hackathon page →{% endif %}</a>
+</section>

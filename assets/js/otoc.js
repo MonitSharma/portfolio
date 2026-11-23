@@ -159,6 +159,7 @@
         svg.append(g);
       });
     };
+    draw();
     new ResizeObserver(draw).observe(svg);
   }
 
@@ -218,6 +219,7 @@
     };
     buttons.forEach((b, i) => b.addEventListener('click', () => select(i)));
     select(current);
+    draw();
     new ResizeObserver(draw).observe(svg);
   }
 
@@ -277,6 +279,7 @@
       note.innerHTML = `${prob}: level 2 scored <b>${s2} / ${max}</b>, level 3 scored <b>${s3} / ${max}</b>. Same simulator and similar thresholds; only the server-side gate pre-processing differs.${prob === 'G4' ? ' Level 3 on G4 ran at a fixed δ = 5e-5 to fit the remaining credit.' : ''}`;
     };
     toggle(levels.querySelector('[data-levels-problem]'), 'problem', p => { prob = p; draw(); });
+    draw();
     new ResizeObserver(draw).observe(svg);
   }
 
@@ -316,6 +319,7 @@
       svg.append(el('text', { x: (m.l + W - m.r) / 2, y: H - 3, 'text-anchor': 'middle', class: 'c-axis' }, 'measured qubit q'));
     };
     toggle(prof.querySelector('[data-profile-problem]'), 'problem', p => { prob = p; draw(); });
+    draw();
     new ResizeObserver(draw).observe(svg);
   }
 })();

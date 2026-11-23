@@ -1,0 +1,39 @@
+name: Site checks
+
+# Runs on every push and pull request. GitHub Pages still builds and deploys the
+# site on its own; this workflow only catches mistakes before they reach visitors.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Check _data for numbers stored as text
+        run: ruby scripts/check-data.rb
+
+      - name: Build with Jekyll
+        # Built under /portfolio so root-relative links resolve as they do on GitHub Pages.
+        run: bundle exec jekyll build --destination ci-site/portfolio
+
+      - name: Check internal links, images and scripts
+        run: |
+          gem install html-proofer -v '~> 5.2' --no-document
+          htmlproofer ci-site --disable-external --checks Links,Images,Scripts \
+            --ignore-missing-alt --allow-missing-href --no-enforce-https

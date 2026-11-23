@@ -279,5 +279,6 @@
   }
 
   detail(null);
+  draw();
   new ResizeObserver(() => draw()).observe(svg);
 })();

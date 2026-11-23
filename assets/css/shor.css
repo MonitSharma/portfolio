@@ -10,7 +10,7 @@
 .experience--shor-quantum-factoring .site-header,
 .experience--shor-quantum-factoring .editorial-footer {font-family:var(--serif)}
 .experience--shor-quantum-factoring .topline {margin-bottom:24px}
-.shor-link,.shor-reference-links a {color:var(--accent); text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--line-strong)}
+.shor-link {color:var(--accent); text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--line-strong)}
 .shor-link:hover {text-decoration-color:currentColor}
 .shor-cover {padding:0; border-top:2px solid var(--ink)}
 .shor-masthead {display:flex; justify-content:space-between; align-items:center; gap:16px; padding:14px 0; font:13px/1.5 var(--sans); color:var(--muted)}
@@ -72,109 +72,8 @@
 .shor-comparison tbody td:nth-child(3),.shor-comparison tbody td:last-child {color:var(--accent); font-weight:500}
 .shor-figure-heading {display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 20px; align-items:baseline; margin-top:42px}
 .experience .shor-figure-heading h3 {font:500 20px/1.4 var(--sans); letter-spacing:-.02em}
-.shor-figure-heading>p {font:13px/1.5 var(--sans); color:var(--muted)}
-.shor-plot {
-  margin:18px 0 0; border:0; border-block:1px solid var(--line-strong); border-radius:0;
-  background:var(--shor-board); color:var(--shor-board-ink);
-}
-.shor-explorer {color-scheme:light}
-.shor-plot [hidden] {display:none}
-.shor-chart-toolbar {
-  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
-  gap:6px 18px; padding:0; border-bottom:1px solid var(--shor-board-edge);
-}
-.shor-chart-views,.shor-chart-actions,.shor-zoom {display:flex; align-items:center; gap:8px}
-.shor-chart-views {gap:18px}
-.shor-chart-actions {padding:9px 0}
-.shor-explorer button,.shor-explorer select,.shor-options summary {font:500 13px/1.4 var(--sans); color:var(--shor-board-ink)}
-.shor-chart-views button {
-  cursor:pointer; padding:15px 0 13px; border:0; border-bottom:2px solid transparent;
-  background:transparent; white-space:nowrap; color:var(--shor-board-muted);
-}
-.shor-chart-views button:hover,.shor-chart-views button[aria-pressed=true] {color:var(--shor-primary)}
-.shor-chart-views button[aria-pressed=true] {border-bottom-color:var(--shor-primary); font-weight:600}
-.shor-explorer select,.shor-options summary,.shor-zoom button {
-  min-height:34px; padding:5px 8px; border:1px solid #d4dae4; border-radius:2px; background:var(--shor-board);
-}
-.shor-explorer button:disabled {opacity:.5; cursor:default}
-.shor-explorer :is(button, select, summary, input, a):focus-visible {outline:2px solid var(--shor-primary); outline-offset:3px}
-.shor-options {position:relative}
-.shor-options summary {
-  display:flex; align-items:center; gap:6px; list-style:none; white-space:nowrap; cursor:pointer;
-}
-.shor-options summary::-webkit-details-marker {display:none}
-.shor-options summary::after {content:"⌄"; margin-left:2px; color:var(--shor-primary)}
-.shor-options[open] summary,.shor-options summary:hover {background:#f2f5fb}
-.shor-options-panel {
-  position:absolute; z-index:2; top:calc(100% + 6px); right:0; width:228px;
-  padding:13px; background:var(--shor-board); border:1px solid var(--shor-board-edge);
-  border-radius:2px; box-shadow:0 6px 20px #1e2c4812;
-}
-.shor-option {display:flex; justify-content:space-between; gap:7px; align-items:center; font:13px/1.4 var(--sans)}
-.shor-option + .shor-option {margin-top:10px}
-.shor-option-check {justify-content:flex-start; cursor:pointer}
-.shor-option input {accent-color:var(--shor-primary)}
-.shor-zoom {gap:4px}
-.shor-zoom button {min-height:30px; cursor:pointer}
-.shor-chart-main {padding:18px 0 16px; min-width:0}
-.shor-chart-meta,.shor-chart-key {display:flex; align-items:center; flex-wrap:wrap; gap:5px 14px; justify-content:space-between}
-.shor-chart-meta {justify-content:flex-start; color:var(--shor-board-muted); font:12px/1.4 var(--sans)}
-.shor-chart-meta [data-chart-count] {margin-left:auto}
-.shor-explorer .shor-reset-view {
-  padding:0; border:0; background:transparent; color:var(--shor-primary);
-  text-decoration:underline; text-underline-offset:3px; cursor:pointer;
-}
-.shor-chart-stage {height:clamp(310px,40vw,460px); margin-top:4px}
-.shor-chart-stage svg {display:block; width:100%; height:100%; user-select:none; cursor:crosshair}
-.shor-plot-area {fill:var(--shor-board)}
-.shor-gridline {stroke:#e9edf3; stroke-width:1}
-.shor-axis {stroke:#aeb8c6; fill:none}
-.shor-tick,.shor-axis-title {fill:var(--shor-board-muted); font:12px var(--sans); font-variant-numeric:tabular-nums; pointer-events:none}
-.shor-axis-title {fill:var(--shor-board-ink)}
-.shor-frontier-line {stroke:var(--shor-primary); fill:none; stroke-width:1.6; pointer-events:none}
-.shor-runtime-pair {stroke:var(--shor-primary); fill:none; stroke-width:1.4; stroke-dasharray:4 4; pointer-events:none}
-.shor-runtime-baseline {fill:var(--shor-board); stroke:var(--shor-primary); stroke-width:1.6; pointer-events:none}
-.shor-runtime-range {stroke:var(--shor-primary); fill:none; stroke-width:1.6; pointer-events:none}
-.shor-crosshair {stroke:#a4b4d9; fill:none; stroke-dasharray:3 4; pointer-events:none}
-.shor-point {cursor:pointer; outline:none}
-.shor-point-hit {fill:transparent}
-.shor-point-ring {fill:none; stroke:transparent}
-.shor-point-mark {fill:var(--shor-published); stroke:var(--shor-board); stroke-width:1.2}
-.shor-point.is-ours .shor-point-mark {fill:var(--shor-primary)}
-.shor-point.is-active .shor-point-ring,.shor-point:focus-visible .shor-point-ring {stroke:var(--shor-board-ink); stroke-width:1.5}
-.shor-brush {fill:#335ac620; stroke:var(--shor-published); stroke-dasharray:4 3; pointer-events:none}
-.shor-point-label {fill:var(--shor-board-muted); font:12px var(--sans); pointer-events:none}
-.shor-point-label.is-ours {fill:var(--shor-primary); font-weight:600}
-.shor-legend,.shor-chart-help {font:12px/1.45 var(--sans); color:var(--shor-board-muted)}
-.shor-legend {display:flex; flex-wrap:wrap; gap:5px 13px}
-.shor-legend span {display:inline-flex; align-items:center; gap:6px}
-.shor-legend i {display:inline-block; width:7px; height:7px; background:var(--shor-published); border-radius:50%}
-.shor-legend .shor-legend-ours {transform:rotate(45deg); border-radius:0; background:var(--shor-primary)}
-.shor-legend .shor-legend-baseline {background:var(--shor-board); border:1.5px solid var(--shor-primary)}
-.shor-legend .shor-legend-frontier {height:2px; width:14px; border-radius:0; background:var(--shor-primary)}
-.shor-inspector {
-  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,auto); gap:10px 20px;
-  padding:18px 20px; border-block:1px solid var(--shor-board-edge); background:#f5f7fb;
-}
-.shor-inspector-picker {display:flex; align-items:center; gap:12px; align-self:center; min-width:0}
-.shor-inspector-picker select {min-width:0; max-width:100%; width:clamp(180px,24vw,255px)}
-.shor-explorer .shor-clear-selection {flex-shrink:0; padding:4px 0; border:0; background:none; color:var(--shor-primary); font-size:12px; text-decoration:underline; text-underline-offset:3px; cursor:pointer}
-.shor-inspector-badge {font:500 12px/1.4 var(--sans); color:var(--shor-published)}
-.shor-inspector.is-ours .shor-inspector-badge {color:var(--shor-primary)}
-.experience .shor-inspector h3 {margin-top:2px; font:500 19px/1.3 var(--sans); color:var(--shor-board-ink)}
-.shor-inspector-content {grid-column:1/-1; display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline}
-.shor-inspector dl {display:flex; flex-wrap:wrap; gap:12px 20px; margin:0}
-.shor-inspector dt {font:12px/1.4 var(--sans); color:var(--shor-board-muted)}
-.shor-inspector dd {margin:1px 0 0; font:500 23px/1.3 var(--sans); font-variant-numeric:tabular-nums}
-.shor-inspector-notes {flex:1 1 240px; font-size:13px; line-height:1.5; color:var(--shor-board-muted)}
-.shor-inspector-reference {margin-top:4px}
-.shor-inspector-reference strong {color:var(--shor-primary); margin-right:4px}
-.shor-inspector .shor-link {display:inline-block; margin-top:3px; color:var(--shor-primary)}
+.shor-figure-heading>p {font:13px/1.5 var(--sans); color:var(--muted)}select,summary,input,a):focus-visible {outline:2px solid var(--shor-primary); outline-offset:3px}
 .shor-visually-hidden {position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
-.shor-chart-grid {display:grid; grid-template-columns:minmax(0,1.4167fr) minmax(0,1fr); gap:10px; padding:14px}
-.shor-chart-grid a {display:block; min-width:0; cursor:zoom-in}
-.shor-chart-grid img {display:block; width:100%; height:auto; background:var(--surface); border-radius:6px}
-.shor-plot figcaption {font-size:13px; line-height:1.6; color:var(--shor-board-muted); padding:12px 0}
 .shor-sources .record-table {margin:16px 0}
 .shor-sources .record-table td:last-child {white-space:normal; min-width:240px; font:13px/1.6 var(--sans)}
 
@@ -183,8 +82,6 @@
 .experience .shor-runtime-summary h3 {font:500 15px/1.5 var(--sans); letter-spacing:-.01em; margin-bottom:9px}
 .shor-runtime-summary p {font:16px/1.7 var(--serif); color:var(--muted)}
 .shor-chart-intro {margin-top:18px; font:14px/1.65 var(--serif); color:var(--muted)}
-.shor-hardware {max-width:1040px}
-.experience .shor-hardware .media-link {border:0}
 .shor-implication {display:grid; grid-template-columns:1fr 2fr; column-gap:50px; margin:40px 0 56px; padding:26px 0 0; border-top:1px solid var(--line-strong)}
 .experience .shor-implication h3 {font:500 22px/1.3 var(--sans); letter-spacing:-.025em; max-width:12em}
 .shor-implication>p {max-width:62ch; font:17px/1.75 var(--serif); color:var(--muted)}
@@ -198,7 +95,6 @@
   .experience .shor-cover h1 {font-size:clamp(36px,6.2vw,44px)}
   .shor-arithmetic-layout {grid-template-columns:1fr; gap:24px}
   .shor-gate-share {max-width:440px; padding:18px 0 0; border-left:0; border-top:1px solid var(--line)}
-  .shor-chart-grid {grid-template-columns:1fr}
   .shor-implication {gap:14px 28px}
 }
 @media(max-width:540px) {
@@ -214,12 +110,6 @@
   .shor-comparison {font-size:15px}
   .shor-comparison th,.shor-comparison td {padding:12px 9px}
   .shor-comparison thead th {font-size:11px; white-space:normal}
-  .shor-chart-stage {height:300px}
-  .shor-chart-toolbar {gap:0}
-  .shor-chart-views button {padding-block:12px 10px}
-  .shor-inspector {grid-template-columns:1fr}
-  .shor-inspector-picker select {width:100%}
-  .shor-point-label {font-size:10px}
   .shor-runtime-summary,.shor-implication {grid-template-columns:1fr; gap:22px}
   .shor-implication>a {grid-column:1; margin-top:0}
 }
