@@ -76,7 +76,7 @@
     </figure>
   </div>
   <ul class="otoc-lessons">
-    <li><b>Threshold matters for fSim circuits.</b> On Y4, Pauli-path at δ = 1e-4 scored corr² 0.70; at the tightest threshold the server accepted, 0.99. Truncation mostly shrinks values toward zero, unevenly.</li>
+    <li><b>The tighter GPU configuration was more accurate on Y4.</b> On the same 12 probes, corr² rose from 0.958 to 0.988, and root mean square error fell from 0.0540 to 0.0167, about a 3.2× reduction. Both the backend and the truncation threshold changed, so this comparison measures their combined effect. The interactive chart shows the available results for each configuration, covering 19 CPU probes and 12 GPU probes.</li>
     <li><b>MPS is the wrong tool on grids.</b> On P3 it reported −0.009 for a circuit whose true value is −0.47. Its corr² looks fine on six points only because it preserves the ranking.</li>
     <li><b>G4-like circuits stay hard.</b> Even the tightest settings shrink P4 values by 2–5×, with a few outright errors.</li>
   </ul>
