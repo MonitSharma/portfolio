@@ -71,23 +71,23 @@
   url: https://arxiv.org/abs/2610.37839
   note: "Logical width and per-shot Toffolis for the serial circuit compiled for cat qubits."
 
-- name: This work, row A · two primes
-  label: A · two primes
-  qubits: 1459
-  toffoli: 427000000
+- name: This work · two-prime sharing
+  label: Two-prime sharing
+  qubits: 1450
+  toffoli: 327900000
   ours: true
-  note: "Trimmed registers, two-prime sharing, lookup window 7, with the refinements of Sec. 3.5. Expected per factoring is 3.89B Toffolis, 9.0% below the best reference within 1,459 qubits."
+  note: "Table 1, s = 8. Estimated at 2.9896B Toffolis per factoring, 24.0% below the retuned serial reference."
 
-- name: This work, row B · six primes
-  label: B · six primes
-  qubits: 1685
-  toffoli: 241000000
+- name: This work · sixteen-prime sharing
+  label: Sixteen-prime sharing
+  qubits: 2050
+  toffoli: 148120000
   ours: true
-  note: "Lazy residues, six-prime sharing, lookup window 8, refined and banked. Expected per factoring is 2.19B Toffolis, 36.8% below the best reference within 1,685 qubits."
+  note: "Table 1, s = 8. Estimated at 1.3479B Toffolis per factoring, 54.4% below the retuned serial reference."
 
-- name: This work, row C · nine primes
-  label: C · nine primes
-  qubits: 1801
-  toffoli: 199000000
+- name: This work · thirty-seven-prime sharing
+  label: Thirty-seven-prime sharing
+  qubits: 2998
+  toffoli: 206220000
   ours: true
-  note: "Lazy residues, nine-prime sharing, lookup window 8, refined and banked. Expected per factoring is 1.81B Toffolis, 44.8% below the best reference within 1,801 qubits."
+  note: "Table 1, s = 3. Estimated at 0.8277B Toffolis per factoring assuming four nominal runs, 71.8% below the retuned serial reference."

@@ -114,7 +114,7 @@
   .shor-implication>a {grid-column:1; margin-top:0}
 }
 
-/* ---- Updated results (v2.5): stats, equal-budget chart, path, ablations, architectures ---- */
+/* ---- Results: stats, equal-budget chart, path, ablations, architectures ---- */
 .experience--shor-quantum-factoring {
   --viz-ours:#335ac6; --viz-ours-soft:#c9d5f3; --viz-slow:#c4572f; --viz-ref:#7d8592;
   --viz-grid:#e9edf3; --viz-panel:#f5f7fb;
@@ -137,6 +137,7 @@
 .shor-segmented button,.shor-play {cursor:pointer; padding:6px 11px; border:0; border-radius:3px; background:transparent; color:var(--muted); font:500 13px/1.3 var(--sans)}
 .shor-segmented button:hover {color:var(--ink)}
 .shor-segmented button[aria-pressed=true] {background:var(--paper); color:var(--accent); box-shadow:0 1px 2px #0000001f; font-weight:600}
+.shor-path-label {padding:6px 11px; color:var(--accent); font:600 13px/1.3 var(--sans)}
 .shor-viz :is(button,input,[tabindex]):focus-visible {outline:2px solid var(--accent); outline-offset:2px}
 .shor-viz-check {display:inline-flex; gap:7px; align-items:center; font:13px/1.4 var(--sans); color:var(--muted); cursor:pointer}
 .shor-viz-check input {accent-color:var(--accent)}

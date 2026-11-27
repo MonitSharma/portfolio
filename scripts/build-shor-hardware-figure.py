@@ -11,41 +11,41 @@ from matplotlib.ticker import FixedLocator, NullLocator
 
 SITE = Path(__file__).resolve().parents[1]
 OUT = SITE / "assets/imgs/shor/hardware-landscape.png"
-ROWS = yaml.safe_load((SITE / "_data/shor_runtime_estimates.yml").read_text())
+DATA = yaml.safe_load((SITE / "_data/shor_hardware_estimates.yml").read_text(encoding="utf-8"))
 
 INK = "#111827"
 MUTED = "#374151"
 GRID = "#e2e8f0"
 OURS = "#0b63c4"
 COLORS = {
-    "Surface code": "#4b5563",
-    "Neutral atoms": "#0f766e",
-    "Pinnacle": "#6d28d9",
-    "Cat qubits": "#9a3412",
+    "surface": "#4b5563",
+    "atoms": "#0f766e",
+    "qldpc": "#6d28d9",
+    "cat": "#9a3412",
 }
 
-# Short plot labels and label offsets (points) keyed by the data name.
+# Short plot labels and label offsets (points) keyed by the scenario ID.
 LABELS = {
-    "Gidney & Ekerå (2021)": ("Gidney & Ekerå 2021", (-12, -26), "right"),
-    "Gidney (2025)": ("Gidney 2025", (120, 40), "left"),
-    "Cain et al. · space-efficient": ("Cain et al. · compact", (125, -5), "left"),
-    "Cain et al. · balanced": ("Cain et al. · balanced", (125, 0), "left"),
-    "Cain et al. · parallel": ("Cain et al. · parallel", (125, 30), "left"),
-    "Pinnacle 1.0 · one-month budget": ("Pinnacle 1.0", (125, 20), "left"),
-    "Pinnacle 1.2 · standard error": ("Pinnacle 1.2", (90, 35), "left"),
-    "Pinnacle 1.2 · lower error": ("Pinnacle 1.2 · lower error", (150, -20), "left"),
-    "Pappalardo et al. · serial": ("Cat qubits · serial", (-10, 70), "center"),
-    "Pappalardo et al. · ten chips": ("Cat qubits · 10 chips", (15, 25), "left"),
-    "This work · surface-code scenario": ("Our surface-code scenario", (60, 20), "left"),
-    "This work · balanced neutral atoms": ("Our Cain balanced scenario", (95, -45), "left"),
-    "This work · Pinnacle 1.0 scenario": ("Our Pinnacle 1.0 scenario", (35, -25), "left"),
-    "This work · cat-qubit scenario": ("Our cat-qubit scenario", (-10, -55), "center"),
+    "ge21": ("Gidney & Ekerå 2021", (-12, -26), "right"),
+    "gidney25": ("Gidney 2025", (120, 40), "left"),
+    "cain-compact": ("Cain et al. · compact", (125, 10), "left"),
+    "cain-balanced": ("Cain et al. · balanced", (125, 12), "left"),
+    "cain-102k": ("Cain et al. · parallel", (125, 30), "left"),
+    "pin10-month": ("Pinnacle 1.0", (125, 20), "left"),
+    "pin12-std": ("Pinnacle 1.2", (-25, 18), "right"),
+    "pin12-low": ("Pinnacle 1.2 · lower error", (150, -20), "left"),
+    "cat-serial": ("Cat qubits · serial", (-10, 70), "center"),
+    "cat-fast": ("Cat qubits · 10 chips", (15, 25), "left"),
+    "our-surface": ("Our surface-code scenario", (70, -15), "left"),
+    "our-balanced": ("Our Cain balanced scenario", (95, -45), "left"),
+    "our-pinnacle": ("Our Pinnacle 1.0 scenario", (35, 8), "left"),
+    "our-cat": ("Our cat-qubit scenario", (-55, -36), "center"),
 }
 TABLE = [
-    ("Gidney surface code", "This work · surface-code scenario", "6 primes"),
-    ("Cain balanced", "This work · balanced neutral atoms", "2 primes"),
-    ("Pinnacle 1.0", "This work · Pinnacle 1.0 scenario", "8 primes"),
-    ("LDPC cat qubits", "This work · cat-qubit scenario", "8 primes"),
+    ("Gidney surface code", "our-surface"),
+    ("Cain balanced", "our-balanced"),
+    ("Pinnacle 1.0", "our-pinnacle"),
+    ("LDPC cat qubits", "our-cat"),
 ]
 
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11})
@@ -60,10 +60,13 @@ def qubits(n, exact=False):
 
 
 def years_or_days(days):
+    if days < 1:
+        return f"{days:.3f} days"
     return f"{days / 365.25:.1f} years" if days >= 365 else f"{days:.2f} days"
 
 
-by_name = {row["name"]: row for row in ROWS}
+by_id = {row["id"]: row for row in DATA["estimates"] + DATA["ours"]}
+our_ids = {row["id"] for row in DATA["ours"]}
 fig = plt.figure(figsize=(16, 12.4), dpi=100, facecolor="white")
 fig.text(0.122, 0.955, "What would it take to factor RSA-2048?", fontsize=30, weight="bold", color=INK)
 fig.text(0.122, 0.918, "Published hardware estimates and our conditional scenarios (★)", fontsize=17, color=MUTED)
@@ -84,15 +87,15 @@ for name in ("top", "right"):
 ax.set_xlabel("Physical qubits (log scale)", fontsize=15, labelpad=10)
 ax.set_ylabel("Estimated time to factor (log scale)", fontsize=15, labelpad=10)
 
-for row in ROWS:
-    ours = row.get("ours", False)
-    color = OURS if ours else COLORS[row["architecture"]]
-    point = (row["qubits"], row["time_days"])
-    marker = "*" if ours else ("v" if "≤" in row["time_label"] else "o")
+for key, (label, offset, ha) in LABELS.items():
+    row = by_id[key]
+    ours = key in our_ids
+    color = OURS if ours else COLORS[row["family"]]
+    point = (row["qubits"], row["days"])
+    marker = "*" if ours else ("v" if row.get("bound") else "o")
     ax.scatter(*point, s=320 if ours else 110, marker=marker, color=color,
                edgecolors="white", linewidths=1, zorder=4)
-    label, offset, ha = LABELS[row["name"]]
-    ax.annotate(f"{label}\n{qubits(row['qubits'])} · {row['time_label']}", point,
+    ax.annotate(f"{label}\n{qubits(row['qubits'])} · {row['time']}", point,
                 xytext=offset, textcoords="offset points", ha=ha, va="center",
                 fontsize=14, color=color, linespacing=1.5,
                 arrowprops={"arrowstyle": "-", "color": color, "lw": 1.1, "shrinkA": 0, "shrinkB": 7},
@@ -104,22 +107,24 @@ columns = (0.128, 0.42, 0.672)
 top, step = 0.18, 0.0255
 for i, header in enumerate(("Hardware model", "Reference used in our paper", "Our circuit")):
     fig.text(columns[i], top, header, fontsize=14, weight="bold", color=INK, va="center")
-for r, (model, name, primes) in enumerate(TABLE):
-    row = by_name[name]
+for r, (model, key) in enumerate(TABLE):
+    row = by_id[key]
     y = top - (r + 1) * step
     if r % 2 == 0:
         fig.patches.append(plt.Rectangle((0.122, y - step / 2), 0.84, step, transform=fig.transFigure,
                                          color="#f1f5fa", zorder=0))
-    ref = row["reference"]
+    ref_qubits = qubits(row["ref_qubits"], True)
+    if row["family"] in ("cat", "qldpc"):
+        ref_qubits = f"≤{ref_qubits}"
     fig.text(columns[0], y, model, fontsize=14, color=INK, va="center")
-    fig.text(columns[1], y, f"{qubits(ref['qubits'], True)} · {years_or_days(ref['time_days'])}",
+    fig.text(columns[1], y, f"{ref_qubits} · {years_or_days(row['ref_days'])}",
              fontsize=14, color=INK, va="center")
-    fig.text(columns[2], y, f"{qubits(row['qubits'], True)} · {row['time_label']} · {primes}",
+    fig.text(columns[2], y, f"{qubits(row['qubits'], True)} · {row['time']}",
              fontsize=14, color=OURS, va="center")
 fig.patches.append(plt.Rectangle((0.122, top - step / 2), 0.84, step, transform=fig.transFigure,
                                  color="#f1f5fa", zorder=0))
-low, high = by_name["This work · cat-qubit scenario"]["time_range_days"]
-fig.text(0.122, 0.035, f"The cat-qubit scenario spans {low:.2f}–{high:.2f} days as movement and measurement overhead varies.",
+low, high = by_id["our-cat"]["range"]
+fig.text(0.122, 0.035, f"The cat-qubit projection is {low:.3f}–{high:.3f} days across the two residual-overhead assumptions.",
          fontsize=14, color=MUTED)
 fig.savefig(OUT, dpi=100, facecolor="white", metadata={"Software": None})
 print(OUT)

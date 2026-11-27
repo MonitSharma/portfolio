@@ -1,6 +1,6 @@
 /* Interactive figures for the Shor project page: equal-budget comparison,
    construction path, matched ablations and architecture runtimes.
-   All values come from _data/shor_results.yml (the paper's Tables 1, 5, 6, 7). */
+   Values come from the revised paper’s Tables 5–8 and Section 6. */
 (() => {
   const source = document.querySelector('[data-shor-results]');
   if (!source) return;
@@ -74,117 +74,118 @@
     const detail = budget.querySelector('[data-budget-detail]');
     const showPath = budget.querySelector('[data-show-path]');
     const comparators = {
-      best: { key: 'change_best', label: 'Best improved reference', note: 'The reference circuit at its cheapest setting within the same qubit budget, given every refinement that applies to it (measured cleanup, non-restoring division, banking, half-modulus quotient, final CRT digit). This is the paper’s headline comparator.' },
-      plain: { key: 'change_plain', label: 'Without banking', note: 'The same search, but without giving the reference banked lookups and the half-modulus quotient, the two refinements that help it most.' },
-      model: { key: 'change_model', label: 'Published model only', note: 'The cheapest setting of Gidney’s published cost model alone within the same qubit budget.' },
+      best: { label: 'Retuned serial reference', note: 'Each qubit cap gets the cheapest serial setting with applicable arithmetic refinements.' },
+      strict: { label: 'Expanded serial model', note: 'The paper reports this sensitivity check at 1,450, 2,050 and 2,998 qubits.' },
+      published: { label: 'Published configuration', note: 'Gidney’s published parameters counted by our benchmark at 1,435 qubits. This is a fixed starting point.' },
     };
-    let comparator = 'best';
-    let selected = 'C';
     const rows = data.equal_budget;
-    const pathPoints = data.construction_paths.flatMap(p => p.steps.filter(s => s.kind !== 'base'));
+    const featured = rows.filter(r => r.label);
+    const published = data.published;
+    let comparator = 'best';
+    let selected = featured.at(-1);
+
+    const circuitName = row => row.name || (row.k === 1 ? 'Single-prime circuit' : row.k + '-prime sharing');
+    const parameters = row => 's = ' + row.s + ', k = ' + row.k;
     const refFor = row => {
-      const change = row[comparators[comparator].key];
-      return change === undefined ? null : row.tfact / (1 + change / 100);
+      if (comparator === 'published') return [published.benchmark.tfact, (row.tfact / published.benchmark.tfact - 1) * 100];
+      if (comparator === 'strict') return [row.strict_ref, row.change_strict];
+      return [row.ref, row.change_best];
     };
 
     segmented(budget.querySelector('[data-comparator]'), Object.entries(comparators).map(([k, v]) => [k, v.label]), comparator, value => {
-      comparator = value; draw();
+      comparator = value;
+      draw();
     });
-    showPath?.addEventListener('change', draw);
+    showPath.addEventListener('change', () => {
+      if (!showPath.checked && !selected.label) selected = featured.at(-1);
+      draw();
+    });
 
     function describe(row) {
       const c = comparators[comparator];
-      const change = row[c.key];
-      const ref = refFor(row);
+      const [ref, change] = refFor(row);
+      const noReference = comparator === 'best'
+        ? 'No serial setting fits this qubit cap.'
+        : 'The paper gives no expanded-model estimate at this cap.';
       detail.innerHTML = `
-        <p class="shor-detail-kicker">Row ${row.id} · ${row.pareto ? 'on our Pareto set' : 'ablation without sharing'}</p>
-        <h4>${esc(row.name)} <span>${esc(row.detail)}</span></h4>
+        <p class="shor-detail-kicker">${row.label ? 'Point ' + row.label + ' · ' : ''}Table 5 benchmark</p>
+        <h4>${esc(circuitName(row))} <span>${parameters(row)}</span></h4>
         <dl>
           <div><dt>Logical qubits</dt><dd>${int(row.qubits)}</dd></div>
-          <div><dt>Toffolis / factoring</dt><dd>${billions(row.tfact)}</dd></div>
-          <div><dt>${esc(c.label)}</dt><dd>${ref ? (comparator === 'best' ? '' : '≈ ') + billions(ref) : 'n/a'}</dd></div>
-          <div><dt>Change</dt><dd class="${change > 0 ? 'is-worse' : 'is-better'}">${change === undefined ? 'n/a' : pct(change)}</dd></div>
+          <div><dt>Toffolis / factoring</dt><dd>${(row.tfact / 1e9).toFixed(4)}B</dd></div>
+          <div><dt>95% CI half-width</dt><dd>±${(row.ci / 1e9).toFixed(4)}B</dd></div>
+          <div><dt>${esc(c.label)}</dt><dd>${ref ? billions(ref) : '—'}</dd></div>
+          <div><dt>Change</dt><dd class="${change > 0 ? 'is-worse' : 'is-better'}">${ref ? pct(change) : '—'}</dd></div>
         </dl>
-        <p>${esc(c.note)}${comparator === 'best' ? '' : ' Reference values here are derived from the reported percentage.'} Against the published configuration itself, this circuit changes the count by <strong>${pct(row.change_published)}</strong>.</p>`;
+        <p>${esc(ref ? c.note : noReference)} ${row.s + 1} nominal runs.</p>`;
     }
 
     function draw() {
       svg.replaceChildren();
-      const W = Math.max(320, svg.clientWidth || 720);
+      const W = Math.max(280, svg.clientWidth || 720);
       const H = Math.max(280, svg.clientHeight || 380);
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
       const narrow = W < 520;
-      const m = { l: narrow ? 40 : 56, r: 14, t: 16, b: 44 };
-      const x0 = 1380, x1 = 1840, y0 = 1.5e9, y1 = 6.3e9;
+      const m = { l: narrow ? 39 : 52, r: 18, t: 16, b: 44 };
+      const x0 = 1230, x1 = 3090, y0 = 0.72e9, y1 = 13e9;
       const px = q => m.l + (q - x0) / (x1 - x0) * (W - m.l - m.r);
-      const py = t => H - m.b - (t - y0) / (y1 - y0) * (H - m.t - m.b);
+      const py = t => H - m.b - Math.log(t / y0) / Math.log(y1 / y0) * (H - m.t - m.b);
 
-      for (let t = 2e9; t <= 6e9; t += 1e9) {
-        svg.append(el('line', { x1: m.l, x2: W - m.r, y1: py(t), y2: py(t), class: 'viz-grid' }));
-        svg.append(el('text', { x: m.l - 8, y: py(t) + 4, 'text-anchor': 'end', class: 'viz-tick' }, `${t / 1e9}B`));
+      for (const t of [0.8, 1, 1.5, 2, 3, 5, 8, 12]) {
+        const y = py(t * 1e9);
+        svg.append(el('line', { x1: m.l, x2: W - m.r, y1: y, y2: y, class: 'viz-grid' }));
+        svg.append(el('text', { x: m.l - 8, y: y + 4, 'text-anchor': 'end', class: 'viz-tick' }, t + 'B'));
       }
-      for (let q = 1400; q <= 1800; q += narrow ? 200 : 100) {
+      for (const q of narrow ? [1500, 2000, 2500, 3000] : [1300, 1600, 1900, 2200, 2500, 2800, 3000]) {
         svg.append(el('text', { x: px(q), y: H - m.b + 18, 'text-anchor': 'middle', class: 'viz-tick' }, int(q)));
       }
       svg.append(el('line', { x1: m.l, x2: W - m.r, y1: py(y0), y2: py(y0), class: 'viz-axis' }));
       svg.append(el('text', { x: (m.l + W - m.r) / 2, y: H - 6, 'text-anchor': 'middle', class: 'viz-axis-title' }, 'Logical-qubit budget'));
-      if (!narrow) svg.append(el('text', { x: m.l, y: m.t - 2, class: 'viz-axis-title', 'text-anchor': 'start', dy: '-0.1em' }, ''));
 
-      if (showPath?.checked) {
-        for (const p of pathPoints) {
-          const dot = el('circle', { cx: px(p.qubits), cy: py(p.tfact), r: 4, class: 'viz-path-dot', tabindex: 0 });
-          hover(dot, () => `<strong>${esc(p.name)}</strong><br>${int(p.qubits)} qubits · ${billions(p.tfact)} Toffolis<br><span>${pct(p.change)} vs. published configuration</span>`);
-          svg.append(dot);
+      const marks = [];
+      function drawCircuit(row) {
+        const [ref, change] = refFor(row);
+        const x = px(row.qubits), y = py(row.tfact);
+        const g = el('g', { class: 'viz-row' + (row === selected ? ' is-selected' : ''), tabindex: 0, role: 'button', 'aria-label': circuitName(row) + ', ' + int(row.qubits) + ' qubits, ' + parameters(row) + ', ' + billions(row.tfact) + ' Toffolis' });
+        marks.push([row, g]);
+        if (row.label) {
+          if (ref) {
+            const refY = py(ref);
+            const changeClass = change > 0 ? 'is-worse' : 'is-better';
+            g.append(el('line', { x1: x, x2: x, y1: refY, y2: y, class: 'viz-gap ' + changeClass }));
+            g.append(el('circle', { cx: x, cy: refY, r: 5.5, class: 'viz-ref' }));
+            if (Math.abs(refY - y) > 15 && (!narrow || row.cover)) {
+              const alignRight = row.qubits >= 2700;
+              const labelY = (refY + y) / 2 + (narrow ? -6 : 4);
+              g.append(el('text', { x: x + (alignRight ? -9 : 9), y: labelY, 'text-anchor': alignRight ? 'end' : 'start', class: 'viz-change ' + changeClass }, pct(change)));
+            }
+          }
+          g.append(el('path', { d: `M${x} ${y - 8}L${x + 8} ${y}L${x} ${y + 8}L${x - 8} ${y}Z`, class: 'viz-ours' + (row.k === 1 ? ' is-ablation' : '') }));
+          g.append(el('text', { x: x - 10, y: y + 4, 'text-anchor': 'end', class: 'viz-id' }, row.label));
+        } else {
+          g.append(el('circle', { cx: x, cy: y, r: 4, class: 'viz-ours viz-path-dot' }));
         }
+        g.append(el('circle', { cx: x, cy: y, r: row.label ? 11 : 6, class: 'viz-hit' }));
+        const select = () => {
+          selected = row;
+          describe(row);
+          for (const [item, mark] of marks) mark.classList.toggle('is-selected', item === row);
+        };
+        g.addEventListener('click', select);
+        g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); } });
+        hover(g, () => '<strong>' + esc(circuitName(row)) + '</strong><br>' + int(row.qubits) + ' qubits · ' + parameters(row) + '<br>' + billions(row.tfact) + ' Toffolis per factoring' + (ref ? ' · ' + pct(change) : ''));
+        svg.append(g);
       }
+      if (showPath.checked) rows.filter(row => !row.label).forEach(drawCircuit);
 
-      // Published configuration in the published model and in the benchmark.
-      const pm = data.published.model, pb = data.published.benchmark;
+      const pm = published.model, pb = published.benchmark;
       const sq = el('rect', { x: px(pm.qubits) - 5, y: py(pm.tfact) - 5, width: 10, height: 10, class: 'viz-published', tabindex: 0 });
       hover(sq, () => `<strong>Published configuration</strong><br>Published model: ${int(pm.qubits)} qubits · ${billions(pm.tfact)}<br>Our benchmark: ${int(pb.qubits)} qubits · ${billions(pb.tfact)}`);
       svg.append(sq);
       svg.append(el('text', { x: px(pm.qubits) + 9, y: py(pm.tfact) - 8, class: 'viz-label' }, narrow ? 'Published' : 'Published configuration'));
 
-      for (const row of rows) {
-        const ref = refFor(row);
-        const change = row[comparators[comparator].key];
-        const g = el('g', { class: `viz-row${row.id === selected ? ' is-selected' : ''}`, tabindex: 0, role: 'button', 'aria-label': `Row ${row.id}: ${row.name}, ${int(row.qubits)} qubits, ${billions(row.tfact)} Toffolis${change === undefined ? '' : `, ${pct(change)}`}` });
-        const x = px(row.qubits);
-        if (ref) {
-          const worse = change > 0;
-          g.append(el('line', { x1: x, x2: x, y1: py(ref), y2: py(row.tfact), class: `viz-gap ${worse ? 'is-worse' : 'is-better'}` }));
-          g.append(el('circle', { cx: x, cy: py(ref), r: 5.5, class: 'viz-ref' }));
-          if (row.pareto) {
-            const labelY = (py(ref) + py(row.tfact)) / 2 + 4;
-            g.append(el('text', { x: x + 9, y: labelY, class: `viz-change ${worse ? 'is-worse' : 'is-better'}` }, pct(change)));
-          }
-        }
-        g.append(el('path', { d: `M${x} ${py(row.tfact) - 8}L${x + 8} ${py(row.tfact)}L${x} ${py(row.tfact) + 8}L${x - 8} ${py(row.tfact)}Z`, class: `viz-ours${row.pareto ? '' : ' is-ablation'}` }));
-        if (row.pareto) {
-          g.append(el('text', { x: x - 11, y: py(row.tfact) + 4, 'text-anchor': 'end', class: 'viz-id' }, row.id));
-        } else {
-          // D and E sit 10 qubits apart: give each a callout on opposite sides so marks and text never overlap.
-          const top = Math.min(py(row.tfact), ref ? py(ref) : Infinity) - 8;
-          const bottom = Math.max(py(row.tfact), ref ? py(ref) : -Infinity) + 8;
-          const up = row.id === 'D';
-          const reach = narrow ? 30 : 48;
-          const [ax, ay] = up ? [x - 4, top] : [x + 4, bottom];
-          const [lx, ly] = up ? [x - reach, top - 26] : [x + reach, bottom + 26];
-          g.append(el('path', { d: `M${ax} ${ay}L${lx} ${ly + (up ? 6 : -12)}`, class: 'viz-leader' }));
-          const label = el('text', { x: up ? lx - 2 : lx + 2, y: ly, 'text-anchor': up ? 'end' : 'start', class: 'viz-callout' });
-          label.append(el('tspan', { class: 'viz-callout-id' }, `${row.id} `));
-          label.append(el('tspan', {}, narrow ? '' : 'no sharing '));
-          if (ref) label.append(el('tspan', { class: `viz-callout-change ${change > 0 ? 'is-worse' : 'is-better'}` }, pct(change)));
-          g.append(label);
-        }
-        g.append(el('circle', { cx: x, cy: (py(row.tfact) + py(ref ?? row.tfact)) / 2, r: Math.max(16, Math.abs(py(row.tfact) - py(ref ?? row.tfact)) / 2 + 10), class: 'viz-hit' }));
-        const select = () => { selected = row.id; describe(row); svg.querySelectorAll('.viz-row').forEach(n => n.classList.toggle('is-selected', n === g)); };
-        g.addEventListener('click', select);
-        g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); } });
-        hover(g, () => `<strong>${row.id} · ${esc(row.name)}</strong><br>${int(row.qubits)} qubits · ${billions(row.tfact)} Toffolis<br>${ref ? `Reference ≈ ${billions(ref)} · <b>${pct(change)}</b>` : 'No value for this comparator'}`);
-        svg.append(g);
-      }
-      describe(rows.find(r => r.id === selected));
+      featured.forEach(drawCircuit);
+      describe(selected);
     }
     draw();
     new ResizeObserver(draw).observe(svg);
@@ -197,41 +198,33 @@
     const panel = pathBox.querySelector('[data-path-detail]');
     const slider = pathBox.querySelector('[data-path-step]');
     const play = pathBox.querySelector('[data-path-play]');
-    let path = data.construction_paths[0];
-    let step = path.steps.length - 1;
+    const steps = data.construction_path;
+    let step = steps.length - 1;
     let timer = null;
-    const maxT = 6.5e9;
+    const maxT = 1.05e9;
     const qMin = 1200, qMax = 1900;
 
-    segmented(pathBox.querySelector('[data-path-choice]'), data.construction_paths.map(p => [p.id, p.label]), path.id, id => {
-      stop();
-      path = data.construction_paths.find(p => p.id === id);
-      step = path.steps.length - 1;
-      render();
-    });
-
     function render() {
-      slider.max = path.steps.length - 1;
+      slider.max = steps.length - 1;
       slider.value = step;
       list.replaceChildren();
-      path.steps.forEach((s, i) => {
+      steps.forEach((s, i) => {
         const row = html('button', { type: 'button', class: `path-row is-${s.kind}${i === step ? ' is-current' : ''}${i > step ? ' is-ahead' : ''}`, 'aria-pressed': String(i === step) });
         row.innerHTML = `
           <span class="path-name">${esc(s.name)}</span>
-          <span class="path-bar path-bar-t"><i style="width:${(s.tfact / maxT * 100).toFixed(2)}%"></i><b>${(s.tfact / 1e9).toFixed(2)}</b>${s.change ? `<em>${pct(s.change)}</em>` : ''}</span>
+          <span class="path-bar path-bar-t"><i style="width:${(s.tshot / maxT * 100).toFixed(2)}%"></i><b>${int(s.tshot / 1e6)}</b>${s.change ? `<em>${pct(s.change)}</em>` : ''}</span>
           <span class="path-bar path-bar-q"><i style="width:${((s.qubits - qMin) / (qMax - qMin) * 100).toFixed(2)}%"></i><b>${int(s.qubits)}</b></span>`;
         row.addEventListener('click', () => { stop(); step = i; render(); });
         list.append(row);
       });
-      const s = path.steps[step], base = path.steps[0], prev = path.steps[Math.max(0, step - 1)];
-      const stepDelta = step ? (s.tfact / prev.tfact - 1) * 100 : 0;
+      const s = steps[step], base = steps[0], prev = steps[Math.max(0, step - 1)];
+      const stepDelta = step ? (s.tshot / prev.tshot - 1) * 100 : 0;
       panel.innerHTML = `
-        <p class="shor-detail-kicker">Step ${step} of ${path.steps.length - 1} · ${s.kind === 'base' ? 'starting point' : s.kind === 'core' ? 'shared lookups, checkpoints, lazy residues' : 'further arithmetic refinement'}</p>
+        <p class="shor-detail-kicker">Step ${step} of ${steps.length - 1} · single-prime path</p>
         <h4>${esc(s.name)}</h4>
         <p>${esc(s.why)}</p>
         <dl>
-          <div><dt>Toffolis / factoring</dt><dd>${billions(s.tfact)}</dd></div>
-          <div><dt>Per circuit execution</dt><dd>${(s.tshot / 1e8).toFixed(2)} × 10⁸</dd></div>
+          <div><dt>Toffolis / execution</dt><dd>${int(s.tshot / 1e6)}M</dd></div>
           <div><dt>Logical qubits</dt><dd>${int(s.qubits)} <small>${s.qubits === base.qubits ? '' : `(${s.qubits > base.qubits ? '+' : '−'}${int(Math.abs(s.qubits - base.qubits))})`}</small></dd></div>
           <div><dt>This step</dt><dd class="is-better">${step ? pct(stepDelta) : '—'}</dd></div>
           <div><dt>Since published</dt><dd class="is-better">${s.change ? pct(s.change) : '—'}</dd></div>
@@ -241,11 +234,11 @@
     function stop() { clearInterval(timer); timer = null; play.textContent = 'Play ▸'; play.setAttribute('aria-pressed', 'false'); }
     play.addEventListener('click', () => {
       if (timer) return stop();
-      if (step >= path.steps.length - 1) step = 0;
+      if (step >= steps.length - 1) step = 0;
       render();
       play.textContent = 'Pause ❚❚'; play.setAttribute('aria-pressed', 'true');
       timer = setInterval(() => {
-        if (step >= path.steps.length - 1) return stop();
+        if (step >= steps.length - 1) return stop();
         step += 1; render();
       }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 2200 : 1300);
     });
@@ -293,31 +286,37 @@
     const sortBox = arch.querySelector('[data-arch-sort]');
     let current = data.architectures[0].id;
     let sorted = false;
-    const unitWord = (v, u) => u === 'd' ? `${v.toFixed(2)} days` : `${v.toFixed(1)} years`;
+    const unitWord = (v, u) => {
+      if (u === 'y') return `${v.toFixed(1)} years`;
+      if (v < 1) return `${(v * 24).toFixed(1)} hours`;
+      return `${v.toFixed(2)} days`;
+    };
 
     segmented(arch.querySelector('[data-arch-choice]'), data.architectures.map(a => [a.id, a.name]), current, id => { current = id; render(); });
     sortBox.addEventListener('change', () => { sorted = sortBox.checked; render(); });
 
     function render() {
       const a = data.architectures.find(x => x.id === current);
-      let rows = data.runtimes.map((r, i) => ({ ...r, i }));
-      if (sorted) rows.sort((p, q) => p[current][1] - q[current][1]);
-      const maxRatio = 1.6;
+      const rows = [...data.runtimes];
+      const byRuntime = (p, q) => p[current] - q[current];
+      if (sorted) rows.sort(byRuntime);
+      const maxRatio = 3;
       list.replaceChildren(...rows.map(r => {
-        const [time, change] = r[current];
-        const ratio = 1 + change / 100;
+        const time = r[current];
+        const ratio = time / a.reference;
         const uncosted = !r.fits && current !== 'surface';
-        const row = html('div', { class: `arch-row ${change > 0 ? 'is-slower' : 'is-faster'}${uncosted ? ' is-uncosted' : ''}`, tabindex: 0 });
+        const row = html('div', { class: `arch-row ${ratio > 1 ? 'is-slower' : 'is-faster'}${uncosted ? ' is-uncosted' : ''}`, tabindex: 0 });
         row.innerHTML = `
-          <span class="arch-name">${esc(r.name)}${uncosted ? ' <sup title="Needs more than the 1,480-qubit memory; the enlarged memory is not costed">†</sup>' : ''}</span>
+          <span class="arch-name">${esc(r.name)}${uncosted ? ' <sup title="Extrapolated beyond the 1,480-qubit memory">†</sup>' : ''}</span>
           <span class="arch-track"><i style="width:${Math.min(ratio / maxRatio * 100, 100).toFixed(2)}%"></i><b class="arch-ref" style="left:${(1 / maxRatio * 100).toFixed(2)}%"></b></span>
           <span class="arch-value"><strong>${ratio.toFixed(2)}×</strong> ${unitWord(time, a.unit)}</span>`;
-        hover(row, () => `<strong>${esc(r.name)}</strong>${data.architectures.map(x => `<br>${esc(x.name)}: ${unitWord(r[x.id][0], x.unit)} (${pct(r[x.id][1])})${!r.fits && x.id !== 'surface' ? ' †' : ''}`).join('')}`);
+        hover(row, () => `<strong>${esc(r.name)}</strong>${data.architectures.map(x => `<br>${esc(x.name)}: ${unitWord(r[x.id], x.unit)} (${pct((r[x.id] / x.reference - 1) * 100)})${!r.fits && x.id !== 'surface' ? ' †' : ''}`).join('')}`);
         return row;
       }));
-      const faster = data.runtimes.filter(r => r[current][1] < 0).length;
-      const best = [...data.runtimes].sort((p, q) => p[current][1] - q[current][1])[0];
-      summary.innerHTML = `<strong>${esc(a.name)}</strong> · ${esc(a.source)}. Tuned reference: ${esc(a.reference_label)}. ${faster} of ${data.runtimes.length} circuits are faster; the fastest is <em>${esc(best.name)}</em> at ${unitWord(best[current][0], a.unit)} (${pct(best[current][1])}).`;
+      const eligible = rows.filter(r => current === 'surface' || r.fits);
+      const best = eligible.sort(byRuntime)[0];
+      const capacity = current === 'surface' ? '' : ' within the published memory';
+      summary.innerHTML = `<strong>${esc(a.name)}</strong> · ${esc(a.source)}. Tuned reference: ${esc(a.reference_label)}. Fastest shown${capacity}: <em>${esc(best.name)}</em> at ${unitWord(best[current], a.unit)}.`;
     }
     render();
   }

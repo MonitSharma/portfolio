@@ -14,10 +14,10 @@
     url: https://arxiv.org/abs/2611.08907
     source: https://arxiv.org/pdf/2611.08907
   description:
-    - We share table lookups across primes, keep intermediate residues and add
-      banked, lazier arithmetic to cut the Toffoli count per RSA-2048 factoring by
-      **9%**, **37%** and **45%** against the best reference circuit at **1,459**,
-      **1,685** and **1,801 logical qubits**.
+    - Shared lookups and lazy residues reduce estimated Toffolis per RSA-2048
+      factoring by **24.0%** at **1,450 logical qubits** and **54.4%** at
+      **2,050**. With fewer nominal runs, the lowest estimate is **0.8277 billion**
+      Toffolis at **2,998 logical qubits**, **71.8%** below the retuned serial reference.
   links:
     - text: arXiv
       url: https://arxiv.org/abs/2611.08907

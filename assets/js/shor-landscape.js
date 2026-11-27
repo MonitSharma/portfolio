@@ -95,7 +95,7 @@
 
   function detail(item) {
     if (!item) {
-      inspector.innerHTML = `<p class="shor-detail-kicker">How to read it</p><h4>Lower and further left is cheaper</h4><p>Each dot is one published estimate; a line joins operating points of the same paper under the same assumptions, tracing its qubit–time trade-off. ▽ marks a runtime budget (“at most”). Blue stars are our circuits, with an arrow from the reference they improve on. Click any mark for its assumptions and source.</p>`;
+      inspector.innerHTML = `<p class="shor-detail-kicker">How to read it</p><h4>Lower and further left is cheaper</h4><p>Each dot is one published estimate. Lines join operating points from the same paper under the same assumptions. ▽ marks a runtime budget (“at most”). Each blue star is one of our projections, with an arrow from its comparison point. Click any mark for its assumptions and source.</p>`;
       return;
     }
     const ours = item.kind === 'ours';
