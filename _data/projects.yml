@@ -1,5 +1,28 @@
 # Update updated_at when adding or materially updating a project; listings show the newest first.
 ---
+- title: Quantum Derivative Pricing
+  slug: quantum-derivative-pricing
+  updated_at: "2026-11-27T18:10:17+08:00"
+  page: /work/quantum-derivative-pricing/
+  category: Quantum algorithms · Financial derivatives
+  type: research
+  summary: Compact reversible payoff circuits reduce the Toffoli-count × peak-qubit
+    product by up to 4.17× for an autocallable and 5.52× for a TARF, against
+    references that already avoid coherent exponentials.
+  metric: Up to 5.52× lower cost
+  metric_label: Toffoli count × peak logical qubits · payoff arithmetic
+  figures:
+    - src: assets/imgs/pricing/autocallable-resources.png
+      width: 1255
+      height: 480
+      caption: Original autocallable resource trade-off
+      alt: Against the log-return reference at 16,810 gates and 556 qubits, the three retained autocallable designs use 5,075 to 7,551 gates and 442 to 518 qubits.
+    - src: assets/imgs/pricing/retained-state.png
+      width: 884
+      height: 394
+      caption: What the circuits retain between dates
+      alt: The autocallable updates three index sums, constructs temporary integer forms and updates its call and knock-in records. TARF updates one index sum, looks up payment data and updates its accrual and stop records.
+      insight: The input path is preserved. Each circuit restores its temporary workspace after producing the digital angle.
 - title: BlueQubit Midwest Quantum Hackathon
   slug: bluequbit-midwest-otoc
   updated_at: "2026-11-26T09:07:34+08:00"

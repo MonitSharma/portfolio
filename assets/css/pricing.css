@@ -1,0 +1,317 @@
+.experience--quantum-derivative-pricing {
+  --accent: #5935a3;
+  --pricing-rule: #e4deed;
+  --pricing-tint: #f6f3fa;
+  --pricing-ui: "DM Sans", system-ui, sans-serif;
+  --plot-bg: #fff;
+  --plot-surface: #f7f5fb;
+  --plot-active: #ece5f8;
+  --plot-ink: #282331;
+  --plot-muted: #5d536b;
+  --plot-grid: #e1dbe9;
+  --plot-border: #bdafce;
+  --plot-gate: #6339b5;
+  --plot-ref: #176e68;
+  --plot-control: #915013;
+  --plot-wide: #a23661;
+  --plot-guide: #64827c;
+  --plot-better-area: #f6f2fc;
+  --plot-comparison: #8170a5;
+  --plot-frontier: #a16bd0;
+  --plot-leader: #aaa2b4;
+  --plot-label: #fffffff0;
+}
+
+[data-theme="dark"] .experience--quantum-derivative-pricing {
+  --accent: #c6aaff;
+  --pricing-rule: #484052;
+  --pricing-tint: #27222e;
+  --plot-bg: #1d1a22;
+  --plot-surface: #292333;
+  --plot-active: #392e4c;
+  --plot-ink: #f0ebf4;
+  --plot-muted: #cdc1d6;
+  --plot-grid: #44394e;
+  --plot-border: #6a587e;
+  --plot-gate: #c5a5ff;
+  --plot-ref: #7bd4c8;
+  --plot-control: #edbf89;
+  --plot-wide: #f8a5c5;
+  --plot-guide: #88a6a0;
+  --plot-better-area: #282136;
+  --plot-comparison: #a990cf;
+  --plot-frontier: #a67dd6;
+  --plot-leader: #81758d;
+  --plot-label: #1d1a22ed;
+}
+
+.experience--quantum-derivative-pricing .topline { margin-bottom: 22px; }
+.pricing-title { padding: 16px 0 22px; border-top: 2px solid var(--accent); }
+.pricing-byline {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 7px 24px;
+  color: var(--muted);
+  font: 14px/1.5 var(--pricing-ui);
+}
+.pricing-byline a, .pricing-scope a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.experience .pricing-title h1 {
+  margin: 14px 0 10px;
+  font: 600 clamp(36px, 5.1vw, 68px)/1.03 var(--serif);
+  letter-spacing: -.04em;
+}
+.pricing-deck { max-width: 78ch; color: var(--muted); font: clamp(16px, 1.55vw, 19px)/1.55 var(--pricing-ui); }
+
+.pricing-evidence { padding-top: 16px; }
+.pricing-anchor { display: block; scroll-margin-top: 20px; }
+.pricing-evidence-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin-bottom: 12px;
+}
+.experience .pricing-evidence-heading h2 { font: 650 20px/1.3 var(--pricing-ui); letter-spacing: -.025em; }
+.pricing-evidence-heading p { color: var(--muted); font: 14px/1.5 var(--pricing-ui); }
+
+.pricing-workspace {
+  color: var(--plot-ink);
+  background: var(--plot-bg);
+  border: 1px solid var(--plot-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.pricing-workspace[hidden], .pricing-workspace [hidden] { display: none; }
+.pricing-benchmarks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-bottom: 1px solid var(--plot-border);
+  background: var(--plot-surface);
+}
+.pricing-benchmarks button, .pricing-range {
+  color: var(--plot-muted);
+  font: 600 14px/1.35 var(--pricing-ui);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.pricing-benchmarks button {
+  min-width: 0;
+  padding: 12px 13px;
+  text-align: left;
+  border-inline-end: 1px solid var(--plot-grid);
+}
+.pricing-benchmarks button:last-child { border-inline-end: 0; }
+.pricing-benchmarks small { display: block; margin-top: 2px; font-weight: 400; font-size: 12px; }
+.pricing-benchmarks button:hover, .pricing-range:hover { color: var(--plot-gate); }
+.pricing-benchmarks button[aria-pressed="true"] {
+  color: var(--plot-gate);
+  background: var(--plot-bg);
+  box-shadow: inset 0 -3px var(--plot-gate);
+}
+.pricing-workspace :is(button, select):focus-visible { outline: 2px solid var(--plot-gate); outline-offset: -2px; }
+.pricing-plot { padding: clamp(14px, 2.5vw, 30px); }
+.pricing-plot-header { display: flex; flex-wrap: wrap; gap: 12px 22px; justify-content: space-between; align-items: center; }
+.experience .pricing-plot-header h3 { color: var(--plot-ink); font: 600 clamp(17px, 2.25vw, 26px)/1.2 var(--pricing-ui); }
+.pricing-plot-reference { margin-top: 3px; color: var(--plot-muted); font: 13px/1.45 var(--pricing-ui); }
+.pricing-plot-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  padding: 6px 10px;
+  border-inline-start: 2px solid var(--plot-gate);
+  background: var(--plot-surface);
+  color: var(--plot-muted);
+  font: 13px/1.5 var(--pricing-ui);
+}
+.pricing-plot-result strong { color: var(--plot-gate); font: 600 22px/1.2 var(--pricing-ui); letter-spacing: -.02em; }
+.pricing-chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 18px;
+  align-items: center;
+  margin-top: 13px;
+  padding: 9px 0;
+  border-block: 1px solid var(--plot-grid);
+  color: var(--plot-muted);
+  font: 14px/1.4 var(--pricing-ui);
+}
+.pricing-chart-controls label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.pricing-chart-controls input { width: 15px; height: 15px; margin: 0; accent-color: var(--plot-gate); }
+.pricing-range { padding: 5px 10px; border: 1px solid var(--plot-border); border-radius: 4px; }
+.pricing-range[aria-pressed="true"] { color: var(--plot-gate); background: var(--plot-active); border-color: var(--plot-gate); }
+
+.pricing-chart {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  column-gap: 35px;
+  margin: 19px 0 11px;
+  color: var(--plot-muted);
+  font: 12px/1.35 var(--mono);
+}
+.pricing-y-axis {
+  align-self: center;
+  justify-self: start;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.pricing-x-axis { grid-column: 2; margin-top: 24px; text-align: center; }
+.pricing-x-axis span { color: var(--plot-gate); }
+.pricing-graph {
+  height: clamp(245px, 33vw, 430px);
+  position: relative;
+  border: 1px solid var(--plot-border);
+}
+.pricing-graph canvas, .pricing-ticks, .pricing-points { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pricing-ticks { pointer-events: none; }
+.pricing-tick-x, .pricing-tick-y { position: absolute; white-space: nowrap; }
+.pricing-tick-x { top: calc(100% + 5px); transform: translateX(-50%); }
+.pricing-tick-y { right: calc(100% + 6px); transform: translateY(-50%); }
+.pricing-point {
+  position: absolute;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  color: var(--plot-gate);
+  cursor: pointer;
+}
+.pricing-point::before, .pricing-legend i {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.pricing-point[data-kind="reference"], .pricing-legend [data-pricing-kind="reference"] { color: var(--plot-ref); }
+.pricing-point[data-kind="control"], .pricing-legend [data-pricing-kind="control"] { color: var(--plot-control); }
+.pricing-point[data-kind="reconstruction"], .pricing-legend [data-pricing-kind="reconstruction"] { color: var(--plot-wide); }
+.pricing-point[data-kind="reference"]::before, .pricing-legend [data-pricing-kind="reference"] i {
+  border-radius: 1px;
+  transform: rotate(45deg);
+}
+.pricing-point[data-kind="control"]::before, .pricing-legend [data-pricing-kind="control"] i { border-radius: 1px; }
+.pricing-point[data-kind="reconstruction"]::before, .pricing-legend [data-pricing-kind="reconstruction"] i { border: 2px solid currentColor; background: transparent; }
+.pricing-point[data-variant]::before, .pricing-legend .pricing-legend-variant i { border: 1.5px solid currentColor; background: var(--plot-bg); }
+.pricing-point[aria-pressed="true"] { z-index: 2; box-shadow: inset 0 0 0 1px currentColor; }
+.pricing-point:hover, .pricing-point:focus-visible { z-index: 3; }
+
+.pricing-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 19px;
+  list-style: none;
+  padding: 0;
+  color: var(--plot-gate);
+  font: 12px/1.5 var(--pricing-ui);
+}
+.pricing-legend li { display: flex; align-items: center; gap: 7px; }
+.pricing-legend :is(.pricing-legend-guide, .pricing-legend-frontier, .pricing-legend-comparison) { color: var(--plot-muted); }
+.pricing-legend :is(.pricing-legend-guide, .pricing-legend-frontier, .pricing-legend-comparison) i {
+  width: 17px;
+  height: 0;
+  border-top: 1px dashed var(--plot-guide);
+  border-radius: 0;
+}
+.pricing-legend .pricing-legend-frontier i { border-top: 2px solid var(--plot-frontier); }
+.pricing-legend .pricing-legend-comparison i { border-top: 2px dotted var(--plot-comparison); }
+.pricing-legend .pricing-legend-area { color: var(--plot-muted); }
+.pricing-legend-area i { border: 1px solid var(--plot-border); border-radius: 2px; background: var(--plot-better-area); }
+
+.pricing-inspector {
+  display: grid;
+  grid-template-columns: minmax(155px, 1fr) minmax(0, 2.4fr);
+  gap: 14px 23px;
+  margin-top: 18px;
+  padding: 12px 15px;
+  background: var(--plot-surface);
+  border-inline-start: 2px solid var(--plot-gate);
+}
+.pricing-inspector label, .pricing-inspector dt { display: block; color: var(--plot-muted); font: 12px/1.4 var(--pricing-ui); }
+.pricing-inspector select {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  margin-top: 4px;
+  padding: 5px;
+  color: inherit;
+  background: var(--plot-bg);
+  border: 1px solid var(--plot-border);
+  border-radius: 4px;
+  font: 14px/1.4 var(--pricing-ui);
+}
+.pricing-inspector dl { display: grid; grid-template-columns: .85fr .75fr 1fr 1.4fr; gap: 6px 12px; margin: 0; }
+.pricing-inspector dd { margin: 4px 0 0; font: 500 14px/1.4 var(--mono); }
+.pricing-inspector [data-better="true"] { color: var(--plot-gate); }
+.pricing-selection-note { margin-top: 8px; color: var(--plot-ref); font: 13px/1.55 var(--pricing-ui); }
+.pricing-finding { margin-top: 10px; color: var(--plot-muted); font: 14px/1.55 var(--pricing-ui); }
+
+.pricing-disclosure { border-block-end: 1px solid var(--pricing-rule); margin-top: 15px; }
+.pricing-disclosure summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+  cursor: pointer;
+  list-style: none;
+  padding: 9px 2px;
+  color: var(--accent);
+  font: 600 14px/1.5 var(--pricing-ui);
+}
+.pricing-disclosure summary::-webkit-details-marker { display: none; }
+.pricing-disclosure summary::after { content: "+"; font: 16px/1 var(--mono); }
+.pricing-disclosure[open] summary::after { content: "−"; }
+.pricing-disclosure-content { padding: 6px 0 19px; }
+.pricing-disclosure-content > p { max-width: 76ch; color: var(--muted); font: 15px/1.65 var(--pricing-ui); }
+.pricing-disclosure-content > p:last-child { margin-top: 16px; }
+.experience .pricing-record { margin-top: 16px; }
+.pricing-record thead th { font-size: 12px; }
+.pricing-record .pricing-best { background: var(--pricing-tint); color: var(--accent); }
+.pricing-record th:first-child { padding-left: 10px; }
+.pricing-scope { margin-top: 10px; max-width: 85ch; color: var(--muted); font: 13px/1.65 var(--pricing-ui); }
+
+.pricing-reading { padding-top: clamp(42px, 6vw, 72px); }
+.experience .pricing-reading h2 { font: 600 clamp(29px, 4vw, 45px)/1.14 var(--serif); }
+.pricing-lede { max-width: 75ch; margin: 12px 0 20px; color: var(--muted); font: 16px/1.65 var(--pricing-ui); }
+.pricing-cases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 4vw, 52px);
+  margin-top: 19px;
+}
+.pricing-cases article { border-top: 1px solid var(--pricing-rule); padding-top: 13px; }
+.pricing-cases article h3 { font: 650 clamp(17px, 2.25vw, 24px)/1.25 var(--pricing-ui); }
+.pricing-cases article p { margin-top: 9px; max-width: 59ch; font: 16px/1.62 var(--pricing-ui); }
+.pricing-cases article .pricing-field-label { margin: 0 0 5px; color: var(--accent); font: 500 12px/1.5 var(--mono); }
+.pricing-verification { margin-bottom: 48px; }
+
+@media (max-width: 780px) {
+  .pricing-inspector { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 550px) {
+  .pricing-title { padding-bottom: 15px; }
+  .pricing-benchmarks { grid-template-columns: 1fr 1fr; }
+  .pricing-benchmarks button { padding: 8px 10px; }
+  .pricing-benchmarks button:nth-child(2) { border-inline-end: 0; }
+  .pricing-benchmarks button:nth-child(-n+2) { border-bottom: 1px solid var(--plot-grid); }
+  .pricing-cases { grid-template-columns: 1fr; }
+  .pricing-chart { grid-template-columns: 12px minmax(0, 1fr); column-gap: 29px; font-size: 10px; }
+  .pricing-inspector dl { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pricing-legend { gap: 4px 13px; }
+}

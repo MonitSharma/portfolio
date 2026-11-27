@@ -1,0 +1,71 @@
+# Payoff-arithmetic counts and ratios from Tables 2 and 6.
+benchmarks:
+  - id: autocallable
+    label: Autocallable
+    title: Three-asset autocallable
+    reference: Log-return reference
+    finding: "The smallest circuit uses 5,075 Toffolis and 442 qubits. The hardened circuit preserves a 2.87× improvement and handles more of the selected threshold cases."
+    detail: {x: [4000, 23500], y: [420, 635], x_ticks: [5000, 6000, 8000, 10000, 14000, 19000], y_ticks: [450, 475, 500, 525, 550, 575, 600, 625], scale: log}
+    full: {x: [4000, 8000000], y: [400, 970], x_ticks: [10000, 100000, 1000000, 5000000], y_ticks: [500, 650, 800, 950], scale: log}
+    rows:
+      - {name: Price-space reconstruction, plot: Price-space model, gates: "5,433,065", qubits: 900, log_ratio: "0.0019", price_ratio: "1.00", kind: reconstruction}
+      - {name: Log-return reference, gates: "16,810", qubits: 556, log_ratio: "1.00", price_ratio: "523", kind: reference}
+      - {name: Fixed-point control, gates: "19,074", qubits: 610, log_ratio: "0.80", price_ratio: "420", kind: control}
+      - {name: Factor-sum circuit, plot: Factor-sum, gates: "7,551", qubits: 518, log_ratio: "2.39", price_ratio: "1,250"}
+      - {name: Hardened circuit, plot: Hardened, gates: "6,888", qubits: 472, log_ratio: "2.87", price_ratio: "1,504", evidence: "6 of 900 selected threshold violations, compared with 241 for factor-sum."}
+      - {name: Lowest-product circuit, plot: Lowest product, gates: "5,075", qubits: 442, log_ratio: "4.17", price_ratio: "2,180", best: true}
+      - {name: Low-product variant, gates: "5,109", qubits: 442, log_ratio: "4.14", variant: true, evidence: "2 violations in one million holdout paths and 518 of 900 selected threshold cases."}
+  - id: tarf
+    label: TARF
+    title: Target accrual redemption forward
+    reference: Payment-lookup reference
+    finding: "The smallest circuit fits in 262 qubits. Cap hardening passes all 400 selected cap-tie inputs while keeping the joint resource product at about one fifth of the lookup reference."
+    detail: {x: [5500, 38000], y: [240, 410], x_ticks: [7000, 9000, 12000, 18000, 25000, 35000], y_ticks: [250, 275, 300, 325, 350, 375, 400], scale: log}
+    full: {x: [5500, 5200000], y: [220, 720], x_ticks: [10000, 100000, 1000000, 4000000], y_ticks: [250, 400, 550, 700], scale: log}
+    rows:
+      - {name: Price-space reconstruction, plot: Price-space model, gates: "3,334,652", qubits: 653, log_ratio: "0.0050", price_ratio: "1.00", kind: reconstruction}
+      - {name: Lookup reference, plot: Payment lookup, gates: "28,428", qubits: 384, log_ratio: "1.00", price_ratio: "199.5", kind: reference}
+      - {name: Windowed circuit, plot: Windowed, gates: "8,381", qubits: 269, log_ratio: "4.84", price_ratio: "966"}
+      - {name: Cap-hardened circuit, plot: Cap-hardened, gates: "7,921", qubits: 277, log_ratio: "4.98", price_ratio: "992", evidence: "No violations on the 400 selected cap-tie inputs."}
+      - {name: Lowest-product circuit, plot: Lowest product, gates: "7,553", qubits: 262, log_ratio: "5.52", price_ratio: "1,100", best: true}
+      - {name: Cap-hardened variant, gates: "8,049", qubits: 277, log_ratio: "4.90", variant: true, evidence: "1 violation in one million holdout paths and none on the 400 selected cap-tie inputs."}
+      - {name: Low-product variant, gates: "7,710", qubits: 262, log_ratio: "5.40", variant: true, evidence: "1 violation in one million holdout paths and 54 of 400 selected cap-tie inputs."}
+  - id: second-setting
+    label: Parameter transfer
+    title: Autocallable with different volatility and correlation
+    reference: Transferred log-return reference
+    finding: "Directly transferring the factor-sum circuit makes the product 5.58× larger than the reference. Refitting the integer forms to the changed volatility and correlation recovers a 4.29× improvement."
+    detail: {x: [4200, 108000], y: [410, 665], x_ticks: [5000, 10000, 20000, 50000, 100000], y_ticks: [450, 500, 550, 600, 650], scale: log}
+    rows:
+      - {name: Transferred log-return reference, plot: Log-return reference, gates: "16,810", qubits: 556, log_ratio: "1.00", kind: reference}
+      - {name: Generic factor-sum transfer, plot: Generic transfer, gates: "81,552", qubits: 640, log_ratio: "0.18", kind: control}
+      - {name: Shift-add lattice-form circuit, plot: Shift-add, gates: "12,685", qubits: 547, log_ratio: "1.35"}
+      - {name: Lookup lattice-form circuit, plot: Lookup lattice form, gates: "13,661", qubits: 524, log_ratio: "1.31"}
+      - {name: Barrier-centred lattice-form circuit, plot: Barrier-centred, gates: "4,944", qubits: 441, log_ratio: "4.29", best: true}
+      - {name: Barrier-centred variant, gates: "4,956", qubits: 441, log_ratio: "4.28", variant: true, evidence: "1 violation in one million holdout paths and 46 of 66 selected extreme cases."}
+  # Appendix B.5, Tables 6 and 14. Ratios use the Gu et al. point (1,348 × 115).
+  - id: hhl
+    label: HHL calibration
+    title: HHL rotation angle
+    reference: Gu et al.
+    finding: "The 987-Toffoli, 113-qubit signed-Booth circuit has a 28.1% smaller gate–qubit product than Gu et al. The comparison covers the rotation-angle component."
+    detail: {x: [925, 1400], y: [109, 130], x_ticks: [950, 1050, 1150, 1250, 1350], y_ticks: [110, 115, 120, 125], scale: linear}
+    full: {x: [850, 18500], y: [90, 350], x_ticks: [1000, 2000, 5000, 10000], y_ticks: [100, 175, 250, 325], scale: log}
+    rows:
+      - {name: HRS-based reconstruction, plot: HRS reconstruction, gates: "14,922", qubits: 323, log_ratio: "0.032", kind: reconstruction}
+      - {name: Gu et al. published circuit, plot: Gu et al., gates: "1,348", qubits: 115, log_ratio: "1.00", kind: reference}
+      - {name: Booth-polynomial circuit, plot: Booth polynomial, gates: "1,057", qubits: 126, log_ratio: "1.16", evidence: "All-input logical proof and exhaustive numerical check."}
+      - {name: Signed-Booth · 965 gates, plot: Fewest gates, gates: "965", qubits: 116, log_ratio: "1.38", evidence: "Exhaustive output check."}
+      - {name: Signed-Booth · 972 gates, plot: Signed-Booth, gates: "972", qubits: 115, log_ratio: "1.39", evidence: "All-input logical proof and exhaustive numerical check."}
+      - {name: Signed-Booth · 979 gates, plot: Signed-Booth, gates: "979", qubits: 114, log_ratio: "1.39", evidence: "Exhaustive output check."}
+      - {name: Signed-Booth · minimum product, plot: Lowest product, gates: "987", qubits: 113, log_ratio: "1.39", evidence: "All-input logical proof and exhaustive numerical check.", best: true}
+      - {name: Signed-Booth · 999 gates, plot: Fewest qubits, gates: "999", qubits: 112, log_ratio: "1.39", evidence: "Exhaustive output check."}
+
+# Selected validation rows from Table 3. A missing independent study displays as a dash.
+validation:
+  - {contract: Autocallable, circuit: Factor-sum, holdout: 0, independent: 0, selected: "241/900", proved: true}
+  - {contract: Autocallable, circuit: Hardened, holdout: 0, selected: "6/900", proved: true}
+  - {contract: Autocallable, circuit: Lowest product, holdout: 4, selected: "520/900"}
+  - {contract: TARF, circuit: Windowed, holdout: 0, independent: 0, selected: "47/400"}
+  - {contract: TARF, circuit: Cap-hardened, holdout: 4, selected: "0/400"}
+  - {contract: TARF, circuit: Lowest product, holdout: 2, selected: "33/400"}
