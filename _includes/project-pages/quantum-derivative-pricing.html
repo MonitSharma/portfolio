@@ -1,161 +1,250 @@
 {% assign pricing_paper = site.data.publications | where: 'slug', project.slug | first %}
 {% assign pricing_arxiv = pricing_paper.links | where: 'text', 'arXiv' | first %}
 {% assign pricing = site.data.derivative_pricing %}
-
-<header class="pricing-title">
-  <div class="pricing-byline">
-    <p>Monit Sharma and Hoong Chuin Lau</p>
-    <a href="{{ pricing_arxiv.url | escape }}" target="_blank" rel="noopener">Read the paper</a>
+<header class="pr-cover" id="overview">
+  <div class="pr-masthead">
+    <span>Quantum algorithms <span aria-hidden="true">/</span> <b>Derivative pricing</b></span>
+    <a class="pr-link" href="{{ pricing_arxiv.url | default: 'https://arxiv.org/abs/2611.04431' | escape }}" target="_blank" rel="noopener">arXiv:2611.04431 ↗</a>
   </div>
-  <h1>Quantum derivative pricing</h1>
-  <p class="pricing-deck">Smaller reversible circuits for two path-dependent contracts. Each circuit keeps a compact record of the market path and contract history, then reconstructs the payoff angle from that record.</p>
+  <div class="pr-cover-grid">
+    <div class="pr-cover-copy">
+      <h1>Smaller circuits for <span>pricing exotic options.</span></h1>
+      <p class="pr-intro">A quantum computer can estimate an option’s price with quadratically fewer samples, but every sample has to run the contract’s rules inside the circuit. We make that part cheaper by keeping running integer sums instead of prices.</p>
+      <p class="pr-cover-finding">Measured against references that already avoid coherent exponentials, our circuits need a smaller product of Toffoli gates and logical qubits.</p>
+      <dl class="pr-cover-stats">
+        <div><dt>Autocallable</dt><dd>4.17×</dd><dd class="pr-stat-note">5,075 Toffolis · 442 qubits</dd></div>
+        <div><dt>TARF</dt><dd>5.52×</dd><dd class="pr-stat-note">7,553 Toffolis · 262 qubits</dd></div>
+        <div><dt>HHL angle (check)</dt><dd>1.39×</dd><dd class="pr-stat-note">987 Toffolis · 113 qubits</dd></div>
+      </dl>
+      <a class="pr-read-link" href="#resources">Compare the circuits <span aria-hidden="true">↘</span></a>
+    </div>
+    <figure class="pr-cover-diagram">
+      <svg viewBox="0 0 330 330" role="img" aria-labelledby="pr-schematic-title pr-schematic-desc">
+        <title id="pr-schematic-title">Keep the index sum, not the log return</title>
+        <desc id="pr-schematic-desc">Before: at each date the reference looks up a correlated increment for the input index j and adds it to a wide fixed-point log-return register. After: the circuit adds j to a ten-bit integer sum K and reconstructs the log return only when a test needs it. Schematic only.</desc>
+        <g class="pr-schem-before">
+          <text x="0" y="18" class="pr-schem-label">Reference · every date</text>
+          <path d="M22 64H62 M152 64H184 M262 64H274"/>
+          <rect x="62" y="44" width="90" height="40"/><rect x="184" y="44" width="78" height="40"/>
+          <text x="4" y="69">j</text>
+          <text x="107" y="69" text-anchor="middle">Lookup Δ</text><text x="223" y="69" text-anchor="middle">Add</text>
+          <text x="280" y="69">C</text>
+          <text x="150" y="104" class="pr-schem-note">fixed point, 26 fraction bits</text>
+        </g>
+        <path d="M165 128V156 M159 150L165 156L171 150" class="pr-schem-arrow"/>
+        <g class="pr-schem-after">
+          <text x="0" y="190" class="pr-schem-label">This work · every date</text>
+          <path d="M22 236H120 M198 236H274"/>
+          <rect x="120" y="216" width="78" height="40"/>
+          <text x="4" y="241">j</text><text x="159" y="241" text-anchor="middle">Add</text><text x="280" y="241">K</text>
+          <text x="120" y="276" class="pr-schem-note">10-bit integer, exact</text>
+          <text x="0" y="314" class="pr-schem-note">Thresholds become fixed integers</text>
+        </g>
+      </svg>
+      <figcaption>Store the raw index sum. Rebuild the return only to test it.</figcaption>
+    </figure>
+  </div>
+  <div class="pr-paper-record">
+    <p><cite>{{ pricing_paper.title | escape }}</cite> · Monit Sharma and Hoong Chuin Lau · {{ pricing_paper.venue | default: 'arXiv preprint · November 2026' }}</p>
+    <div class="pr-paper-links">
+      <a class="pr-link" href="{{ pricing_arxiv.url | default: 'https://arxiv.org/abs/2611.04431' | escape }}" target="_blank" rel="noopener">Read the preprint ↗</a>
+    </div>
+  </div>
+  <nav class="pr-contents" aria-label="On this page"><a href="#idea">The idea</a><a href="#resources">Resources</a><a href="#contracts">The contracts</a><a href="#checks">Robustness</a><a href="#scope">Scope</a></nav>
 </header>
 
-<section class="pricing-evidence" id="resources" aria-labelledby="pricing-results-title" data-pricing-root>
-  <span id="hhl" class="pricing-anchor" aria-hidden="true"></span>
-  <div class="pricing-evidence-heading">
-    <h2 id="pricing-results-title">Circuit resources</h2>
-    <p>Compare circuits by gate count, logical qubits and their product.</p>
+<section class="pr-section" id="idea" aria-labelledby="pr-idea-title">
+  <div class="pr-section-heading"><span class="pr-section-index">01</span><h2 id="pr-idea-title">Where the cost of quantum pricing goes</h2></div>
+  <div class="pr-idea-layout">
+    <div class="pr-method-copy">
+      <p>A derivative’s price is the expected discounted payoff over market paths. <strong>Amplitude estimation</strong> estimates that average with quadratically fewer samples than classical Monte Carlo, but each sample must load a path and then evaluate the payoff coherently, as a reversible circuit. For path-dependent contracts that payoff arithmetic is a large share of the logical cost.</p>
+      <p>The published resource estimate of <a class="pr-link" href="https://arxiv.org/abs/2012.03819" target="_blank" rel="noopener">Chakrabarti et al.</a> converts every simulated log return into a price with a coherent exponential. Comparing log returns directly avoids those exponentials. We start from that cheaper <em>log-return reference</em> and ask what else can be removed.</p>
+      <p>In these benchmarks the dates are evenly spaced, the model coefficients are fixed and the random factors sit on an evenly spaced grid. Every log return is then an affine function of a <strong>running sum of grid indices</strong>. Three ten-bit integer registers hold the whole market state of a three-asset path without wrapping.</p>
+      <p>Barrier and call tests become comparisons between integer forms of those sums and precomputed thresholds. Only the carry bits of each comparison need temporary qubits, and measurement clears them without further Toffoli gates. At maturity the circuit builds the payoff angle, then a reverse sweep restores the workspace.</p>
+      <p>The circuits were found in an evaluator-guided loop. Language-model agents proposed and implemented candidate builders; a separate scorer validated each gate tape and produced every count on this page.</p>
+    </div>
+    <aside class="pr-idea-aside" aria-label="What the circuits retain">
+      <figure class="pr-state">
+        <figcaption><span class="pr-figure-number">Autocallable · between dates</span>What the circuit keeps</figcaption>
+        <div class="pr-state-cols">
+          <div>
+            <p class="pr-state-head">Log-return reference</p>
+            <ul>
+              <li><i style="--w:100%"></i><span>3 log returns <small>fixed point, 26 fractional bits</small></span></li>
+              <li><i style="--w:14%"></i><span>Breach counter <small>5 bits</small></span></li>
+              <li><i style="--w:6%"></i><span>Call records</span></li>
+            </ul>
+          </div>
+          <div class="is-ours">
+            <p class="pr-state-head">Factor-sum circuit</p>
+            <ul>
+              <li><i style="--w:33%"></i><span>3 index sums <small>10 bits each</small></span></li>
+              <li><i style="--w:14%"></i><span>Knock-in counter</span></li>
+              <li><i style="--w:6%"></i><span>Call counters <small>2 bits</small></span></li>
+            </ul>
+          </div>
+        </div>
+        <p>Bars sketch relative register width. Exact sums need no rounding and recombine across paths.</p>
+      </figure>
+      <figure class="pr-pipeline">
+        <figcaption><span class="pr-figure-number">Paper, Fig. 1</span>One monitoring date</figcaption>
+        <ol>
+          <li class="is-target"><b>Update the sums</b><p>K ← K + j for each factor. Three small additions.</p></li>
+          <li><b>Build temporary forms</b><p>Weighted combinations of K, kept as virtual registers.</p></li>
+          <li class="is-target"><b>Test thresholds</b><p>The top carry is the barrier or call decision.</p></li>
+          <li><b>Clear by measurement</b><p>Carries are erased with no extra Toffolis.</p></li>
+        </ol>
+        <p class="pr-pipeline-end">After date 20: worst-of, put table, payoff angle, reverse sweep.</p>
+      </figure>
+    </aside>
   </div>
-  <script type="application/json" data-pricing-data>{{ pricing.benchmarks | jsonify }}</script>
-  <div class="pricing-workspace" data-pricing-workspace hidden>
-    <div class="pricing-benchmarks" role="group" aria-label="Choose a benchmark">
-      {% for benchmark in pricing.benchmarks %}
-        <button type="button" data-benchmark="{{ benchmark.id }}" aria-controls="pricing-plot" aria-pressed="false">
-          {{ benchmark.label }}
-          {% if benchmark.id == 'hhl' %}<small>Gu et al.</small>{% endif %}
-        </button>
-      {% endfor %}
-    </div>
-    <div class="pricing-plot" id="pricing-plot">
-      <div class="pricing-plot-header">
-        <div>
-          <h3 data-pricing-title></h3>
-          <p class="pricing-plot-reference" data-pricing-reference></p>
-        </div>
-        <div class="pricing-plot-result">
-          <strong data-pricing-best></strong>
-          <span>smaller gate–qubit product</span>
-        </div>
-      </div>
-      <div class="pricing-chart-controls" role="group" aria-label="Plot display options">
-        <label><input type="checkbox" data-pricing-labels checked> Circuit labels</label>
-        <label data-pricing-variants-control hidden><input type="checkbox" data-pricing-variants> Additional variants</label>
-        <button class="pricing-range" type="button" aria-pressed="false" data-pricing-range hidden>Full range</button>
-      </div>
-      <div class="pricing-chart" role="group" aria-label="Interactive Toffoli and logical-qubit scatter plot">
-        <span class="pricing-y-axis">Peak logical qubits</span>
-        <div class="pricing-graph" data-pricing-graph>
-          <canvas data-pricing-guides aria-hidden="true"></canvas>
-          <div class="pricing-ticks" data-pricing-ticks aria-hidden="true"></div>
-          <div class="pricing-points" data-pricing-points></div>
-        </div>
-        <span class="pricing-x-axis">Toffoli gates <span data-pricing-scale></span></span>
-      </div>
-      <ul class="pricing-legend" aria-label="Chart legend">
-        <li data-pricing-kind="candidate"><i></i>Study circuit</li>
-        <li data-pricing-kind="reference"><i></i>Comparison reference</li>
-        <li data-pricing-kind="control"><i></i>Control or transfer</li>
-        <li data-pricing-kind="reconstruction"><i></i>Reconstruction</li>
-        <li class="pricing-legend-variant" data-pricing-variant-key hidden><i></i>Additional variant</li>
-        <li class="pricing-legend-frontier" data-pricing-frontier-key hidden><i></i>Study trade-off frontier</li>
-        <li class="pricing-legend-guide"><i></i>Same product as reference</li>
-        <li class="pricing-legend-area"><i></i>Smaller product</li>
-        <li class="pricing-legend-comparison" data-pricing-comparison-key><i></i>Reference to selected circuit</li>
-      </ul>
-      <div class="pricing-inspector">
-        <div>
-          <label for="pricing-circuit">Inspect a circuit</label>
-          <select id="pricing-circuit" data-pricing-circuit></select>
-        </div>
-        <dl aria-live="polite">
-          <div><dt>Toffoli gates</dt><dd data-stat="gates"></dd></div>
-          <div><dt>Peak qubits</dt><dd data-stat="qubits"></dd></div>
-          <div><dt>Gates × qubits</dt><dd data-stat="product"></dd></div>
-          <div><dt data-stat="reference"></dt><dd data-stat="change"></dd></div>
-        </dl>
-      </div>
-      <p class="pricing-selection-note" data-pricing-note hidden></p>
-      <p class="pricing-finding" data-pricing-finding></p>
-    </div>
-  </div>
-
-  <details class="pricing-disclosure">
-    <summary>Full resource tables and accounting</summary>
-    <div class="pricing-disclosure-content">
-      <p>The ratio is the comparison reference’s gate–qubit product divided by the candidate’s. For the finance cases, the reference uses log returns or payment lookups. The price-space ratios use reconstructions of Chakrabarti et al. with the same digital-angle interface.</p>
-      {% for benchmark in pricing.benchmarks %}
-        <div class="record-table pricing-record" tabindex="0" role="region" aria-label="{{ benchmark.title | escape }} resource table">
-          <table>
-            <caption>{{ benchmark.title }} · {% if benchmark.id == 'hhl' %}Tables 6 and 14{% else %}Tables 2 and 6{% endif %}</caption>
-            <thead><tr><th scope="col">Circuit</th><th scope="col">Toffoli gates</th><th scope="col">Peak logical qubits</th><th scope="col">Reference ratio</th>{% if benchmark.full and benchmark.id != 'hhl' %}<th scope="col">Price-space ratio</th>{% endif %}</tr></thead>
-            <tbody>
-            {% for row in benchmark.rows %}
-              <tr{% if row.best %} class="pricing-best"{% endif %}><th scope="row">{{ row.name | escape }}</th><td>{{ row.gates }}</td><td>{{ row.qubits }}</td><td>{{ row.log_ratio }}×</td>{% if benchmark.full and benchmark.id != 'hhl' %}<td>{% if row.price_ratio %}{{ row.price_ratio }}×{% else %}—{% endif %}</td>{% endif %}</tr>
-            {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      {% endfor %}
-    </div>
-  </details>
-  <p class="pricing-scope">The finance counts cover payoff arithmetic between path loading and payoff rotation, with the answer in a 22-bit angle word. The HHL counts cover the rotation-angle component of a linear-system solver. <a href="https://arxiv.org/html/2610.22367" target="_blank" rel="noopener">Gu et al., HHL benchmark</a></p>
 </section>
 
-<section class="pricing-reading" id="contracts" aria-labelledby="pricing-contracts-title">
-  <h2 id="pricing-contracts-title">What the circuit keeps</h2>
-  <p class="pricing-lede">Pricing takes the expected discounted payoff over market paths. With equally spaced factor indices and fixed model coefficients, cumulative log returns can be recovered from running integer sums. The circuit also carries the contract history that determines what gets paid.</p>
-  <div class="pricing-cases">
-    <article>
-      <p class="pricing-field-label">3 assets · 20 dates</p>
-      <h3>Worst-of autocallable</h3>
-      <p>The contract can settle early on a call date. If it survives after any asset breaches the barrier, the terminal payoff can include a loss based on the worst performer at maturity.</p>
-      <p>The factor-sum circuit keeps three exact 10-bit index sums and the call and knock-in records. It builds temporary integer forms for the date tests. Hardening stores signed differences from the barrier and checks every asset at each date.</p>
-    </article>
-    <article>
-      <p class="pricing-field-label">1 factor · 26 dates</p>
-      <h3>Target accrual redemption forward</h3>
-      <p>The TARF accumulates signed payments until a knock-out or an accrual target stops it. The target caps the last payment, so the amount depends on what has already accrued.</p>
-      <p>The windowed circuit keeps a compact index, a shifted accrual, and a discount correction. Date-dependent lookups supply payments, and one cap-date calculation adjusts the final payoff.</p>
-    </article>
-  </div>
-  {% assign method_figure = project.figures[1] %}
-  <details class="pricing-disclosure">
-    <summary>Register-level circuit diagram</summary>
-    <div class="pricing-disclosure-content">{% include project-blocks/media.html figure=method_figure %}</div>
-  </details>
-</section>
+<script type="application/json" data-pricing-data>{{ pricing.benchmarks | jsonify }}</script>
 
-<section class="pricing-reading pricing-verification" id="verification" aria-labelledby="pricing-verification-title">
-  <h2 id="pricing-verification-title">What the checks establish</h2>
-  <div class="pricing-cases">
-    <article>
-      <h3>Coherent integer action</h3>
-      <p>The factor-sum and hardened autocallable circuits implement their integer specifications for every input, incoming accumulator, and measurement record. The proofs cover phase cancellation, preservation of the path, and restoration of the workspace. The logical inverse uses the same Toffoli count and peak qubits.</p>
-      <p>For HHL, the Booth-polynomial circuit and two signed-Booth variants have all-input logical proofs. Their angle errors were checked numerically on all 2,031,616 inputs. The 987-Toffoli circuit’s maximum observed error was about 9.90 × 10<sup>−8</sup> radians, within the 10<sup>−7</sup> target.</p>
-    </article>
-    <article>
-      <h3>Agreement with the financial payoff</h3>
-      <p>Numerical lattice calculations estimate angle-tolerance violation probabilities of <strong>6.248 × 10<sup>−8</sup></strong> for factor-sum and <strong>3.56 × 10<sup>−8</sup></strong> for the hardened circuit. Their signed price biases are −2.625 × 10<sup>−6</sup> and +1.01 × 10<sup>−5</sup> contract units under the specified loading law.</p>
-      <p>On the 900 autocallable threshold stress cases, violations fell from 241 to 6 with hardening. The lowest-product circuit had 520 violations on those same cases. These fixtures deliberately probe the boundary.</p>
-    </article>
+<section class="pr-section" id="resources" aria-labelledby="pr-resources-title">
+  <div class="pr-section-heading"><span class="pr-section-index">02</span><h2 id="pr-resources-title">How much smaller are the circuits?</h2></div>
+  <p class="pr-section-lede">A circuit can trade gates for qubits, so we score each one by the product of its <strong>Toffoli count</strong> and <strong>peak logical qubits</strong>. The dashed curve marks every point with the same product as the reference. Anything below and to the left of it is cheaper on that measure.</p>
+
+  <figure class="pr-viz" data-pricing-chart>
+    <div class="pr-viz-toolbar">
+      <div class="pr-segmented" role="group" aria-label="Benchmark" data-pricing-tabs></div>
+      <label class="pr-viz-check" data-pricing-wide-wrap><input type="checkbox" data-pricing-wide> Include the price-space circuit</label>
+    </div>
+    <div class="pr-viz-body">
+      <div class="pr-viz-stage">
+        <svg data-pricing-svg role="img" aria-label="Toffoli count against peak logical qubits for the selected benchmark, with a logarithmic gate axis. The same data is in the table below."></svg>
+        <div class="pr-viz-legend" aria-hidden="true">
+          <span><i class="lg-ours"></i>This work</span>
+          <span><i class="lg-ref"></i>Reference</span>
+          <span><i class="lg-ctrl"></i>Control or transfer</span>
+          <span><i class="lg-iso"></i>Same product as reference</span>
+          <span><i class="lg-better"></i>Smaller product</span>
+        </div>
+      </div>
+      <div class="pr-viz-detail" data-pricing-detail aria-live="polite"></div>
+    </div>
+    <figcaption data-pricing-caption>Click a circuit for its counts. Counts cover the payoff arithmetic between path loading and payoff rotation, with the answer written to a 22-bit angle word.</figcaption>
+  </figure>
+
+  <div class="pr-pricespace">
+    <div><h3>Against converting every return to a price</h3><p>Our conservative reconstructions of the price-space arithmetic of Chakrabarti et al., under the same angle interface, have <strong>1,250 to 2,180 times</strong> the product for the autocallable and <strong>966 to 1,100 times</strong> for the TARF. Most of that gap comes from removing coherent exponentials, which the log-return reference already does.</p></div>
+    <div><h3>A calibration outside finance</h3><p>On the HHL rotation-angle task of <a class="pr-link" href="https://arxiv.org/html/2610.22367" target="_blank" rel="noopener">Gu et al.</a>, the same process found a signed-Booth circuit with <strong>987 Toffolis and 113 qubits</strong>, a product 28% below the best published circuit, with an all-input logical proof.</p></div>
   </div>
-  <details class="pricing-disclosure">
-    <summary>Holdouts, stress tests and exact proofs</summary>
-    <div class="pricing-disclosure-content">
-      <div class="record-table pricing-record" tabindex="0" role="region" aria-label="Payoff circuit validation table">
-        <table>
-          <caption>Selected rows from Table 3. Each holdout or independent-reference study uses one million paths. A violation is an angle error above 10<sup>−5</sup> radians.</caption>
-          <thead><tr><th scope="col">Circuit</th><th scope="col">Holdout violations</th><th scope="col">Independent-reference violations</th><th scope="col">Selected-input violations</th><th scope="col">Exact logical proof</th></tr></thead>
-          <tbody>
-          {% for row in pricing.validation %}
-            <tr><th scope="row">{{ row.contract }} · {{ row.circuit }}</th><td>{{ row.holdout }}</td><td>{{ row.independent | default: '—' }}</td><td>{{ row.selected }}</td><td>{% if row.proved %}Yes{% else %}—{% endif %}</td></tr>
-          {% endfor %}
-          </tbody>
+
+  <details class="pr-disclosure">
+    <summary>All resource counts (Tables 2 and 6) <span aria-hidden="true">+</span></summary>
+    <div class="pr-disclosure-content">
+      {% for benchmark in pricing.benchmarks %}
+      <div class="pr-table-wrap">
+        <table class="pr-table">
+          <caption>{{ benchmark.title }}. Ratio = reference product ÷ circuit product{% if benchmark.full and benchmark.id != 'hhl' %}; price-space ratio uses our reconstruction of Chakrabarti et al.{% endif %}</caption>
+          <thead><tr><th scope="col">Circuit</th><th scope="col">Toffoli gates</th><th scope="col">Peak qubits</th><th scope="col">vs {{ benchmark.reference | downcase }}</th>{% if benchmark.full and benchmark.id != 'hhl' %}<th scope="col">vs price space</th>{% endif %}</tr></thead>
+          <tbody>{% for row in benchmark.rows %}{% unless row.variant %}
+            <tr class="{% if row.kind %}is-{{ row.kind }}{% endif %}{% if row.best %} is-best{% endif %}"><th scope="row">{{ row.name | escape }}</th><td>{{ row.gates }}</td><td>{{ row.qubits }}</td><td>{{ row.log_ratio }}×</td>{% if benchmark.full and benchmark.id != 'hhl' %}<td>{% if row.price_ratio %}{{ row.price_ratio }}×{% else %}—{% endif %}</td>{% endif %}</tr>
+          {% endunless %}{% endfor %}</tbody>
         </table>
       </div>
-      <p>Language models proposed and implemented candidates under the authors’ task and resource rules. A separate evaluator counted resources and checked sampled angles, phases, input preservation, and workspace cleanup. Frozen designs received the validation and proofs reported for each circuit.</p>
+      {% endfor %}
+      <p>Toffoli counts include CCX, CCZ and controlled-SWAP operations in Toffoli-equivalent units. Peak qubits include inputs, output and workspace, with reuse after clean freeing. These are logical counts, not compiled Clifford+T, depth or physical-qubit estimates.</p>
     </div>
   </details>
+</section>
+
+<section class="pr-section" id="contracts" aria-labelledby="pr-contracts-title">
+  <div class="pr-section-heading"><span class="pr-section-index">03</span><h2 id="pr-contracts-title">Two contracts that remember their past</h2></div>
+  <p class="pr-section-lede">Both benchmarks come from Chakrabarti et al. Their payoff depends on what has already happened along the path, so the circuit must carry contract history as well as the market state.</p>
+
+  <div class="pr-contracts">
+    <article class="pr-contract">
+      <p class="pr-contract-meta">3 assets · 20 dates · 300 input qubits</p>
+      <h3>Worst-of autocallable</h3>
+      <svg class="pr-timeline" viewBox="0 0 400 74" role="img" aria-label="Twenty monitoring dates. Every date checks the knock-in barrier; dates 4, 8, 12, 16 and 20 are also call dates.">
+        <line x1="10" y1="34" x2="390" y2="34" class="pt-axis"/>
+        {% for t in (1..20) %}{% assign x = t | times: 19 | plus: 1 %}{% assign m = t | modulo: 4 %}
+        {% if m == 0 %}<rect x="{{ x | minus: 5 }}" y="27" width="10" height="14" class="pt-call"/>{% else %}<circle cx="{{ x }}" cy="34" r="3" class="pt-date"/>{% endif %}
+        {% endfor %}
+        <text x="77" y="16" class="pt-label" text-anchor="middle">call date</text>
+        <text x="10" y="64" class="pt-label">Barrier checked every date</text>
+        <text x="390" y="64" class="pt-label" text-anchor="end">maturity</text>
+      </svg>
+      <p>On each call date, if every asset is at least 10% up, the contract pays early and ends. Otherwise, if any asset ever fell 30%, a loss linked to the worst performer can apply at maturity.</p>
+      <p class="pr-contract-keep"><b>Kept between dates</b> Three exact index sums, a knock-in counter and call records. Hardened versions keep signed distances to the barrier, so a sign bit is the barrier test for every asset at every date.</p>
+    </article>
+    <article class="pr-contract">
+      <p class="pr-contract-meta">1 factor · 26 dates · 130 input qubits</p>
+      <h3>Target accrual redemption forward</h3>
+      <svg class="pr-timeline" viewBox="0 0 400 74" role="img" aria-label="Twenty-six payment dates. Payments accumulate until the accrual reaches its target of 5, which caps the final payment and ends the contract.">
+        <line x1="10" y1="34" x2="390" y2="34" class="pt-axis"/>
+        {% for t in (1..26) %}{% assign x = t | times: 14.6 | plus: 1 %}{% if t <= 15 %}<rect x="{{ x | minus: 2.5 }}" y="{{ 34 | minus: t }}" width="5" height="{{ t }}" class="pt-accrue"/>{% else %}<circle cx="{{ x }}" cy="34" r="2.5" class="pt-date is-off"/>{% endif %}{% endfor %}
+        <line x1="226" y1="12" x2="226" y2="44" class="pt-stop"/>
+        <text x="232" y="16" class="pt-label">target hit: last payment capped</text>
+        <text x="10" y="64" class="pt-label">Signed payments accrue</text>
+        <text x="390" y="64" class="pt-label" text-anchor="end">Illustrative path</text>
+      </svg>
+      <p>Each date pays a signed amount that depends on the price, unless a knock-out barrier ends the contract. Once the accrued total reaches the target, the last payment is capped and the contract stops.</p>
+      <p class="pr-contract-keep"><b>Kept between dates</b> A seven-bit windowed index, the shifted accrual and a small discount correction. A lookup supplies each date’s payment; one product at the cap date fixes the final amount exactly.</p>
+    </article>
+  </div>
+
+  <details class="pr-disclosure">
+    <summary>Register-level diagram (paper, Fig. 1) <span aria-hidden="true">+</span></summary>
+    <div class="pr-disclosure-content">{% assign method_figure = project.figures[1] %}{% include project-blocks/media.html figure=method_figure %}</div>
+  </details>
+</section>
+
+<section class="pr-section" id="checks" aria-labelledby="pr-checks-title">
+  <div class="pr-section-heading"><span class="pr-section-index">04</span><h2 id="pr-checks-title">The cheapest circuit is not the safest</h2></div>
+  <p class="pr-section-lede">A circuit can compute its integer rules exactly and still disagree with the real contract when a path lands right on a barrier or the accrual cap. We stress each design with inputs chosen to sit on those edges. Narrowing registers saves gates but makes those edges harder to get right.</p>
+
+  <div class="pr-tradeoff" role="table" aria-label="Product improvement and selected boundary-case violations for each finance circuit">
+    <div class="pr-trade-head" role="row"><span role="columnheader">Circuit</span><span role="columnheader">Smaller product vs reference</span><span role="columnheader">Boundary-case violations</span></div>
+    {% assign groups = 'Autocallable|TARF' | split: '|' %}
+    {% for g in groups %}
+    <div class="pr-trade-group" role="row"><span role="cell">{{ g }} <small>{% if g == 'TARF' %}400 cap-tie inputs{% else %}900 threshold inputs{% endif %}</small></span></div>
+    {% for v in pricing.validation %}{% if v.contract == g %}
+    {% assign parts = v.selected | split: '/' %}{% assign num = parts[0] | plus: 0 %}{% assign den = parts[1] | plus: 0 %}
+    {% assign share = num | times: 100.0 | divided_by: den %}
+    {% assign bench = pricing.benchmarks | where: 'label', g | first %}{% if g == 'TARF' %}{% assign bench = pricing.benchmarks | where: 'id', 'tarf' | first %}{% endif %}
+    {% assign ratio = '' %}{% for r in bench.rows %}{% if r.plot == v.circuit %}{% assign ratio = r.log_ratio %}{% endif %}{% endfor %}
+    <div class="pr-trade-row" role="row">
+      <span class="pr-trade-name" role="cell">{{ v.circuit }}{% if v.proved %} <em title="All-input proof of the integer action">proved</em>{% endif %}</span>
+      <span class="pr-trade-bar is-ratio" role="cell"><i style="width:{{ ratio | times: 100 | divided_by: 5.6 }}%"></i><b>{{ ratio }}×</b></span>
+      <span class="pr-trade-bar is-viol" role="cell"><i style="width:{{ share }}%"></i><b>{{ num }}</b><small>/ {{ den }}</small></span>
+    </div>
+    {% endif %}{% endfor %}
+    {% endfor %}
+  </div>
+  <p class="pr-note">Selected boundary cases are deliberately hard and are not drawn from the loading law. On one million ordinary paths, every circuit here has at most four angle violations, within the 10<sup>−5</sup> tolerance budget.</p>
+
+  <div class="pr-findings">
+    <div><h3>Exact where it can be proved</h3><p>For the factor-sum and hardened autocallable circuits, proofs show the integer specification holds for <strong>every input, accumulator and measurement record</strong>, including phase cancellation, path preservation and workspace restoration. Lattice calculations put their probability of exceeding the angle tolerance at 6.248 × 10<sup>−8</sup> and 3.56 × 10<sup>−8</sup>.</p></div>
+    <div><h3>Tuned to the parameters</h3><p>Change the volatilities and correlation and a directly transferred factor-sum circuit has <strong>5.58 times</strong> the reference product. Refitting the integer forms to the new setting recovers a <strong>4.29×</strong> saving. The savings come from the structure of each setting, not from a universal circuit.</p></div>
+  </div>
+
+  <details class="pr-disclosure">
+    <summary>Holdouts, stress tests and proofs (Table 3) <span aria-hidden="true">+</span></summary>
+    <div class="pr-disclosure-content">
+      <div class="pr-table-wrap">
+        <table class="pr-table">
+          <caption>Each holdout or independent-reference study uses one million paths. A violation is an angle error above 10<sup>−5</sup> radians.</caption>
+          <thead><tr><th scope="col">Circuit</th><th scope="col">Holdout</th><th scope="col">Independent reference</th><th scope="col">Selected inputs</th><th scope="col">Exact proof</th></tr></thead>
+          <tbody>{% for row in pricing.validation %}
+            <tr><th scope="row">{{ row.contract }} · {{ row.circuit }}</th><td>{{ row.holdout }}</td><td>{{ row.independent | default: '—' }}</td><td>{{ row.selected }}</td><td>{% if row.proved %}Yes{% else %}—{% endif %}</td></tr>
+          {% endfor %}</tbody>
+        </table>
+      </div>
+      <p>Signed price biases under the loading law are −2.625 × 10<sup>−6</sup> (factor-sum) and +1.01 × 10<sup>−5</sup> (hardened) contract units. For HHL, the Booth-polynomial circuit and two signed-Booth variants have all-input logical proofs, and all 2,031,616 inputs were checked numerically.</p>
+    </div>
+  </details>
+</section>
+
+<section class="pr-section" id="scope" aria-labelledby="pr-scope-title">
+  <div class="pr-section-heading"><span class="pr-section-index">05</span><h2 id="pr-scope-title">What the numbers cover</h2></div>
+  <div class="pr-implication">
+    <h3>Payoff arithmetic only</h3>
+    <p>The counts cover the reversible arithmetic between loading a path and rotating the payoff into an amplitude. They exclude state preparation, the payoff rotation and amplitude estimation itself, so they are not a full cost for pricing a trade. Within that boundary, every comparison uses the same tasks, angle format and target tolerance, and the reference circuits already avoid coherent exponentials.</p>
+    <a class="pr-link" href="{{ pricing_arxiv.url | default: 'https://arxiv.org/abs/2611.04431' | escape }}" target="_blank" rel="noopener">Read the full paper on arXiv ↗</a>
+  </div>
 </section>
 <script src="{{ '/assets/js/pricing.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

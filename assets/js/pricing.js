@@ -1,314 +1,191 @@
+// Resource plane for the derivative-pricing page: Toffoli count vs peak qubits per benchmark.
 (() => {
-  const root = document.querySelector('[data-pricing-root]');
-  if (!root) return;
-
-  const benchmarks = JSON.parse(root.querySelector('[data-pricing-data]').textContent);
-  for (const benchmark of benchmarks) {
-    for (const row of benchmark.rows) {
-      row.count = Number(row.gates.replaceAll(',', ''));
-      row.product = row.count * row.qubits;
-      row.kind ||= 'candidate';
-    }
-    benchmark.referenceRow = benchmark.rows.find(row => row.kind === 'reference');
-  }
-
-  const workspace = root.querySelector('[data-pricing-workspace]');
-  const graph = root.querySelector('[data-pricing-graph]');
-  const canvas = root.querySelector('[data-pricing-guides]');
-  const ticks = root.querySelector('[data-pricing-ticks]');
-  const points = root.querySelector('[data-pricing-points]');
-  const circuit = root.querySelector('[data-pricing-circuit]');
-  const note = root.querySelector('[data-pricing-note]');
-  const rangeButton = root.querySelector('[data-pricing-range]');
-  const labelsToggle = root.querySelector('[data-pricing-labels]');
-  const variantsToggle = root.querySelector('[data-pricing-variants]');
-  const variantsControl = root.querySelector('[data-pricing-variants-control]');
-  const variantKey = root.querySelector('[data-pricing-variant-key]');
-  const frontierKey = root.querySelector('[data-pricing-frontier-key]');
-  const comparisonKey = root.querySelector('[data-pricing-comparison-key]');
-  const benchmarkButtons = [...root.querySelectorAll('[data-benchmark]')];
-  const legend = [...root.querySelectorAll('[data-pricing-kind]')];
-  const stats = Object.fromEntries([...root.querySelectorAll('[data-stat]')].map(node => [node.dataset.stat, node]));
-  const exact = new Intl.NumberFormat('en-US');
-  const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
-  const percent = new Intl.NumberFormat('en-US', { style: 'percent', maximumFractionDigits: 1 });
-  let benchmark;
-  let expanded = false;
-  let view;
-  let visibleRows;
-  let selected;
-  let marks;
-  let frontier;
-
-  const xFraction = value => {
-    const [low, high] = view.x;
-    return view.scale === 'log' ? Math.log(value / low) / Math.log(high / low) : (value - low) / (high - low);
+  const root = document.querySelector('[data-pricing-chart]');
+  const dataEl = document.querySelector('[data-pricing-data]');
+  if (!root || !dataEl) return;
+  const benchmarks = JSON.parse(dataEl.textContent);
+  const svg = root.querySelector('[data-pricing-svg]');
+  const tabs = root.querySelector('[data-pricing-tabs]');
+  const detail = root.querySelector('[data-pricing-detail]');
+  const wideWrap = root.querySelector('[data-pricing-wide-wrap]');
+  const wideBox = root.querySelector('[data-pricing-wide]');
+  const NS = 'http://www.w3.org/2000/svg';
+  const num = (s) => Number(String(s).replace(/,/g, ''));
+  const fmt = (n) => n >= 1e6 ? (n / 1e6).toLocaleString('en-US', { maximumFractionDigits: 2 }) + 'M' : Math.round(n).toLocaleString('en-US');
+  const el = (tag, attrs = {}, parent) => {
+    const n = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (parent) parent.appendChild(n);
+    return n;
   };
-  const yFraction = value => (view.y[1] - value) / (view.y[1] - view.y[0]);
+  const KIND = { reference: 'Reference', control: 'Control or transfer', reconstruction: 'Price-space reconstruction' };
+  const SHORT = { autocallable: 'Autocallable', tarf: 'TARF', 'second-setting': 'Changed parameters', hhl: 'HHL angle' };
 
-  function selectRow(row) {
-    if (selected === row && marks.get(row).getAttribute('aria-pressed') === 'true') return;
-    selected = row;
-    circuit.value = String(visibleRows.indexOf(row));
-    for (const [data, mark] of marks) mark.setAttribute('aria-pressed', String(data === row));
+  let current = benchmarks[0];
+  let selected = null;
 
-    stats.gates.textContent = exact.format(row.count);
-    stats.qubits.textContent = exact.format(row.qubits);
-    stats.product.textContent = exact.format(row.product);
-    stats.reference.textContent = 'vs. ' + benchmark.reference;
-    const change = row.product / benchmark.referenceRow.product - 1;
-    stats.change.textContent = row === benchmark.referenceRow ? 'Reference' : percent.format(Math.abs(change)) + (change < 0 ? ' smaller' : ' larger');
-    stats.change.dataset.better = String(change < 0);
-    note.textContent = row.evidence || '';
-    note.hidden = !row.evidence;
-    comparisonKey.hidden = row === benchmark.referenceRow;
-    drawGuides();
-  }
-
-  function drawLabels(ctx, width, height, positions, colors) {
-    if (!labelsToggle.checked) return;
-    const reference = benchmark.referenceRow;
-    const best = benchmark.rows.find(row => row.best);
-    const narrow = width < 410;
-    const important = [selected, reference, best];
-    const context = narrow ? visibleRows.filter(row => row.plot !== 'Signed-Booth') : visibleRows;
-    const rows = new Set([...important, ...context]);
-    const placed = [];
-    const overlaps = (a, b) => a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
-    const avoid = [...positions.values()].map(({x, y}) => ({ x: x - 8, y: y - 8, w: 16, h: 16 }));
-    const family = colors.getPropertyValue('--pricing-ui').trim();
-    const headingFont = '600 ' + (narrow ? 11 : 14) + 'px ' + family;
-    const detailFont = (narrow ? 10 : 12) + 'px ' + family;
-    const bounds = narrow ? 29 : 35;
-    ctx.textBaseline = 'top';
-
-    for (const row of rows) {
-      if (narrow && placed.length === 5) break;
-      if (!positions.has(row)) continue;
-      const point = positions.get(row);
-      const label = row.plot || row.name;
-      const count = narrow && row.count >= 100000 ? compact.format(row.count) : exact.format(row.count);
-      const detail = count + ' gates · ' + row.qubits + ' qubits';
-      ctx.font = headingFont;
-      const nameWidth = ctx.measureText(label).width;
-      ctx.font = detailFont;
-      const w = Math.ceil(Math.max(nameWidth, ctx.measureText(detail).width)) + 10;
-      const h = bounds;
-      let rect;
-
-      for (const offset of [12, 27, 43, 60, 83]) {
-        const sides = point.x < width / 2 ? [point.x + offset, point.x - w - offset] : [point.x - w - offset, point.x + offset];
-        const lift = offset - 8;
-        const above = point.y - h - lift;
-        const below = point.y + lift;
-        const levels = point.y > height / 2 ? [above, below] : [below, above];
-        const candidates = sides.flatMap(x => [
-          ...levels.map(y => ({ x, y, w, h })),
-          { x, y: point.y - h / 2, w, h },
-        ]).concat(levels.map(y => ({ x: point.x - w / 2, y, w, h })));
-        rect = candidates.find(box => box.x >= 4 && box.y >= 4 && box.x + w <= width - 4 && box.y + h <= height - 4
-          && !placed.some(other => overlaps(box, other))
-          && !avoid.some(other => overlaps(box, other)));
-        if (rect) break;
-      }
-      if (!rect) continue;
-
-      placed.push(rect);
-      const lineEndX = Math.max(rect.x, Math.min(point.x, rect.x + w));
-      const lineEndY = Math.max(rect.y, Math.min(point.y, rect.y + h));
-      const colorKey = { candidate: '--plot-gate', control: '--plot-control', reference: '--plot-ref', reconstruction: '--plot-wide' }[row.kind];
-      ctx.strokeStyle = colors.getPropertyValue('--plot-leader').trim();
-      ctx.beginPath();
-      ctx.moveTo(point.x, point.y);
-      ctx.lineTo(lineEndX, lineEndY);
-      ctx.stroke();
-      ctx.fillStyle = colors.getPropertyValue('--plot-label').trim();
-      ctx.fillRect(rect.x, rect.y, w, h);
-      ctx.fillStyle = colors.getPropertyValue(colorKey).trim();
-      ctx.font = headingFont;
-      ctx.fillText(label, rect.x + 5, rect.y + 3);
-      ctx.fillStyle = colors.getPropertyValue('--plot-muted').trim();
-      ctx.font = detailFont;
-      ctx.fillText(detail, rect.x + 5, rect.y + (narrow ? 15 : 20));
-    }
-  }
-
-  function drawGuides() {
-    if (!view) return;
-    const width = graph.clientWidth;
-    const height = graph.clientHeight;
-    const ratio = window.devicePixelRatio || 1;
-    canvas.width = Math.round(width * ratio);
-    canvas.height = Math.round(height * ratio);
-    const ctx = canvas.getContext('2d');
-    if (!ctx || !width || !height) return;
-
-    const colors = getComputedStyle(graph);
-    ctx.scale(ratio, ratio);
-    const positions = new Map(visibleRows.map(row => [row, { x: width * xFraction(row.count), y: height * yFraction(row.qubits) }]));
-    const [low, high] = view.x;
-    const boundary = Array.from({ length: 81 }, (_, step) => {
-      const fraction = step / 80;
-      const gates = view.scale === 'log' ? low * (high / low) ** fraction : low + (high - low) * fraction;
-      return { x: fraction * width, y: yFraction(benchmark.referenceRow.product / gates) * height };
-    });
-    ctx.fillStyle = colors.getPropertyValue('--plot-better-area').trim();
-    ctx.beginPath();
-    ctx.moveTo(0, height);
-    for (const point of boundary) ctx.lineTo(point.x, Math.min(height, Math.max(0, point.y)));
-    ctx.lineTo(width, height);
-    ctx.fill();
-
-    ctx.strokeStyle = colors.getPropertyValue('--plot-grid').trim();
-    ctx.beginPath();
-    for (const value of view.x_ticks) {
-      const x = width * xFraction(value);
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, height);
-    }
-    for (const value of view.y_ticks) {
-      const y = height * yFraction(value);
-      ctx.moveTo(0, y);
-      ctx.lineTo(width, y);
-    }
-    ctx.stroke();
-
-    ctx.strokeStyle = colors.getPropertyValue('--plot-guide').trim();
-    ctx.setLineDash([5, 5]);
-    ctx.beginPath();
-    for (const point of boundary) ctx.lineTo(point.x, point.y);
-    ctx.stroke();
-
-    ctx.setLineDash([]);
-    if (frontier.length > 1) {
-      ctx.strokeStyle = colors.getPropertyValue('--plot-frontier').trim();
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      for (const row of frontier) {
-        const point = positions.get(row);
-        ctx.lineTo(point.x, point.y);
-      }
-      ctx.stroke();
-    }
-
-    const reference = positions.get(benchmark.referenceRow);
-    const target = positions.get(selected);
-    if (reference && target && selected !== benchmark.referenceRow) {
-      const dx = target.x - reference.x;
-      const dy = target.y - reference.y;
-      const distance = Math.hypot(dx, dy);
-      if (distance > 24) {
-        const ux = dx / distance;
-        const uy = dy / distance;
-        const x = target.x - ux * 13;
-        const y = target.y - uy * 13;
-        ctx.strokeStyle = colors.getPropertyValue('--plot-comparison').trim();
-        ctx.lineWidth = 1.3;
-        ctx.setLineDash([2, 4]);
-        ctx.beginPath();
-        ctx.moveTo(reference.x + ux * 8, reference.y + uy * 8);
-        ctx.lineTo(x, y);
-        ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.beginPath();
-        ctx.moveTo(x - ux * 7 + uy * 4, y - uy * 7 - ux * 4);
-        ctx.lineTo(x, y);
-        ctx.lineTo(x - ux * 7 - uy * 4, y - uy * 7 + ux * 4);
-        ctx.stroke();
-      }
-    }
-    ctx.lineWidth = 1;
-    drawLabels(ctx, width, height, positions, colors);
-  }
-
-  function renderPlot() {
-    view = expanded ? benchmark.full : benchmark.detail;
-    visibleRows = benchmark.rows.filter(row => (expanded || row.kind !== 'reconstruction') && (variantsToggle.checked || !row.variant));
-    let lowestQubits = Infinity;
-    frontier = visibleRows.filter(row => row.kind === 'candidate').sort((a, b) => a.count - b.count || a.qubits - b.qubits).filter(row => {
-      if (row.qubits >= lowestQubits) return false;
-      lowestQubits = row.qubits;
-      return true;
-    });
-    ticks.replaceChildren();
-    points.replaceChildren();
-    circuit.replaceChildren();
-    marks = new Map();
-
-    for (const value of view.x_ticks) {
-      const tick = document.createElement('span');
-      tick.className = 'pricing-tick-x';
-      tick.style.left = xFraction(value) * 100 + '%';
-      tick.textContent = (view.scale === 'linear' ? exact : compact).format(value);
-      ticks.append(tick);
-    }
-    for (const value of view.y_ticks) {
-      const tick = document.createElement('span');
-      tick.className = 'pricing-tick-y';
-      tick.style.top = yFraction(value) * 100 + '%';
-      tick.textContent = exact.format(value);
-      ticks.append(tick);
-    }
-
-    visibleRows.forEach((row, index) => {
-      const mark = document.createElement('button');
-      const label = row.name + ', ' + exact.format(row.count) + ' Toffoli gates, ' + row.qubits + ' logical qubits';
-      mark.type = 'button';
-      mark.className = 'pricing-point';
-      mark.dataset.kind = row.kind;
-      if (row.variant) mark.dataset.variant = 'true';
-      mark.style.left = xFraction(row.count) * 100 + '%';
-      mark.style.top = yFraction(row.qubits) * 100 + '%';
-      mark.setAttribute('aria-label', label);
-      mark.title = label;
-      mark.addEventListener('focus', () => selectRow(row));
-      mark.addEventListener('click', () => selectRow(row));
-      mark.addEventListener('pointerenter', event => {
-        if (event.pointerType === 'mouse') selectRow(row);
-      });
-      marks.set(row, mark);
-      points.append(mark);
-      circuit.add(new Option(row.name, index));
-    });
-
-    for (const key of legend) key.hidden = !visibleRows.some(row => row.kind === key.dataset.pricingKind);
-    variantKey.hidden = !visibleRows.some(row => row.variant);
-    frontierKey.hidden = frontier.length < 2;
-    rangeButton.hidden = !benchmark.full;
-    rangeButton.setAttribute('aria-pressed', String(expanded));
-    root.querySelector('[data-pricing-scale]').textContent = view.scale === 'log' ? '· log scale' : '· linear scale';
-    selectRow(visibleRows.includes(selected) ? selected : visibleRows.find(row => row.best));
-  }
-
-  function showBenchmark(id) {
-    benchmark = benchmarks.find(entry => entry.id === id);
-    expanded = false;
-    selected = null;
-    variantsControl.hidden = !benchmark.rows.some(row => row.variant);
-    const best = benchmark.rows.find(row => row.best);
-    const reference = benchmark.referenceRow;
-    benchmarkButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.benchmark === id)));
-    root.querySelector('[data-pricing-title]').textContent = benchmark.title;
-    root.querySelector('[data-pricing-reference]').textContent = exact.format(reference.count) + ' gates · ' + reference.qubits + ' qubits in the comparison reference';
-    root.querySelector('[data-pricing-best]').textContent = benchmark.id === 'hhl' ? percent.format(1 - best.product / reference.product) : best.log_ratio + '×';
-    root.querySelector('[data-pricing-finding]').textContent = benchmark.finding;
-    renderPlot();
-  }
-
-  circuit.addEventListener('change', () => selectRow(visibleRows[Number(circuit.value)]));
-  labelsToggle.addEventListener('change', drawGuides);
-  variantsToggle.addEventListener('change', renderPlot);
-  rangeButton.addEventListener('click', () => {
-    expanded = !expanded;
-    renderPlot();
+  benchmarks.forEach((b) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = SHORT[b.id] || b.label;
+    btn.dataset.id = b.id;
+    btn.addEventListener('click', () => { current = b; selected = null; render(); });
+    tabs.appendChild(btn);
   });
-  benchmarkButtons.forEach(button => button.addEventListener('click', () => showBenchmark(button.dataset.benchmark)));
-  window.addEventListener('hashchange', () => {
-    if (window.location.hash === '#hhl') showBenchmark('hhl');
-  });
-  workspace.hidden = false;
-  showBenchmark(window.location.hash === '#hhl' ? 'hhl' : benchmarks[0].id);
-  new ResizeObserver(drawGuides).observe(graph);
-  new MutationObserver(drawGuides).observe(document.documentElement, { attributeFilter: ['data-theme'] });
-  document.fonts.ready.then(drawGuides);
+  wideBox.addEventListener('change', render);
+  new ResizeObserver(() => render()).observe(svg);
+
+  function rowsFor(b) {
+    return b.rows
+      .filter((r) => !r.variant && (wideBox.checked || r.kind !== 'reconstruction'))
+      .map((r) => ({ ...r, g: num(r.gates), q: num(r.qubits), ratio: num(r.log_ratio) }));
+  }
+
+  function logTicks(lo, hi) {
+    const out = [];
+    for (let e = Math.floor(Math.log10(lo)); e <= Math.ceil(Math.log10(hi)); e++) {
+      for (const m of [1, 2, 5]) { const v = m * 10 ** e; if (v >= lo && v <= hi) out.push(v); }
+    }
+    if (out.length > 7) return out.filter((v) => /^[15]/.test(String(v)));
+    if (out.length < 3) {
+      const extra = [];
+      for (let e = Math.floor(Math.log10(lo)); e <= Math.ceil(Math.log10(hi)); e++)
+        for (let m = 1; m < 10; m++) { const v = m * 10 ** e; if (v >= lo && v <= hi) extra.push(v); }
+      return extra.length > 8 ? extra.filter((_, i) => i % 2 === 0) : extra;
+    }
+    return out;
+  }
+  function linTicks(lo, hi, n = 5) {
+    const raw = (hi - lo) / n, p = 10 ** Math.floor(Math.log10(raw));
+    const step = [1, 2, 2.5, 5, 10].map((m) => m * p).find((s) => s >= raw);
+    const out = [];
+    for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) out.push(v);
+    return out;
+  }
+
+  const larger = (r) => (1 / r.ratio).toLocaleString('en-US', { maximumFractionDigits: r.ratio < 0.1 ? 0 : 2 });
+  const ratioLabel = (r) => r.ratio >= 1 ? `${r.log_ratio}× smaller` : `${larger(r)}× larger`;
+
+  function render() {
+    [...tabs.children].forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.id === current.id)));
+    const hasWide = current.rows.some((r) => r.kind === 'reconstruction');
+    wideWrap.hidden = !hasWide;
+    const rows = rowsFor(current);
+    const ref = rows.find((r) => r.kind === 'reference');
+    if (!selected || !rows.includes(selected)) selected = rows.find((r) => r.best) || rows[0];
+
+    const W = svg.clientWidth || 600, H = svg.clientHeight || 360;
+    const m = { l: 52, r: 18, t: 14, b: 44 };
+    const iw = W - m.l - m.r, ih = H - m.t - m.b;
+    const gs = rows.map((r) => r.g), qs = rows.map((r) => r.q);
+    const gLo = Math.min(...gs) / 1.25, gHi = Math.max(...gs) * 1.3;
+    const qPad = (Math.max(...qs) - Math.min(...qs)) * 0.14 + 4;
+    const qLo = Math.max(0, Math.min(...qs) - qPad), qHi = Math.max(...qs) + qPad;
+    const x = (g) => m.l + (Math.log(g) - Math.log(gLo)) / (Math.log(gHi) - Math.log(gLo)) * iw;
+    const y = (q) => m.t + ih - (q - qLo) / (qHi - qLo) * ih;
+    svg.replaceChildren();
+
+    const clipId = 'pv-clip';
+    const defs = el('defs', {}, svg);
+    el('rect', { x: m.l, y: m.t, width: iw, height: ih }, el('clipPath', { id: clipId }, defs));
+
+    // Region with a smaller product than the reference, and the iso-product curve.
+    const P = ref.g * ref.q, pts = [];
+    for (let i = 0; i <= 80; i++) {
+      const g = Math.exp(Math.log(gLo) + (Math.log(gHi) - Math.log(gLo)) * i / 80);
+      pts.push([x(g), y(Math.max(qLo - 50, Math.min(qHi + 50, P / g)))]);
+    }
+    const plot = el('g', { 'clip-path': `url(#${clipId})` }, svg);
+    el('path', { class: 'pv-better', d: `M${m.l},${m.t + ih} ` + pts.map((p) => `L${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ') + ` L${m.l + iw},${m.t + ih} Z` }, plot);
+
+    // Grid and ticks
+    const grid = el('g', {}, svg);
+    linTicks(qLo, qHi).forEach((q) => {
+      el('line', { class: 'pv-grid', x1: m.l, x2: m.l + iw, y1: y(q), y2: y(q) }, grid);
+      el('text', { class: 'pv-tick', x: m.l - 8, y: y(q) + 4, 'text-anchor': 'end' }, grid).textContent = q.toLocaleString('en-US');
+    });
+    let lastX = -1e9;
+    const xt = (gHi / gLo < 3 ? linTicks(gLo, gHi, 4) : logTicks(gLo, gHi)).filter((g) => { const ok = x(g) - lastX > 58; if (ok) lastX = x(g); return ok; });
+    xt.forEach((g) => {
+      el('line', { class: 'pv-grid', x1: x(g), x2: x(g), y1: m.t, y2: m.t + ih }, grid);
+      el('text', { class: 'pv-tick', x: x(g), y: m.t + ih + 17, 'text-anchor': 'middle' }, grid).textContent = fmt(g);
+    });
+    el('line', { class: 'pv-axis', x1: m.l, x2: m.l + iw, y1: m.t + ih, y2: m.t + ih }, svg);
+    el('line', { class: 'pv-axis', x1: m.l, x2: m.l, y1: m.t, y2: m.t + ih }, svg);
+    el('text', { class: 'pv-axis-title', x: m.l + iw / 2, y: H - 6, 'text-anchor': 'middle' }, svg).textContent = 'Toffoli gates (log scale)';
+    el('text', { class: 'pv-axis-title', x: 0, y: 0, transform: `translate(13 ${m.t + ih / 2}) rotate(-90)`, 'text-anchor': 'middle' }, svg).textContent = 'Peak logical qubits';
+
+    el('path', { class: 'pv-iso', d: 'M' + pts.map((p) => p.map((v) => v.toFixed(1)).join(',')).join(' L') }, plot);
+
+    if (selected !== ref) el('line', { class: 'pv-link', x1: x(ref.g), y1: y(ref.q), x2: x(selected.g), y2: y(selected.q) }, svg);
+
+    // Points, with greedy label placement that drops labels that would collide.
+    const boxes = rows.map((r) => ({ x0: x(r.g) - 7, x1: x(r.g) + 7, y0: y(r.q) - 7, y1: y(r.q) + 7 }));
+    const hit = (b) => boxes.some((o) => b.x0 < o.x1 && b.x1 > o.x0 && b.y0 < o.y1 && b.y1 > o.y0) || b.x0 < m.l || b.x1 > W || b.y0 < 0 || b.y1 > m.t + ih;
+    const order = [...rows].sort((a, b) => (b === selected) - (a === selected) || (b.kind === 'reference') - (a.kind === 'reference') || (b.best ? 1 : 0) - (a.best ? 1 : 0));
+    const marks = el('g', {}, svg);
+    const labelLayer = el('g', {}, svg);
+    order.forEach((r) => {
+      const cx = x(r.g), cy = y(r.q);
+      const g = el('g', { class: `pv-mark ${r.kind ? 'is-' + r.kind : ''} ${r === selected ? 'is-selected' : ''}`, tabindex: 0, role: 'button', 'aria-label': `${r.name}: ${r.gates} Toffolis, ${r.qubits} qubits, ${r.log_ratio} times reference` }, marks);
+      el('circle', { class: 'pv-hit', cx, cy, r: 14 }, g);
+      if (r.kind === 'control' || r.kind === 'reconstruction') el('rect', { class: 'pv-dot', x: cx - 6, y: cy - 6, width: 12, height: 12, transform: `rotate(45 ${cx} ${cy})` }, g);
+      else el('circle', { class: 'pv-dot', cx, cy, r: r.kind === 'reference' ? 6 : 6.5 }, g);
+      const pick = () => { selected = r; render(); };
+      g.addEventListener('click', pick);
+      g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+      g.addEventListener('mouseenter', (e) => showTip(e, r));
+      g.addEventListener('mousemove', moveTip);
+      g.addEventListener('mouseleave', hideTip);
+
+      const name = r.plot || r.name;
+      const ratioTxt = r.kind === 'reference' ? '' : ratioLabel(r);
+      const w = (name.length + ratioTxt.length + 2) * 6.4, h = 15;
+      const spots = [[cx + 11, cy + 4, 'start'], [cx - 11, cy + 4, 'end'], [cx - w / 2, cy - 12, 'start'], [cx - w / 2, cy + 22, 'start']];
+      for (const [tx, ty, anchor] of spots) {
+        const x0 = anchor === 'end' ? tx - w : tx;
+        const box = { x0, x1: x0 + w, y0: ty - h + 3, y1: ty + 3 };
+        if (hit(box)) continue;
+        boxes.push(box);
+        const t = el('text', { class: 'pv-label', x: tx, y: ty, 'text-anchor': anchor }, labelLayer);
+        el('tspan', {}, t).textContent = name + '  ';
+        if (ratioTxt) el('tspan', { class: r.ratio < 1 ? 'pv-ratio is-worse' : 'pv-ratio' }, t).textContent = ratioTxt;
+        break;
+      }
+    });
+    renderDetail(selected, ref);
+  }
+
+  function renderDetail(r, ref) {
+    const isRef = r.kind === 'reference';
+    const product = r.g * r.q, better = r.ratio >= 1;
+    const kicker = r.kind ? KIND[r.kind] : (r.best ? 'This work · smallest product' : 'This work');
+    const vs = isRef ? '1.00×' : `${r.log_ratio}×`;
+    const vsLabel = isRef ? 'Product' : (better ? 'Smaller product than reference' : 'Larger product than reference');
+    const vsVal = isRef ? '' : (better ? vs : `${larger(r)}×`);
+    detail.innerHTML = `
+      <p class="pr-detail-kicker ${r.kind ? 'is-ref' : ''}">${kicker}</p>
+      <h4>${r.name}</h4>
+      <dl>
+        <div><dt>Toffoli gates</dt><dd>${r.gates}</dd></div>
+        <div><dt>Peak qubits</dt><dd>${r.qubits}</dd></div>
+        <div><dt>Gates × qubits</dt><dd>${fmt(product)}</dd></div>
+        ${isRef ? '' : `<div><dt>${vsLabel}</dt><dd class="${better ? 'is-better' : 'is-worse'}">${vsVal}</dd></div>`}
+      </dl>
+      ${isRef ? `<p>${current.title}. Every ratio on this chart is measured against this circuit.</p>` : `<p>Reference: ${ref.name}, ${ref.gates} Toffolis and ${ref.qubits} qubits.</p>`}
+      ${r.evidence ? `<p class="pr-detail-evidence">${r.evidence}</p>` : ''}
+      ${!r.kind && !r.evidence && r.best ? `<p class="pr-detail-evidence">${current.finding}</p>` : ''}`;
+  }
+
+  let tip;
+  function showTip(e, r) {
+    tip = tip || Object.assign(document.createElement('div'), { className: 'pv-tip' });
+    tip.innerHTML = `<strong>${r.name}</strong><br>${r.gates} Toffolis · ${r.qubits} qubits${r.kind === 'reference' ? '' : `<br>Product ${ratioLabel(r)} than reference`}`;
+    root.appendChild(tip);
+    moveTip(e);
+  }
+  function moveTip(e) { if (tip) { tip.style.left = `${e.clientX + 14}px`; tip.style.top = `${e.clientY + 14}px`; } }
+  function hideTip() { tip?.remove(); }
+
+  render();
 })();
