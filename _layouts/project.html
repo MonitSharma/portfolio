@@ -17,6 +17,7 @@
 <link rel="preload" href="{{ '/assets/fonts/SourceSerif4-Variable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/human.css' | relative_url }}">
 {% if project.slug == 'shor-quantum-factoring' %}<link rel="stylesheet" href="{{ '/assets/css/shor.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
+{% if project.slug == 'ecdsa' %}<link rel="stylesheet" href="{{ '/assets/css/ecdsa.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
 {% if project.slug == 'quantum-derivative-pricing' %}<link rel="stylesheet" href="{{ '/assets/css/pricing.css' | relative_url }}?v={{ site.time | date: '%s' }}">{% endif %}
 </head>
 <body class="editorial project-page experience experience--{{ project.slug }}">

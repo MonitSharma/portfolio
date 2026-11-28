@@ -1,101 +1,247 @@
+{% assign ec = site.data.ecdsa_results %}
+{% assign lead = ec.leaders %}
 <header class="ecdsa-cover" id="overview">
   <div class="ecdsa-masthead">
-    <span>ECDSA.fail <span aria-hidden="true">/</span> Optimization challenge</span>
-    <a href="{{ project.leaderboard_url }}" target="_blank" rel="noopener">Live leaderboard ↗</a>
+    <span>ECDSA.fail <span aria-hidden="true">/</span> secp256k1 <span aria-hidden="true">/</span> <b>Shor’s algorithm</b></span>
+    <a class="ecdsa-link" href="{{ project.leaderboard_url }}" target="_blank" rel="noopener">Live leaderboard ↗</a>
   </div>
   <div class="ecdsa-cover-grid">
     <div class="ecdsa-cover-copy">
-      <h1>Compute once.<span>Reuse the product.</span></h1>
-      <p>In a reversible secp256k1 point addition, an idle qubit can hold a product for later use. That saves a Toffoli, provided the circuit returns the wire to zero.</p>
+      <h1>From one point addition <span>to a full attack.</span></h1>
+      <p class="ecdsa-intro">ECDSA.fail scores a single reversible point addition on Bitcoin’s curve. I built a converter that turns that addition into a complete, gate-counted Shor circuit for recovering a private key.</p>
+      <p class="ecdsa-cover-finding">I ran it on my own circuit and thirteen others from the public leaderboard. At the same qubit budget, the converted circuits need <strong>1.55–2.30× fewer Toffolis</strong> than the published designs.</p>
+      <dl class="ecdsa-cover-stats">
+        <div><dt>My circuit, full attack</dt><dd>33.0M</dd><dd class="ecdsa-stat-note">Toffolis per kept run · 1,477 qubits</dd></div>
+        <div><dt>Narrowest, 1,186 qubits</dt><dd>52.1M</dd><dd class="ecdsa-stat-note">vs 89.8M, Google at 1,191 qubits</dd></div>
+        <div><dt>Circuits converted</dt><dd>14</dd><dd class="ecdsa-stat-note">10 authors · 811–1,481 qubits</dd></div>
+      </dl>
+      <a class="ecdsa-read-link" href="#frontier">Compare at the same qubit budget <span aria-hidden="true">↘</span></a>
     </div>
-    <figure class="ecdsa-circuit">
-      <svg viewBox="0 0 448 216" role="img" aria-labelledby="ecdsa-circuit-title ecdsa-circuit-desc">
-        <title id="ecdsa-circuit-title">Compute, reuse and clear a Boolean product</title>
-        <desc id="ecdsa-circuit-desc">An illustrative five-wire circuit. A Toffoli computes a AND b into an idle zero wire. Two CNOT gates copy the product into the first target and a later zero target. A third CNOT uses the later target to clear the idle wire.</desc>
-        <rect class="ecdsa-circuit-hold" x="106" y="108" width="244" height="28"/>
-        <g class="ecdsa-circuit-labels" text-anchor="middle">
-          <text x="106" y="19">Compute</text>
-          <text x="229" y="19">Copy and reuse</text>
-          <text x="350" y="19">Clear</text>
+    <figure class="ecdsa-cover-diagram">
+      <svg viewBox="0 0 320 330" role="img" aria-labelledby="ecdsa-chain-title ecdsa-chain-desc">
+        <title id="ecdsa-chain-title">From one point addition to a full attack</title>
+        <desc id="ecdsa-chain-desc">Top: the leaderboard scores one point addition. Bottom: a full Shor run repeats a table lookup and a point addition 39 times with 13-bit windows, then applies a quantum Fourier transform.</desc>
+        <g class="ecdsa-schematic-before">
+          <text x="0" y="20" class="ecdsa-schematic-label">What the leaderboard scores</text>
+          <path d="M28 61H100 M220 61H280"/>
+          <rect x="100" y="41" width="120" height="40"/>
+          <text x="6" y="66">P</text><text x="160" y="66" text-anchor="middle">Add Q</text><text x="288" y="66">P+Q</text>
         </g>
-        <path class="ecdsa-circuit-wires" d="M55 54H380 M55 88H380 M55 122H380 M55 156H380 M55 190H380"/>
-        <path class="ecdsa-circuit-controls" d="M106 54V122 M187 122V156 M270 122V190 M350 122V190"/>
-        <g class="ecdsa-circuit-dots">
-          <circle cx="106" cy="54" r="4"/><circle cx="106" cy="88" r="4"/>
-          <circle cx="187" cy="122" r="4"/><circle cx="270" cy="122" r="4"/><circle cx="350" cy="190" r="4"/>
-        </g>
-        <g class="ecdsa-circuit-targets">
-          <circle cx="106" cy="122" r="8"/><circle cx="187" cy="156" r="8"/>
-          <circle cx="270" cy="190" r="8"/><circle cx="350" cy="122" r="8"/>
-          <path d="M101 122h10 M106 117v10 M182 156h10 M187 151v10 M265 190h10 M270 185v10 M345 122h10 M350 117v10"/>
-        </g>
-        <g class="ecdsa-circuit-states">
-          <text x="3" y="58">a</text><text x="3" y="92">b</text>
-          <text x="3" y="126">idle 0</text><text x="3" y="160">t</text><text x="3" y="194">0</text>
-          <text x="391" y="58">a</text><text x="391" y="92">b</text>
-          <text x="391" y="126">0</text><text x="391" y="160">t ⊕ ab</text><text x="391" y="194">ab</text>
+        <path d="M160 97V125 M154 119L160 125L166 119" class="ecdsa-schematic-arrow"/>
+        <g class="ecdsa-schematic-after">
+          <text x="0" y="156" class="ecdsa-schematic-label">What an attack runs</text>
+          <path d="M8 196H22 M110 196H128 M216 196H232 M8 236H22 M110 236H128 M216 236H232"/>
+          <rect x="22" y="178" width="88" height="36"/><rect x="128" y="178" width="88" height="36"/>
+          <rect x="22" y="218" width="88" height="36"/><rect x="128" y="218" width="88" height="36"/>
+          <text x="66" y="201" text-anchor="middle">Lookup</text><text x="172" y="201" text-anchor="middle">Add</text>
+          <text x="66" y="241" text-anchor="middle">Lookup</text><text x="172" y="241" text-anchor="middle">Add</text>
+          <text x="240" y="201">× 39</text>
+          <text x="66" y="276" text-anchor="middle" class="ecdsa-schematic-dots">⋮</text>
+          <rect x="22" y="288" width="194" height="34"/>
+          <text x="119" y="310" text-anchor="middle">Fourier transform</text>
         </g>
       </svg>
-      <figcaption>One Toffoli computes <var>ab</var>. Three CNOTs copy it, reuse it, and clear the idle wire.</figcaption>
+      <figcaption>The leaderboard counts one box. An attack repeats it, with a table lookup before each.</figcaption>
     </figure>
   </div>
-  <p class="ecdsa-cover-result"><strong>{{ project.metric }}</strong><span>mean executed Toffolis at {{ project.low_gate_qubits }} logical qubits</span><small>My lowest gate count</small></p>
+  <div class="ecdsa-record">
+    <p><strong>{{ project.challenge_metric }}</strong> Toffolis for one addition at 1,464 qubits, my lowest scored entry · lowest on the board, 15–21 October 2026</p>
+    <p>Unreviewed work · converter and data not yet public</p>
+  </div>
+  <nav class="ecdsa-contents" aria-label="On this page">
+    <a href="#leaderboard">The challenge</a>
+    <a href="#assembly">To a full attack</a>
+    <a href="#frontier">Same budget</a>
+    <a href="#verification">Verification</a>
+    <a href="#hardware">Hardware</a>
+    <a href="#contribution">What is new</a>
+  </nav>
 </header>
 
-<nav class="ecdsa-contents" aria-label="On this page">
-  <a href="#results">Circuit design</a>
-  <a href="#public-frontier">Score comparison</a>
-  <a href="#external-verification">Verification</a>
-</nav>
+<script type="application/json" data-ecdsa-results>{{ ec | jsonify }}</script>
 
-<section class="ecdsa-section" id="results" aria-labelledby="ecdsa-results-title">
-  <div class="ecdsa-heading"><span aria-hidden="true">01</span><h2 id="ecdsa-results-title">Where the circuit saves work</h2></div>
-  <p class="ecdsa-lede">The challenge measures one elliptic-curve point addition. Toffolis can be expensive in a fault-tolerant circuit, so it pays to look for places where the same Boolean product is computed twice.</p>
+<section class="ecdsa-section" id="leaderboard" aria-labelledby="ecdsa-board-title">
+  <div class="ecdsa-heading"><span aria-hidden="true">01</span><h2 id="ecdsa-board-title">The challenge and my entries</h2></div>
+  <p class="ecdsa-lede">Each entry is a reversible circuit for one secp256k1 point addition with a classical offset. The organisers simulate it on 9,024 inputs and record peak logical qubits and mean executed Toffoli gates. Fewer of both is better, so the public results form a frontier that moved quickly through October and November.</p>
+
+  <figure class="ec-viz" data-board-chart>
+    <div class="ec-viz-toolbar">
+      <div class="ec-segmented" role="group" aria-label="Region" data-board-view>
+        <button type="button" data-view="zoom" aria-pressed="true">Close-up, 1,150–1,600 qubits</button>
+        <button type="button" data-view="all" aria-pressed="false">Whole board</button>
+      </div>
+      <div class="ec-time">
+        <button type="button" class="ec-play" data-board-play aria-pressed="false">Play ▸</button>
+        <label for="ec-board-step">Frontier on <output data-board-date></output></label>
+        <input id="ec-board-step" type="range" min="0" max="{{ ec.history.size | minus: 1 }}" value="{{ ec.history.size | minus: 1 }}" step="1" data-board-step>
+      </div>
+    </div>
+    <div class="ec-viz-body">
+      <div class="ec-viz-stage">
+        <svg role="img" aria-label="Public ECDSA.fail frontier of mean executed Toffolis per point addition against peak logical qubits, on a logarithmic gate axis, at monthly snapshots from June to November 2026."></svg>
+        <div class="ec-viz-legend" aria-hidden="true">
+          <span><i class="lg-front"></i>Public frontier on the chosen date</span>
+          <span><i class="lg-past"></i>Earlier month-end frontiers, fainter when older</span>
+          <span><i class="lg-beaten"></i>Shaded: beaten on both axes by an entry on the frontier</span>
+          <span><i class="lg-mine"></i>My best entries</span>
+          <span><i class="lg-ref"></i>Reference designs</span>
+        </div>
+      </div>
+      <div class="ec-viz-detail" data-board-detail aria-live="polite"></div>
+    </div>
+    <figcaption>Built from {{ ec.n_scored_fmt }} officially scored submissions in the public API, snapshot {{ ec.snapshot_date | date: '%-d %B %Y' }}. The staircase keeps only entries that no other entry beat on both axes. Google’s two points are the private per-addition counts quoted in the challenge README.</figcaption>
+  </figure>
+
   <div class="ecdsa-methods">
     <div>
       <h3>Hold an intermediate result</h3>
-      <p>The final pass of my low-gate circuit found thirteen places where an idle wire could keep a product until it was needed again. The pass checks that the wire starts at zero and that the rest of the circuit leaves it alone while it holds the product. If the later target also starts at zero, CNOTs can transfer the value and restore the idle wire to zero.</p>
+      <p>My low-gate circuit found thirteen places where an idle wire could keep a Boolean product until it was needed again. One Toffoli computes it, CNOTs copy and reuse it, and a final CNOT returns the wire to zero. That circuit reached <strong>746,089</strong> Toffolis at 1,464 qubits.</p>
     </div>
     <div>
       <h3>Simplify classical controls</h3>
-      <p>My separate low-product circuit simplifies the classical conditions that decide which quantum gates execute. The optimizer checks each Boolean identity over all assignments to the inputs it tracks. That saves gates while keeping the circuit at the same width.</p>
+      <p>A separate 1,234-qubit circuit simplified the classical conditions that decide which gates run, checking each Boolean identity over every input it tracks. It held the best product score on 19–20 October with 1,234 × 761,077. The current leaders are {{ lead.toffoli.t_fmt }} Toffolis (odinfree), {{ lead.qubits.q_fmt }} qubits (jackylee0424) and a product of 1,227 × 721,696 (zuiris).</p>
     </div>
   </div>
 </section>
 
-<section class="ecdsa-section" id="public-frontier" aria-labelledby="ecdsa-frontier-title">
-  <div class="ecdsa-heading"><span aria-hidden="true">02</span><h2 id="ecdsa-frontier-title">How the scores compare</h2></div>
-  <p class="ecdsa-lede">ECDSA.fail ranks circuits by peak logical qubits multiplied by mean executed Toffolis. My best score comes from the narrower of my two circuits.</p>
-  <dl class="ecdsa-score-pair">
-    <div>
-      <dt>My best score</dt>
-      <dd><strong>{{ project.product_comparison.mine.score }}</strong><span>{{ project.product_comparison.mine.qubits }} qubits × {{ project.product_comparison.mine.toffolis }} Toffolis</span></dd>
+<section class="ecdsa-section" id="assembly" aria-labelledby="ecdsa-assembly-title">
+  <div class="ecdsa-heading"><span aria-hidden="true">02</span><h2 id="ecdsa-assembly-title">From one addition to a full attack</h2></div>
+  <p class="ecdsa-lede">To find a private key <var>k</var> from a public key <var>Q</var> = <var>k</var>·<var>G</var>, Shor’s algorithm prepares two 256-bit exponent registers and computes <var>a</var>·<var>G</var> + <var>b</var>·<var>Q</var> in superposition. It does this a window of <var>w</var> bits at a time. Each window looks up a precomputed point in a table and adds it to an accumulator, so a run needs 2⌈256/<var>w</var>⌉ − 1 additions.</p>
+  <div class="ecdsa-methods ecdsa-steps">
+    <div><h3>1 · Lift the offset</h3><p>A leaderboard circuit adds a fixed classical point. In Shor the point depends on the window, so the converter loads its bits from a table into wires the circuit leaves idle. On my circuit this costs 13 extra Toffolis and no extra qubits.</p></div>
+    <div><h3>2 · Avoid the bad cases</h3><p>Affine addition breaks when the two points are equal or opposite. Each table entry is shifted by a known offset, chosen without using the key, so these cases become rare. The shifts are removed classically at the end.</p></div>
+    <div><h3>3 · Count everything</h3><p>The total adds every lookup, the first window and the final Fourier transform. Runs that fail are thrown away, so the cost is divided by the measured chance that a run is kept.</p></div>
+  </div>
+
+  <figure class="ec-viz" data-window-chart>
+    <div class="ec-viz-toolbar">
+      <label class="ec-select">Circuit <select data-window-kernel></select></label>
+      <div class="ec-time">
+        <label for="ec-window-step">Window <output data-window-out></output> bits</label>
+        <input id="ec-window-step" type="range" min="10" max="17" value="13" step="1" data-window-step>
+      </div>
     </div>
-    <div>
-      <dt>Public best · {{ project.product_comparison.leader.solver }}</dt>
-      <dd><strong>{{ project.product_comparison.leader.score }}</strong><span>{{ project.product_comparison.leader.qubits }} qubits × {{ project.product_comparison.leader.toffolis }} Toffolis</span></dd>
+    <div class="ec-viz-body">
+      <div class="ec-viz-stage">
+        <svg role="img" aria-label="Stacked bars of mean Toffolis per run for window sizes 10 to 17, split into point additions and table lookups."></svg>
+        <div class="ec-viz-legend" aria-hidden="true">
+          <span><i class="lg-adds"></i>Point additions</span>
+          <span><i class="lg-lookups"></i>Table lookups, first window and Fourier transform</span>
+          <span><i class="lg-guide"></i>★ Cheapest window; other bars show % above it</span>
+        </div>
+      </div>
+      <div class="ec-viz-detail" data-window-detail aria-live="polite"></div>
     </div>
+    <figcaption>Wider windows mean fewer additions but tables that double in size with each extra bit. For most circuits the cheapest run uses 12 or 13 bits. Mean executed Toffolis per run, before dividing by the chance of keeping it.</figcaption>
+  </figure>
+</section>
+
+<section class="ecdsa-section" id="frontier" aria-labelledby="ecdsa-frontier-title">
+  <div class="ecdsa-heading"><span aria-hidden="true">03</span><h2 id="ecdsa-frontier-title">The full-attack frontier</h2></div>
+  <p class="ecdsa-lede">Each converted circuit and window gives one full attack. The staircase keeps the cheapest attack within each logical-qubit budget. The published designs from Google (Babbush et al., 2026) and Schrottenloher (2026) are assembled with the same formula from their per-addition counts. That formula reproduces their published totals exactly.</p>
+
+  <figure class="ec-viz" data-frontier-chart>
+    <div class="ec-viz-toolbar">
+      <div class="ec-segmented" role="group" aria-label="Cost measure" data-frontier-metric>
+        <button type="button" data-metric="kept" aria-pressed="true">Per kept run, worst case</button>
+        <button type="button" data-metric="mean" aria-pressed="false">Mean per run</button>
+      </div>
+      <label class="ec-check"><input type="checkbox" data-frontier-all> Show every circuit and window</label>
+    </div>
+    <div class="ec-viz-body">
+      <div class="ec-viz-stage">
+        <svg role="img" aria-label="Full-attack Toffoli count against logical qubits for converted leaderboard circuits and published designs, on a logarithmic gate axis."></svg>
+        <div class="ec-viz-legend" aria-hidden="true">
+          <span><i class="lg-stair"></i>Cheapest converted attack within each qubit budget</span>
+          <span><i class="lg-ours"></i>Converted leaderboard circuit</span>
+          <span><i class="lg-mine-dot"></i>My circuit</span>
+          <span><i class="lg-pub"></i>Published design</span>
+          <span><i class="lg-gap"></i>Drop to the staircase at the same budget; “1.72×” = that many times more Toffolis</span>
+        </div>
+      </div>
+      <div class="ec-viz-detail" data-frontier-detail aria-live="polite"></div>
+    </div>
+    <figcaption>Click a point for its details. “Per kept run” uses the worst-case Toffoli count and the 95% upper bound on the failure rate, which is the conservative reading. At the same budget, the converted circuits need 1.55–2.30× fewer Toffolis than the published designs. No published design is narrower than 1,191 qubits.</figcaption>
+  </figure>
+
+  <div class="ec-table-wrap">
+    <table class="ec-table">
+      <caption>Best window for each converted circuit. Toffolis per kept run, worst case. The last column compares with the cheapest published design that fits in the same number of qubits.</caption>
+      <thead><tr><th scope="col">Circuit (author)</th><th scope="col">Logical qubits</th><th scope="col">Window</th><th scope="col">Toffolis</th><th scope="col">Best published within that budget</th></tr></thead>
+      <tbody>{% for k in ec.kernels %}
+        <tr{% if k.mine %} class="is-mine"{% endif %}><th scope="row"><code>{{ k.id }}</code> <span>{{ k.author }}{% if k.mine %} (mine){% endif %}</span></th><td>{{ k.q_fmt }}</td><td>{{ k.best.w }}</td><td>{{ k.kept_fmt }}</td><td>{% if k.cmp %}{{ k.cmp.name }}, {{ k.cmp.kept_fmt }} <span>({{ k.cmp.ratio }}× more)</span>{% else %}<span>None this narrow</span>{% endif %}</td></tr>
+      {% endfor %}</tbody>
+    </table>
+  </div>
+</section>
+
+<section class="ecdsa-section" id="verification" aria-labelledby="ecdsa-verify-title">
+  <div class="ecdsa-heading"><span aria-hidden="true">04</span><h2 id="ecdsa-verify-title">How the numbers were checked</h2></div>
+  <p class="ecdsa-lede">A full-attack count is only as good as the addition it repeats. Every converted circuit went through the same checks, and failures are counted in the cost rather than screened away.</p>
+  <dl class="ecdsa-checks">
+    <div><dt>Byte-exact rebuilds</dt><dd>14 / 14</dd><p>Each circuit was rebuilt from its public source and matched the official stream hash before any change.</p></div>
+    <div><dt>Fresh-input census</dt><dd>131,072</dd><p>Shots per circuit, run on the original and the converted version, counting wrong points, phase errors and dirty workspace.</p></div>
+    <div><dt>Toy-curve branches</dt><dd>0 wrong</dd><p>The assembled circuit was checked branch by branch on five small curves, then used to recover the key: {{ ec.toy[0].success | times: 100 | round }}–{{ ec.toy[1].success | times: 100 | round }}% in one run, 99% within three.</p></div>
   </dl>
-  <p class="ecdsa-score-date">Official leaderboard snapshot, {{ project.product_comparison.date }}.</p>
+
+  <figure class="ec-viz ec-fail" data-fail-chart>
+    <div class="ec-viz-toolbar">
+      <div class="ec-segmented" role="group" aria-label="Sort" data-fail-sort>
+        <button type="button" data-sort="q" aria-pressed="true">By qubits</button>
+        <button type="button" data-sort="fail" aria-pressed="false">By failure rate</button>
+      </div>
+      <span class="ec-fail-key" aria-hidden="true"><i class="lg-ours"></i>Measured rate <i class="lg-ci"></i>95% upper bound <b class="ec-dirty-badge">dirty</b> Original left dirty workspace</span>
+    </div>
+    <div class="ec-fail-head" aria-hidden="true"><span>Circuit</span><span>Share of 131,072 fresh-input shots that failed<span class="ec-fail-axis" data-fail-axis></span></span><span>Lift cost<small>Toffolis · % of addition</small></span></div>
+    <div class="ec-fail-rows" data-fail-rows role="list"></div>
+    <figcaption>The benchmark’s 9,024 inputs are derived from the submission, so a circuit can pass all of them and still fail on other inputs. Six of the original circuits left workspace dirty on 16–39 of 131,072 fresh shots. The converter counts every such shot as a failed run. “Lift cost” is the extra Toffolis per addition from loading the offset.</figcaption>
+  </figure>
+</section>
+
+<section class="ecdsa-section" id="hardware" aria-labelledby="ecdsa-hw-title">
+  <div class="ecdsa-heading"><span aria-hidden="true">05</span><h2 id="ecdsa-hw-title">What it would mean on hardware</h2></div>
+  <p class="ecdsa-lede">These are projections for machines that do not exist yet. Each model prices Toffolis and lookups from published operation costs and applies the same rules to every circuit, without routing or layout. They are useful for comparing circuits, not for predicting a date.</p>
+  <figure class="ec-viz ec-hw" data-hw-chart>
+    <div class="ec-viz-toolbar">
+      <div class="ec-segmented" role="group" aria-label="Hardware model" data-hw-model></div>
+      <label class="ec-check"><input type="checkbox" data-hw-sort> Fastest first</label>
+    </div>
+    <p class="ec-hw-summary" data-hw-summary aria-live="polite"></p>
+    <div class="ec-hw-rows" data-hw-rows role="list"></div>
+    <figcaption>Shorter bars are faster. The dashed line marks the fastest published design under the chosen model, and each converted circuit shows its speed relative to that design. One run per key, serial execution. The 15 µs-per-Toffoli surface-code model reproduces Google’s own 18 and 23 minute figures for their two designs. The LDPC-cat value is a primitive-cost index rather than a full runtime. Under the neutral-atom space-efficient model the lead shrinks, because that machine streams the wider table words through a few qubits.</figcaption>
+  </figure>
+</section>
+
+<section class="ecdsa-section" id="contribution" aria-labelledby="ecdsa-contrib-title">
+  <div class="ecdsa-heading"><span aria-hidden="true">06</span><h2 id="ecdsa-contrib-title">What is new here, and what is not</h2></div>
+  <div class="ecdsa-methods">
+    <div>
+      <h3>Mostly the community’s savings</h3>
+      <p>The gap to the published designs comes from the per-addition circuits that ECDSA.fail participants built. The full-attack formula is Schrottenloher’s. What this project adds is the conversion: lifting the offset into a lookup, choosing offsets without the key, counting every gate of the full run, and checking each circuit on fresh inputs and toy curves.</p>
+    </div>
+    <div>
+      <h3>Ideas that did not carry over</h3>
+      <p>The tricks from my RSA work did not help here. Lookups are only about 8% of an addition, so sharing them saves little. Checkpoints found no reusable pairs and lazy reduction saved under 0.1%. A residue-number approach was estimated at 2<sup>40.5</sup> Toffolis and dropped. P-256 is a model estimate only.</p>
+    </div>
+  </div>
+  <p class="ecdsa-status">This is a portfolio write-up of unreviewed work. The converter, data and a short note are not yet public.</p>
+
   <details class="technical-record ecdsa-details">
-    <summary>How the public frontier moved <span aria-hidden="true">+</span></summary>
+    <summary>Credits for every circuit used <span aria-hidden="true">+</span></summary>
     <div class="technical-content">
-      {% assign selected_figure = project.figures[0] %}
-      {% include project-blocks/media.html figure=selected_figure %}
+      <div class="record-table" tabindex="0" role="region" aria-label="Scrollable credits table">
+        <table>
+          <caption>Leaderboard circuits converted on this page</caption>
+          <thead><tr><th scope="col">Submission</th><th scope="col">Author</th><th scope="col">Qubits</th><th scope="col">Toffolis per addition</th></tr></thead>
+          <tbody>{% assign by_q = ec.kernels | sort: 'q' %}{% for k in by_q %}
+            <tr><th scope="row"><code>{{ k.id }}</code></th><td>{{ k.author }}</td><td>{{ k.q }}</td><td>{{ k.t }}</td></tr>
+          {% endfor %}</tbody>
+        </table>
+      </div>
+      <p>The challenge is run by Eigen Labs, and its harness is adapted from Google Quantum AI’s code for Babbush et al. Circuits are credited by handle and submission ID and are not redistributed. A further circuit, <code>af336c78</code> by RealAdii at 773 qubits, had no idle wire for the offset and is left out. The analysis pipeline was written with AI coding assistants under my direction, and every number on this page comes from its scripted outputs.</p>
     </div>
   </details>
 </section>
 
-<section class="ecdsa-section" id="external-verification" aria-labelledby="ecdsa-checks-title">
-  <div class="ecdsa-heading"><span aria-hidden="true">03</span><h2 id="ecdsa-checks-title">What the benchmark checks</h2></div>
-  <p class="ecdsa-lede">Both submissions passed the 9,024-shot benchmark in classical simulation. It checks the output point, phase, and workspace cleanup. The inherited arithmetic is approximate, so I also compared the circuits with their references on fresh inputs.</p>
-  <details class="technical-record ecdsa-details" id="method">
-    <summary>Fresh-input checks <span aria-hidden="true">+</span></summary>
-    <div class="technical-content">
-      <p>The low-gate circuit and its reference each ran on the same 2,097,152 fresh inputs. Both produced 1,151 wrong-point shots and 629 phase-failing shots, with no dirty-workspace shots. The low-product circuit had a separate paired test with 16,777,216 shots per source.</p>
-      <p>The benchmark derives its inputs from the circuit. I froze the arithmetic before screening identity tails and selected the first passing tail in each documented search.</p>
-    </div>
-  </details>
-</section>
-
-<p class="ecdsa-code" id="resources"><a href="{{ project.code_url }}" target="_blank" rel="noopener">View the code on GitHub ↗</a></p>
+<p class="ecdsa-code" id="resources"><a href="{{ project.code_url }}" target="_blank" rel="noopener">View the challenge code on GitHub ↗</a></p>
+<script src="{{ '/assets/js/ecdsa-results.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

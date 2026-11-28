@@ -1044,14 +1044,16 @@
 
 - title: ECDSA Circuit Optimization
   slug: ecdsa
-  updated_at: "2026-11-09T17:50:08+08:00"
+  updated_at: "2026-11-28T18:00:00+08:00"
   page: /work/ecdsa/
-  category: ECDSA.fail challenge
+  category: ECDSA.fail challenge · Shor’s algorithm
   type: challenge
-  summary: Reversible secp256k1 point addition with a mean of 746,089 executed Toffolis
-    and 1,464 logical qubits, with a separate submission that held the product record.
-  metric: '746,089'
-  metric_label: my lowest scored Toffoli count · 1,464 logical qubits
+  summary: Reversible secp256k1 point additions from the ECDSA.fail challenge, converted
+    into complete, gate-counted Shor attacks. My own circuit gives 33.0M Toffolis per
+    kept run at 1,477 logical qubits.
+  metric: '33.0M'
+  metric_label: Toffolis for a full secp256k1 Shor run · 1,477 logical qubits
+  challenge_metric: '746,089'
   code_url: https://github.com/MonitSharma/elliptic_curve_dsa
   source_url: https://api.ecdsa.fail/api/submissions/8d704a6b-659c-4d67-9bd0-f6862de9f617
   source_label: View the gate-count receipt

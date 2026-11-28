@@ -176,21 +176,24 @@
       def: Threads share memory inside one program; processes are separate programs. Independent jobs usually run best as separate processes.
 
 - slug: ecdsa
-  tldr: My lowest officially scored ECDSA.fail gate count was 746,089 Toffolis
-    at 1,464 logical qubits. A separate 1,234-qubit circuit held the product record
-    before other participants lowered it.
-  problem: A reversible secp256k1 point-addition circuit must return the right
-    coordinates, clean up its temporary workspace, and preserve phase.
-  why: Point addition is a building block for quantum discrete-logarithm
-    algorithms on elliptic curves. The challenge measures logical resources
-    for one addition using classical simulation.
-  metric_plain: The low-gate circuit uses 746,089 mean executed Toffolis and
-    1,464 logical qubits. My accepted product circuit uses 761,077 Toffolis and
-    1,234 qubits, for a score of 939,169,018.
+  tldr: I turned ECDSA.fail point-addition circuits, mine and thirteen from other
+    participants, into complete Shor attacks on secp256k1. My circuit gives 33.0M
+    Toffolis per kept run at 1,477 logical qubits, and a 1,186-qubit circuit gives
+    52.1M, below Google’s published 89.8M at 1,191 qubits.
+  problem: The challenge scores one reversible point addition. A real attack repeats
+    that addition with table lookups, so the leaderboard number alone does not say
+    what a key recovery costs.
+  why: Point addition is the inner loop of Shor’s algorithm for elliptic-curve
+    discrete logarithms, the problem behind Bitcoin and Ethereum signatures. A full,
+    checked count shows how far the community’s circuits move the estimate.
+  metric_plain: My full attack uses 33.0M Toffolis per kept run at 1,477 logical
+    qubits. Across fourteen converted circuits, the frontier needs 1.55–2.30× fewer
+    Toffolis than published designs at the same qubit budget.
   takeaways:
-  - Reusing repeated Boolean products in already allocated wires lowered gate count.
-  - Separate classical-control simplifications reduced the product score at fixed width.
-  - The 9 November 2026 snapshot separates my historical results from the current public leaders.
+  - Most of the saving comes from the community’s per-addition circuits; the new part is the conversion and its verification.
+  - Loading the classical offset into idle wires cost 13 Toffolis on my circuit and no extra qubits.
+  - Fresh-input censuses found rare dirty-workspace shots that the fixed benchmark does not catch; they are counted as failures.
+  - Shared lookups and lazy residues from my RSA work did not help on this problem.
   stack: [Rust, secp256k1, Boolean identities, Reversible arithmetic, Circuit verification]
   glossary:
   - term: ECDSA
