@@ -30,7 +30,7 @@
       def: Apple’s interface for running general computations on the graphics processor of M-series Macs.
 
 - slug: quantum-chemistry
-  tldr: A very high-accuracy classical calculation of a difficult iron–sulfur molecule, built as a fair yardstick for judging quantum chemistry methods.
+  tldr: How close anyone can get to the exact energy of three molecules picked as quantum-advantage tests, and what our classical calculations show.
   problem: In iron–sulfur clusters the electrons interact so strongly that standard approximations struggle, which is why molecules like this are popular test cases for quantum algorithms. But to know whether a quantum method actually helps, you first need a trustworthy classical answer to compare against. This project builds that reference and checks it from several independent directions.
   why: A claim that a quantum method is better is only as strong as the classical baseline it is compared with. A carefully checked reference keeps those comparisons honest.
   metric_plain: The calculation covers 30 electrons in 20 orbitals — about 240 million possible electron arrangements that the classical solver handled explicitly.

@@ -1,7 +1,228 @@
-<header class="chem-paper" id="overview"><div class="paper-masthead"><span>Computational chemistry / Research notes</span><span>2Fe–2S cluster</span></div><p class="eyebrow">Classical references for quantum chemistry</p><h1>Classical reference calculations for the 2Fe–2S cluster</h1><p class="paper-subtitle">Quantum Chemistry</p><div class="paper-abstract"><span>ABSTRACT</span><p>{{ guide.problem | escape }}</p></div><div class="chem-specs"><div><b>30</b><span>electrons</span></div><div><b>20</b><span>spatial orbitals</span></div><div><b>240M</b><span>fixed-spin determinants</span></div></div></header>
-<section class="chem-result" id="results"><p class="eyebrow">The checked Davidson reference</p><p class="energy-value">−116.605609120429 <span>Eh</span></p><p>{{ project.detail | escape }}</p></section>
-<section class="project-section paper-results"><div><h2>The energy landscape</h2><p>Comparing variational states and reported hybrid baselines in the same active space.</p></div>{% assign selected_figure = project.figures[0] %}{% include project-blocks/media.html figure=selected_figure %}{% include project-blocks/table.html %}</section>
-<section class="project-section"><div class="experience-heading"><div><p class="eyebrow">Convergence & independent checks</p><h2>Energy alone is not enough</h2></div></div><div class="paper-columns">{% for finding in project.findings %}<p>{{ finding | escape }}</p>{% endfor %}</div><div class="media-grid">{% for figure in project.figures offset:1 %}{% include project-blocks/media.html figure=figure %}{% endfor %}</div></section>
-{% include project-blocks/notes.html title='Accuracy & interpretation' %}
-{% include project-blocks/technical.html title='Computational methods & residual checks' %}
-{% include project-blocks/resources.html label='References & reproduction' title='The research record' %}
+<header class="qc-cover" id="overview">
+  <div class="qc-masthead">
+    <span>Computational chemistry <span aria-hidden="true">/</span> <b>Quantum Advantage Tracker benchmarks</b></span>
+    <span>Updated 28 November 2026</span>
+  </div>
+  <div class="qc-cover-grid">
+    <div class="qc-cover-copy">
+      <h1>Three hard molecules, <span>and how close we are to solving them.</span></h1>
+      <p class="qc-intro">The Quantum Advantage Tracker lists three molecules where quantum computers are expected to win: nitrogen pulling apart, and two iron–sulfur clusters found in proteins. We ask what the lowest energy is that anyone can actually prove, by any method, on the tracker’s exact problem files.</p>
+      <p class="qc-cover-finding">So far the best answers on all three are classical. We have solved one exactly, lead on another, and trail the best large classical calculation on the third.</p>
+    </div>
+    <figure class="qc-mol" data-qc-mol>
+      <div class="qc-segmented qc-mol-tabs" role="group" aria-label="Molecule" data-qc-mol-tabs>
+        <button type="button" data-mol="fe2s2" aria-pressed="false">2Fe–2S</button>
+        <button type="button" data-mol="n2" aria-pressed="false">N₂</button>
+        <button type="button" data-mol="fe4s4" aria-pressed="true">4Fe–4S</button>
+      </div>
+      <svg class="qc-mol-svg" viewBox="0 0 300 280" role="img" tabindex="0" aria-roledescription="rotatable molecule" aria-labelledby="qc-mol-name" aria-describedby="qc-mol-help" data-qc-mol-svg></svg>
+      <label class="qc-mol-bond" data-qc-mol-bond hidden>Bond length <input type="range" min="0" max="8" value="3" step="1" aria-label="N₂ bond length"> <output>1.10 Å</output></label>
+      <figcaption>
+        <b id="qc-mol-name" data-qc-mol-name>4Fe–4S cubane</b>
+        <span data-qc-mol-facts>54 electrons in 36 orbitals · 72 qubits</span>
+        <span class="qc-mol-key" aria-hidden="true" data-qc-mol-key></span>
+        <small id="qc-mol-help">Drag or use the arrow keys to turn it.</small>
+      </figcaption>
+    </figure>
+  </div>
+  <dl class="qc-scoreboard">
+    <div class="is-solved" data-qc-pick="fe2s2"><dt>2Fe–2S <small>40 qubits</small></dt><dd class="qc-verdict">Solved</dd><dd class="qc-note">Exact answer, computed from all 240 million configurations. Nothing can go lower.</dd></div>
+    <div class="is-lead" data-qc-pick="n2"><dt>N₂ <small>56 qubits · 9 bond lengths</small></dt><dd class="qc-verdict">Lowest known</dd><dd class="qc-note">Below the tracker’s best at every bond length, by 9.5–18.8 µEh. Still converging for the stretched bond.</dd></div>
+    <div class="is-behind" data-qc-pick="fe4s4"><dt>4Fe–4S <small>72 qubits</small></dt><dd class="qc-verdict">7.5 mEh behind</dd><dd class="qc-note">4.5 mEh below every quantum result, but behind the largest published classical run.</dd></div>
+  </dl>
+  <div class="qc-dossier" data-qc-dossier aria-live="polite">
+    <article class="qc-dossier-panel" data-qc-panel="fe2s2" hidden>
+      <header><h2>2Fe–2S <span>two-iron cluster · 40 qubits</span></h2><a class="qc-link" href="#fe2s2">Full section ↓</a></header>
+      <div class="qc-dossier-grid">
+        <section><h3>The problem</h3><p>30 electrons in 20 orbitals. With the spin fixed there are <b>240,374,016</b> ways to place them, about 1.9 GB for one copy of the exact wavefunction.</p></section>
+        <section><h3>What we did</h3><p>Small enough to keep every configuration, so we solved the full space directly instead of approximating it. The final state was reloaded and re-checked in a fresh process.</p></section>
+        <section><h3>Result</h3><dl><div><dt>Exact energy</dt><dd>−116.60560912 Eh</dd></div><div><dt>Residual</dt><dd>9.9×10⁻⁸ Eh</dd></div><div><dt>Spin ⟨S²⟩</dt><dd>≈ 10⁻¹¹</dd></div><div><dt>Best quantum-assisted</dt><dd>+0.83 mEh above</dd></div></dl><p>Matches DMRG at bond dimension 8,000, which also confirms everyone is solving the same Hamiltonian.</p></section>
+        <section><h3>Why it matters / what is left</h3><p>With the true answer known, other methods can be graded against it. It showed that a published SQD extrapolation lands 0.69 mEh <em>below</em> the exact energy, which is impossible. Left: push the residual below 10⁻⁹ Eh for a two-sided error bar.</p></section>
+      </div>
+    </article>
+    <article class="qc-dossier-panel" data-qc-panel="n2" hidden>
+      <header><h2>N₂ <span>nitrogen pulled apart · 56 qubits</span></h2><a class="qc-link" href="#n2">Full section ↓</a></header>
+      <div class="qc-dossier-grid">
+        <section><h3>The problem</h3><p>14 electrons in 28 orbitals at nine bond lengths from 0.80 to 3.00 Å. Stretched, six electrons must choose an atom and simple methods fail. Storing the exact answer would take about 11 TB.</p></section>
+        <section><h3>What we did</h3><p>DMRG with bond dimension 5,000–6,000, in orbitals adapted to the wavefunction. Every point is a stored state, reloaded and re-evaluated to better than 10⁻¹³ Eh.</p></section>
+        <section><h3>Result</h3><dl><div><dt>vs tracker HCI</dt><dd>9.5–18.8 µEh lower</dd></div><div><dt>At all nine lengths</dt><dd>lowest known</dd></div><div><dt>HI-VQE vs HCI</dt><dd>55–268 µEh higher</dd></div><div><dt>Equilibrium, 1.10 Å</dt><dd>−109.2811360 Eh</dd></div></dl></section>
+        <section><h3>What is left</h3><p>The stretched bonds still drop 7–21 µEh at each bond-dimension step, so these are upper bounds. Next: bond dimension 8,000–10,000 and limits good to 1 µEh, a near-exact curve the tracker does not have.</p></section>
+      </div>
+    </article>
+    <article class="qc-dossier-panel" data-qc-panel="fe4s4">
+      <header><h2>4Fe–4S <span>iron–sulfur cubane · 72 qubits</span></h2><a class="qc-link" href="#fe4s4">Full section ↓</a></header>
+      <div class="qc-dossier-grid">
+        <section><h3>The problem</h3><p>54 electrons in 36 orbitals: 8.9×10¹⁵ configurations, about 71 PB to store exactly. Nobody can, so every method compresses or samples.</p></section>
+        <section><h3>What we did</h3><p>In the tracker’s default orbitals DMRG stays stuck 0.4–1.0 Eh too high. Localizing orbitals on individual iron and sulfur atoms fixed that. We then ran SU(2) DMRG to bond dimension 3,000 on one 503 GB node, and re-ran IBM + RIKEN’s published hardware samples.</p></section>
+        <section><h3>Result</h3><dl><div><dt>Our energy</dt><dd>−327.2395754 Eh</dd></div><div><dt>vs best quantum-assisted</dt><dd>4.5 mEh lower</dd></div><div><dt>vs best published DMRG</dt><dd>7.5 mEh higher</dd></div><div><dt>Spin ⟨S²⟩</dt><dd>1.5×10⁻¹³</dd></div></dl><p>Shuffled bitstrings did as well as the real hardware samples.</p></section>
+        <section><h3>What is left</h3><p>Optimize the orbitals, then run DMRG at bond dimension 20,000–30,000 on GPUs to pass −327.247 Eh. In progress.</p></section>
+      </div>
+    </article>
+  </div>
+  <nav class="qc-contents" aria-label="On this page"><a href="#basics">The problem</a><a href="#explorer">Who is closest</a><a href="#fe2s2">2Fe–2S</a><a href="#n2">N₂</a><a href="#fe4s4">4Fe–4S</a><a href="#quantum">Quantum results</a><a href="#next">What’s next</a></nav>
+</header>
+
+<script type="application/json" data-qc-data>{"ladders":{"fe2s2":{"label":"2Fe–2S","unit":"mEh","best":-116.60560912,"bestLabel":"exact energy","rows":[{"name":"This work · full-space solution","kind":"ours","e":-116.60560912,"size":"240 million determinants (all of them)","who":"This project","note":"Exact answer. Residual 9.9×10⁻⁸ Eh, ⟨S²⟩ ≈ 10⁻¹¹, replayed in a fresh process."},{"name":"DMRG, D = 8,000","kind":"classical","e":-116.6056091,"size":"bond dimension 8,000","who":"Published (arXiv:2509.25720)","note":"Agrees with the exact answer to the digits reported."},{"name":"Tracker HCI","kind":"classical","e":-116.605425,"size":"selected CI, 40 nodes × 12 h","who":"Quantum Advantage Tracker","note":"The tracker's classical reference."},{"name":"DMRG, D = 2,400","kind":"classical","e":-116.605417,"size":"bond dimension 2,400","who":"IBM + RIKEN (arXiv:2611.04496)","note":"Classical comparator in the broken-symmetry SQD paper."},{"name":"HI-VQE","kind":"quantum","e":-116.604779,"size":"63.9 million determinants","who":"Qunova + RIKEN, IBM Heron","note":"Best quantum-assisted variational energy. Spin not reported."},{"name":"Broken-symmetry SQD","kind":"quantum","e":-116.603964,"size":"210 million determinants (87% of the space)","who":"IBM + RIKEN, ibm_fez","note":"Deepest directly computed point. Spin not reported."}]},"fe4s4":{"label":"4Fe–4S","unit":"mEh","best":-327.247036,"bestLabel":"best published energy","rows":[{"name":"DMRG, D = 20,000","kind":"classical","e":-327.247036,"size":"bond dimension 20,000, optimized orbitals","who":"Published (EMO-DMRG)","note":"Lowest variational energy we have found in the literature. Its integral file is not yet checked against the tracker's."},{"name":"GPU DMRG, D = 12,288","kind":"classical","e":-327.24466,"size":"bond dimension 12,288","who":"Published","note":"GPU-accelerated DMRG."},{"name":"TrimCI + optimized orbitals","kind":"classical","e":-327.242156,"size":"5.1 billion determinants","who":"Zhang & Otten (arXiv:2605.22977)","note":"Selected CI with core-optimized orbitals."},{"name":"Li–Chan DMRG, D = 4,000","kind":"classical","e":-327.2396369,"size":"bond dimension 4,000","who":"Li & Chan","note":"Source of the tracker Hamiltonian; described by its authors as unconverged."},{"name":"This work · DMRG, M = 3,000","kind":"ours","e":-327.2395754,"size":"bond dimension 3,000, localized orbitals","who":"This project","note":"Stored, replayed state with ⟨S²⟩ = 1.5×10⁻¹³. A larger run is in progress."},{"name":"Broken-symmetry SQD","kind":"quantum","e":-327.235076,"size":"3×10¹⁰ determinants","who":"IBM + RIKEN + NVIDIA, ibm_kingston","note":"Best quantum-assisted variational energy. Spin not reported."},{"name":"HCI, ε = 7×10⁻⁶","kind":"classical","e":-327.2275124,"size":"22.7 million determinants","who":"IBM + RIKEN comparator","note":"Heat-bath CI without perturbative correction."},{"name":"HI-VQE","kind":"quantum","e":-327.1757326,"size":"225 million determinants","who":"Qunova + RIKEN, IBM Heron","note":"66,249 node-hours on Fugaku for the classical part."},{"name":"Tracker TrimCI","kind":"classical","e":-327.175,"size":"62 million determinants","who":"Quantum Advantage Tracker","note":"The tracker's listed classical entry."}]}},"n2":{"R":[0.8,0.9,1.0,1.1,1.2,1.5,2.0,2.5,3.0],"ours":[-108.66597084,-109.06261419,-109.23239055,-109.281136,-109.26858514,-109.12856584,-108.98520391,-108.96421373,-108.96150975],"M":[5000,5000,5000,6000,6000,6000,6000,6000,6000],"hci":[-108.6659613,-109.0626004,-109.2323757,-109.2811222,-109.2685746,-109.128547,-108.9851887,-108.9641991,-108.9614962],"hivqe":[-108.6659061,-109.0625337,-109.2322559,-109.2810451,-109.2684836,-109.1284202,-108.9849804,-108.9640293,-108.9612287],"step":[-1.7,-2.2,-3.9,-7.2,-8.8,-5.6,-21.0,-11.4,-7.5]},"fe4s4conv":{"best":-327.247036,"ours":[[400,-327.2153355],[1000,-327.2304815],[2000,-327.2369974],[3000,-327.2395754]],"published":[{"D":4000,"e":-327.2396369,"name":"Li–Chan DMRG"},{"D":4000,"e":-327.2393952,"name":"IBM + RIKEN DMRG"},{"D":12288,"e":-327.24466,"name":"GPU DMRG"},{"D":20000,"e":-327.247036,"name":"EMO-DMRG"}],"extrap":[{"e":-327.248858,"name":"EMO-DMRG extrapolation"},{"e":-327.244797,"name":"IBM + RIKEN DMRG extrapolation"}],"lines":[{"e":-327.235076,"name":"Best quantum-assisted (BS-SQD)","kind":"quantum"}]},"attribution":{"d":[4096,16384,65536,262144,1048576,4194304],"rec":[3.646,6.736,18.749,21.789,30.133,52.107],"shuf":[2.579,8.903,18.86,22.296,32.182,52.171],"shufSd":[0.406,0.673,0.162,0.847,1.141,1.748],"h":[40.898,59.893,80.326,99.445,116.921,128.231]}}</script>
+
+<section class="qc-section" id="basics" aria-labelledby="qc-basics-title">
+  <div class="qc-section-heading"><span class="qc-section-index">01</span><h2 id="qc-basics-title">What “solving” a molecule means</h2></div>
+  <div class="qc-two">
+    <div class="qc-copy">
+      <p>Chemistry is decided by the <strong>ground-state energy</strong>: the lowest energy the electrons can settle into. Get it right and you can predict how strongly bonds hold and which reactions happen. Each benchmark fixes the problem exactly: a set of orbitals and a file of electron–electron interaction integrals, the <em>Hamiltonian</em>.</p>
+      <p>Every method here writes down a trial wavefunction and measures its energy. A basic rule of quantum mechanics says that energy can never be below the true answer. So <strong>lower is always better</strong>, and a lower number from a stored wavefunction is a proof that the true answer is at least that low.</p>
+      <p>The catch is size. The exact wavefunction is a list of weights, one for every way of placing the electrons in the orbitals. That list grows explosively, which is why quantum computers are proposed and why classical methods compress it instead.</p>
+      <p class="qc-units"><b>Units.</b> Energies are in hartree (Eh). 1 mEh is a thousandth of a hartree, about 0.63 kcal/mol. Chemists call 1.6 mEh “chemical accuracy”. 1 µEh is a thousandth of a mEh.</p>
+    </div>
+    <figure class="qc-size">
+      <figcaption><span class="qc-figure-number">Electron configurations to store exactly (log scale)</span></figcaption>
+      <ul>
+        <li><span class="qc-size-name">2Fe–2S<small>30 electrons · 20 orbitals</small></span><span class="qc-size-bar"><i style="--w:52%"></i></span><span class="qc-size-val">2.4×10⁸<small>1.9 GB · a laptop</small></span></li>
+        <li><span class="qc-size-name">N₂<small>14 electrons · 28 orbitals</small></span><span class="qc-size-bar"><i style="--w:76%"></i></span><span class="qc-size-val">1.4×10¹²<small>11 TB · a supercomputer</small></span></li>
+        <li><span class="qc-size-name">4Fe–4S<small>54 electrons · 36 orbitals</small></span><span class="qc-size-bar"><i style="--w:100%"></i></span><span class="qc-size-val">8.9×10¹⁵<small>71 PB · nobody</small></span></li>
+      </ul>
+      <p>Memory for one copy of the exact wavefunction at 8 bytes per number. Only 2Fe–2S fits, so it is the one we could solve outright. For the other two we use <strong>DMRG</strong>, which stores the wavefunction as a chain of small matrices. Their size, the <em>bond dimension</em>, sets how much entanglement it can capture: bigger is more accurate and more expensive.</p>
+    </figure>
+  </div>
+</section>
+
+<section class="qc-section" id="explorer" aria-labelledby="qc-explorer-title">
+  <div class="qc-section-heading"><span class="qc-section-index">02</span><h2 id="qc-explorer-title">Who is closest to the answer?</h2></div>
+  <p class="qc-lede">Every published energy we could check, measured as distance above the best known value. Distances are on a log scale, so each gridline is ten times closer. Pick a molecule, then click a row for details.</p>
+  <figure class="qc-viz" data-qc-ladder>
+    <div class="qc-viz-toolbar">
+      <div class="qc-segmented" role="group" aria-label="Molecule" data-qc-ladder-tabs></div>
+      <label class="qc-geo" data-qc-geo>Bond length <input type="range" min="0" max="8" value="5" aria-label="N₂ bond length"> <output>1.50 Å</output></label>
+    </div>
+    <div class="qc-viz-body">
+      <div class="qc-viz-stage"><svg class="qc-ladder-svg" role="img" aria-label="Distance of each method above the best known energy for the selected molecule. Click a row for details."></svg>
+        <div class="qc-viz-legend" aria-hidden="true"><span><i class="lg-ours"></i>This work</span><span><i class="lg-classical"></i>Classical</span><span><i class="lg-quantum"></i>Quantum-assisted</span></div>
+      </div>
+      <div class="qc-viz-detail" data-qc-ladder-detail aria-live="polite"></div>
+    </div>
+    <figcaption>Variational energies only: each comes from a wavefunction someone actually built. Extrapolated estimates are discussed further down. Published 4Fe–4S values use the same nominal problem, but not all of their integral files have been checked against the tracker’s.</figcaption>
+  </figure>
+</section>
+
+<section class="qc-section" id="fe2s2" aria-labelledby="qc-fe2-title">
+  <div class="qc-section-heading"><span class="qc-section-index">03</span><h2 id="qc-fe2-title">2Fe–2S: solved exactly</h2></div>
+  <div class="qc-two">
+    <div class="qc-copy">
+      <p>A two-iron cluster with 30 electrons in 20 orbitals. With the spin fixed there are <strong>240,374,016 configurations</strong>, few enough to keep every one. We solved the full problem directly and got <strong>−116.60560912 Eh</strong>.</p>
+      <p>That number matches the exact value in the HI-VQE paper and DMRG at bond dimension 8,000, which also confirms we are solving the same Hamiltonian as everyone else. From here on, any method can be graded against the true answer instead of against another approximation.</p>
+    </div>
+    <dl class="qc-facts">
+      <div><dt>Exact energy</dt><dd>−116.60560912 <small>Eh</small></dd></div>
+      <div><dt>Residual ‖Hψ − Eψ‖</dt><dd>9.9×10⁻⁸ <small>Eh</small></dd></div>
+      <div><dt>Spin ⟨S²⟩ (singlet = 0)</dt><dd>≈ 10⁻¹¹</dd></div>
+      <div><dt>Best quantum-assisted result</dt><dd>+0.83 <small>mEh above</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="qc-section" id="n2" aria-labelledby="qc-n2-title">
+  <div class="qc-section-heading"><span class="qc-section-index">04</span><h2 id="qc-n2-title">N₂: lowest known at all nine bond lengths</h2></div>
+  <p class="qc-lede">Pulling apart nitrogen’s triple bond is a classic stress test. Near equilibrium the electrons behave simply. Stretched, six electrons must decide which atom to stay with, and simple methods fail badly. All 14 electrons are treated in 28 orbitals. We used DMRG with bond dimension 5,000–6,000, in orbitals adapted to the wavefunction.</p>
+  <figure class="qc-viz" data-qc-n2>
+    <div class="qc-viz-toolbar"><div class="qc-segmented" role="group" aria-label="View" data-qc-n2-tabs></div></div>
+    <div class="qc-viz-body">
+      <div class="qc-viz-stage"><svg role="img" aria-label="N₂ energies at nine bond lengths compared with the tracker HCI reference. The same data is in the table below."></svg>
+        <div class="qc-viz-legend" aria-hidden="true"><span><i class="lg-ours"></i>This work (DMRG)</span><span><i class="lg-quantum"></i>HI-VQE (IBM hardware + classical)</span><span><i class="lg-zero"></i>Tracker HCI</span></div>
+      </div>
+      <div class="qc-viz-detail" data-qc-n2-detail aria-live="polite"></div>
+    </div>
+    <figcaption>Hover or click a bond length. Every point of ours is a stored state, reloaded and re-evaluated to better than 10⁻¹³ Eh. The stretched bonds still drop 7–21 µEh each time the bond dimension grows, so these are upper bounds that are still converging.</figcaption>
+  </figure>
+  <details class="qc-more">
+    <summary>All nine values <span aria-hidden="true">+</span></summary>
+    <div class="qc-table-wrap"><table class="qc-table">
+      <thead><tr><th scope="col">R (Å)</th><th scope="col">This work (Eh)</th><th scope="col">Tracker HCI (Eh)</th><th scope="col">Ours − HCI (µEh)</th><th scope="col">HI-VQE − HCI (µEh)</th></tr></thead>
+      <tbody>
+      <tr><th scope="row">0.80</th><td>−108.6659708</td><td>−108.6659613</td><td class="is-ours">−9.5</td><td>+55.2</td></tr>
+      <tr><th scope="row">0.90</th><td>−109.0626142</td><td>−109.0626004</td><td class="is-ours">−13.8</td><td>+66.7</td></tr>
+      <tr><th scope="row">1.00</th><td>−109.2323906</td><td>−109.2323757</td><td class="is-ours">−14.9</td><td>+119.8</td></tr>
+      <tr><th scope="row">1.10</th><td>−109.2811360</td><td>−109.2811222</td><td class="is-ours">−13.8</td><td>+77.1</td></tr>
+      <tr><th scope="row">1.20</th><td>−109.2685851</td><td>−109.2685746</td><td class="is-ours">−10.5</td><td>+91.0</td></tr>
+      <tr><th scope="row">1.50</th><td>−109.1285658</td><td>−109.1285470</td><td class="is-ours">−18.8</td><td>+126.8</td></tr>
+      <tr><th scope="row">2.00</th><td>−108.9852039</td><td>−108.9851887</td><td class="is-ours">−15.2</td><td>+208.3</td></tr>
+      <tr><th scope="row">2.50</th><td>−108.9642137</td><td>−108.9641991</td><td class="is-ours">−14.6</td><td>+169.8</td></tr>
+      <tr><th scope="row">3.00</th><td>−108.9615097</td><td>−108.9614962</td><td class="is-ours">−13.5</td><td>+267.5</td></tr>
+      </tbody>
+    </table></div>
+  </details>
+</section>
+
+<section class="qc-section" id="fe4s4" aria-labelledby="qc-fe4-title">
+  <div class="qc-section-heading"><span class="qc-section-index">05</span><h2 id="qc-fe4-title">4Fe–4S: ahead of quantum, behind the biggest classical run</h2></div>
+  <p class="qc-lede">The cubane has 54 electrons in 36 orbitals, far beyond what can be stored exactly. The first lesson was about <strong>orbitals</strong>: in the tracker’s default orbitals, DMRG stays stuck 0.4–1.0 Eh too high. Placing orbitals on individual iron and sulfur atoms fixed that and gave <strong>−327.2395754 Eh</strong> at bond dimension 3,000. The second lesson is that what remains is mostly bond dimension.</p>
+  <figure class="qc-viz" data-qc-conv>
+    <div class="qc-viz-toolbar"><span class="qc-viz-title">Energy as the bond dimension grows</span><label class="qc-viz-check"><input type="checkbox" data-qc-conv-extrap> Show extrapolated estimates</label></div>
+    <div class="qc-viz-body">
+      <div class="qc-viz-stage"><svg role="img" aria-label="4Fe–4S energy above the best published value against DMRG bond dimension, for this work and for published DMRG runs."></svg>
+        <div class="qc-viz-legend" aria-hidden="true"><span><i class="lg-ours"></i>This work</span><span><i class="lg-diamond"></i>Published DMRG</span><span><i class="lg-quantum-line"></i>Best quantum-assisted</span></div>
+      </div>
+      <div class="qc-viz-detail" data-qc-conv-detail aria-live="polite"></div>
+    </div>
+    <figcaption>Our points line up with published DMRG at the same bond dimension. Closing the last 7.5 mEh means reaching bond dimension 20,000 or more, which needs GPUs, plus better orbitals. Extrapolated estimates are guesses at infinite bond dimension, not wavefunctions.</figcaption>
+  </figure>
+</section>
+
+<section class="qc-section" id="quantum" aria-labelledby="qc-q-title">
+  <div class="qc-section-heading"><span class="qc-section-index">06</span><h2 id="qc-q-title">Do the quantum samples help?</h2></div>
+  <p class="qc-lede">The leading quantum-assisted method, <strong>sample-based quantum diagonalization (SQD)</strong>, runs a circuit on a quantum computer, reads out bitstrings, and treats each one as a configuration to keep. A classical computer then solves the problem inside that set. The question is whether the hardware picks better configurations than something cheaper would.</p>
+  <figure class="qc-viz" data-qc-attr>
+    <div class="qc-viz-toolbar"><span class="qc-viz-title">4Fe–4S, IBM + RIKEN’s published hardware samples, re-run by us</span></div>
+    <div class="qc-viz-body">
+      <div class="qc-viz-stage"><svg role="img" aria-label="Energy gained against number of determinants for real hardware samples, shuffled bits and Hamiltonian-only selection."></svg>
+        <div class="qc-viz-legend" aria-hidden="true"><span><i class="lg-quantum"></i>Real hardware samples</span><span><i class="lg-shuffled"></i>Same samples, bits shuffled</span><span><i class="lg-classical"></i>No samples, chosen from the Hamiltonian</span></div>
+      </div>
+      <div class="qc-viz-detail" data-qc-attr-detail aria-live="polite"></div>
+    </div>
+    <figcaption>Energy gained below the starting mean-field state, using the same recovery procedure for each input. Shuffling keeps each bitstring’s electron count but scrambles which orbitals are filled. The shaded band is the spread over shuffling seeds.</figcaption>
+  </figure>
+  <div class="qc-two qc-after">
+    <div class="qc-copy">
+      <p>Scrambled bitstrings do as well as the real ones, and choosing configurations from the Hamiltonian alone does 2.5–11× better at the same size. On 4Fe–4S the gain comes from the classical recovery loop, not from the hardware.</p>
+      <p>Headline SQD numbers are often <strong>extrapolated</strong> to an infinitely large set. On 2Fe–2S we know the exact answer, so we can test that. The fitted curve lands below the exact energy, which no wavefunction can do. It is also too high at the point where the set already contains every configuration.</p>
+    </div>
+    <figure class="qc-numberline">
+      <figcaption><span class="qc-figure-number">2Fe–2S, published SQD fit against the exact answer (mEh)</span></figcaption>
+      <svg viewBox="0 0 360 150" role="img" aria-labelledby="qc-nl-t qc-nl-d">
+        <title id="qc-nl-t">Extrapolation check on 2Fe–2S</title>
+        <desc id="qc-nl-d">On a number line in millihartree relative to the exact energy: the fitted infinite limit is at minus 0.69, which is impossible; the exact energy is at 0; the fit evaluated at the full space is at plus 1.46, though there it should equal 0; the deepest computed point is at plus 1.65.</desc>
+        <rect x="20" y="58" width="103" height="16" class="qc-nl-forbidden"/>
+        <text x="71" y="50" text-anchor="middle" class="qc-nl-small">impossible</text>
+        <line x1="20" x2="340" y1="66" y2="66" class="qc-nl-axis"/>
+        <line x1="123" x2="123" y1="40" y2="92" class="qc-nl-exact"/>
+        <text x="123" y="30" text-anchor="middle" class="qc-nl-strong">exact = 0</text>
+        <circle cx="44" cy="66" r="6" class="qc-nl-bad"/><text x="44" y="108" text-anchor="middle" class="qc-nl-bad-t">fit at ∞</text><text x="44" y="124" text-anchor="middle" class="qc-nl-num">−0.69</text>
+        <circle cx="290" cy="66" r="6" class="qc-nl-bad"/><text x="270" y="108" text-anchor="middle" class="qc-nl-bad-t">fit at full space</text><text x="270" y="124" text-anchor="middle" class="qc-nl-num">+1.46 (should be 0)</text>
+        <circle cx="312" cy="66" r="6" class="qc-nl-pt"/><text x="300" y="44" text-anchor="middle" class="qc-nl-small">deepest point +1.65</text>
+      </svg>
+    </figure>
+  </div>
+  <p class="qc-lede qc-after">Our own emulated runs (Quantinuum Helios emulator, no real hardware) tell the same story: the samples add nothing over a classical selection of equal size. For a quantum result to matter here, it has to beat an equally strong classical workflow of the same size. None has yet.</p>
+</section>
+
+<section class="qc-section" id="next" aria-labelledby="qc-next-title">
+  <div class="qc-section-heading"><span class="qc-section-index">07</span><h2 id="qc-next-title">What finishing the job takes</h2></div>
+  <ol class="qc-steps">
+    <li><b>2Fe–2S · polish</b><p>Drive the residual below 10⁻⁹ Eh so the exact energy comes with a two-sided error bar.</p></li>
+    <li><b>N₂ · converge</b><p>Push the stretched bonds to bond dimension 8,000–10,000 and report limits good to 1 µEh: a near-exact curve the tracker does not have.</p></li>
+    <li><b>4Fe–4S · scale up</b><p>Optimize the orbitals, then run DMRG at bond dimension 20,000–30,000 on GPUs to pass −327.247 Eh. In progress.</p></li>
+  </ol>
+</section>
+
+<section class="qc-section" id="checks" aria-labelledby="qc-checks-title">
+  <div class="qc-section-heading"><span class="qc-section-index">08</span><h2 id="qc-checks-title">How every number is checked</h2></div>
+  <ul class="qc-checks">
+    <li><b>Same problem</b><p>Each Hamiltonian file is pinned by its SHA-256 hash and shown equal to the tracker’s file, up to an orbital rotation, to 10⁻¹² Eh.</p></li>
+    <li><b>Stored state</b><p>Every energy belongs to a saved wavefunction, not a number printed mid-run.</p></li>
+    <li><b>Fresh replay</b><p>A separate process reloads the state and recomputes the energy from the written integrals. All agree to better than 10⁻¹² Eh.</p></li>
+    <li><b>Right spin</b><p>Electron count, spin projection and ⟨S²⟩ are recorded for every state.</p></li>
+  </ul>
+  <div class="qc-resources">
+    <a class="qc-link" href="https://github.com/MonitSharma/quantum_chemistry" target="_blank" rel="noopener">Code, results and certificates on GitHub ↗</a>
+    <a class="qc-link" href="https://github.com/quantum-advantage-tracker/quantum-advantage-tracker.github.io" target="_blank" rel="noopener">Quantum Advantage Tracker ↗</a>
+  </div>
+</section>
+<script src="{{ '/assets/js/chemistry.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

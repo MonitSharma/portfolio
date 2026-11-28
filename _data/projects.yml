@@ -312,12 +312,13 @@
 - title: Quantum Chemistry
   category: Strongly correlated electrons
   type: research
-  summary: Classical variational references for the 2Fe–2S cluster, used to evaluate
-    quantum and hybrid sampling methods.
-  metric: 30e / 20o
-  metric_label: active space · 240 million fixed-spin determinants
-  url: https://github.com/MonitSharma/quantum_chemistry/tree/2fe2s
-  code: https://github.com/MonitSharma/quantum_chemistry/blob/2fe2s/research/2fe2s/RESULTS.md
+  summary: Lowest provable energies for the three molecules on the Quantum Advantage
+    Tracker. 2Fe–2S solved exactly, N₂ lowest known at nine bond lengths, 4Fe–4S
+    ahead of every quantum result.
+  metric: 1 solved · 1 lead
+  metric_label: of three tracker molecules, all classical
+  url: https://github.com/MonitSharma/quantum_chemistry
+  code: https://github.com/MonitSharma/quantum_chemistry
   detail: The checked full-space Davidson state reaches −116.605609120429 Eh, with
     residual 9.86×10⁻⁸ Eh. Block2 DMRG at M=4000 is 2.607 µEh above that state. The
     Davidson value is a one-sided variational upper bound; the residual target was
@@ -356,11 +357,11 @@
     insight: The quantum-proposal comparison is read against matched classical controls.
       The tested proposals have not established an advantage under those comparisons.
   slug: quantum-chemistry
-  updated_at: "2026-10-03T08:19:38+08:00"
+  updated_at: "2026-11-28T22:00:00+08:00"
   page: "/work/quantum-chemistry/"
-  source_url: https://github.com/MonitSharma/quantum_chemistry/blob/2fe2s/research/2fe2s/RESULTS.md
-  source_label: Read the 2Fe–2S results
-  code_url: https://github.com/MonitSharma/quantum_chemistry/tree/2fe2s
+  source_url: https://github.com/MonitSharma/quantum_chemistry
+  source_label: Code and results on GitHub
+  code_url: https://github.com/MonitSharma/quantum_chemistry
   question: How strong a classical reference can we build for a strongly correlated
     iron–sulfur cluster before evaluating quantum proposals?
   findings:
